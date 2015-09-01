@@ -46,7 +46,8 @@ cssFilterTween = function (tl, filter, start, end) {
 
 showText = function (dialogArray, index, i, interval) {
 
-  var target = '.text-box',
+  var target = '.text-box-dialog',
+    parent = '.text-box',
     dialog = dialogArray[index],
     readout,
     newIndex;
@@ -55,23 +56,26 @@ showText = function (dialogArray, index, i, interval) {
 
     if (i < dialog.length) {
 
-      $(target).show().append(dialog[i++]);
+      $(parent).show()
+      $(target).append(dialog[i++]);
       showText(dialogArray, index, i, interval);
 
     } else {
 
       clearTimeout(readout);
-      $(target).append('<a class="text-next">&rarr;</a>');
+      $(parent).append('<a class="text-box-next">&rarr;</a>');
 
-      $('.text-next').on('click', function() {  
+      $('.text-box-next').on('click', function() {  
         index++;
+
+        $('.text-box-next').remove();
+        $(parent).hide();
+        $(target).html('');
         
         if (index < dialogArray.length) {
           i = 0;
-          $(target).hide().html('');
+
           showText(dialogArray, index, i, interval);
-        } else {
-          $(target).hide();
         }
       });
 
