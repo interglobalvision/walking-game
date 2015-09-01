@@ -8,8 +8,8 @@ Template.wakeUp.onRendered(function () {
     $furniture = $('.bedroom-furniture'),
     dialog = [
       'Goodness!  I have been screaming my '+word(adj)+' '+word(noun)+' off trying to get you out of bed!',
-      'You '+word(adj)+' '+word(noun)+'!  Youre a '+word(adj)+' '+word(noun)+'!',
-      'And your bedroom smells like '+word(noun)+' and '+word(adj)+' '+word(noun)+'!'
+      'You '+word(adj)+' '+word(noun)+'!  Youre '+word(adj, true)+' '+word(noun)+'!',
+      'And your bedroom smells like '+word(adj)+' '+word(noun)+' and '+word(adj)+' '+word(noun)+'!'
     ];
 
 //Open Eyes
