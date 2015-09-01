@@ -1,9 +1,7 @@
 Template.wakeUp.onRendered(function () {
 
   var scene = new TimelineLite(),
-    blackIn = new TimelineLite(),
     openEyes = new TimelineLite(),
-    $blackout = $('.blackout'),
     $coach = $('.coach-angry'),
     $bed = $('.bedroom-bed'),
     $wall = $('.bedroom-wall'),
@@ -13,14 +11,6 @@ Template.wakeUp.onRendered(function () {
       'You '+word(adj)+' '+word(noun)+'!  Youre '+word(adj, true)+' '+word(noun)+'!',
       'And your bedroom smells like '+word(adj)+' '+word(noun)+' and '+word(adj)+' '+word(noun)+'!'
     ];
-
-//Fade from black
-
-  blackIn.set($blackout, {display: 'block', opacity: 1});
-
-  blackIn.to($blackout, 10, {opacity: 0}, {ease:Bounce.easeIn});
-
-  blackIn.set($blackout, {display: 'none'});
 
 //Open Eyes
 
@@ -48,11 +38,7 @@ Template.wakeUp.onRendered(function () {
     }
   ));
 
-
 //Scene timeline
-
-  //add Fade from black to scene timeline
-  scene.add( blackIn );
 
   //add Open Eyes to scene timeline
   scene.add( openEyes );
