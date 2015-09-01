@@ -76,6 +76,8 @@ showText = function (dialogArray, index, i, interval) {
           i = 0;
 
           showText(dialogArray, index, i, interval);
+        } else {
+          // trigger 'next' event
         }
       });
 
