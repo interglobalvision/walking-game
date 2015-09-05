@@ -15,11 +15,6 @@ Template.wakeUp.onRendered(function () {
       'And your bedroom smells like '+word(adj)+' '+word(noun)+' and '+word(adj)+' '+word(noun)+'!'
     ];
 
-  routerGo = function() {
-      console.log('bedside');
-      Router.go('/bedside');
-    }
-
 //Fade from black
 
   blackIn.set($blackout, {display: 'block', opacity: 1});
@@ -65,7 +60,7 @@ Template.wakeUp.onRendered(function () {
   scene.add( openEyes );
 
   //add text-box wakeup dialog to scene timeline
-  scene.add( TweenLite.delayedCall(0, showText, [dialog, 0, 0, function() {
+  scene.add( TweenLite.delayedCall(0, readDialog, [dialog, 0, 0, function() {
     Router.go('/bedside');
   }]) );
 
