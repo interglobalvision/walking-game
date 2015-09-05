@@ -44,13 +44,14 @@ cssFilterTween = function (tl, filter, start, end) {
     }
 }
 
-showText = function (dialogArray, index, i, interval) {
+showText = function (dialogArray, index, i, callback) {
 
   var target = '.text-box-dialog',
     parent = '.text-box',
     dialog = dialogArray[index],
     readout,
-    newIndex;
+    newIndex,
+    interval = 100;
 
   readout = setTimeout(function() {
 
@@ -58,7 +59,7 @@ showText = function (dialogArray, index, i, interval) {
 
       $(parent).show()
       $(target).append(dialog[i++]);
-      showText(dialogArray, index, i, interval);
+      showText(dialogArray, index, i, callback);
 
     } else {
 
@@ -75,9 +76,9 @@ showText = function (dialogArray, index, i, interval) {
         if (index < dialogArray.length) {
           i = 0;
 
-          showText(dialogArray, index, i, interval);
+          showText(dialogArray, index, i, callback);
         } else {
-          // trigger 'next' event
+          callback();
         }
       });
 
