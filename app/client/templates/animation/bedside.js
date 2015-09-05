@@ -5,7 +5,7 @@ Template.bedside.onRendered(function () {
       "Now what was your name again?",
       ];
 
-  readDialog(dialog, 0, 0, 100, function() {
+  readDialog(dialog, 0, 0, function() {
     //name input
   });
 
