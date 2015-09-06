@@ -18,4 +18,8 @@ Router.map(function() {
     path: '/bedside'
   });
 
+  this.route('mirror', {
+    path: '/mirror'
+  });
+
 });
