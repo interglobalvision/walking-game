@@ -47,7 +47,7 @@ cssFilterTween = function (tl, filter, start, end) {
 readDialog = function (dialogArray, index, i, callback) {
 
   var target = '.text-box-dialog',
-    parent = '.text-box',
+    parent = '#dialog',
     dialogLine = dialogArray[index],
     readout,
     newIndex,
