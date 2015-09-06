@@ -6,7 +6,7 @@ Template.bedside.onRendered(function () {
       ];
 
   readDialog(dialog, 0, 0, function() {
-    //name input
+    $('#signup-form').show();
   });
 
 });
