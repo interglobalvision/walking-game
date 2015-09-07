@@ -1,13 +1,14 @@
 Template.wakeUp.onRendered(function () {
 
-  var scene = new TimelineLite(),
+  var _this = this,
+    scene = new TimelineLite(),
     blackIn = new TimelineLite(),
     openEyes = new TimelineLite(),
     $blackout = $('.blackout'),
-    $coach = $('.coach-angry'),
-    $bed = $('.bedroom-bed'),
-    $wall = $('.bedroom-wall'),
-    $furniture = $('.bedroom-furniture'),
+    $coach = _this.$('.coach-angry'),
+    $bed = _this.$('.bedroom-bed'),
+    $wall = _this.$('.bedroom-wall'),
+    $furniture = _this.$('.bedroom-furniture'),
     dialog = [
       'Goodness!  I have been screaming my '+word(adj)+' '+word(noun)+' off trying to get you out of bed!',
       'You '+word(adj)+' '+word(noun)+'!  Youre '+word(adj, true)+' '+word(noun)+'!',
@@ -50,6 +51,7 @@ Template.wakeUp.onRendered(function () {
 
 
 //Scene timeline
+  scene.play();
 
   //add Fade from black to scene timeline
   scene.add( blackIn );
@@ -58,6 +60,8 @@ Template.wakeUp.onRendered(function () {
   scene.add( openEyes );
 
   //add text-box wakeup dialog to scene timeline
-  scene.add( TweenLite.delayedCall(0, showText, [dialog, 0, 0, 100]) );
+  scene.add( TweenLite.delayedCall(0, readDialog, [dialog, 0, 0, function() {
+    Router.go('/bedside');
+  }]) );
 
 });

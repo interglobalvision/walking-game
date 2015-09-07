@@ -14,4 +14,8 @@ Router.map(function() {
     path: '/wakeup'
   });
 
+  this.route('bedside', {
+    path: '/bedside'
+  });
+
 });
