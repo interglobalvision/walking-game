@@ -49,11 +49,11 @@
   
 .bedroom-wallpaper
   z-index: 1
-  position: fixed
+  position: absolute
   width: 100%
   height: 100%
   background-image: url('images/bedroom/wallpaper.gif')
-  animation: hue 4s infinite
+  animation: hue-blue 4s infinite
 
 .coach-angry
   position: absolute
@@ -84,6 +84,20 @@
   background-position: 0
   background-size: 4800px
   animation: coach-mellow 1s steps(8, end) infinite
+  
+#mirror-border
+  background: rgb(245,246,246);
+  background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 699
+  -webkit-clip-path: ellipse(45% 34% at 50% 50%);
+  clip-path: ellipse(45% 34% at 50% 50%);
+  
   
 #mirror-video-viewport
   position: absolute
@@ -116,6 +130,17 @@
   to 
     -webkit-filter: hue-rotate(360deg);
     filter: hue-rotate(360deg);
+    
+@keyframes hue-blue
+  0%
+    -webkit-filter: hue-rotate(150deg);
+    filter: hue-rotate(150deg);
+  50%
+    -webkit-filter: hue-rotate(190deg);
+    filter: hue-rotate(190deg);
+  100%
+    -webkit-filter: hue-rotate(150deg);
+    filter: hue-rotate(150deg);
     
 @keyframes mirror
   0%
