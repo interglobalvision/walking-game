@@ -98,18 +98,22 @@
   -webkit-clip-path: ellipse(45% 34% at 50% 50%);
   clip-path: ellipse(45% 34% at 50% 50%);
   
+#mirror-video 
+  opacity: 0.8
+  animation: mirror 2s infinite
   
 #mirror-video-viewport
   position: absolute
   top: 0
   left: 0
+  width: 100%
+  height: 100%
   overflow: hidden
   z-index: 700
   -webkit-transform: scale(-1, 1)
   transform: scale(-1, 1)
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
-  animation: mirror 2s infinite
 
 @keyframes bear-clock
   100%
