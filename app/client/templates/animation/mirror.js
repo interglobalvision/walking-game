@@ -2,7 +2,7 @@ Template.mirror.onRendered(function () {
   var _this = this,
     $stage = _this.$('#stage'),
     $video = _this.$('#mirror-video'),
-    $videoView = _this.$('#mirror-video-viewport'),
+    $videoView = _this.$('.mirror-video-viewport'),
     video = document.getElementById("mirror-video"),
     canvas = document.getElementById("mirror-canvas"),
     ctx = canvas.getContext("2d"),
