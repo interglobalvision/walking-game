@@ -66,8 +66,17 @@ Router.map(function() {
   // Pages
 
   this.route('homepage', {
-    path: '/'
+    path: '/',
+    onBeforeAction: function() {
+      if( Meteor.user() ) {
+        this.redirect('/map');
+      } else {
+        this.redirect('/wakeup');
+      }
+    },
   });
+
+  this.route('map');
 
   this.route('content');
 
