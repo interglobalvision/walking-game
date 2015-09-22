@@ -5,21 +5,21 @@ Template.signup.events = {
     var user = {
       username: $('#username').val(),
       email: $('#email').val(),
-      password: $('#password').val()
+      password: $('#password').val(),
     };
 
     if(!user.username || !user.email || !user.password){
-//       flash('Please fill in all fields');
+      console.log('empty fields');
     }else{
-      Accounts.createUser(user, function(error){
-        if(error){
-//           flash(error.reason, 'error');
-        }else{
-          Router.go('/');
-//           flash('Thanks for signing up!');
+      Accounts.createUser(user, function(error, result) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log(result + ' , ' + Meteor.userId());
+          //Router.go('/mirror');
         }
       });
     }
 
-  }
+  },
 };
