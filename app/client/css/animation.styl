@@ -105,10 +105,11 @@
   -webkit-clip-path: ellipse(45% 34% at 50% 50%);
   clip-path: ellipse(45% 34% at 50% 50%);
   
-#mirror-video 
+#mirror-video ,
+#mirror-still
   opacity: 0.8
   animation: mirror 2s infinite
-  
+
 #mirror-video-viewport
   position: absolute
   top: 0
@@ -121,6 +122,16 @@
   transform: scale(-1, 1)
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
+
+#mirror-video
+  width: 100%
+  height: 100%
+
+#mirror-still
+  width: 100%
+  height: 100%
+  background-size: cover
+  background-position: center
   
 .mirror-coach
   left: -100px
