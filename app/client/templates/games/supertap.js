@@ -29,20 +29,21 @@ Template.supertap.onDestroyed(function () {
 });
 
 Template.supertap.events({
-  'click #tap' : function (e) {
+  'click #tap' : function (event, template) {
 
     var date = new Date();
+    var $tap = template.$('#tap');
 
     // Check if it's the first tap
     if ( Session.equals('tapCount', 0) ) {
       Session.set('endTime', date.getTime() + 30000 );
-      e.currentTarget.innerHTML = "Tap me MORE";
+      $tap.html("Tap me MORE");
     }
 
     // Check if tapping is too slow
     if ( date - Session.get('lastTap') > 300 ) {
       // You lose
-      $('#tap').fadeOut();
+      $tap.fadeOut();
 
       // TODO: 
       //  - show couch dialogs
@@ -50,7 +51,7 @@ Template.supertap.events({
 
     } else if ( date.getTime() >= Session.get('endTime') ) {
       // You win
-      $('#tap').fadeOut();
+      $tap.fadeOut();
 
       // TODO: 
       //  - show couch dialogs
