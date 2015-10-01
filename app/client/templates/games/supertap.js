@@ -37,7 +37,7 @@ Template.supertap.events({
     // Check if it's the first tap
     if ( Session.equals('tapCount', 0) ) {
       Session.set('endTime', date.getTime() + 30000 );
-      $tap.html("Tap me MORE");
+      $tap.html('Tap me MORE');
     }
 
     // Check if tapping is too slow
