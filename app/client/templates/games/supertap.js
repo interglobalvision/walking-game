@@ -51,7 +51,7 @@ Template.supertap.events({
 
       // TODO: 
       //  - show couch dialogs
-      //  - send back to map ?
+      Router.go('/map');
 
     } else if ( tapTime >= endTime ) {
       // You win
@@ -59,7 +59,7 @@ Template.supertap.events({
 
       // TODO: 
       //  - show couch dialogs
-      //  - send back to map ?
+      Router.go('/map');
     }
 
     var count = Session.get('tapCount') + 1;
