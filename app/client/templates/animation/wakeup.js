@@ -4,6 +4,7 @@ Template.wakeUp.onRendered(function () {
     scene = new TimelineLite(),
     blackIn = new TimelineLite(),
     openEyes = new TimelineLite(),
+    blackOut = new TimelineLite(),
     $blackout = $('.blackout'),
     $coach = _this.$('.coach-angry'),
     $bed = _this.$('.bedroom-bed'),
@@ -61,7 +62,9 @@ Template.wakeUp.onRendered(function () {
 
   //add text-box wakeup dialog to scene timeline
   scene.add( TweenLite.delayedCall(0, readDialog, [dialog, 0, 0, function() {
-    Router.go('/bedside');
+    blackOut.set($blackout, {display: 'block',});
+    blackOut.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
+    blackOut.call(Router.go, ['/bedside',]);
   }]) );
 
 });
