@@ -1,11 +1,17 @@
 Template.mirror.onRendered(function () {
-  var _this = this;
+  var _this = this,
+    scene = new TimelineLite(),
+    $blackout = $('.blackout'),
+    video = document.getElementById("mirror-video"),
+    username = Meteor.users.findOne(Meteor.userId()).username,
+    dialog = [
+      "Goodness! Look at how "+word(adj)+" you look!",
+      "Let's remember this "+word(adj)+" face...",
+    ];
 
-  var video = document.getElementById("mirror-video");
-  var dialog = [
-    "Goodness! Look at how "+word(adj)+" you look!",
-    "Let's remember this "+word(adj)+" face...",
-  ];
+  scene.set($blackout, {display: 'block', opacity: 1});
+  scene.to($blackout, 3, {opacity: 0}, {ease:Bounce.easeIn});
+  scene.set($blackout, {display: 'none'});
 
   // Cross browser getUserMedia
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia); 
@@ -49,19 +55,23 @@ Template.mirror.events = {
   'click #save-mirror-image': function(event){
     event.preventDefault();
 
-    var canvas = document.getElementById("mirror-canvas");
-    var ctx = canvas.getContext("2d");
-    var video = document.getElementById("mirror-video");
-    var still = document.getElementById("mirror-still");
-    var videoHeight = canvas.height = video.videoHeight;
-    var videoWidth = canvas.width = video.videoWidth;
+    $('#mirror-save').hide();
+
+    var canvas = document.getElementById("mirror-canvas"),
+      ctx = canvas.getContext("2d"),
+      video = document.getElementById("mirror-video"),
+      still = document.getElementById("mirror-still"),
+      videoHeight = canvas.height = video.videoHeight,
+      videoWidth = canvas.width = video.videoWidth,
+      username = Meteor.users.findOne(Meteor.userId()).username,
+      dialog = [
+        "Alright then " + username + ", lets go say farewell to your " + word(adj) + " auntie...",
+      ];
 
     ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
 
     var imageData = canvas.toDataURL();
     still.style.backgroundImage = 'url(' + imageData + ')';
-
-    console.log(imageData);
 
     var userId = Meteor.userId();
 
@@ -72,6 +82,10 @@ Template.mirror.events = {
         console.log(result);
         $(video).fadeOut();
         $(still).fadeIn();
+        readDialog(dialog, 0, 0, function() {
+          console.log('/farewell');
+          //Router.go('/farewell');
+        });
       }
     });
   },
