@@ -2270,4 +2270,4 @@ noun = ["aardvark",
 "zipper",
 "zone",
 "zoo",
-"zoology"];
+"zoology",];

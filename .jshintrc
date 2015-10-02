@@ -18,6 +18,14 @@
     "Mongo",
     "document",
     "jQuery",
-    "$"
+    "$",
+    "Template",
+    "Router",
+    "Accounts",
+    "TimelineLite",
+    "TweenMax",
+    "word",
+    "adj",
+    "noun"
   ]
 }

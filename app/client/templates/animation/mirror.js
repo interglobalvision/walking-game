@@ -1,9 +1,7 @@
 Template.mirror.onRendered(function () {
-  var _this = this,
-    scene = new TimelineLite(),
+  var scene = new TimelineLite(),
     $blackout = $('.blackout'),
     video = document.getElementById("mirror-video"),
-    username = Meteor.users.findOne(Meteor.userId()).username,
     dialog = [
       "Goodness! Look at how " + word(adj) + " you look!",
       "Let's remember this " + word(adj) + " face...",

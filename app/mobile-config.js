@@ -6,7 +6,7 @@ App.info({
   description: 'walking game is awesome',
   author: 'Interglobal Vision',
   email: 'contact@example.com',
-  website: 'http://example.com'
+  website: 'http://example.com',
 });
 
 App.accessRule('http://meteor.local/*');

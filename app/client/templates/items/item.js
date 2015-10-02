@@ -10,7 +10,7 @@ Template.item.helpers({
 
   myHelper: function () {
     //
-  }
+  },
 
 });
 
@@ -27,12 +27,14 @@ Template.item.onRendered(function () {
 Template.item.events({
 
   'click .delete': function(e, instance){
-    var item = this;
     e.preventDefault();
-    Meteor.call('removeItem', item, function(error, result){
-      alert('Item deleted.');
+
+    var _this = this;
+
+    Meteor.call('removeItem', _this, function(error, result){
+      console.log('Item deleted.');
       Router.go('/items');
     });
-  }
+  },
 
 });

@@ -2,7 +2,7 @@ Template.items.helpers({
 
   myHelper: function () {
     //
-  }
+  },
 
 });
 

@@ -11,15 +11,15 @@ Router.map(function() {
   // Scenes
 
   this.route('wakeUp', {
-    path: '/wakeup'
+    path: '/wakeup',
   });
 
   this.route('bedside', {
-    path: '/bedside'
+    path: '/bedside',
   });
 
   this.route('mirror', {
-    path: '/mirror'
+    path: '/mirror',
   });
 
 });

@@ -1,7 +1,9 @@
-isVowel = function (x) {  return /[aeiouAEIOU]/.test(x); }
+isVowel = function (x) {
+  return /[aeiouAEIOU]/.test(x);
+};
 
 word = function (list, a) {
-  var word = list[Math.floor(Math.random()*list.length)];
+  var word = list[Math.floor(Math.random() * list.length)];
 
   if (a) {
     var first = word.charAt(0);
@@ -15,5 +17,4 @@ word = function (list, a) {
   }
 
     return word;
-}
-
+};
