@@ -3,17 +3,16 @@ Template.forgot.events = {
     e.preventDefault();
 
     var options = {
-      email: $('#email').val()
+      email: $('#email').val(),
     };
 
     Accounts.forgotPassword(options, function(error){
-      if(error){
-//         flash(error.reason, "error");
-      }else{
+      if(error) {
+        console.log(error);
+      } else {
         Router.go('/login');
-//         flash("Password reset link sent!");
       }
     });
 
-  }
+  },
 };
