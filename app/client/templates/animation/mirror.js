@@ -14,7 +14,7 @@ Template.mirror.onRendered(function () {
   scene.set($blackout, {display: 'none'});
 
   // Cross browser getUserMedia
-  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia); 
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
   if (navigator.getUserMedia) {
     // Request the camera.
@@ -83,8 +83,7 @@ Template.mirror.events = {
         $(video).fadeOut();
         $(still).fadeIn();
         readDialog(dialog, 0, 0, function() {
-          console.log('/farewell');
-          //Router.go('/farewell');
+          Router.go('/');
         });
       }
     });
