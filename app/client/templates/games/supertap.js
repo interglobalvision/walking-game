@@ -29,10 +29,14 @@ Template.supertap.onDestroyed(function () {
 });
 
 Template.supertap.events({
-  'click #tap' : function (event, template) {
+  'click #tap-button' : function (event, template) {
 
     var date = new Date();
-    var $tap = template.$('#tap');
+    var tapTime = date.getTime();
+    var $tap = template.$('#tap-button');
+    var $countdown = template.$('#tap-countdown');
+
+    var endTime = Session.get('endTime');
 
     // Check if it's the first tap
     if ( Session.equals('tapCount', 0) ) {
@@ -49,7 +53,7 @@ Template.supertap.events({
       //  - show couch dialogs
       //  - send back to map ?
 
-    } else if ( date.getTime() >= Session.get('endTime') ) {
+    } else if ( tapTime >= endTime ) {
       // You win
       $tap.fadeOut();
 
@@ -61,7 +65,12 @@ Template.supertap.events({
     var count = Session.get('tapCount') + 1;
     Session.set('tapCount', count);
     Session.set('lastTap', date);
-    console.log(count);
+    //console.log(count);
 
-  }
+    var countdownTime = Math.round( (endTime - tapTime) / 1000 );
+    console.log(countdownTime);
+    if( !isNaN(countdownTime) ) {
+      $countdown.html( countdownTime );
+    }
+  },
 });
