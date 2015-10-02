@@ -5,13 +5,13 @@ Template.mirror.onRendered(function () {
     video = document.getElementById("mirror-video"),
     username = Meteor.users.findOne(Meteor.userId()).username,
     dialog = [
-      "Goodness! Look at how "+word(adj)+" you look!",
-      "Let's remember this "+word(adj)+" face...",
+      "Goodness! Look at how " + word(adj) + " you look!",
+      "Let's remember this " + word(adj) + " face...",
     ];
 
-  scene.set($blackout, {display: 'block', opacity: 1});
-  scene.to($blackout, 3, {opacity: 0}, {ease:Bounce.easeIn});
-  scene.set($blackout, {display: 'none'});
+  scene.set($blackout, {display: 'block', opacity: 1,});
+  scene.to($blackout, 3, {opacity: 0,}, {ease: Bounce.easeIn,});
+  scene.set($blackout, {display: 'none',});
 
   // Cross browser getUserMedia
   navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -19,7 +19,7 @@ Template.mirror.onRendered(function () {
   if (navigator.getUserMedia) {
     // Request the camera.
     navigator.getUserMedia({
-      video: true
+      video: true,
     }, function(stream) {
       // Success Callback
       video.src = window.URL.createObjectURL(stream);
@@ -33,7 +33,7 @@ Template.mirror.onRendered(function () {
         var scale = scaleWidth > scaleHeight ? scaleWidth : scaleHeight;
 
         // Apply scale to video
-        video.style.transform = "scale(" + scale + ")"
+        video.style.transform = "scale(" + scale + ")";
 
         // Launch dialog
         readDialog(dialog, 0, 0, function() {
@@ -71,6 +71,7 @@ Template.mirror.events = {
     ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
 
     var imageData = canvas.toDataURL();
+
     still.style.backgroundImage = 'url(' + imageData + ')';
 
     var userId = Meteor.userId();
