@@ -22,4 +22,8 @@ Router.map(function() {
     path: '/mirror',
   });
 
+  this.route('farewell', {
+    path: '/farewell',
+  });
+
 });
