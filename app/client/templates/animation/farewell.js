@@ -4,6 +4,7 @@ Template.farewell.onRendered(function () {
     $blackout = $('.blackout'),
     dialog = [
       "It's time to go...",
+      "But first your auntie has something for you...",
     ];
 
 //Fade from black
