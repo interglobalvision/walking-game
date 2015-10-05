@@ -74,6 +74,10 @@ Router.map(function() {
 
   this.route('content');
 
+  // Games
+
+  this.route('supertap');
+
   // Users
 
   this.route('login');
