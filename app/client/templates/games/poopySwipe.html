@@ -1,0 +1,9 @@
+<template name="poopySwipe">
+  <div id="swipeStack">
+    <ul>
+    {{# each poopStack}}
+      <li class="swipeCard" data-type="{{type}}"><img src="/images/poops/{{type}}_{{number}}.jpg"></li>
+    {{/each}}
+    </ul>
+  </div>
+</template>

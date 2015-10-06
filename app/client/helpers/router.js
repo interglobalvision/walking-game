@@ -77,6 +77,7 @@ Router.map(function() {
   // Games
 
   this.route('supertap');
+  this.route('poopySwipe');
 
   // Users
 
