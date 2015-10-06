@@ -8,7 +8,7 @@ Template.supertap.helpers({
 
 Template.supertap.onCreated(function () {
   var _this = this;
-  
+
   Session.set('tapCount', 0);
 });
 
@@ -49,7 +49,7 @@ Template.supertap.events({
       // You lose
       $tap.fadeOut();
 
-      // TODO: 
+      // TODO:
       //  - show couch dialogs
       Router.go('/map');
 
@@ -57,7 +57,10 @@ Template.supertap.events({
       // You win
       $tap.fadeOut();
 
-      // TODO: 
+      // Adds points
+      Score.setNewPoints(Session.get('tapCount'));
+
+      // TODO:
       //  - show couch dialogs
       Router.go('/map');
     }
