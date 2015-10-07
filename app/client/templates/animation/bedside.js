@@ -3,8 +3,10 @@ Template.bedside.onRendered(function () {
     scene = new TimelineLite(),
     $blackout = $('.blackout'),
     dialog = [
-      "Thank goodness you're finally up.  We are really running late!",
-      "Now what was your name again?",
+      "Thank goodness you're finally up. We are really running late!",
+      "I'm your coach and you have to do what I say!",
+      "And I say........",
+      "It's time to go!! Now what was your name again?",
     ];
 
 //Fade from black

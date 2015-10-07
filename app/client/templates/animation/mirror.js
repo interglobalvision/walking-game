@@ -82,7 +82,7 @@ Template.mirror.events = {
         $(video).fadeOut();
         $(still).fadeIn();
         readDialog(dialog, 0, 0, function() {
-          Router.go('/');
+          Router.go('/farewell');
         });
       }
     });
