@@ -18,51 +18,22 @@ Router.configure({
 
 var filters = {
 
-  myFilter: function () {
-    this.next();
-  },
-
   isLoggedIn: function() {
     if (!(Meteor.loggingIn() || Meteor.user())) {
       alert('Please Log In First.');
       this.stop();
+    } else {
+      this.next();
     }
   },
 
 };
 
-Router.onBeforeAction(filters.myFilter, {only: ['items',],});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['login','wakeup','mirror',],});
 
 // Routes
 
 Router.map(function() {
-
-  // Items
-
-  this.route('items', {
-    waitOn: function () {
-      return Meteor.subscribe('allItems');
-    },
-
-    data: function () {
-      return {
-        items: Items.find(),
-      };
-    },
-  });
-
-  this.route('item', {
-    path: '/items/:_id',
-    waitOn: function () {
-      return Meteor.subscribe('singleItem', this.params._id);
-    },
-
-    data: function () {
-      return {
-        item: Items.findOne(this.params._id),
-      };
-    },
-  });
 
   // Pages
 
@@ -71,12 +42,6 @@ Router.map(function() {
   });
 
   this.route('map');
-
-  this.route('content');
-
-  // Games
-
-  this.route('supertap');
 
   // Users
 
