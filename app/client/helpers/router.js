@@ -78,6 +78,8 @@ Router.map(function() {
 
   this.route('supertap');
 
+  this.route('reset');
+
   // Users
 
   this.route('login');
