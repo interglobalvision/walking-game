@@ -1,7 +1,7 @@
 Template.reset.events({
   'click #reset-yes' : function (event, template) {
-
     var theHours = moment().format('HH');
+
     theHours = parseInt(theHours);
     Score.setNewGems(theHours);
 
