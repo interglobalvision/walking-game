@@ -78,6 +78,8 @@ Router.map(function() {
 
   this.route('supertap');
 
+  this.route('photocolor');
+
   // Users
 
   this.route('login');
