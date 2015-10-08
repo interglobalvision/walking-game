@@ -27,6 +27,10 @@
     "word",
     "adj",
     "noun",
-    "Score"
+    "Score",
+    "Session",
+    "check",
+    "Handlebars",
+    "App"
   ]
 }
