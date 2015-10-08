@@ -15,15 +15,12 @@ Template.photocolor.onCreated(function () {
 
 Template.photocolor.onRendered(function () {
   var _this = this;
-
   var randomRgbColor = Session.get('photoColor');
 
   _this.$('#target-color').css('background-color', 'rgb(' + randomRgbColor[0] + ', ' + randomRgbColor[1] + ', ' + randomRgbColor[2] + ')');
-
 });
 
 Template.photocolor.onDestroyed(function () {
-
   Session.set('photoColor', undefined);
   delete Session.keys.tapCount;
 });
@@ -40,10 +37,11 @@ Template.photocolor.events({
         console.log(err);
       } else {
         var photo = template.$('#output-img')[0];
+        var targetColor = Session.get('photoColor');
+        var arrayMatch;
+        var colorThief = new ColorThief.colorRob();
 
         photo.src = data;
-
-        var colorThief = new ColorThief.colorRob();
 
         paletteArray = colorThief.getPalette(photo, 2);
         console.log(paletteArray);
@@ -51,8 +49,9 @@ Template.photocolor.events({
         var result = false;
 
         for (var i = 0; i < paletteArray.length; i++) {
-          if (isNeighborColor(Session.get('photoColor'), paletteArray[i], 88) ) {
+          if (isNeighborColor(targetColor, paletteArray[i], 88) ) {
             result = true;
+            arrayMatch = i;
             break;
           }
         }
@@ -60,6 +59,20 @@ Template.photocolor.events({
         console.log(result);
 
         if (result) {
+
+          var psuedoCloseness = [
+            targetColor[0] - paletteArray[arrayMatch][0],
+            targetColor[1] - paletteArray[arrayMatch][1],
+            targetColor[2] - paletteArray[arrayMatch][2],
+          ];
+
+          console.log(psuedoCloseness);
+
+          var points = parseFloat(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
+
+          console.log(points);
+
+          Score.setNewPoints(points);
 
           console.log('You win!');
           // todo points? How many points do we give? scan pixels for ? and give 1 point per that? or flat rate?
