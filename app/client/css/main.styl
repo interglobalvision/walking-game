@@ -1,29 +1,7 @@
 // STRUCUTRE
 
   // GRID BUILDER
-
-$cols = 8
-$col = 80px
 $gutter = 16px
-.container
-  margin: 0 auto
-  width: ($col * $cols)+($gutter * $cols)
-.row
-  clear: both
-.col
-  float: left
-  margin-left: ($gutter/2)
-  margin-right: ($gutter/2)
-for col in 1..$cols
-  .col{col}
-    width: ( col * $col ) + ( ( col - 1 ) * $gutter )
-
-    // FLUID RESPONSIVE CONTAINER STYLE IF NO GRID
-
-// .container
-//   max-width: 700px
-//   width: 90%
-//   margin: 0 auto
 
 $margin-tiny = ($gutter/2)
 $margin-small = ($gutter)
@@ -32,26 +10,97 @@ $margin-large = ($gutter*5)
 
 // COLORS
 
-$color-black-soft = rgb(14,14,14)
-$color-white-soft = rgb(253,253,253)
+$color-black = rgb(0,0,0)
+$color-white = rgb(255,255,255)
 
 html
-  background-color: $color-white-soft
-  color: $color-black-soft
+  background-color: $color-white
+  color: $color-black
 
 // TYPOGRAPHY
 
-$font-size-basic = 19px
+$font-size-basic = 21px
 $font-leading-basic = 1.4em
 
 $font-size-h1 = 40px
 $font-size-h2 = 30px
 $font-size-h3 = 24px
 
+i, em
+  font-style: italic
+
+b, strong
+  font-style: bold
+
 html
   font-family: sans-serif
   font-size: $font-size-basic
   line-height: $font-leading-basic
+
+.text-box
+  position: fixed
+  background: white
+  bottom: 2%
+  left: 2%
+  width: 96%
+  padding: 4%
+  box-sizing: border-box
+  border: 5px solid blue
+  color: blue
+  font-size: $font-size-basic
+  z-index: 900
+  display: none
+  border-radius: 15px
+  line-height: $font-leading-basic
+  form
+    width: 100%
+  input
+    font-size: $font-size-basic
+    border: 0
+    border-bottom: 10px solid blue
+    width: 100%
+    margin-bottom: 60px
+    &:focus
+      outline: 0
+
+.button
+  font-size: $font-size-basic
+  margin-bottom: 0
+  background: blue
+  border-radius: 20px
+  padding: 10px
+  color: white
+  text-decoration: none
+  -webkit-box-shadow: 5px 5px 0px 0px green
+  box-shadow: 5px 5px 0px 0px green
+  &:active
+    -webkit-box-shadow: 0px 0px 0px 0px green
+    box-shadow: 0px 0px 0px 0px green
+
+.text-box-dialog
+  display: inline
+  margin-right: 1em
+
+.text-box-next
+  font-weight: bold
+  opacity: 1
+  animation: blink .5s infinite
+
+@keyframes blink
+  from
+    opacity: 1
+  to
+    opacity: 0
+
+.blackout
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  z-index: 800
+  display: none
+  background: black
 
   // HEADINGS
 
@@ -69,9 +118,3 @@ h1,h2,h3,h4,h5,h6
 
   // LINKS
 
-a,a:active,a:visited
-  color:inherit
-  text-decoration: none
-  transition:opacity .2s
-  &:hover
-    opacity:.5
