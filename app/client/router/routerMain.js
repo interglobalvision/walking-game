@@ -20,8 +20,7 @@ var filters = {
 
   isLoggedIn: function() {
     if (!(Meteor.loggingIn() || Meteor.user())) {
-      alert('Please Log In First.');
-      this.stop();
+      this.redirect('wakeup');
     } else {
       this.next();
     }

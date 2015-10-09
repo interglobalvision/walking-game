@@ -2,7 +2,7 @@ Router.map(function() {
 
   // Scenes
 
-  this.route('wakeUp', {
+  this.route('wakeup', {
     path: '/wakeup',
   });
 

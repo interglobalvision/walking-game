@@ -1,4 +1,4 @@
-Template.wakeUp.onRendered(function () {
+Template.wakeup.onRendered(function () {
 
   var _this = this,
     scene = new TimelineLite(),
@@ -27,9 +27,9 @@ Template.wakeUp.onRendered(function () {
 //Open Eyes
 
   //unblur the bed
-  openEyes.add( TweenMax.to($bed, 2, 
+  openEyes.add( TweenMax.to($bed, 2,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
@@ -37,15 +37,15 @@ Template.wakeUp.onRendered(function () {
   //unblur the furniture
   openEyes.add( TweenMax.to($furniture, 2,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
 
   //unblur the coach
-  openEyes.add( TweenMax.to($coach, 2, 
+  openEyes.add( TweenMax.to($coach, 2,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
