@@ -34,12 +34,13 @@ Template.mirror.onRendered(function () {
         video.style.transform = "scale(" + scale + ")";
 
         // Launch dialog
-        readDialog(dialog, 0, 0, function() {
+
+        Dialog.read(dialog, function() {
           $('#mirror-save').show();
         });
+
       };
     }, function(err) {
-      // Error Callback
       console.log('Error: ' + err);
     });
 
@@ -81,7 +82,8 @@ Template.mirror.events = {
         console.log(result);
         $(video).fadeOut();
         $(still).fadeIn();
-        readDialog(dialog, 0, 0, function() {
+
+        Dialog.read(dialog, function() {
           Router.go('/');
         });
       }

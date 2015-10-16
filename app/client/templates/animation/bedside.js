@@ -15,10 +15,12 @@ Template.bedside.onRendered(function () {
 
   scene.set($blackout, {display: 'none',});
 
-  scene.call( readDialog, [dialog, 0, 0, function() {
-    $('#signup-form').show();
-  },]);
- 
+  scene.call(function() {
+    Dialog.read(dialog, function() {
+      $('#signup-form').show();
+    });
+  });
+
 });
 
 Template.bedside.events({
