@@ -41,6 +41,7 @@ Router.map(function() {
   });
 
   this.route('map');
+  this.route('compass');
 
   // Users
 
