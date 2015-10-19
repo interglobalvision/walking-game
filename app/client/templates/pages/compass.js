@@ -4,7 +4,7 @@ Template.compass.onCreated(function () {
 
 Template.compass.onRendered(function () {
   var _this = this;
-  
+
   Compass.init();
 });
 
@@ -12,10 +12,12 @@ Template.compass.onDestroyed(function () {
   Compass.stop();
 });
 
+/*
 Template.compass.events({
   'click #tap-button' : function (event, template) {
   },
 });
+*/
 
 Compass = {
   watchId: {
@@ -34,9 +36,9 @@ Compass = {
     lat: null,
     lng: null,
   },
-  minDistance: 0.0025, // in rad
-  maxDistance: 0.006, // in rad
-  distanceRatio: 0.300, // in Km
+  minDistance: 0.0025, // in radians
+  maxDistance: 0.006, // in radians
+  thresholdRadius: 0.300, // in Km
 
   /*
    * Return distance between two geographical points in Kilometers
@@ -47,13 +49,13 @@ Compass = {
 
     var R = 6371; // Radius of the earth in km
     var dLat = _this.deg2rad(pointB.lat-pointA.lat);
-    var dLon = _this.deg2rad(pointB.lng-pointA.lng); 
-    var a = 
+    var dLon = _this.deg2rad(pointB.lng-pointA.lng);
+    var a =
       Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(_this.deg2rad(pointA.lat)) * Math.cos(_this.deg2rad(pointB.lat)) * 
+      Math.cos(_this.deg2rad(pointA.lat)) * Math.cos(_this.deg2rad(pointB.lat)) *
       Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c; // Distance in km
     return d;
   },
@@ -67,44 +69,45 @@ Compass = {
   },
 
   /*
-   * Convert degrees to rad
+   * Convert degrees to radians
    *
    */
   deg2rad: function(deg) {
     return deg * (Math.PI/180);
   },
 
-  /* 
+  /*
    * Return a random number in the range of:
    * -max < x <  -min
    *  min < x < max
-   * 
+   *
    */
   getRandomDistance: function(min, max) {
     // Positive or negative?
     var way = Math.random() >= 0.5;
     var distance = Math.random() * (max - min) + min;
 
-    if( way ) {
+    if (way) {
       distance = distance * -1;
     }
-    console.log(distance);
+
     return distance;
   },
 
   /*
-   * Calculates the angle ABC (in radians) 
+   * Calculates the angle ABC (in radians)
    *
    * A first point
    * C second point
    * B center point
    *
    * It always return the smallest angle, so angle is always < 180deg
+   *
    */
   getAngle: function( pointA, pointB, pointC ) {
     var _this = this;
-    var AB = Math.sqrt(Math.pow(pointB.lng-pointA.lng,2)+ Math.pow(pointB.lat-pointA.lat,2));    
-    var BC = Math.sqrt(Math.pow(pointB.lng-pointC.lng,2)+ Math.pow(pointB.lat-pointC.lat,2)); 
+    var AB = Math.sqrt(Math.pow(pointB.lng-pointA.lng,2)+ Math.pow(pointB.lat-pointA.lat,2));
+    var BC = Math.sqrt(Math.pow(pointB.lng-pointC.lng,2)+ Math.pow(pointB.lat-pointC.lat,2));
     var AC = Math.sqrt(Math.pow(pointC.lng-pointA.lng,2)+ Math.pow(pointC.lat-pointA.lat,2));
     return _this.rad2deg(Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB)));
   },
@@ -118,7 +121,7 @@ Compass = {
 
     // Update players position
     _this.position = position;
-    
+
     // Update north reference
     _this.reference = {
       lat: position.lat + _this.minDistance,
@@ -128,17 +131,19 @@ Compass = {
     $('#position span').html( _this.position.lat + ", " + _this.position.lng );
 
     // Check distance in Km between position and destiny
-    var distance = _this.getDistanceInKm( _this.position, _this.destiny );
+    var distance = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    $('#distance span').html( distance - _this.distanceRatio );
+    $('#distance span').html( distance - _this.thresholdRadius );
 
-    if( distance < _this.distanceRatio ) {
+    if( distance < _this.thresholdRadius ) {
       $('#compass-destiny').addClass('blue');
 
+
+      // This is the moment the player has reached their destination
       // TO DO
       // - Goto game route
       // - Update Score?
-      //
+
     } else {
       $('#compass-destiny').removeClass('blue');
     }
@@ -151,7 +156,6 @@ Compass = {
     $('#north-angle span').html(orientation);
     northOrientation = orientation * -1;
     $('#compass-north').css({
-      '-ms-transform': 'rotate(' + northOrientation + 'deg)',
       '-webkit-transform': 'rotate(' + northOrientation + 'deg)',
       'transform': 'rotate(' + northOrientation + 'deg)',
     });
@@ -159,17 +163,17 @@ Compass = {
     // Get compensation angle
     var compensationAngle = _this.getAngle( _this.reference, _this.position, _this.destiny);
 
-
     // If destiny is at West of origin
     if( _this.position.lng > _this.destiny.lng ) {
       compensationAngle = 360 - compensationAngle;
     }
 
     $('#comp-angle span').html( compensationAngle );
+
     var angle =  compensationAngle + northOrientation;
+
     $('#angle span').html( angle );
     $('#compass-destiny').css({
-      '-ms-transform': 'rotate(' + angle + 'deg)',
       '-webkit-transform': 'rotate(' + angle + 'deg)',
       'transform': 'rotate(' + angle + 'deg)',
     });
@@ -203,6 +207,7 @@ Compass = {
 
     } else {
       $(window).bind('deviceorientation.compassOrientation', function() {
+        // dont parse event as function variable as breaks scope
         _this.updateOrientation(event.alpha);
      });
     }
@@ -254,6 +259,8 @@ Compass = {
       });
 
     } else {
+
+      // fallback for when not possible. Why? no idea but it might happen
       console.log(':(');
     }
   },
