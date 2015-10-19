@@ -71,8 +71,8 @@ Dialog = {
 
     _this.$parent.show();
 
-    _this.$parent.on({
-      click: function() {
+    _this.$parent.off('click.dialogRead').on({
+      'click.dialogRead': function() {
         if (_this.lineTimer > 0) {
           _this.skipLine();
         } else {
