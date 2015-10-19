@@ -47,7 +47,7 @@ html
   box-sizing: border-box
   border: 10px solid blue
   color: blue
-  font-size: 3em
+  font-size: $font-size-h2
   z-index: 900
   display: none
   border-radius: 15px
@@ -62,6 +62,9 @@ html
     margin-bottom: 60px
     &:focus
       outline: 0
+
+#dialog:hover
+  cursor: pointer
 
 .button
   font-size: 1em
@@ -85,6 +88,7 @@ html
   font-weight: bold
   opacity: 1
   animation: blink .5s infinite
+  padding-left: 1em
 
 @keyframes blink
   from
