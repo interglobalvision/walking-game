@@ -28,7 +28,7 @@ var filters = {
 
 };
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['login','wakeup','mirror',],});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['login','wakeup','bedside',],});
 
 // Routes
 
