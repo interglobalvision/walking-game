@@ -34,23 +34,14 @@ Compass = {
     lat: null,
     lng: null,
   },
-  minDistance: 0.0009, // in rad?
-  maxDistance: 0.005, // in rad?
-  distanceRatio: 300, // in Km
-  getDistance: function(pointA, pointB) {
-    var _this = this;
+  minDistance: 0.0025, // in rad
+  maxDistance: 0.006, // in rad
+  distanceRatio: 0.300, // in Km
 
-    var xs = 0;
-    var ys = 0;
-
-    xs = pointB.lng - pointA.lng;
-    xs = xs * xs;
-
-    ys = pointB.lat - pointA.lat;
-    ys = ys * ys;
-
-    return Math.sqrt( xs + ys );
-  },
+  /*
+   * Return distance between two geographical points in Kilometers
+   *
+   */
   getDistanceInKm: function(pointA, pointB) {
     var _this = this;
 
@@ -66,30 +57,49 @@ Compass = {
     var d = R * c; // Distance in km
     return d;
   },
-  deg2rad: function(deg) {
-    return deg * (Math.PI/180)
-  },
+
+  /*
+   * Convert radians to degrees
+   *
+   */
   rad2deg: function(rad) {
     return rad * 57.29577951308232;
   },
+
+  /*
+   * Convert degrees to rad
+   *
+   */
+  deg2rad: function(deg) {
+    return deg * (Math.PI/180);
+  },
+
+  /* 
+   * Return a random number in the range of:
+   * -max < x <  -min
+   *  min < x < max
+   * 
+   */
   getRandomDistance: function(min, max) {
     // Positive or negative?
     var way = Math.random() >= 0.5;
-    console.log(way);
-    if( way ) {
-      max = max * -1;
-      min = min * -1;
-    }
     var distance = Math.random() * (max - min) + min;
+
+    if( way ) {
+      distance = distance * -1;
+    }
     console.log(distance);
     return distance;
   },
+
   /*
    * Calculates the angle ABC (in radians) 
    *
    * A first point
    * C second point
    * B center point
+   *
+   * It always return the smallest angle, so angle is always < 180deg
    */
   getAngle: function( pointA, pointB, pointC ) {
     var _this = this;
@@ -98,12 +108,18 @@ Compass = {
     var AC = Math.sqrt(Math.pow(pointC.lng-pointA.lng,2)+ Math.pow(pointC.lat-pointA.lat,2));
     return _this.rad2deg(Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB)));
   },
+
+  /*
+   * Update players geographical position
+   *
+   */
   updatePosition: function(position) {
     var _this = this;
 
+    // Update players position
     _this.position = position;
     
-    // Also update north reference
+    // Update north reference
     _this.reference = {
       lat: position.lat + _this.minDistance,
       lng: position.lng,
@@ -114,15 +130,21 @@ Compass = {
     // Check distance in Km between position and destiny
     var distance = _this.getDistanceInKm( _this.position, _this.destiny );
 
-    $('#distance span').html( distance );
+    $('#distance span').html( distance - _this.distanceRatio );
 
-    if( distance < 0.3 ) {
+    if( distance < _this.distanceRatio ) {
       $('#compass-destiny').addClass('blue');
+
+      // TO DO
+      // - Goto game route
+      // - Update Score?
+      //
     } else {
       $('#compass-destiny').removeClass('blue');
     }
 
   },
+
   updateOrientation: function(orientation) {
     var _this = this;
 
@@ -153,6 +175,11 @@ Compass = {
     });
 
   },
+
+  /*
+   * Bind navigator.gelocation and deviceorientation events
+   *
+   */
   startGeoWatchers: function () {
     var _this = this;
 
@@ -171,19 +198,20 @@ Compass = {
     // Start orientation compass
     if( Meteor.isCordova ) {
       _this.watchId.orientation = navigator.compass.watchHeading( function(heading) {
-
         _this.updateOrientation(heading.magneticHeading);
-
       });
 
     } else {
       $(window).bind('deviceorientation.compassOrientation', function() {
-
         _this.updateOrientation(event.alpha);
-
      });
     }
   },
+
+  /*
+   * Ubind navigator.gelocation and deviceorientation events
+   *
+   */
   stop: function() {
     var _this = this;
 
@@ -192,6 +220,7 @@ Compass = {
 
     $(window).unbind('.compassOrientation');
   },
+
   init: function() {
     var _this = this;
 
