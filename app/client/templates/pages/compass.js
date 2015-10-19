@@ -48,15 +48,16 @@ Compass = {
     var _this = this;
 
     var R = 6371; // Radius of the earth in km
-    var dLat = _this.deg2rad(pointB.lat-pointA.lat);
-    var dLon = _this.deg2rad(pointB.lng-pointA.lng);
+    var dLat = _this.deg2rad(pointB.lat - pointA.lat);
+    var dLon = _this.deg2rad(pointB.lng - pointA.lng);
     var a =
-      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(_this.deg2rad(pointA.lat)) * Math.cos(_this.deg2rad(pointB.lat)) *
-      Math.sin(dLon/2) * Math.sin(dLon/2)
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
     ;
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
+
     return d;
   },
 
@@ -73,7 +74,7 @@ Compass = {
    *
    */
   deg2rad: function(deg) {
-    return deg * (Math.PI/180);
+    return deg * (Math.PI / 180);
   },
 
   /*
@@ -106,10 +107,11 @@ Compass = {
    */
   getAngle: function( pointA, pointB, pointC ) {
     var _this = this;
-    var AB = Math.sqrt(Math.pow(pointB.lng-pointA.lng,2)+ Math.pow(pointB.lat-pointA.lat,2));
-    var BC = Math.sqrt(Math.pow(pointB.lng-pointC.lng,2)+ Math.pow(pointB.lat-pointC.lat,2));
-    var AC = Math.sqrt(Math.pow(pointC.lng-pointA.lng,2)+ Math.pow(pointC.lat-pointA.lat,2));
-    return _this.rad2deg(Math.acos((BC*BC+AB*AB-AC*AC)/(2*BC*AB)));
+    var AB = Math.sqrt(Math.pow(pointB.lng - pointA.lng,2) + Math.pow(pointB.lat - pointA.lat,2));
+    var BC = Math.sqrt(Math.pow(pointB.lng - pointC.lng,2) + Math.pow(pointB.lat - pointC.lat,2));
+    var AC = Math.sqrt(Math.pow(pointC.lng - pointA.lng,2) + Math.pow(pointC.lat - pointA.lat,2));
+
+    return _this.rad2deg(Math.acos((BC * BC + AB * AB - AC * AC) / (2 * BC * AB)));
   },
 
   /*
@@ -138,7 +140,6 @@ Compass = {
     if( distance < _this.thresholdRadius ) {
       $('#compass-destiny').addClass('blue');
 
-
       // This is the moment the player has reached their destination
       // TO DO
       // - Goto game route
@@ -154,7 +155,8 @@ Compass = {
     var _this = this;
 
     $('#north-angle span').html(orientation);
-    northOrientation = orientation * -1;
+    var northOrientation = orientation * -1;
+
     $('#compass-north').css({
       '-webkit-transform': 'rotate(' + northOrientation + 'deg)',
       'transform': 'rotate(' + northOrientation + 'deg)',
@@ -170,7 +172,7 @@ Compass = {
 
     $('#comp-angle span').html( compensationAngle );
 
-    var angle =  compensationAngle + northOrientation;
+    var angle = compensationAngle + northOrientation;
 
     $('#angle span').html( angle );
     $('#compass-destiny').css({
@@ -194,8 +196,10 @@ Compass = {
         lng: position.coords.longitude,
       });
     }, function(error) {
+
       alert(error);
     }, {
+
       enableHighAccuracy: true,
     });
 
@@ -239,13 +243,13 @@ Compass = {
         _this.origin.lat = position.coords.latitude,
         _this.origin.lng = position.coords.longitude,
 
-        $('#origin span').html( _this.origin.lat + ", " + _this.origin.lng);
+        $('#origin span').html(_this.origin.lat + ", " + _this.origin.lng);
 
         // Generate random destiny
         _this.destiny.lat = position.coords.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
         _this.destiny.lng = position.coords.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
 
-        $('#destiny span').html( _this.destiny.lat + ", " + _this.destiny.lng);
+        $('#destiny span').html(_this.destiny.lat + ", " + _this.destiny.lng);
 
         // Set current position
         _this.updatePosition({
