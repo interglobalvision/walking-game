@@ -33,6 +33,7 @@
     "Handlebars",
     "App",
     "Dialog",
-    "Compass"
+    "Compass",
+    "Game"
   ]
 }
