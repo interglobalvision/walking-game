@@ -46,7 +46,7 @@ Template.bedside.events({
               console.log(error);
             } else {
 
-              Router.go('/mirror');
+              Router.go('/');
 
             }
           });
@@ -63,7 +63,7 @@ Template.bedside.events({
               console.log(error);
             } else {
 
-              Router.go('/mirror');
+              Router.go('/');
 
             }
 
