@@ -1,11 +1,26 @@
 <template name="map">
   <div class="container">
-    <h2>Map</h2>
+    <div>
+      <h3>Points: {{gamePoints}}</h3>
+      <h4>Gems: {{gameGems}}</h4>
+      <h4>Progress: {{gameProgress}}</h4>
+    </div>
+
+    <hr/>
+
+    <h1><a href="/compass">Compass AKA GO next level</a></h1>
+
+    <hr/>
+
     <ul>
-      <li><a href="/compass">Compass</a></li>
+      <li>dev menu</li>
       <li><a href="/supertap">Supertap</a></li>
       <li><a href="/photocolor">Photo [color match]</a></li>
       <li><a href="/reset">Reset</a></li>
+      <li>-</li>
+      <li><a href="/wakeup">Wakeup</a></li>
+      <li><a href="/bedside">Bedside</a></li>
+      <li><a href="/mirror">Mirror</a></li>
     </ul>
   </div>
 </template>

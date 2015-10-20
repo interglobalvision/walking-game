@@ -139,12 +139,7 @@ Compass = {
 
     if( distance < _this.thresholdRadius ) {
       $('#compass-destiny').addClass('blue');
-
-      // This is the moment the player has reached their destination
-      // TO DO
-      // - Goto game route
-      // - Update Score?
-
+      Game.nextMinigame();
     } else {
       $('#compass-destiny').removeClass('blue');
     }

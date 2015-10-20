@@ -44,18 +44,16 @@ Template.supertap.events({
 
       // TODO:
       //  - show couch dialogs
-      Router.go('/map');
+      //  - retry not return to map?
+      Router.go('map');
 
     } else if (tapTime >= endTime) {
       // You win
       $tap.fadeOut();
 
-      // Adds points
       Score.setNewPoints(Session.get('tapCount'));
 
-      // TODO:
-      //  - show couch dialogs
-      Router.go('/map');
+      Game.gameComplete();
     }
 
     var count = Session.get('tapCount') + 1;

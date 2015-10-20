@@ -7,7 +7,7 @@ Template.reset.events({
 
     console.log('You just got a bunch of gems :). This many: ', theHours);
 
-    // logic to reset progress [once we have progress state saved]
+    Game.resetProgress();
 
     Router.go('map');
 
@@ -16,8 +16,7 @@ Template.reset.events({
   'click #reset-no' : function (event, template) {
 
     console.log('ok fine');
-
-    Router.go('map');
+    Game.gameComplete();
 
   },
 
