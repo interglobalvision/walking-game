@@ -36,8 +36,12 @@ Compass = {
     lat: null,
     lng: null,
   },
+/*
   minDistance: 0.0025, // in radians
   maxDistance: 0.006, // in radians
+*/
+  minDistance: 0.002, // in radians
+  maxDistance: 0.0035, // in radians
   thresholdRadius: 0.300, // in Km
 
   /*
