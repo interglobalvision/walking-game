@@ -36,11 +36,10 @@ Router.map(function() {
 
   // Pages
 
-  this.route('homepage', {
+  this.route('map', {
     path: '/',
   });
 
-  this.route('map');
   this.route('compass');
 
   // Users
