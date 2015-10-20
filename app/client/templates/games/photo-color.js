@@ -70,18 +70,15 @@ Template.photocolor.events({
 
           var points = parseFloat(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
 
-          console.log(points);
-
           Score.setNewPoints(points);
 
-          console.log('You win!');
-          // todo points? How many points do we give? scan pixels for ? and give 1 point per that? or flat rate?
-          Router.go('map');
+          Game.gameComplete();
 
         } else {
 
           console.log('You loose!');
           // try again or route to map?
+          Router.go('map');
 
         }
       }
