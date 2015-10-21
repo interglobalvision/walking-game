@@ -82,9 +82,8 @@ Template.mirror.events = {
         console.log(result);
         $(video).fadeOut();
         $(still).fadeIn();
-
         Dialog.read(dialog, function() {
-          Router.go('/');
+          Router.go('/farewell');
         });
       }
     });
