@@ -7,10 +7,10 @@ cssFilterTween = function (tl, filter, start, end) {
     case "blur":
       //filter = "blur";
       if (start < end){
-        inc = start + Math.abs(start - end) / 100 * tlp; 
+        inc = start + Math.abs(start - end) / 100 * tlp;
 
       } else {
-        inc = start - Math.abs(start - end) / 100 * tlp; 
+        inc = start - Math.abs(start - end) / 100 * tlp;
 
       }
 
@@ -22,10 +22,10 @@ cssFilterTween = function (tl, filter, start, end) {
       tlp = (tl.progress() * 100) >> 0;
 
       if (start < end){
-        inc = start + Math.abs(start - end) / 100 * tlp; 
+        inc = start + Math.abs(start - end) / 100 * tlp;
 
       } else {
-        inc = start - Math.abs(start - end) / 100 * tlp; 
+        inc = start - Math.abs(start - end) / 100 * tlp;
 
       }
 
@@ -37,57 +37,105 @@ cssFilterTween = function (tl, filter, start, end) {
       tlp = (tl.progress() * 100) >> 0;
 
       if (start < end){
-      inc = start + Math.abs(start - end) / 100 * tlp; 
+      inc = start + Math.abs(start - end) / 100 * tlp;
 
       } else {
-      inc = start - Math.abs(start - end) / 100 * tlp; 
+      inc = start - Math.abs(start - end) / 100 * tlp;
 
       }
 
       TweenMax.set(tl.target,{'-webkit-filter':filter + '(' + inc + units[2] + ')', 'filter':filter + '(' + inc + units[2] + ')',});
-  } 
+  }
 };
 
-readDialog = function (dialogArray, index, i, callback) {
+Dialog = {
+  $target: $('.text-box-dialog'),
+  $parent: $('#dialog'),
+  interval: 66,
 
-  var target = '.text-box-dialog',
-    parent = '#dialog',
-    dialogLine = dialogArray[index],
-    readout,
-    newIndex,
-    interval = 100;
+  arrayIndex: 0,
 
-  readout = setTimeout(function() {
+  lineIndex: 0,
+  lineTimer: 0,
 
-    if (i < dialogLine.length) {
+  read: function(dialogArray, callback) {
 
-      $(parent).show();
-      $(target).append(dialogLine[i++]);
-      readDialog(dialogArray, index, i, callback);
+    var _this = this;
 
-    } else {
+    _this.$parent = $('#dialog');
+    _this.$target = $('.text-box-dialog');
 
-      clearTimeout(readout);
-      $(parent).append('<a class="text-box-next">&rarr;</a>');
+    _this.dialogArray = dialogArray;
+    _this.arrayIndex = 0;
+    _this.callback = callback;
 
-      $('.text-box-next').on('click', function() {  
-        index++;
+    _this.$parent.show();
 
-        $('.text-box-next').remove();
-        $(parent).hide();
-        $(target).html('');
-        
-        if (index < dialogArray.length) {
-          i = 0;
-
-          readDialog(dialogArray, index, i, callback);
+    _this.$parent.off('click.dialogRead').on({
+      'click.dialogRead': function() {
+        if (_this.lineTimer > 0) {
+          _this.skipLine();
         } else {
-          callback();
+          if (_this.arrayIndex === (_this.dialogArray.length - 1)) {
+            _this.finish();
+          } else {
+            _this.arrayIndex++;
+            _this.readLine();
+          }
         }
-      });
+      },
+    });
 
-    }
+    _this.readLine();
 
-  }, interval);
+  },
+
+  readLine: function() {
+    var _this = this;
+    var dialogLine = _this.dialogArray[_this.arrayIndex];
+
+    _this.lineIndex = 0;
+    _this.$target.html('');
+    _this.lineTimer = Meteor.setInterval(function() {
+
+      if (_this.lineIndex < dialogLine.length) {
+
+        _this.$target.append(dialogLine[_this.lineIndex]);
+        _this.lineIndex++;
+
+      } else {
+
+        _this.clearLineInterval();
+        _this.$target.append('<a class="text-box-next">&rarr;</a>');
+
+      }
+
+    }, _this.interval);
+  },
+
+  clearLineInterval: function() {
+    var _this = this;
+
+    Meteor.clearInterval(_this.lineTimer);
+    _this.lineTimer = 0;
+  },
+
+  skipLine: function() {
+    var _this = this;
+
+    _this.clearLineInterval();
+    _this.$target.html(_this.dialogArray[_this.arrayIndex]);
+    _this.$target.append('<a class="text-box-next">&rarr;</a>');
+
+  },
+
+  finish: function() {
+    var _this = this;
+
+    _this.$parent.hide();
+    _this.$target.html('');
+
+    _this.callback();
+  },
 
 };

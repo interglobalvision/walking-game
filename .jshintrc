@@ -26,6 +26,14 @@
     "TweenMax",
     "word",
     "adj",
-    "noun"
+    "noun",
+    "Score",
+    "Session",
+    "check",
+    "Handlebars",
+    "App",
+    "Dialog",
+    "Compass",
+    "Game"
   ]
 }

@@ -1,4 +1,4 @@
-Template.wakeUp.onRendered(function () {
+Template.wakeup.onRendered(function () {
 
   var _this = this,
     scene = new TimelineLite(),
@@ -20,32 +20,32 @@ Template.wakeUp.onRendered(function () {
 
   blackIn.set($blackout, {display: 'block', opacity: 1,});
 
-  blackIn.to($blackout, 10, {opacity: 0,}, {ease:Bounce.easeIn,});
+  blackIn.to($blackout, 2, {opacity: 0,}, {ease:Bounce.easeIn,});
 
   blackIn.set($blackout, {display: 'none',});
 
 //Open Eyes
 
   //unblur the bed
-  openEyes.add( TweenMax.to($bed, 2, 
+  openEyes.add( TweenMax.to($bed, 1.7,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
 
   //unblur the furniture
-  openEyes.add( TweenMax.to($furniture, 2,
+  openEyes.add( TweenMax.to($furniture, 1.5,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
 
   //unblur the coach
-  openEyes.add( TweenMax.to($coach, 2, 
+  openEyes.add( TweenMax.to($coach, 1.2,
     {
-      onUpdate: cssFilterTween, 
+      onUpdate: cssFilterTween,
       onUpdateParams: ['{self}','blur', 40, 0,],
     }
   ));
@@ -60,10 +60,21 @@ Template.wakeUp.onRendered(function () {
   scene.add( openEyes );
 
   //add text-box wakeup dialog to scene timeline
-  scene.add( TweenLite.delayedCall(0, readDialog, [dialog, 0, 0, function() {
-    blackOut.set($blackout, {display: 'block',});
-    blackOut.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
-    blackOut.call(Router.go, ['/bedside',]);
-  },]) );
+
+  scene.add(TweenLite.delayedCall(0, function() {
+
+    Dialog.read(dialog, function() {
+
+      blackOut.set($blackout, {display: 'block',});
+      blackOut.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
+      blackOut.call(function() {
+
+        Router.go('/bedside');
+
+      });
+
+    });
+
+  }));
 
 });
