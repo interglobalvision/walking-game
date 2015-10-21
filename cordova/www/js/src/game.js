@@ -10,20 +10,20 @@ Game = {
   },
 
   gameComplete: function() {
-    var currentProgress = window.localStorage.getItem('progress');
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
     window.localStorage.setItem('progress', (currentProgress + 1));
     Router.go('/');
   },
 
   nextMinigame: function() {
-    var currentProgress = window.localStorage.getItem('progress');
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
     Router.go('/games/' + this.minigames[currentProgress]);
   },
 
   getProgressPercent: function() {
-    var currentProgress = window.localStorage.getItem('progress');
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
     return currentProgress / this.minigames.length;
   },
@@ -33,8 +33,9 @@ Game = {
   },
 
   setNewPoints: function(points) {
-    var currentPoints = window.localStorage.getItem('points');
-    var currentGems = window.localStorage.getItem('gems');
+    var points = parseInt(points);
+    var currentPoints = parseInt(window.localStorage.getItem('points'));
+    var currentGems = parseInt(window.localStorage.getItem('gems'));
 
     if (points > 0) {
       var modifier = (Math.log(currentGems) + 1);
@@ -51,7 +52,8 @@ Game = {
   },
 
   setNewGems: function(gems) {
-    var currentGems = window.localStorage.getItem('gems');
+    var gems = parseInt(gems);
+    var currentGems = parseInt(window.localStorage.getItem('gems'));
 
     window.localStorage.setItem('gems', (currentGems + gems));
   },
