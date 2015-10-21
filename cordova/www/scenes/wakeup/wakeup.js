@@ -1,11 +1,6 @@
-var word = function(v) {
-  return v
-};
 var Wakeup = {
   init: function() {
     var _this = this; 
-
-    var adj = noun = 0;
 
     var scene = new TimelineLite(),
     blackIn = new TimelineLite(),
