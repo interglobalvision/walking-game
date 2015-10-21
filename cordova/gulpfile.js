@@ -54,6 +54,8 @@ gulp.task('lintjs', function () {
     './www/games/**/*.js',
     './www/scenes/**/*.js',
     './www/js/*.js',
+    '!./www/js/lib.js',
+    '!./www/js/index.js',
   ])
   .pipe(jshint())
   .pipe(jshint.reporter('default'))
