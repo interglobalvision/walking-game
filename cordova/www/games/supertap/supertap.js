@@ -29,7 +29,7 @@ var Supertap = {
           // TODO:
           //  - show couch dialogs
           //  - retry not return to map?
-          Router.go('map');
+          Router.go('/');
 
         } else if (tapTime >= endTime) {
           // You win
