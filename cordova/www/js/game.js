@@ -22,10 +22,14 @@ Game = {
     Router.go('/games/' + this.minigames[currentProgress]);
   },
 
-  percentComplete: function() {
+  getProgressPercent: function() {
     var currentProgress = window.localstorage.getItem('progress');
 
     return currentProgress / this.minigames.length;
+  },
+
+  getPoints: function() {
+    return window.localstorage.getItem('points');
   },
 
   setNewPoints: function(points) {
@@ -40,6 +44,10 @@ Game = {
     } else {
       window.localstorage.setItem('points', (currentPoints + points));
     }
+  },
+
+  getPoints: function() {
+    return window.localstorage.getItem('gems');
   },
 
   setNewGems: function(gems) {
