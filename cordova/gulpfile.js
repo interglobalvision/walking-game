@@ -23,6 +23,28 @@ function errorNotify(error){
   notify.onError("Error: <%= error.message %>");
   util.log(util.colors.red('Error'), error.message);
 }
+
+/**
+ * @task JavsScript concat
+ */
+gulp.task('javascript', function() {
+  console.log('js');
+  gulp.src(['./www/js/src/**.js'])
+  .pipe(concat('index.js'))
+  .pipe(gulp.dest('./www/js/'))
+  .pipe(notify({ message: 'Javascript Concat task complete' }));
+});
+
+/**
+ * @task JavsScript concat library
+ */
+gulp.task('javascript-library', function() {
+  gulp.src(['./www/js/lib/**.js'])
+  .pipe(concat('lib.js'))
+  .pipe(gulp.dest('./www/js/'))
+  .pipe(notify({ message: 'Javascript Library task complete' }));
+});
+
 /**
  * @task JavaScript lint.
  *   Runs JSCS and JSHint on server, client, lib, and gulp files.
@@ -31,6 +53,7 @@ gulp.task('lintjs', function () {
   return gulp.src([
     './www/games/**/*.js',
     './www/scenes/**/*.js',
+    './www/js/*.js',
   ])
   .pipe(jshint())
   .pipe(jshint.reporter('default'))
@@ -59,11 +82,12 @@ gulp.task('style', function() {
 });
 
 /**
- * @task JavaScript/JSON watch.
+ * @task Watch files.
  *   Watches changes on relevant fils and runs proper tasks
  */
 gulp.task('watch', function () {
   gulp.watch([
+    './www/js/src/**.js',
     './www/games/**/*.js',
     './www/scenes/**/*.js',
   ], ['lintjs',]);
@@ -71,6 +95,14 @@ gulp.task('watch', function () {
   gulp.watch([
     './www/css/**/*.styl',
   ], ['style',]);
+
+  gulp.watch([
+    './www/js/src/**.js',
+  ], ['javascript']);
+
+  gulp.watch([
+    './www/js/lib/**.js',
+  ], ['javascript-library']);
 });
 
 gulp.task('default', ['watch',]);
