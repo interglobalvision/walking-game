@@ -8,7 +8,7 @@ var Reset = {
 
         Game.setNewGems(parseInt(hours));
 
-        console.log('You just got a bunch of gems :). This many: ', theHours);
+        console.log('You just got a bunch of gems :). This many: ', hours);
 
         Game.resetProgress();
 
