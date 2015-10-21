@@ -38,19 +38,11 @@ Template.farewell.onRendered(function () {
 
   coach.set($blackout, {display: 'none',});
 
-  console.log(aunt);
-
-  coach.call(Dialog.read(dialog, function() {
-    aunt.play()
-
-    console.log(aunt);
-  }));
-
-/*
-  coach.call(Dialog.read(dialog, function() {
-    aunt.play();
-  }));
-*/
+  coach.call(function() {
+    Dialog.read(dialog, function() {
+      aunt.play();
+    });
+  });
 
   aunt.pause();
 
@@ -58,9 +50,11 @@ Template.farewell.onRendered(function () {
 
   aunt.add([moveRoomRight, moveCoachRight,]);
 
-  aunt.call(Dialog.read(dialog2, function() {
-    compass.play();
-  }));
+  aunt.call(function() {
+    Dialog.read(dialog2, function() {
+      compass.play();
+    });
+  });
 
   compass.pause();
 
@@ -70,9 +64,11 @@ Template.farewell.onRendered(function () {
 
   compass.to($compassObj, 1, {width: '200px', height: '200px',}, {ease:Bounce.easeIn,});
 
-  compass.call(Dialog.read(dialog3, function() {
-    goodbye.play();
-  }));
+  compass.call(function() {
+    Dialog.read(dialog3, function() {
+      goodbye.play();
+    });
+  });
 
   goodbye.pause();
 
@@ -80,9 +76,11 @@ Template.farewell.onRendered(function () {
 
   goodbye.to($compassObj, 1, {width: '0px', height: '0px',}, {ease:Bounce.easeIn,});
 
-  goodbye.call(Dialog.read(dialog4, function() {
-    blackout.play();
-  }));
+  goodbye.call(function() {
+    Dialog.read(dialog4, function() {
+      blackout.play();
+    });
+  });
 
   blackout.pause();
 
