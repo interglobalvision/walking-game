@@ -2,16 +2,12 @@ Router.map(function() {
 
   // Scenes
 
-  this.route('wakeup', {
-    path: '/wakeup',
-  });
+  this.route('wakeup');
 
-  this.route('bedside', {
-    path: '/bedside',
-  });
+  this.route('bedside');
 
-  this.route('mirror', {
-    path: '/mirror',
-  });
+  this.route('mirror');
+
+  this.route('farewell');
 
 });
