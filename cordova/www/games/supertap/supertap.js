@@ -16,7 +16,7 @@ var Supertap = {
         var endTime = _this.endTime;
 
         // Check if it's the first tap
-        if (_this.tapCount === 0)) {
+        if (_this.tapCount === 0) {
           _this.endTime = date.getTime() + 30000;
           _this.$tap.html('Tap me MORE');
         }
@@ -43,7 +43,7 @@ var Supertap = {
         var count = _this.tapCount + 1;
 
         _this.tapCount = count;
-        _this.lastTap = date);
+        _this.lastTap = date;
 
         var countdownTime = Math.round( (endTime - tapTime) / 1000 );
 
