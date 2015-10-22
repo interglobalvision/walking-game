@@ -19,6 +19,7 @@ var Photocolor = {
     rand %= 1;
 
     var randomHslColor = [rand, 0.7, 0.5,];
+
     _this.photoColor = hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
   },
 
@@ -30,9 +31,13 @@ var Photocolor = {
 
         navigator.camera.getPicture(function(data) {
             _this.analyzeResult(data);
-        }, function(error) {
+        },
+
+        function(error) {
           console.log(error);
-        }, {
+        }, 
+
+        {
           targetWidth: 480,
           targetHeight: 640,
           quality: 80,
@@ -44,15 +49,20 @@ var Photocolor = {
   },
 
   analyzeResult: function(data) {
+    var _this = this;
 
-    var photo = $('#output-img')[0];
+    var photo = new Image();
+    var photoHolder = $('#output-img')[0];
     var targetColor = _this.photoColor;
     var arrayMatch;
-    var colorThief = new ColorThief.colorRob();
+    var colorThief = new ColorThief();
+    var paletteArray = [];
 
-    photo.src = data;
+    photoHolder.src = photo.src = data;
 
-    paletteArray = colorThief.getPalette(photo, 2);
+    photo.onload = function() {
+      paletteArray = colorThief.getPalette(photo, 2);
+    };
 
     console.log(paletteArray);
 
@@ -92,8 +102,7 @@ var Photocolor = {
     }
 
   },
-
-}
+};
 
 Photocolor.init();
 
