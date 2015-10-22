@@ -99,6 +99,8 @@ var app = {
         app.receivedEvent('deviceready');
     },
     onContentLoaded: function() {
+
+      // Register FastClick
       FastClick.attach(document.body);
     },
     // Update DOM on a Received Event
@@ -114,7 +116,6 @@ var app = {
 app.initialize();
 Router = {
   go: function(url) {
-    window.location = url;
-    //$(location).attr('href', url);
+    $(location).attr('href', url);
   },
 }
