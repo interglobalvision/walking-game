@@ -88,7 +88,11 @@ Template.farewell.onRendered(function () {
 
   blackout.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
 
-  blackout.call(Router.go, ['/',]);
+  blackout.call(function() {
+    $blackout.hide();
+    Router.go('/')
+  });
+
 
 });
 
