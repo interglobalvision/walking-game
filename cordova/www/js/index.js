@@ -88,6 +88,8 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
+
     },
     // deviceready Event Handler
     //
@@ -95,6 +97,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+    },
+    onContentLoaded: function() {
+      FastClick.attach(document.body);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -109,6 +114,7 @@ var app = {
 app.initialize();
 Router = {
   go: function(url) {
-    $(location).attr('href', url);
+    window.location = url;
+    //$(location).attr('href', url);
   },
 }
