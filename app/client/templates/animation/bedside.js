@@ -39,6 +39,7 @@ Template.bedside.events({
     Meteor.call('checkExistingUser', data, function(error, result) {
       if (error) {
         console.log(error.reason);
+        alert(error.reason);
       } else {
 
         if (result === true) {
@@ -46,9 +47,10 @@ Template.bedside.events({
           Meteor.loginWithPassword({email: data.email,}, data.password, function(error) {
             if (error) {
               console.log(error);
+              alert(error.reason);
             } else {
 
-              Router.go('/');
+              Router.go('/mirror');
 
             }
           });
@@ -60,12 +62,12 @@ Template.bedside.events({
             email: data.email,
             password: data.password,
           }, function(error) {
-
             if (error) {
               console.log(error);
+              alert(error.reason);
             } else {
 
-              Router.go('/');
+              Router.go('/mirror');
 
             }
 

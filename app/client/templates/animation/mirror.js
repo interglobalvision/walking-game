@@ -45,7 +45,7 @@ Template.mirror.onRendered(function () {
     });
 
   } else {
-    alert('Sorry, no');
+    Router.go('/farewell');
   }
 
 });
