@@ -22,13 +22,14 @@ App.icons({
   'iphone_2x': 'icons/icon-60@2x.png',
   // ... more screen sizes and platforms ...
 });
+*/
 
 App.launchScreens({
-  'iphone': 'splash/Default~iphone.png',
-  'iphone_2x': 'splash/Default@2x~iphone.png',
-  // ... more screen sizes and platforms ...
+  'iphone': 'mobile-assets/splash/Default-Portrait.png',
+  'iphone_2x': 'mobile-assets/splash/Default@2x.png',
+  'iphone5': 'mobile-assets/splash/Default-568h@2x.png',
+  'iphone6': 'mobile-assets/splash/Default-667h@2x.png',
 });
-*/
 
 // Set PhoneGap/Cordova preferences
 App.setPreference('BackgroundColor', '0xff0000ff');
