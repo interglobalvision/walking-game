@@ -19,7 +19,7 @@ Game = {
   nextMinigame: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    Router.go('/games/' + this.minigames[currentProgress]);
+    Router.go('/games/' + this.minigames[currentProgress] + '/');
   },
 
   getProgressPercent: function() {
@@ -108,7 +108,16 @@ var app = {
 
 app.initialize();
 Router = {
+  init: function() {
+    var _this = this;
+
+    var regex =  /(.+?(?:www))/;
+    _this.basePath = regex.exec(window.location.href);
+  },
   go: function(url) {
-    $(location).attr('href', url);
+    var _this = this;
+
+    window.location = _this.basePath[0] + url + 'index.html';
   },
 }
+Router.init();
