@@ -50,3 +50,7 @@ var app = {
 };
 
 app.initialize();
+
+Utilities = {
+
+};

@@ -78,44 +78,97 @@ Game = {
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
+  // Application Constructor
+  initialize: function() {
+    this.bindEvents();
+  },
+  // Bind Event Listeners
+  //
+  // Bind any events that are required on startup. Common events are:
+  // 'load', 'deviceready', 'offline', and 'online'.
+  bindEvents: function() {
+    document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
+  },
+  // deviceready Event Handler
+  //
+  // The scope of 'this' is the event. In order to call the 'receivedEvent'
+  // function, we must explicitly call 'app.receivedEvent(...);'
+  onDeviceReady: function() {
+    app.receivedEvent('deviceready');
+  },
+  onContentLoaded: function() {
+    FastClick.attach(document.body);
+  },
+  // Update DOM on a Received Event
+  receivedEvent: function(id) {
+    console.log('Received Event: ' + id);
 
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    onContentLoaded: function() {
-
-      // Register FastClick
-      FastClick.attach(document.body);
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        console.log('Received Event: ' + id);
-
-        $('#game-points').html(Game.getPoints());
-        $('#game-gems').html(Game.getGems());
-        $('#game-progress').html(Game.getProgressPercent());
-    }
+    $('#game-points').html(Game.getPoints());
+    $('#game-gems').html(Game.getGems());
+    $('#game-progress').html(Game.getProgressPercent());
+  }
 };
 
 app.initialize();
+
+Utilities = {
+
+};
 Router = {
   go: function(url) {
     $(location).attr('href', url);
   },
 }
+Utilities.Color = {
+  isNeighborColor: function(color1, color2, tolerance) {
+    if (tolerance == undefined) {
+      tolerance = 32;
+    }
+
+    return Math.abs(color1[0] - color2[0]) <= tolerance
+    && Math.abs(color1[1] - color2[1]) <= tolerance
+    && Math.abs(color1[2] - color2[2]) <= tolerance;
+  },
+
+  hslToRgb: function(h, s, l){
+    var r, g, b;
+
+    if (s == 0) {
+        r = g = b = l; // achromatic
+    } else {
+      var hue2rgb = function hue2rgb(p, q, t){
+        if (t < 0) {
+          t += 1;
+        }
+
+        if (t > 1) {
+          t -= 1;
+        }
+
+        if (t < 1 / 6) {
+          return p + (q - p) * 6 * t;
+        }
+
+        if (t < 1 / 2) {
+          return q;
+        }
+
+        if (t < 2 / 3) {
+          return p + (q - p) * (2 / 3 - t) * 6;
+        }
+
+        return p;
+      };
+
+      var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+      var p = 2 * l - q;
+
+      r = hue2rgb(p, q, h + 1 / 3);
+      g = hue2rgb(p, q, h);
+      b = hue2rgb(p, q, h - 1 / 3);
+    }
+
+    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255),];
+  }
+};
