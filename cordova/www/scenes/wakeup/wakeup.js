@@ -12,9 +12,9 @@ var Wakeup = {
     $wall = $('.bedroom-wall'),
     $furniture = $('.bedroom-furniture'),
     dialog = [
-      'Goodness!  I have been screaming my ' + word(adj) + ' ' + word(noun) + ' off trying to get you out of bed!',
-      'You ' + word(adj) + ' ' + word(noun) + '!  Youre ' + word(adj, true) + ' ' + word(noun) + '!',
-      'And your bedroom smells like ' + word(adj) + ' ' + word(noun) + ' and ' + word(adj) + ' ' + word(noun) + '!',
+      'Goodness!  I have been screaming my ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' off trying to get you out of bed!',
+      'You ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!  Youre ' + Utilities.Word.getAdj(true) + ' ' + Utilities.Word.getNoun() + '!',
+      'And your bedroom smells like ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' and ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!',
     ];
 
     //Fade from black
