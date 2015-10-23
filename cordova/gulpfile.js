@@ -64,7 +64,7 @@ gulp.task('lintjs', function () {
 
 /**
  * @task Stylus compile
- *   Compiles .styl files into .css 
+ *   Compiles .styl files into .css
  *   Minifies .css into a single .min.css file
  */
 gulp.task('style', function() {
@@ -82,6 +82,8 @@ gulp.task('style', function() {
   .pipe(gulp.dest('./www/css'))
   .pipe(notify({message: 'Style task complete'}));
 });
+
+gulp.task('build', ['javascript-library', 'javascript', 'style',]);
 
 /**
  * @task Watch files.
@@ -107,4 +109,4 @@ gulp.task('watch', function () {
   ], ['javascript-library']);
 });
 
-gulp.task('default', ['watch',]);
+gulp.task('default', ['watch', 'build',]);
