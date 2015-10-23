@@ -12,6 +12,10 @@ Game = {
   gameComplete: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
+    if (currentProgress === undefined || currentProgress === 'NaN') {
+      currentProgress = 0;
+    }
+
     window.localStorage.setItem('progress', (currentProgress + 1));
     Router.go('/');
   },
@@ -37,6 +41,14 @@ Game = {
     var currentPoints = parseInt(window.localStorage.getItem('points'));
     var currentGems = parseInt(window.localStorage.getItem('gems'));
 
+    if (currentPoints === undefined || currentPoints === 'NaN') {
+      currentPoints = 0;
+    }
+
+    if (currentGems === undefined || currentGems === 'NaN') {
+      currentGems = 0;
+    }
+
     if (points > 0) {
       var modifier = (Math.log(currentGems) + 1);
       var modifiedPoints = Math.round((points * modifier));
@@ -53,9 +65,13 @@ Game = {
 
   setNewGems: function(gems) {
     var gems = parseInt(gems);
-    var currentGems = parseInt(window.localStorage.getItem('gems'));
+    var currentGems = window.localStorage.getItem('gems');
 
-    window.localStorage.setItem('gems', (currentGems + gems));
+    if (currentGems === undefined || currentGems === 'NaN') {
+      currentGems = 0;
+    }
+
+    window.localStorage.setItem('gems', (parseInt(currentGems) + gems));
   },
 
 };
