@@ -67,7 +67,7 @@ Game = {
     var gems = parseInt(gems);
     var currentGems = window.localStorage.getItem('gems');
 
-    if (currentGems === undefined || currentGems === 'NaN') {
+    if (currentGems === null) {
       currentGems = 0;
     }
 

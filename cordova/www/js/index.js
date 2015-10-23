@@ -67,7 +67,7 @@ Game = {
     var gems = parseInt(gems);
     var currentGems = window.localStorage.getItem('gems');
 
-    if (currentGems === undefined || currentGems === 'NaN') {
+    if (currentGems === null) {
       currentGems = 0;
     }
 
@@ -75,6 +75,7 @@ Game = {
   },
 
 };
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
