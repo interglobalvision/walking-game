@@ -61,7 +61,7 @@ var Wakeup = {
         blackOut.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
         blackOut.call(function() {
 
-          Router.go('/bedside');
+          Router.go('/scenes/bedside/');
 
         });
 
