@@ -4,7 +4,7 @@ Utilities.Word = {
 
   init: function(adjsList, nounList) {
     var _this = this;
-    
+
     _this.adjs = adjsList;
     _this.nouns = nounList;
 
@@ -32,13 +32,13 @@ Utilities.Word = {
     return word;
   },
 
-  getAdj(indefinite) {
+  getAdj: function(indefinite) {
     var _this = this;
 
     return _this.getWord('adj', indefinite);
   },
 
-  getNoun(indefinite) {
+  getNoun: function(indefinite) {
     var _this = this;
 
     return _this.getWord('noun', indefinite);
