@@ -55,7 +55,7 @@ var Wakeup = {
 
     scene.add(TweenLite.delayedCall(0, function() {
 
-      Dialog.read(dialog, function() {
+      Utilities.Dialog.read(dialog, function() {
 
         blackOut.set($blackout, {display: 'block',});
         blackOut.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});

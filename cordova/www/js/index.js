@@ -12,6 +12,10 @@ Game = {
   gameComplete: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
+    if (currentProgress === undefined || currentProgress === 'NaN') {
+      currentProgress = 0;
+    }
+
     window.localStorage.setItem('progress', (currentProgress + 1));
     Router.go('/');
   },
@@ -37,6 +41,14 @@ Game = {
     var currentPoints = parseInt(window.localStorage.getItem('points'));
     var currentGems = parseInt(window.localStorage.getItem('gems'));
 
+    if (currentPoints === undefined || currentPoints === 'NaN') {
+      currentPoints = 0;
+    }
+
+    if (currentGems === undefined || currentGems === 'NaN') {
+      currentGems = 0;
+    }
+
     if (points > 0) {
       var modifier = (Math.log(currentGems) + 1);
       var modifiedPoints = Math.round((points * modifier));
@@ -53,9 +65,13 @@ Game = {
 
   setNewGems: function(gems) {
     var gems = parseInt(gems);
-    var currentGems = parseInt(window.localStorage.getItem('gems'));
+    var currentGems = window.localStorage.getItem('gems');
 
-    window.localStorage.setItem('gems', (currentGems + gems));
+    if (currentGems === undefined || currentGems === 'NaN') {
+      currentGems = 0;
+    }
+
+    window.localStorage.setItem('gems', (parseInt(currentGems) + gems));
   },
 
 };
@@ -116,10 +132,20 @@ Utilities = {
 
 };
 Router = {
+  init: function() {
+    var _this = this;
+
+    var regex =  /(.+?(?:www))/;
+    _this.basePath = regex.exec(window.location.href);
+  },
   go: function(url) {
-    $(location).attr('href', url);
+    var _this = this;
+
+    window.location = _this.basePath[0] + url + 'index.html';
   },
 }
+Router.init();
+
 Utilities.Color = {
   isNeighborColor: function(color1, color2, tolerance) {
     if (tolerance == undefined) {
@@ -172,3 +198,147 @@ Utilities.Color = {
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255),];
   }
 };
+Utilities.Dialog = {
+  $target: $('.text-box-dialog'),
+  $parent: $('#dialog'),
+  interval: 66,
+
+  arrayIndex: 0,
+
+  lineIndex: 0,
+  lineTimer: 0,
+
+  read: function(dialogArray, callback) {
+
+    var _this = this;
+
+    _this.$parent = $('#dialog');
+    _this.$target = $('.text-box-dialog');
+
+    _this.dialogArray = dialogArray;
+    _this.arrayIndex = 0;
+    _this.callback = callback;
+
+    _this.$parent.show();
+
+    _this.$parent.off('click.dialogRead').on({
+      'click.dialogRead': function() {
+        if (_this.lineTimer > 0) {
+          _this.skipLine();
+        } else {
+          if (_this.arrayIndex === (_this.dialogArray.length - 1)) {
+            _this.finish();
+          } else {
+            _this.arrayIndex++;
+            _this.readLine();
+          }
+        }
+      },
+    });
+
+    _this.readLine();
+
+  },
+
+  readLine: function() {
+    var _this = this;
+    var dialogLine = _this.dialogArray[_this.arrayIndex];
+
+    _this.lineIndex = 0;
+    _this.$target.html('');
+    _this.lineTimer = setInterval(function() {
+
+      if (_this.lineIndex < dialogLine.length) {
+
+        _this.$target.append(dialogLine[_this.lineIndex]);
+        _this.lineIndex++;
+
+      } else {
+
+        _this.clearLineInterval();
+        _this.$target.append('<a class="text-box-next">&rarr;</a>');
+
+      }
+
+    }, _this.interval);
+  },
+
+  clearLineInterval: function() {
+    var _this = this;
+
+    clearInterval(_this.lineTimer);
+    _this.lineTimer = 0;
+  },
+
+  skipLine: function() {
+    var _this = this;
+
+    _this.clearLineInterval();
+    _this.$target.html(_this.dialogArray[_this.arrayIndex]);
+    _this.$target.append('<a class="text-box-next">&rarr;</a>');
+
+  },
+
+  finish: function() {
+    var _this = this;
+
+    _this.$parent.hide();
+    _this.$target.html('');
+
+    _this.callback();
+  },
+
+};
+
+Utilities.Word = {
+  adjs: [],
+  nouns: [],
+
+  init: function(adjsList, nounList) {
+    var _this = this;
+    
+    _this.adjs = adjsList;
+    _this.nouns = nounList;
+
+  },
+
+  /**
+   * Returns a word from the lists
+   * @param {string} kind Defines what kind of word return (adj|noun)
+   * @param {bool} indefinite Defines if it should append an indefinite article
+   */
+  getWord: function(kind, indefinite) {
+    var _this = this;
+
+    var list = kind ==  'adj' ? _this.adjs : _this.nouns;
+    var word = list[Math.floor(Math.random() * list.length)];
+
+    if (indefinite) {
+      if (_this.isVowel(word[0])) {
+        word = 'an ' + word;
+      } else {
+        word = 'a ' + word;
+      }
+    }
+
+    return word;
+  },
+
+  getAdj(indefinite) {
+    var _this = this;
+
+    return _this.getWord('adj', indefinite);
+  },
+
+  getNoun(indefinite) {
+    var _this = this;
+
+    return _this.getWord('noun', indefinite);
+  },
+
+  isVowel: function(character) {
+    return /[aeiouAEIOU]/.test(character);
+  }
+}
+
+Utilities.Word.init(Adjs, Nouns);
