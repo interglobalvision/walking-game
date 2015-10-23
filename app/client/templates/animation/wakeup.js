@@ -57,7 +57,7 @@ Template.wakeup.onRendered(function () {
   scene.add( blackIn );
 
   //add Open Eyes to scene timeline
-  scene.add( openEyes );
+  //scene.add( openEyes );
 
   //add text-box wakeup dialog to scene timeline
 
