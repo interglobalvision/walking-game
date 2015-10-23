@@ -16,33 +16,40 @@ Template.mirror.onRendered(function () {
 
   if (navigator.getUserMedia) {
     // Request the camera.
-    navigator.getUserMedia({
-      video: true,
-    }, function(stream) {
-      // Success Callback
-      video.src = window.URL.createObjectURL(stream);
-      video.onloadedmetadata = function(e) {
+    navigator.getUserMedia(
+      {
+        video: true,
+      }, 
 
-        video.play();
+      function(stream) {
+        // Success Callback
+        video.src = window.URL.createObjectURL(stream);
+        video.onloadedmetadata = function(e) {
 
-        // Get Scales
-        var scaleWidth = window.innerWidth / video.videoWidth;
-        var scaleHeight = window.innerHeight / video.videoHeight;
-        var scale = scaleWidth > scaleHeight ? scaleWidth : scaleHeight;
+          video.play();
 
-        // Apply scale to video
-        video.style.transform = "scale(" + scale + ")";
+          // Get Scales
+          var scaleWidth = window.innerWidth / video.videoWidth;
+          var scaleHeight = window.innerHeight / video.videoHeight;
+          var scale = scaleWidth > scaleHeight ? scaleWidth : scaleHeight;
 
-        // Launch dialog
+          // Apply scale to video
+          video.style.transform = "scale(" + scale + ")";
 
-        Dialog.read(dialog, function() {
-          $('#mirror-save').show();
-        });
+          // Launch dialog
 
-      };
-    }, function(err) {
-      console.log('Error: ' + err);
-    });
+          Dialog.read(dialog, function() {
+            $('#mirror-save').show();
+          });
+
+        };
+      }, 
+
+      function(err) {
+        console.log('Error: ' + err);
+      }
+      
+    );
 
   } else {
     Router.go('/farewell');

@@ -90,9 +90,8 @@ Template.farewell.onRendered(function () {
 
   blackout.call(function() {
     $blackout.hide();
-    Router.go('/')
+    Router.go('/');
   });
-
 
 });
 
