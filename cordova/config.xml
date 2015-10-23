@@ -25,9 +25,10 @@
     <preference name="Fullscreen" value="true" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
-    <engine name="browser" spec="3.6.0" />
-    <engine name="android" spec="4.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-camera" spec="^1.2.0" />
     <plugin name="cordova-plugin-device-orientation" spec="^1.0.1" />
+    <engine name="browser" spec="~4.0.0" />
+    <engine name="ios" spec="~3.9.1" />
+    <engine name="android" spec="4.0.2" />
 </widget>
