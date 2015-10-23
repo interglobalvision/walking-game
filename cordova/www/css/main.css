@@ -137,14 +137,10 @@ table {
 .bedroom-furniture {
   z-index: 2;
   background-image: url("../img/bedroom/furniture.png");
-  -webkit-filter: blur(40px);
-  filter: blur(40px);
 }
 .bedroom-bed {
   z-index: 3;
   background-image: url("../img/bedroom/bed.png");
-  -webkit-filter: blur(40px);
-  filter: blur(40px);
 }
 .bedroom-bedside {
   z-index: 1;
@@ -196,8 +192,6 @@ table {
   background-size: 2400px;
   -webkit-animation: coach-angry 0.5s steps(4, end) infinite;
           animation: coach-angry 0.5s steps(4, end) infinite;
-  -webkit-filter: blur(40px);
-  filter: blur(40px);
 }
 .coach-mellow {
   position: absolute;
