@@ -12,7 +12,7 @@ Game = {
   gameComplete: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    if (currentProgress === undefined || currentProgress === 'NaN') {
+    if (currentProgress === null || currentProgress === 'NaN') {
       currentProgress = 0;
     }
 
@@ -41,11 +41,11 @@ Game = {
     var currentPoints = parseInt(window.localStorage.getItem('points'));
     var currentGems = parseInt(window.localStorage.getItem('gems'));
 
-    if (currentPoints === undefined || currentPoints === 'NaN') {
+    if (currentPoints === null || currentPoints === 'NaN') {
       currentPoints = 0;
     }
 
-    if (currentGems === undefined || currentGems === 'NaN') {
+    if (currentGems === null || currentGems === 'NaN') {
       currentGems = 0;
     }
 
@@ -67,7 +67,7 @@ Game = {
     var gems = parseInt(gems);
     var currentGems = window.localStorage.getItem('gems');
 
-    if (currentGems === undefined || currentGems === 'NaN') {
+    if (currentGems === null || currentGems === 'NaN') {
       currentGems = 0;
     }
 
@@ -75,6 +75,7 @@ Game = {
   },
 
 };
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
