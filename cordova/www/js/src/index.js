@@ -43,6 +43,7 @@ var app = {
   receivedEvent: function(id) {
     console.log('Received Event: ' + id);
 
+    $('#game-username').html(Game.getUsername());
     $('#game-points').html(Game.getPoints());
     $('#game-gems').html(Game.getGems());
     $('#game-progress').html(Game.getProgressPercent());
