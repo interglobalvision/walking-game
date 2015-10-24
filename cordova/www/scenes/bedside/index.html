@@ -32,40 +32,38 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-
-        <link rel="stylesheet" type="text/css" href="css/main.min.css">
-        <title>WALKING GAME</title>
+        <link rel="stylesheet" type="text/css" href="../../css/main.css">
+        <title>BEDSIDE</title>
     </head>
     <body>
+      <div class="container">
 
-        <div class="container">
-          <div>
-            <h4>Wassup <span id="game-username"></span>!</h3>
-            <h3>Points: <span id="game-points"></span></h3>
-            <h4>Gems: <span id="game-gems"></span></h4>
-            <h4>Progress: <span id="game-progress"></span></h4>
+        <div id="stage">
+          <div class="set bedroom-wall"></div>
+          <div class="set bedroom-bedside"></div>
+          <div class="bear-clock"></div>
+          <div class="coach-container">
+            <div class="coach-mellow"></div>
           </div>
-
-          <hr/>
-
-          <h1><a href="pages/compass/index.html">Compass AKA GO next level</a></h1>
-
-          <hr/>
-
-          <ul>
-            <li>dev menu</li>
-            <li><a href="games/supertap/index.html">Supertap</a></li>
-            <li><a href="games/photocolor/index.html">Photo [color match]</a></li>
-            <li><a href="games/reset/index.html">Reset</a></li>
-            <li>-</li>
-            <li><a href="scenes/wakeup/index.html">Wakeup</a></li>
-            <li><a href="scenes/bedside/index.html">Bedside</a></li>
-            <li><a href="scenes/mirror/index.html">Mirror</a></li>
-          </ul>
+          <div class="text-box" id="user-setup">
+            <form id="user-setup-form">
+              <lable>Whats your name?</lable>
+              <input type="text" name="username" />
+              <input type="submit" value="Thats Me" />
+            </form>
+          </div>
         </div>
 
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/lib.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+      </div>
+
+      <!-- Common footer -->
+      <div id="blackout"></div>
+      <div class="text-box" id="dialog">
+        <div class="text-box-dialog"></div>
+      </div>
+
+      <script type="text/javascript" src="../../js/lib.js"></script>
+      <script type="text/javascript" src="../../js/index.js"></script>
+      <script type="text/javascript" src="bedside.js"></script>
     </body>
 </html>
