@@ -5,6 +5,22 @@ Game = {
     'photocolor',
   ],
 
+  createUser: function(username, callback) {
+    _this = this;
+
+    window.localStorage.setItem('username', username);
+
+    window.localStorage.setItem('points', 0);
+    window.localStorage.setItem('gems', 0);
+    window.localStorage.setItem('progress', 0);
+
+    callback();
+  },
+
+  getUsername: function() {
+    return window.localStorage.getItem('username');
+  },
+
   resetProgress: function() {
     window.localStorage.setItem('progress', 0);
   },
