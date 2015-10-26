@@ -5,10 +5,10 @@ Router = {
     var regex =  /(.+?(?:www))/;
     _this.basePath = regex.exec(window.location.href);
 
-    if (window.cordova) {
-      _this.isBrowser = false;
-    } else {
+    if (window.cordova.platformId === 'browser') {
       _this.isBrowser = true;
+    } else {
+      _this.isBrowser = false;
     }
   },
   go: function(url) {
