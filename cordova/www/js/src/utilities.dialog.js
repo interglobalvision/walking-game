@@ -1,7 +1,7 @@
 Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
-  interval: 66,
+  interval: 44,
 
   arrayIndex: 0,
 
