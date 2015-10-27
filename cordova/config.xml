@@ -46,7 +46,7 @@
         <splash src="assets/splashes/ios/Default-Landscape.png" width="1024" height="768"/>
         <splash src="assets/splashes/ios/Default-568h@2x.png" width="640" height="1136"/>
         <splash src="assets/splashes/ios/Default-667h@2x.png" width="750" height="1334"/>
-        <splash src="assets/splashes/ios/Default-Landscape-736h@3x" width="2208" height="1242"/>
+        <splash src="assets/splashes/ios/Default-Landscape-736h@3x.png" width="2208" height="1242"/>
 
     </platform>
     <preference name="Fullscreen" value="true" />
