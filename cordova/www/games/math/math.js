@@ -86,7 +86,7 @@ var Maths = {
     Utilities.Dialog.read(_this.winDialog, function() {
 
       Game.setNewPoints(points);
-      Router.go('/');
+      Game.gameComplete();
 
     });
 
