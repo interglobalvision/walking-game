@@ -1,6 +1,7 @@
 Game = {
   minigames: [
     'tippyswitch',
+    'math',
     'supertap',
     'reset',
     'photocolor',
@@ -58,11 +59,11 @@ Game = {
     var currentPoints = parseInt(window.localStorage.getItem('points'));
     var currentGems = parseInt(window.localStorage.getItem('gems'));
 
-    if (currentPoints === null || currentPoints === 'NaN') {
+    if (currentPoints === null || isNaN(currentPoints)) {
       currentPoints = 0;
     }
 
-    if (currentGems === null || currentGems === 'NaN') {
+    if (currentGems === null || isNaN(currentGems)) {
       currentGems = 0;
     }
 
