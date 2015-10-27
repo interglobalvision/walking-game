@@ -1,7 +1,13 @@
 var Supertap = {
   tapCount: 0,
   lastTap: undefined,
+  startTime: undefined,
   endTime: undefined,
+  gameMiniseconds: 10000,
+  thresholdMiniseconds: 400,
+  timeout: undefined,
+  checker: undefined,
+  countdown: undefined,
   $tap: $('#tap-button'),
   $countdown: $('#tap-countdown'),
 
@@ -11,51 +17,98 @@ var Supertap = {
     _this.$tap.on({
       'click': function() {
 
-        var date = new Date();
-        var tapTime = date.getTime();
-        var endTime = _this.endTime;
-
-        // Check if it's the first tap
         if (_this.tapCount === 0) {
-          _this.endTime = date.getTime() + 30000;
+          _this.startTimeout();
+          _this.startChecker();
+          _this.startCountdown();
           _this.$tap.html('Tap me MORE');
         }
 
-        // Check if tapping is too slow
-        if ((date - _this.lastTap) > 300) {
-          // You lose
-          _this.$tap.fadeOut();
-
-          // TODO:
-          //  - show couch dialogs
-          //  - retry not return to map?
-          Router.go('/');
-
-        } else if (tapTime >= endTime) {
-          // You win
-          _this.$tap.fadeOut();
-
-          Game.setNewPoints(_this.tapCount);
-          Game.gameComplete();
-
-        }
-
-        var count = _this.tapCount + 1;
-
-        _this.tapCount = count;
-        _this.lastTap = date;
-
-        var countdownTime = Math.round( (endTime - tapTime) / 1000 );
-
-        console.log(countdownTime);
-
-        if (!isNaN(countdownTime) ) {
-          _this.$countdown.html( countdownTime );
-        }
+        _this.tap();
 
       },
     });
   },
+
+  tap: function() {
+    var _this = this;
+    var date = new Date();
+
+    _this.tapCount++;
+    _this.lastTap = date.getTime();
+
+  },
+
+  startTimeout: function() {
+    var _this = this;
+    var date = new Date();
+
+    _this.startTime = date.getTime();
+
+    _this.timeout = window.setTimeout(function() {
+
+      _this.win();
+
+    }, _this.gameMiniseconds);
+
+  },
+
+  startChecker: function() {
+    var _this = this;
+
+    _this.checker = window.setInterval(function() {
+
+      var date = new Date();
+      var now = date.getTime();
+
+      if (_this.lastTap < (now - _this.thresholdMiniseconds)) {
+        _this.loose();
+      }
+
+    }, 100);
+
+  },
+
+  startCountdown: function() {
+    var _this = this;
+
+    _this.countdownSeconds = _this.gameMiniseconds / 1000;
+    _this.$countdown.html(_this.countdownSeconds );
+
+    _this.countdown = window.setInterval(function() {
+      _this.countdownSeconds--;
+      _this.$countdown.html(_this.countdownSeconds);
+    }, 1000);
+
+  },
+
+  win: function() {
+    var _this = this;
+
+    _this.$tap.fadeOut();
+
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+
+    alert('nice 1!');
+
+    Game.setNewPoints(_this.tapCount);
+    Game.gameComplete();
+
+  },
+
+  loose: function() {
+    var _this = this;
+
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+    window.clearTimeout(_this.timeout);
+
+    alert('u better tap faster eh!');
+    Router.go('/');
+
+  },
+
 };
 
 $(document).ready(function() {
