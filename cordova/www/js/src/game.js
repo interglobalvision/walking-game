@@ -1,5 +1,6 @@
 Game = {
   minigames: [
+    'tippyswitch',
     'supertap',
     'reset',
     'photocolor',
