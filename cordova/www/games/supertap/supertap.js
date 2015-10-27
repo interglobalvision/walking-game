@@ -56,6 +56,8 @@ var Supertap = {
       },
     });
   },
-}
+};
 
-Supertap.init();
+$(document).ready(function() {
+  Supertap.init();
+});

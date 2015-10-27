@@ -23,9 +23,11 @@ var Reset = {
         Game.gameComplete();
 
       },
-    })
+    });
 
   },
-}
+};
 
-Reset.init();
+$(document).ready(function() {
+  Reset.init();
+});
