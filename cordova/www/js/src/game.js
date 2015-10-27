@@ -30,7 +30,7 @@ Game = {
   gameComplete: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    if (currentProgress === null || currentProgress === 'NaN') {
+    if (currentProgress === null || isNaN(currentProgress)) {
       currentProgress = 0;
     }
 
@@ -68,7 +68,7 @@ Game = {
     }
 
     if (points > 0) {
-      var modifier = (Math.log(currentGems) + 1);
+      var modifier = Math.log(currentGems+ 1);
       var modifiedPoints = Math.round((points * modifier));
 
       window.localStorage.setItem('points', (currentPoints + modifiedPoints));
@@ -85,7 +85,7 @@ Game = {
     var gems = parseInt(gems);
     var currentGems = window.localStorage.getItem('gems');
 
-    if (currentGems === null || currentGems === 'NaN') {
+    if (currentGems === null || isNaN(currentGems)) {
       currentGems = 0;
     }
 
