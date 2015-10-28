@@ -274,6 +274,57 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
+.livingroom {
+  width: 200%;
+  left: -100%;
+}
+.livingroom-room {
+  background-image: url("../img/livingroom/room.png");
+  z-index: 2;
+}
+.livingroom-aunt {
+  background-image: url("../img/livingroom/aunt.png");
+  z-index: 3;
+  -webkit-animation: livingroom-aunt 0.5s infinite;
+          animation: livingroom-aunt 0.5s infinite;
+}
+.livingroom-cat {
+  background-image: url("../img/livingroom/cat.png");
+  z-index: 4;
+  -webkit-animation: livingroom-cat 3s infinite linear;
+          animation: livingroom-cat 3s infinite linear;
+}
+.livingroom-sofa {
+  background-image: url("../img/livingroom/sofa.png");
+  z-index: 5;
+}
+.livingroom-compass {
+  opacity: 0;
+  display: none;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+}
+.livingroom-compass-bg {
+  background-image: url("../img/livingroom/compass-bg.jpg");
+  z-index: 6;
+  -webkit-animation: hue 4s infinite linear;
+          animation: hue 4s infinite linear;
+  width: 100%;
+  height: 100%;
+}
+.livingroom-compass-obj {
+  background-image: url("../img/compass.png");
+  z-index: 7;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  -webkit-animation: livingroom-spin-compass 2s infinite linear;
+          animation: livingroom-spin-compass 2s infinite linear;
+}
 @-webkit-keyframes bear-clock {
   100% {
     background-position: -1800px;
@@ -378,6 +429,64 @@ table {
   100% {
     -webkit-filter: sepia(1) hue-rotate(160deg) brightness(1.2);
     filter: sepia(1) hue-rotate(160deg) brightness(1.2);
+  }
+}
+@-webkit-keyframes livingroom-aunt {
+  0% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+  50% {
+    background-image: url("../img/livingroom/aunt2.png");
+  }
+  100% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+}
+@keyframes livingroom-aunt {
+  0% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+  50% {
+    background-image: url("../img/livingroom/aunt2.png");
+  }
+  100% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+}
+@-webkit-keyframes livingroom-cat {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes livingroom-cat {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@-webkit-keyframes livingroom-spin-compass {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes livingroom-spin-compass {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
@@ -554,4 +663,22 @@ h6 {
   background: #f00;
   text: #000;
   box-sizing: border-box;
+}
+
+#game-box {
+  height: 90vh;
+  background-color: #00f;
+  position: relative;
+}
+#game-box.backwards {
+  background-color: #f00;
+}
+#game-ball {
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
 }
