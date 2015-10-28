@@ -140,6 +140,53 @@
   top: 20%
   -webkit-filter: saturate(0)
   filter: saturate(0)
+  
+.livingroom
+  width: 200%
+  left: -100%
+  
+.livingroom-room
+  background-image: url('images/livingroom/room.png')
+  z-index: 2
+
+.livingroom-aunt
+  background-image: url('images/livingroom/aunt.png')
+  z-index: 3
+  animation: livingroom-aunt .5s infinite
+
+.livingroom-cat
+  background-image: url('images/livingroom/cat.png')
+  z-index: 4
+  animation: livingroom-cat 3s infinite linear
+  
+.livingroom-sofa
+  background-image: url('images/livingroom/sofa.png')
+  z-index: 5
+  
+.livingroom-compass
+  opacity: 0
+  display: none
+  background-size: cover
+  background-position: center
+  position: fixed
+  
+.livingroom-compass-bg
+  background-image: url('images/livingroom/compass-bg.jpg')
+  z-index: 6
+  animation: hue 4s infinite linear
+  width: 100%
+  height: 100%
+  
+.livingroom-compass-obj
+  background-image: url('images/compass.png')
+  z-index: 7
+  width: 0px
+  height: 0px
+  top: 50%
+  left: 50%
+  margin-top: -100px
+  margin-left: -100px
+  animation: livingroom-spin-compass 2s infinite linear
 
 @keyframes bear-clock
   100%
