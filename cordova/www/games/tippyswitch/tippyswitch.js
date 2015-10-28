@@ -1,6 +1,6 @@
 var TippySwitch = {
   fullPoints: 987,
-  maxMilliseconds: 11111,
+  maxMilliseconds: 12345,
   $gameBox: $('#game-box'),
   $gameBall: $('#game-ball'),
   forward: true,
