@@ -52,7 +52,7 @@ var Bedside = {
     });
 
   },
-}
+};
 
 $(document).ready(function() {
   Bedside.init();
