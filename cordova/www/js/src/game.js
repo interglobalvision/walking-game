@@ -68,7 +68,7 @@ Game = {
     }
 
     if (points > 0) {
-      var modifier = Math.log(currentGems+ 1);
+      var modifier = (Math.log(currentGems+ 1) + 1);
       var modifiedPoints = Math.round((points * modifier));
 
       window.localStorage.setItem('points', (currentPoints + modifiedPoints));
