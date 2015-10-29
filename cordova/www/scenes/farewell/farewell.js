@@ -1,25 +1,24 @@
 var Farewell = {
   init: function() {  
-    var _this = this,
-      coach = new TimelineLite(),
+    var _this = this;
+
+    var coach = new TimelineLite(),
       aunt = new TimelineLite(),
       compass = new TimelineLite(),
       goodbye = new TimelineLite(),
       blackout = new TimelineLite(),
-      $blackout = $('.blackout'),
-      $coach = _this.$('.coach-container'),
-      $livingroom = _this.$('.livingroom'),
-      $compass = _this.$('.livingroom-compass'),
-      $compassObj = _this.$('.livingroom-compass-obj'),
-      moveCoachRight = new TweenMax.to($coach, 2, {left: '100%',}),
-      moveRoomRight = new TweenMax.to($livingroom, 2, {left: '0%',}),
+      $blackout = $('#blackout'),
+      $coach = $('.coach-container'),
+      $livingroom = $('.livingroom'),
+      $compass = $('.livingroom-compass'),
+      $compassObj = $('.livingroom-compass-obj'),
       dialog = [
         "It's time to hit the road...",
         "Along the way you must complete minigame challenges!",
         "That is the only way to become the best. Now say goodbye to your auntie...",
       ],
       dialog2 = [
-        "Oh my " + word(adj) + " " + word(noun) + " i'm soo " + word(adj) + " to see you go... but you must go with your coach and train...",
+        "Oh my " + Utilities.Word.getAdj() + " " + Utilities.Word.getNoun() + " i'm soo " + Utilities.Word.getAdj() + " to see you go... but you must go with your coach and train...",
         "...train train train to be the BEST at walking in the world!",
         "But look ~ I have something special for you...",
       ],
@@ -33,14 +32,10 @@ var Farewell = {
 
   //Fade from black
 
-    coach.set($blackout, {display: 'block', opacity: 1,});
-
-    coach.to($blackout, 3, {opacity: 0,}, {ease:Bounce.easeIn,});
-
-    coach.set($blackout, {display: 'none',});
+    coach.set($blackout, {opacity: 0,});
 
     coach.call(function() {
-      Dialog.read(dialog, function() {
+      Utilities.Dialog.read(dialog, function() {
         aunt.play();
       });
     });
@@ -49,53 +44,50 @@ var Farewell = {
 
   //Move scene right
 
-    aunt.add([moveRoomRight, moveCoachRight,]);
+    aunt.set($coach, {left: '100%',});
+
+    aunt.set($livingroom, {left: '0%',});
 
     aunt.call(function() {
-      Dialog.read(dialog2, function() {
+      Utilities.Dialog.read(dialog2, function() {
         compass.play();
       });
     });
 
     compass.pause();
 
-    compass.set($compass, {display: 'block', opacity: 0,});
+    compass.set($compass, {opacity: 1,});
 
-    compass.to($compass, 2, {opacity: 1,}, {ease:Bounce.easeIn,});
-
-    compass.to($compassObj, 1, {width: '200px', height: '200px',}, {ease:Bounce.easeIn,});
+    compass.set($compassObj, {width: '200px', height: '200px', 'margin-left': '-100px', 'margin-top': '-100px',});
 
     compass.call(function() {
-      Dialog.read(dialog3, function() {
+      Utilities.Dialog.read(dialog3, function() {
         goodbye.play();
       });
     });
 
     goodbye.pause();
 
-    goodbye.to($compass, 2, {opacity: 0,}, {ease:Bounce.easeIn,});
+    goodbye.set($compass, {opacity: 0,});
 
-    goodbye.to($compassObj, 1, {width: '0px', height: '0px',}, {ease:Bounce.easeIn,});
+    goodbye.set($compassObj, {width: '0px', height: '0px', 'margin-left': '0px', 'margin-top': '0px',});
 
     goodbye.call(function() {
-      Dialog.read(dialog4, function() {
+      Utilities.Dialog.read(dialog4, function() {
         blackout.play();
       });
     });
 
     blackout.pause();
 
-    blackout.set($blackout, {display: 'block', opacity: 0,});
-
-    blackout.to($blackout, 3, {opacity: 1,}, {ease:Bounce.easeIn,});
+    blackout.set($blackout, {opacity: 1,});
 
     blackout.call(function() {
-      $blackout.hide();
       Router.go('/');
     });
 
   },
-});
+};
 
 $(document).ready(function() {
   Farewell.init();
