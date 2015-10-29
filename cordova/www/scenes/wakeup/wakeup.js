@@ -15,7 +15,7 @@ var Wakeup = {
 
     scene.call(function() {
       Utilities.Dialog.read(dialog, function() {
-        scene2.play()
+        scene2.play();
       });
     });
 
