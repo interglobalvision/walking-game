@@ -1,5 +1,6 @@
 var Bedside = {
   scene: new TimelineLite(),
+  scene2: new TimelineLite(),
   $blackout: $('#blackout'),
   $form: $('#user-setup-form'),
   dialog: [
@@ -13,15 +14,15 @@ var Bedside = {
     var _this = this;
 
     //Fade from black
-    _this.scene.set(_this.$blackout, {display: 'block', opacity: 1,});
-    _this.scene.to(_this.$blackout, 3, {opacity: 0,}, {ease:Bounce.easeIn,});
-    _this.scene.set(_this.$blackout, {display: 'none',});
+    _this.scene.set(_this.$blackout, {opacity: 0,});
 
     _this.scene.call(function() {
       Utilities.Dialog.read(_this.dialog, function() {
         $('#user-setup').show();
       });
     });
+
+    _this.scene2.pause();
 
     _this.bindings();
 
@@ -43,6 +44,12 @@ var Bedside = {
         } else {
 
           Game.createUser(e.target[0].value, function() {
+            _this.scene2.play();
+          });
+
+          _this.scene2.set(_this.$blackout, {opacity: 1,});
+
+          _this.scene2.call(function(){
             Router.go('/');
           });
 

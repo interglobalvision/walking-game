@@ -1,9 +1,27 @@
 Game = {
   minigames: [
+    'tippyswitch',
+    'math',
     'supertap',
     'reset',
     'photocolor',
   ],
+
+  createUser: function(username, callback) {
+    _this = this;
+
+    window.localStorage.setItem('username', username);
+
+    window.localStorage.setItem('points', 0);
+    window.localStorage.setItem('gems', 0);
+    window.localStorage.setItem('progress', 0);
+
+    callback();
+  },
+
+  getUsername: function() {
+    return window.localStorage.getItem('username');
+  },
 
   resetProgress: function() {
     window.localStorage.setItem('progress', 0);
@@ -12,7 +30,7 @@ Game = {
   gameComplete: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    if (currentProgress === null || currentProgress === 'NaN') {
+    if (currentProgress === null || isNaN(currentProgress)) {
       currentProgress = 0;
     }
 
@@ -41,16 +59,16 @@ Game = {
     var currentPoints = parseInt(window.localStorage.getItem('points'));
     var currentGems = parseInt(window.localStorage.getItem('gems'));
 
-    if (currentPoints === null || currentPoints === 'NaN') {
+    if (currentPoints === null || isNaN(currentPoints)) {
       currentPoints = 0;
     }
 
-    if (currentGems === null || currentGems === 'NaN') {
+    if (currentGems === null || isNaN(currentGems)) {
       currentGems = 0;
     }
 
     if (points > 0) {
-      var modifier = (Math.log(currentGems) + 1);
+      var modifier = (Math.log(currentGems+ 1) + 1);
       var modifiedPoints = Math.round((points * modifier));
 
       window.localStorage.setItem('points', (currentPoints + modifiedPoints));
@@ -67,7 +85,7 @@ Game = {
     var gems = parseInt(gems);
     var currentGems = window.localStorage.getItem('gems');
 
-    if (currentGems === null || currentGems === 'NaN') {
+    if (currentGems === null || isNaN(currentGems)) {
       currentGems = 0;
     }
 
@@ -121,6 +139,7 @@ var app = {
   receivedEvent: function(id) {
     console.log('Received Event: ' + id);
 
+    $('#game-username').html(Game.getUsername());
     $('#game-points').html(Game.getPoints());
     $('#game-gems').html(Game.getGems());
     $('#game-progress').html(Game.getProgressPercent());
@@ -138,15 +157,24 @@ Router = {
 
     var regex =  /(.+?(?:www))/;
     _this.basePath = regex.exec(window.location.href);
+
+    if (window.cordova.platformId === 'browser') {
+      _this.isBrowser = true;
+    } else {
+      _this.isBrowser = false;
+    }
   },
   go: function(url) {
     var _this = this;
 
-    window.location = _this.basePath[0] + url + 'index.html';
+    if (_this.isBrowser) {
+      window.location = url;
+    } else {
+      window.location = _this.basePath[0] + url + 'index.html';
+    }
   },
 }
 Router.init();
-
 Utilities.Color = {
   isNeighborColor: function(color1, color2, tolerance) {
     if (tolerance == undefined) {
@@ -202,7 +230,7 @@ Utilities.Color = {
 Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
-  interval: 66,
+  interval: 44,
 
   arrayIndex: 0,
 
@@ -291,6 +319,11 @@ Utilities.Dialog = {
 
 };
 
+Utilities.Number = {
+  getRandomInt: function(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+};
 Utilities.Word = {
   adjs: [],
   nouns: [],
