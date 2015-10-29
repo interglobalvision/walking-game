@@ -18,7 +18,7 @@
   height: 100%
   overflow: hidden
 
-.set 
+.set
   background-size: cover
   background-position: center
   position: fixed
@@ -33,14 +33,10 @@
 .bedroom-furniture
   z-index: 2
   background-image: url('../img/bedroom/furniture.png')
-  // -webkit-filter: blur(40px)
-  // filter: blur(40px)
 
 .bedroom-bed
   z-index: 3
   background-image: url('../img/bedroom/bed.png')
-  // -webkit-filter: blur(40px)
-  // filter: blur(40px)
 
 .bedroom-bedside
   z-index: 1
@@ -88,8 +84,6 @@
   background-position: 0
   background-size: 800px
   animation: coach-angry .5s steps(4, end) infinite
-  // -webkit-filter: blur(40px)
-  // filter: blur(40px)
 
 .coach-mellow
   position: absolute
@@ -152,12 +146,12 @@
   top: 20%
   -webkit-filter: saturate(0)
   filter: saturate(0)
-  
+
 .livingroom
   width: 200%
   left: -100%
   transition: left 2s
-  
+
 .livingroom-room
   background-image: url('../img/livingroom/room.png')
   z-index: 2
@@ -171,26 +165,26 @@
   background-image: url('../img/livingroom/cat.png')
   z-index: 4
   animation: livingroom-cat 3s infinite linear
-  
+
 .livingroom-sofa
   background-image: url('../img/livingroom/sofa.png')
   z-index: 5
-  
+
 .livingroom-compass
   opacity: 0
   background-size: cover
   background-position: center
   position: fixed
-  transition: opacity 2s 
+  transition: opacity 2s
   pointer-events: none
-  
+
 .livingroom-compass-bg
   background-image: url('../img/livingroom/compass-bg.jpg')
   z-index: 6
   animation: hue 4s infinite linear
   width: 100%
   height: 100%
-  
+
 .livingroom-compass-obj
   background-image: url('../img/compass.png')
   z-index: 7
@@ -202,7 +196,7 @@
   margin-left: 0px
   transition: all 2s
   animation: livingroom-spin-compass 2s infinite linear
-  
+
 .livingroom-transition
   transition: left 2s
 
@@ -244,7 +238,7 @@
   100%
     -webkit-filter: sepia(1) hue-rotate(160deg) brightness(1.2);
     filter: sepia(1) hue-rotate(160deg) brightness(1.2);
-    
+
 @keyframes livingroom-aunt
   0%
     background-image: url('../img/livingroom/aunt.png')
@@ -252,22 +246,19 @@
     background-image: url('../img/livingroom/aunt2.png')
   100%
     background-image: url('../img/livingroom/aunt.png')
-    
+
 @keyframes livingroom-cat
   from
     left: 100%
   to
     left: -100%
-    
+
 @keyframes livingroom-spin-compass
   from
     transform: rotate(0deg)
   to
     transform: rotate(360deg)
-    
+
 @media screen and (max-width: 600px)
   html
     width: 100%
-
-
-  
