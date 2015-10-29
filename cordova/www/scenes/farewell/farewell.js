@@ -8,10 +8,10 @@ var Farewell = {
       goodbye = new TimelineLite(),
       blackout = new TimelineLite(),
       $blackout = $('#blackout'),
-      $coach = $('.coach-container'),
+      $coach = $('#coach-container'),
       $livingroom = $('.livingroom'),
       $compass = $('.livingroom-compass'),
-      $compassObj = $('.livingroom-compass-obj'),
+      $compassObj = $('#livingroom-compass-obj'),
       dialog = [
         "It's time to hit the road...",
         "Along the way you must complete minigame challenges!",
