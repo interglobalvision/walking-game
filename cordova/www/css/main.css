@@ -120,8 +120,8 @@ table {
   top: 0;
   left: 0;
   z-index: 800;
-  display: none;
   background: #000;
+  pointer-events: none;
   opacity: 1;
   -webkit-transition: opacity 1s;
           transition: opacity 1s;
@@ -162,14 +162,14 @@ table {
 .bear-clock {
   position: absolute;
   z-index: 2;
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   top: 20%;
   left: 5%;
   background-image: url("../img/sprites/bear-clock.png");
   background-repeat: no-repeat;
   background-position: 0;
-  background-size: 1800px;
+  background-size: 600px;
   -webkit-animation: bear-clock 0.7s steps(6, end) infinite;
           animation: bear-clock 0.7s steps(6, end) infinite;
 }
@@ -196,13 +196,13 @@ table {
   position: absolute;
   top: 0%;
   left: 50%;
-  margin-left: -300px;
-  width: 600px;
+  margin-left: -100px;
+  width: 200px;
   height: 100%;
   background-image: url("../img/sprites/coach-angry.png");
   background-repeat: no-repeat;
   background-position: 0;
-  background-size: 2400px;
+  background-size: 800px;
   -webkit-animation: coach-angry 0.5s steps(4, end) infinite;
           animation: coach-angry 0.5s steps(4, end) infinite;
 }
@@ -210,13 +210,13 @@ table {
   position: absolute;
   top: 0%;
   left: 50%;
-  margin-left: -300px;
-  width: 600px;
+  margin-left: -100px;
+  width: 200px;
   height: 100%;
   background-image: url("../img/sprites/coach-mellow.png");
   background-repeat: no-repeat;
   background-position: 0;
-  background-size: 4800px;
+  background-size: 1600px;
   -webkit-animation: coach-mellow 1s steps(8, end) infinite;
           animation: coach-mellow 1s steps(8, end) infinite;
 }
@@ -274,14 +274,80 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
+.livingroom {
+  width: 200%;
+  left: -100%;
+  -webkit-transition: left 2s;
+          transition: left 2s;
+}
+.livingroom-room {
+  background-image: url("../img/livingroom/room.png");
+  z-index: 2;
+}
+.livingroom-aunt {
+  background-image: url("../img/livingroom/aunt.png");
+  z-index: 3;
+  -webkit-animation: livingroom-aunt 0.5s infinite;
+          animation: livingroom-aunt 0.5s infinite;
+}
+.livingroom-cat {
+  background-image: url("../img/livingroom/cat.png");
+  z-index: 4;
+  -webkit-animation: livingroom-cat 3s infinite linear;
+          animation: livingroom-cat 3s infinite linear;
+}
+.livingroom-sofa {
+  background-image: url("../img/livingroom/sofa.png");
+  z-index: 5;
+}
+.livingroom-compass {
+  opacity: 0;
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  -webkit-transition: opacity 2s;
+          transition: opacity 2s;
+  pointer-events: none;
+}
+.livingroom-compass-bg {
+  background-image: url("../img/livingroom/compass-bg.jpg");
+  z-index: 6;
+  -webkit-animation: hue 4s infinite linear;
+          animation: hue 4s infinite linear;
+  width: 100%;
+  height: 100%;
+}
+.livingroom-compass-obj {
+  background-image: url("../img/compass.png");
+  z-index: 7;
+  width: 0px;
+  height: 0px;
+  top: 50%;
+  left: 50%;
+  margin-top: 0px;
+  margin-left: 0px;
+  -webkit-transition: all 2s;
+          transition: all 2s;
+  -webkit-animation: livingroom-spin-compass 2s infinite linear;
+          animation: livingroom-spin-compass 2s infinite linear;
+}
+.livingroom-transition {
+  -webkit-transition: left 2s;
+          transition: left 2s;
+}
+@media screen and (max-width: 600px) {
+  html {
+    width: 100%;
+  }
+}
 @-webkit-keyframes bear-clock {
   100% {
-    background-position: -1800px;
+    background-position: -600px;
   }
 }
 @keyframes bear-clock {
   100% {
-    background-position: -1800px;
+    background-position: -600px;
   }
 }
 @-webkit-keyframes coach-fly {
@@ -314,22 +380,22 @@ table {
 }
 @-webkit-keyframes coach-angry {
   100% {
-    background-position: -2400px;
+    background-position: -800px;
   }
 }
 @keyframes coach-angry {
   100% {
-    background-position: -2400px;
+    background-position: -800px;
   }
 }
 @-webkit-keyframes coach-mellow {
   100% {
-    background-position: -4800px;
+    background-position: -1600px;
   }
 }
 @keyframes coach-mellow {
   100% {
-    background-position: -4800px;
+    background-position: -1600px;
   }
 }
 @-webkit-keyframes hue {
@@ -378,6 +444,64 @@ table {
   100% {
     -webkit-filter: sepia(1) hue-rotate(160deg) brightness(1.2);
     filter: sepia(1) hue-rotate(160deg) brightness(1.2);
+  }
+}
+@-webkit-keyframes livingroom-aunt {
+  0% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+  50% {
+    background-image: url("../img/livingroom/aunt2.png");
+  }
+  100% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+}
+@keyframes livingroom-aunt {
+  0% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+  50% {
+    background-image: url("../img/livingroom/aunt2.png");
+  }
+  100% {
+    background-image: url("../img/livingroom/aunt.png");
+  }
+}
+@-webkit-keyframes livingroom-cat {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes livingroom-cat {
+  from {
+    left: 100%;
+  }
+  to {
+    left: -100%;
+  }
+}
+@-webkit-keyframes livingroom-spin-compass {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes livingroom-spin-compass {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
@@ -554,4 +678,22 @@ h6 {
   background: #f00;
   text: #000;
   box-sizing: border-box;
+}
+
+#game-box {
+  height: 90vh;
+  background-color: #00f;
+  position: relative;
+}
+#game-box.backwards {
+  background-color: #f00;
+}
+#game-ball {
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
 }
