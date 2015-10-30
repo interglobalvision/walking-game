@@ -41,7 +41,7 @@ Game = {
   nextMinigame: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    Router.go('/games/' + this.minigames[currentProgress]);
+    Router.go('/games/' + this.minigames[currentProgress] + '/');
   },
 
   getProgressPercent: function() {
