@@ -10,6 +10,9 @@ var Supertap = {
   countdown: undefined,
   $tap: $('#tap-button'),
   $countdown: $('#tap-countdown'),
+  winDialog: [
+    "Noice one bruvva",
+  ],
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
@@ -98,7 +101,11 @@ var Supertap = {
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
 
-    Game.gameComplete(_this.tapCount);
+    Utilities.Dialog.read(_this.winDialog, function() {
+
+      Game.gameComplete(_this.tapCount);
+
+    });
 
   },
 

@@ -40,6 +40,7 @@ var Photocolor = {
       'click': function() {
 
         navigator.camera.getPicture(function(data) {
+          _this.previewPhoto(data);
           _this.analyzeResult(data);
         },
 
@@ -59,18 +60,30 @@ var Photocolor = {
 
   },
 
+  resetPhoto: function() {
+    var photoHolder = $('#output-img')[0];
+
+    photoHolder.src = '';
+  },
+
+  previewPhoto: function(data) {
+    var photoHolder = $('#output-img')[0];
+
+    photoHolder.src = data;
+  },
+
   analyzeResult: function(data) {
     var _this = this;
 
     var photo = new Image();
-    var photoHolder = $('#output-img')[0];
     var targetColor = _this.photoColor;
     var arrayMatch;
     var colorThief = new ColorThief();
     var paletteArray = [];
 
-    photoHolder.src = photo.src = data;
+    photo.src = data;
 
+    // is this async? this needs to block no?
     photo.onload = function() {
       paletteArray = colorThief.getPalette(photo, 2);
     };
@@ -117,6 +130,7 @@ var Photocolor = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
+        _this.resetPhoto();
         _this.setTargetColor();
 
       });

@@ -1,5 +1,6 @@
 var TippySwitch = {
   fullPoints: 987,
+  points: 0,
   maxMilliseconds: 12345,
   $gameBox: $('#game-box'),
   $gameBall: $('#game-ball'),
@@ -15,6 +16,8 @@ var TippySwitch = {
 
   init: function() {
     var _this = this;
+
+    $('#blackout').css('opacity', 0);
 
     _this.bind();
     _this.startGame();
@@ -33,6 +36,14 @@ var TippySwitch = {
 
   },
 
+  unbind: function() {
+
+    if (window.DeviceOrientationEvent) {
+      $(window).unbind('deviceorientation');
+    }
+
+  },
+
   startGame: function() {
     var _this = this;
 
@@ -40,7 +51,7 @@ var TippySwitch = {
 
       _this.switchPoles();
 
-    }, Utilities.Number.getRandomInt(888, 1234));
+    }, Utilities.Number.getRandomInt(789, 1009));
 
     _this.startTime = Date.now();
 
@@ -50,9 +61,9 @@ var TippySwitch = {
     var _this = this;
 
     if (_this.forward) {
-      _this.updateBallPosition(e.beta / 15);
+      _this.updateBallPosition(e.beta / 22);
     } else {
-      var modifier = (0 - (e.beta / 15));
+      var modifier = (0 - (e.beta / 21));
 
       _this.updateBallPosition(modifier);
     }
@@ -63,7 +74,7 @@ var TippySwitch = {
 
     _this.ballPosition += modifier;
 
-    if (_this.ballPosition > 99.5) {
+    if (_this.ballPosition > 99.9) {
       _this.win();
     }
 
@@ -96,6 +107,13 @@ var TippySwitch = {
 
   win: function() {
     var _this = this;
+
+    _this.unbind();
+
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+    window.clearTimeout(_this.timeout);
+
     var endTime = Date.now();
     var gameLength = endTime - _this.startTime;
     var timeOutOfMax = _this.maxMilliseconds - gameLength;
@@ -105,13 +123,23 @@ var TippySwitch = {
       percentWin = 0;
     }
 
-    var points = percentWin * _this.fullPoints;
+    _this.points = percentWin * _this.fullPoints;
 
-    Game.gameComplete(points);
+    Utilities.Dialog.read([
+        "Yes yes YESSSS!",
+        "You won " + _this.points + " points!!!",
+      ], function() {
+
+      Game.gameComplete(_this.points);
+
+    });
+
   },
 
   fail: function() {
     var _this = this;
+
+    _this.unbind();
 
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
@@ -121,6 +149,8 @@ var TippySwitch = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
+        _this.resetBallPosition();
+        _this.bind();
         _this.startGame();
 
       });

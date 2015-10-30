@@ -54,7 +54,6 @@ var Maths = {
 
   generateNumber: function() {
     var _this = this;
-    var result;
 
     _this.targetNumber = Math.floor((Math.random() * 100) + 1);
     _this.$targetNumber.html(_this.targetNumber);
@@ -62,6 +61,7 @@ var Maths = {
 
   checkResult: function() {
     var _this = this;
+    var result;
 
     try {
       result = eval(_this.input);
