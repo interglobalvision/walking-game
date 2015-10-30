@@ -522,8 +522,8 @@ table {
           animation-name: bleep;
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
-  -webkit-animation-duration: 1000ms;
-          animation-duration: 1000ms;
+  -webkit-animation-duration: 0ms;
+          animation-duration: 0ms;
 }
 @-webkit-keyframes bleep {
   0%, 100% {

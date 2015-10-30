@@ -19,8 +19,8 @@ Compass = {
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-  minDistance: 0.002, // in radians
-  maxDistance: 0.0035, // in radians
+  minDistance: 0.0025, // in radians
+  maxDistance: 0.0028, // in radians
   thresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
@@ -119,7 +119,7 @@ Compass = {
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    var bleepSpeed = ( distanceToDestiny * 1000 ) / _this.totalDistance - _this.thresholdRadius;
+    var bleepSpeed = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
 
     _this.$radar.css('animation-duration', bleepSpeed + 'ms');
     _this.$radar.html(bleepSpeed + 'ms');
@@ -213,22 +213,28 @@ Compass = {
       // Set initial positions: origin, destiny, position
       navigator.geolocation.getCurrentPosition( function(position) {
 
+        var pos = position.coords;
+
         // Set Origin location
-        _this.origin.lat = position.coords.latitude,
-        _this.origin.lng = position.coords.longitude,
+        _this.origin.lat = pos.latitude,
+        _this.origin.lng = pos.longitude,
 
         // Generate random destiny
-        _this.destiny.lat = position.coords.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
-        _this.destiny.lng = position.coords.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+        _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+        _this.destiny.lng = pos.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+
+        // Set total distance
+        _this.totalDistance = _this.getDistanceInKm({
+          lat: pos.latitude,
+          lng: pos.longitude
+        }, _this.destiny) - _this.thresholdRadius;
 
         // Set current position
         _this.updatePosition({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lat: pos.latitude,
+          lng: pos.longitude,
         });
 
-        // Set total distance
-        _this.totalDistance = _this.getDistanceInKm(_this.position, _this.destiny);
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
@@ -286,7 +292,7 @@ Game = {
   nextMinigame: function() {
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    Router.go('/games/' + this.minigames[currentProgress]);
+    Router.go('/games/' + this.minigames[currentProgress] + '/');
   },
 
   getProgressPercent: function() {
