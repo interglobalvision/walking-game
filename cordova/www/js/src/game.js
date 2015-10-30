@@ -6,6 +6,7 @@ Game = {
     'reset',
     'photocolor',
   ],
+  gameAttempts: 2,
 
   createUser: function(username, callback) {
     _this = this;
@@ -25,6 +26,18 @@ Game = {
 
   resetProgress: function() {
     window.localStorage.setItem('progress', 0);
+  },
+
+  gameFail: function(tryAgainCallback, failCallback) {
+    var _this= this;
+
+    if (_this.gameAttempts > 1) {
+      _this.gameAttempts--;
+      tryAgainCallback();
+    } else {
+      failCallback();
+    }
+
   },
 
   gameComplete: function() {
