@@ -10,9 +10,17 @@ var Supertap = {
   countdown: undefined,
   $tap: $('#tap-button'),
   $countdown: $('#tap-countdown'),
+  tryAgainDialog: [
+    "What a shame. try again eh!",
+  ],
+  looseDialog: [
+    "U really suck at this simple boring task",
+  ],
 
   init: function() {
     var _this = this;
+
+    $('#blackout').css('opacity', 0);
 
     _this.$tap.on({
       'click': function() {
@@ -62,7 +70,7 @@ var Supertap = {
       var now = date.getTime();
 
       if (_this.lastTap < (now - _this.thresholdMiniseconds)) {
-        _this.loose();
+        _this.fail();
       }
 
     }, 100);
@@ -90,22 +98,35 @@ var Supertap = {
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
 
-    alert('nice 1!');
-
-    Game.setNewPoints(_this.tapCount);
-    Game.gameComplete();
+    Game.gameComplete(_this.tapCount);
 
   },
 
-  loose: function() {
+  fail: function() {
     var _this = this;
 
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
     window.clearTimeout(_this.timeout);
 
-    alert('u better tap faster eh!');
-    Router.go('/');
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.tapCount = 0;
+        _this.$tap.html('Start Tapping');
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.looseDialog, function() {
+
+        Router.go('/');
+
+      });
+
+    });
 
   },
 

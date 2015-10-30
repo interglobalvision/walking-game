@@ -1,6 +1,8 @@
 var Reset = {
   init: function() {
 
+    $('#blackout').css('opacity', 0);
+
     $('#reset-yes').on({
       'click': function() {
         var date = new Date();
@@ -26,6 +28,7 @@ var Reset = {
     });
 
   },
+
 };
 
 $(document).ready(function() {

@@ -6,19 +6,18 @@ var TippySwitch = {
   forward: true,
   ballPosition: 15,
   startTime: null,
+  tryAgainDialog: [
+    "What a shame. try again eh!",
+  ],
+  looseDialog: [
+    "U really suck at this simple boring task",
+  ],
 
   init: function() {
     var _this = this;
 
     _this.bind();
-
-    _this.timeout = window.setInterval(function() {
-
-      _this.switchPoles();
-
-    }, Utilities.Number.getRandomInt(888, 1234));
-
-    _this.startTime = Date.now();
+    _this.startGame();
 
   },
 
@@ -31,6 +30,19 @@ var TippySwitch = {
         _this.orientationChange(event);
       });
     }
+
+  },
+
+  startGame: function() {
+    var _this = this;
+
+    _this.timeout = window.setInterval(function() {
+
+      _this.switchPoles();
+
+    }, Utilities.Number.getRandomInt(888, 1234));
+
+    _this.startTime = Date.now();
 
   },
 
@@ -56,9 +68,16 @@ var TippySwitch = {
     }
 
     if (_this.ballPosition < 0) {
-      _this.loose();
+      _this.fail();
     }
 
+    _this.$gameBall.css('bottom', _this.ballPosition + '%');
+  },
+
+  resetBallPosition: function() {
+    var _this = this;
+
+    _this.ballPosition = 15;
     _this.$gameBall.css('bottom', _this.ballPosition + '%');
   },
 
@@ -88,14 +107,34 @@ var TippySwitch = {
 
     var points = percentWin * _this.fullPoints;
 
-    Game.setNewPoints(points);
-    Game.gameComplete();
+    Game.gameComplete(points);
   },
 
-  loose: function() {
+  fail: function() {
+    var _this = this;
 
-    // loose logic
-    Router.go('/');
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+    window.clearTimeout(_this.timeout);
+
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.startGame();
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.looseDialog, function() {
+
+        Router.go('/');
+
+      });
+
+    });
+
   },
 
 };
