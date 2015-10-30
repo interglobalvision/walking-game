@@ -1,6 +1,22 @@
 #compass-container
   text-align: center
-#compass
   display: none
+
+#compass
   width: 60%
   transition: transform 300ms linear
+
+#radar
+  width: 10px
+  height: 10px
+  background: red
+  animation-name: bleep
+  animation-iteration-count: infinite
+  animation-duration: 1000ms
+
+@keyframes bleep
+  0%, 100%
+    opacity: 1
+  50%
+    opacity: 0.1
+    

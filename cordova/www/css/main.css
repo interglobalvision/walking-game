@@ -507,12 +507,39 @@ table {
 
 #compass-container {
   text-align: center;
+  display: none;
 }
 #compass {
-  display: none;
   width: 60%;
   -webkit-transition: -webkit-transform 300ms linear;
           transition: transform 300ms linear;
+}
+#radar {
+  width: 10px;
+  height: 10px;
+  background: #f00;
+  -webkit-animation-name: bleep;
+          animation-name: bleep;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 1000ms;
+          animation-duration: 1000ms;
+}
+@-webkit-keyframes bleep {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+@keyframes bleep {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 img {

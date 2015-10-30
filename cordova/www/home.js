@@ -1,10 +1,12 @@
 Home = {
   $playGame: null,
   $compass: null,
+  $compassContainer: null,
   init: function() {
     var _this = this;
 
     _this.$playGame = $("#play-game");
+    _this.$compassContainer = $("#compass-container");
     _this.$compass = $("#compass");
 
     // Bind buttons
@@ -14,7 +16,7 @@ Home = {
       $(this).fadeOut();
 
       // Show compass
-      _this.$compass.fadeIn();
+      _this.$compassContainer.fadeIn();
 
       Compass.init();
     });

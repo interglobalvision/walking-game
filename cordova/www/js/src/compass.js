@@ -23,6 +23,8 @@ Compass = {
   maxDistance: 0.0035, // in radians
   thresholdRadius: 0.300, // in Km
 
+  totalDistance: 0,
+
   /*
    * Return distance between two geographical points in Kilometers
    *
@@ -115,9 +117,14 @@ Compass = {
 
 
     // Check distance in Km between position and destiny
-    var distance = _this.getDistanceInKm(_this.position, _this.destiny);
+    var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    if( distance < _this.thresholdRadius ) {
+    var bleepSpeed = ( distanceToDestiny * 1000 ) / _this.totalDistance - _this.thresholdRadius;
+
+    _this.$radar.css('animation-duration', bleepSpeed + 'ms');
+    _this.$radar.html(bleepSpeed + 'ms');
+
+    if( distanceToDestiny < _this.thresholdRadius ) {
       _this.stop();
       Game.nextMinigame();
     } 
@@ -198,6 +205,8 @@ Compass = {
   init: function() {
     var _this = this;
 
+    _this.$radar = $('#radar');
+
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
 
@@ -217,6 +226,9 @@ Compass = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
+
+        // Set total distance
+        _this.totalDistance = _this.getDistanceInKm(_this.position, _this.destiny);
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
