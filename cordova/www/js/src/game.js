@@ -40,7 +40,8 @@ Game = {
 
   },
 
-  gameComplete: function() {
+  gameComplete: function(points) {
+    var _this= this;
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
     if (currentProgress === null || isNaN(currentProgress)) {
@@ -48,6 +49,11 @@ Game = {
     }
 
     window.localStorage.setItem('progress', (currentProgress + 1));
+
+    if (points) {
+      _this.setNewPoints(points);
+    }
+
     Router.go('/');
   },
 
