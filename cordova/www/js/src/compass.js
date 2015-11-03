@@ -145,7 +145,7 @@ Compass = {
 
     var angle = compensationAngle + northOrientation;
 
-    $('#compass').css({
+    _this.$compass.css({
       '-webkit-transform': 'rotate(' + angle + 'deg)',
       'transform': 'rotate(' + angle + 'deg)',
     });
@@ -206,6 +206,7 @@ Compass = {
     var _this = this;
 
     _this.$radar = $('#radar');
+    _this.$compass = $('#compass');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
