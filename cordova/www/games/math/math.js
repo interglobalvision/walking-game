@@ -18,16 +18,22 @@ var Maths = {
       "Remember K.I.S.S.",
       "and maybe remember D.A.R.E. too..?",
   ],
+  tryAgainDialog: [
+    "What a shame. try again eh!",
+  ],
+  looseDialog: [
+    "U really suck at this simple boring task",
+  ],
 
   init: function() {
     var _this = this;
 
+    $('#blackout').css('opacity', 0);
+
     _this.generateNumber();
 
     Utilities.Dialog.read(_this.introDialog, function() {
-
       _this.$mathForm.fadeIn();
-
     });
 
     _this.$mathForm.on({
@@ -55,9 +61,10 @@ var Maths = {
 
   checkResult: function() {
     var _this = this;
+    var result;
 
     try {
-      var result = eval(_this.input);
+      result = eval(_this.input);
     }
     catch(err) {
       console.log(err);
@@ -85,16 +92,32 @@ var Maths = {
 
     Utilities.Dialog.read(_this.winDialog, function() {
 
-      Game.setNewPoints(points);
-      Game.gameComplete();
+      Game.gameComplete(points);
 
     });
 
   },
 
   fail: function() {
+    var _this = this;
 
-    console.log('fail handling');
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        $('#math-input').val('');
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.looseDialog, function() {
+
+        Router.go('/');
+
+      });
+
+    });
 
   },
 };

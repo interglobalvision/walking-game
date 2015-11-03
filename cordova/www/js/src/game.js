@@ -6,6 +6,7 @@ Game = {
     'reset',
     'photocolor',
   ],
+  gameAttempts: 2,
 
   createUser: function(username, callback) {
     _this = this;
@@ -27,7 +28,20 @@ Game = {
     window.localStorage.setItem('progress', 0);
   },
 
-  gameComplete: function() {
+  gameFail: function(tryAgainCallback, failCallback) {
+    var _this= this;
+
+    if (_this.gameAttempts > 1) {
+      _this.gameAttempts--;
+      tryAgainCallback();
+    } else {
+      failCallback();
+    }
+
+  },
+
+  gameComplete: function(points) {
+    var _this= this;
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
     if (currentProgress === null || isNaN(currentProgress)) {
@@ -35,6 +49,11 @@ Game = {
     }
 
     window.localStorage.setItem('progress', (currentProgress + 1));
+
+    if (points) {
+      _this.setNewPoints(points);
+    }
+
     Router.go('/');
   },
 
