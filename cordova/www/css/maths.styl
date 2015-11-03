@@ -1,0 +1,53 @@
+#calculator
+  background: lightgrey
+  width: 280px
+  height: auto
+  padding: 20px
+  border: solid grey
+  border-radius: 12px
+  border-width: 0 20px 20px 0
+  left: 50%
+  margin-left: -160px
+  position: absolute
+  transform: skew(-3deg)
+  
+
+#calculator-readout
+  font-family: "Lucida Console", Monaco, monospace
+  color: rgb(0,255,0)
+  border: 3px solid
+  border-color: black white white black
+  border-radius: 7px
+  width: 240px
+  display: inline-block
+  text-align: right
+  background: darkblue
+  padding: 12px
+  overflow: hidden
+  margin-bottom: 10px
+  font-size: 28px
+
+.calculator-button
+  color: white
+  background: grey
+  border: 3px solid
+  border-color: white black black white
+  border-radius: 7px
+  width: 50px
+  margin-bottom: 10px
+  margin-right: 10px
+  display: inline-block
+  text-align: center
+  padding: 10px 0
+  &:nth-child(4n), &:last-child
+    margin-right: 0px
+
+.calculator-double
+  width: 120px
+  
+#calculator-equals
+  background-color: lightblue
+  color: darkblue
+  
+#calculator-clear
+  background-color: red  

@@ -1,13 +1,18 @@
 var Maths = {
-
+  scene: new TimelineLite(),
+  $blackout: $('#blackout'),
+  $button: $('.calculator-button'),
+  $readout: $('#calculator-readout'),
+  $clear: $('#calculator-clear'),
+  $equals: $('#calculator-equals'),
   targetNumber: null,
   $targetNumber: $('#target-number'),
   input: null,
   $mathForm: $('#math-form'),
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
-      "Time to do some badboy/badgyal maths. Here is the challenge yeah",
-      "I'm going to show you a number and you have to write the most complicated math you can to get to that number",
+      "Time to do some MATTHHHH!!...",
+      "I'm going to show you a number and you have to write the most complicated equation you can to equal that number",
       "For example if I tell you 5 you can write 1+1+1+(2*1)",
       "Plus is +, minus is -, muliply is *, divide is /, and you can use (brackets) to wrap things",
   ],
@@ -24,10 +29,25 @@ var Maths = {
 
     _this.generateNumber();
 
+    //Fade from black
+    _this.scene.set(_this.$blackout, {opacity: 0,});
+
     Utilities.Dialog.read(_this.introDialog, function() {
 
       _this.$mathForm.fadeIn();
 
+    });
+
+    _this.$button.on({
+      click: function(e) {
+        e.preventDefault();
+
+        _this.input = $(this).html();
+
+        console.log(_this.input);
+
+        _this.$readout.append(_this.input);
+      },
     });
 
     _this.$mathForm.on({
