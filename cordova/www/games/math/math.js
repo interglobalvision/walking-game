@@ -5,6 +5,7 @@ var Maths = {
   $readout: $('#calculator-readout'),
   $clear: $('#calculator-clear'),
   $equals: $('#calculator-equals'),
+  buttonVal: null,
   targetNumber: null,
   $targetNumber: $('#target-number'),
   input: null,
@@ -42,11 +43,15 @@ var Maths = {
       click: function(e) {
         e.preventDefault();
 
-        _this.input = $(this).html();
+        _this.buttonVal = e.target.value;
 
-        console.log(_this.input);
+        console.log(_this.buttonVal);
 
-        _this.$readout.append(_this.input);
+        if (_this.buttonVal === 'clear') {
+          _this.$readout.val(undefined);
+        } else {
+          _this.$readout.val(_this.$readout.val() + _this.buttonVal);
+        }
       },
     });
 

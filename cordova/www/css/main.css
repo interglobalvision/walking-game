@@ -671,6 +671,11 @@ h6 {
   }
 }
 
+#math-form:focus,
+.calculator-button:focus,
+#calculator-readout:focus {
+  outline: 0 !important;
+}
 #calculator {
   background: #d3d3d3;
   width: 280px;
@@ -707,12 +712,13 @@ h6 {
   border: 3px solid;
   border-color: #fff #000 #000 #fff;
   border-radius: 7px;
-  width: 50px;
+  width: 53px;
   margin-bottom: 10px;
   margin-right: 10px;
   display: inline-block;
   text-align: center;
   padding: 10px 0;
+  font-size: 18px;
 }
 .calculator-button:nth-child(4n),
 .calculator-button:last-child {
