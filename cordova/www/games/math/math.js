@@ -48,24 +48,20 @@ var Maths = {
         console.log(_this.buttonVal);
 
         if (_this.buttonVal === 'clear') {
-          _this.$readout.val(undefined);
+          _this.$readout.html('');
+        } else if (_this.buttonVal === 'submit') {
+          _this.input = _this.$readout.html().replace(/\xF7/g, '/').replace(/x/g, '*');
+
+          console.log(_this.input);
+
+          if (!_this.input) {
+            console.log('no input');
+          }
+
+          _this.checkResult();
         } else {
-          _this.$readout.val(_this.$readout.val() + _this.buttonVal);
+          _this.$readout.html(_this.$readout.html() + _this.buttonVal);
         }
-      },
-    });
-
-    _this.$mathForm.on({
-      submit: function(e) {
-        e.preventDefault();
-
-        _this.input = e.target[0].value;
-
-        if (!_this.input) {
-          console.log('no imput');
-        }
-
-        _this.checkResult();
       },
     });
 
