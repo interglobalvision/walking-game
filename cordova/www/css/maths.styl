@@ -8,6 +8,12 @@
 
 #math-form:focus, .calculator-button:focus, #calculator-readout:focus
   outline: 0 !important
+  
+#math-target
+  color: blue
+  font-size: 40px
+  padding: 10px
+  text-align: center
 
 #calculator
   background: lightgrey
@@ -20,7 +26,7 @@
   left: 50%
   margin-left: -160px
   position: absolute
-  transform: skew(-3deg) scale(1)
+  transform: skew(-3deg) scale(0.9)
   box-shadow: rgb(250,220,250) 0 0 50px
 
 #calculator-readout
@@ -73,4 +79,4 @@
   
 @media screen and (max-width: 360px)
   #calculator
-    transform: skew(-3deg) scale(0.7)
+    transform: skew(-3deg) scale(0.6)

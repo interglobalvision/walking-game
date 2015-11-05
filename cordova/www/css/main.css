@@ -685,6 +685,12 @@ h6 {
 #calculator-readout:focus {
   outline: 0 !important;
 }
+#math-target {
+  color: #00f;
+  font-size: 40px;
+  padding: 10px;
+  text-align: center;
+}
 #calculator {
   background: #d3d3d3;
   width: 280px;
@@ -696,9 +702,9 @@ h6 {
   left: 50%;
   margin-left: -160px;
   position: absolute;
-  -webkit-transform: skew(-3deg) scale(1);
-      -ms-transform: skew(-3deg) scale(1);
-          transform: skew(-3deg) scale(1);
+  -webkit-transform: skew(-3deg) scale(0.9);
+      -ms-transform: skew(-3deg) scale(0.9);
+          transform: skew(-3deg) scale(0.9);
   box-shadow: #fadcfa 0 0 50px;
 }
 #calculator-readout {
@@ -747,9 +753,9 @@ h6 {
 }
 @media screen and (max-width: 360px) {
   #calculator {
-    -webkit-transform: skew(-3deg) scale(0.7);
-        -ms-transform: skew(-3deg) scale(0.7);
-            transform: skew(-3deg) scale(0.7);
+    -webkit-transform: skew(-3deg) scale(0.6);
+        -ms-transform: skew(-3deg) scale(0.6);
+            transform: skew(-3deg) scale(0.6);
   }
 }
 @-webkit-keyframes star-background {
