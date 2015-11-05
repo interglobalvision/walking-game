@@ -1,3 +1,11 @@
+.math-background
+  min-height: 100%
+  background-color: black
+  background-image: url('../img/games/math/star.png')
+  background-repeat: repeat 
+  background-size: 10%
+  animation: star-background 15s infinite linear
+
 #math-form:focus, .calculator-button:focus, #calculator-readout:focus
   outline: 0 !important
 
@@ -12,8 +20,8 @@
   left: 50%
   margin-left: -160px
   position: absolute
-  transform: skew(-3deg)
-  
+  transform: skew(-3deg) scale(1)
+  box-shadow: rgb(250,220,250) 0 0 50px
 
 #calculator-readout
   font-family: "Lucida Console", Monaco, monospace
@@ -56,3 +64,13 @@
   
 #calculator-clear
   background-color: red  
+  
+@keyframes star-background
+  from
+    background-position: 0%
+  to
+    background-position: 100%
+  
+@media screen and (max-width: 360px)
+  #calculator
+    transform: skew(-3deg) scale(0.7)

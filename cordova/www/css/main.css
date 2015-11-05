@@ -671,6 +671,15 @@ h6 {
   }
 }
 
+.math-background {
+  min-height: 100%;
+  background-color: #000;
+  background-image: url("../img/games/math/star.png");
+  background-repeat: repeat;
+  background-size: 10%;
+  -webkit-animation: star-background 15s infinite linear;
+          animation: star-background 15s infinite linear;
+}
 #math-form:focus,
 .calculator-button:focus,
 #calculator-readout:focus {
@@ -687,9 +696,10 @@ h6 {
   left: 50%;
   margin-left: -160px;
   position: absolute;
-  -webkit-transform: skew(-3deg);
-      -ms-transform: skew(-3deg);
-          transform: skew(-3deg);
+  -webkit-transform: skew(-3deg) scale(1);
+      -ms-transform: skew(-3deg) scale(1);
+          transform: skew(-3deg) scale(1);
+  box-shadow: #fadcfa 0 0 50px;
 }
 #calculator-readout {
   font-family: "Lucida Console", Monaco, monospace;
@@ -734,6 +744,29 @@ h6 {
 }
 #calculator-clear {
   background-color: #f00;
+}
+@media screen and (max-width: 360px) {
+  #calculator {
+    -webkit-transform: skew(-3deg) scale(0.7);
+        -ms-transform: skew(-3deg) scale(0.7);
+            transform: skew(-3deg) scale(0.7);
+  }
+}
+@-webkit-keyframes star-background {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
+}
+@keyframes star-background {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 100%;
+  }
 }
 
 #tap-button {
