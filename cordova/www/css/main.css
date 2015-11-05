@@ -693,6 +693,10 @@ h6 {
   }
 }
 
+#math-form {
+  display: none;
+}
+
 #tap-button {
   width: 100vw;
   height: 50vh;
@@ -702,20 +706,88 @@ h6 {
   box-sizing: border-box;
 }
 
-#game-box {
-  height: 90vh;
-  background-color: #00f;
+.tippy-stage {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+#tippy-container {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  height: 100%;
+}
+#tippy-box {
+  height: 90%;
+  width: 40px;
+  top: 5%;
+  left: 50%;
+  margin-left: -20px;
+  background: -webkit-linear-gradient(top, #e22d2d 1%, #89ff8d 100%);
+  background: linear-gradient(to bottom, #e22d2d 1%, #89ff8d 100%);
   position: relative;
+  -webkit-transform: rotateX(10deg);
+          transform: rotateX(10deg);
+  -webkit-transition: 200ms all;
+          transition: 200ms all;
+  -webkit-animation: tippy-hue 1s infinite linear;
+          animation: tippy-hue 1s infinite linear;
 }
-#game-box.backwards {
-  background-color: #f00;
+#tippy-box.backwards {
+  -webkit-transform: rotateX(-10deg);
+          transform: rotateX(-10deg);
+  background: -webkit-linear-gradient(top, #89ff8d 1%, #e22d2d 100%);
+  background: linear-gradient(to bottom, #89ff8d 1%, #e22d2d 100%);
 }
-#game-ball {
+#tippy-ball {
   background-color: #fff;
   width: 10px;
   height: 10px;
   border-radius: 10px;
+  margin-left: -5px;
   position: absolute;
   left: 50%;
   bottom: 15%;
+  -webkit-animation: tippy-ball 0.5s infinite ease-out;
+          animation: tippy-ball 0.5s infinite ease-out;
+}
+@-webkit-keyframes tippy-hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes tippy-hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+  }
+}
+@-webkit-keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+}
+@keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
 }
