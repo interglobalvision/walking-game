@@ -760,15 +760,17 @@ h6 {
   position: absolute;
   color: #fff;
   text-align: center;
-  -webkit-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-          transform: rotate(90deg);
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
 }
 #tippy-sad {
   bottom: 0px;
+  background-image: url("../img/games/tippyswitch/lose_coach.png");
 }
 #tippy-happy {
   top: 0px;
+  background-image: url("../img/games/tippyswitch/win_coach.png");
 }
 #tippy-ball {
   background-color: #fff;
