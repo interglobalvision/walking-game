@@ -1,5 +1,19 @@
 .tippy-stage
-  perspective: 1000px
+  perspective: 700px
+  background-color: rgb(68,124,255)
+  background-image: url('../img/games/tippyswitch/tippy_coach.png')
+  background-size: 15%
+  background-position: center
+  animation: tippy-background-hue 1s infinite linear
+  
+#tippy-background
+  position: fixed
+  width: 100%
+  height: 100%
+  background-image: url('../img/games/tippyswitch/squiggle.png')
+  background-size: 15%
+  background-position: center
+  animation: tippy-background 2s infinite linear
 
 #tippy-container
   transform-style: preserve-3d
@@ -13,12 +27,27 @@
   margin-left: -20px
   background: linear-gradient(to bottom, #e22d2d 1%, #89ff8d 100%)
   position: relative
-  transform: rotateX(10deg)
-  transition: 200ms all
+  transform: rotateX(20deg)
+  transition: 300ms all cubic-bezier(0.91,-0.01, 0.68, 0.19)
   animation: tippy-hue 1s infinite linear
   &.backwards
-    transform: rotateX(-10deg)
+    transform: rotateX(-20deg) 
     background: linear-gradient(to bottom, #89ff8d 1%, #e22d2d 100%)
+    
+.tippy-face
+  width: 40px
+  height: 40px
+  left: 0
+  position: absolute
+  color: white
+  text-align: center
+  transform: rotate(90deg)
+
+#tippy-sad
+  bottom: 0px
+  
+#tippy-happy
+  top: 0px
 
 #tippy-ball
   background-color: white
@@ -46,3 +75,19 @@
     box-shadow: white 0 0 0px 0px
   100%
     box-shadow: white 0 0 10px 5px
+    
+@keyframes tippy-background-hue
+  from
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg);
+    background-position: 17.5%
+  to
+    -webkit-filter: hue-rotate(360deg);
+    filter: hue-rotate(360deg);
+    background-position: 0%
+    
+@keyframes tippy-background
+  from
+    background-position: 0
+  to
+    background-position: 17.5%
