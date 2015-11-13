@@ -1,6 +1,13 @@
 var Photocolor = {
   goldenRatio: 0.618033988749895,
   photoColor: undefined,
+  introDialog: [
+    "It's time to play COLORSNAP!",
+    "Allow me to paint your target color...",
+  ],
+  showColorDialog: [
+    "That's your target color!",
+  ],
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
@@ -13,14 +20,17 @@ var Photocolor = {
 
     $('#blackout').css('opacity', 0);
 
-    _this.setTargetColor();
-    _this.bindEvents();
+    Utilities.Dialog.read(_this.introDialog, function() {
+      _this.setTargetColor();
+    });
 
+    _this.bindEvents();
   },
 
   setTargetColor: function() {
     var _this = this;
     var rand = Math.random();
+    var showColor = new TimelineLite();
 
     rand += _this.goldenRatio;
     rand %= 1;
@@ -29,9 +39,21 @@ var Photocolor = {
 
     _this.photoColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
-    $('#brush-color, #target-color').css('fill', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
+    showColor.call(function(){
+      $('#brush-color, #target-color').css('fill', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
+      $("#brush").attr("class", "brush-swipe");
+    });
 
-    $("#brush").attr("class", "brush-swipe");
+    showColor.call(function(){
+      $("#splat").attr("class", "show-splat");
+    }, null, null, "+=0.7");
+
+    showColor.call(function(){
+      Utilities.Dialog.read(_this.showColorDialog, function() {
+        //
+      });
+    }, null, null, "+=2");
+
   },
 
   bindEvents: function() {

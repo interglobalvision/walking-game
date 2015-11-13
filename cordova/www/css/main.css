@@ -724,6 +724,7 @@ h6 {
   left: 40%;
   margin-top: -26px;
   pointer-events: none;
+  opacity: 0;
 }
 .brush-swipe {
   -webkit-animation: brush-swipe 1s 1 linear;
@@ -739,6 +740,13 @@ h6 {
   left: 50%;
   margin-top: -150px;
   margin-left: -150px;
+  opacity: 0;
+}
+.show-splat {
+  -webkit-animation: show-splat 500ms 1 ease-in;
+          animation: show-splat 500ms 1 ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 @-webkit-keyframes grid-bg {
   0% {
@@ -772,6 +780,11 @@ h6 {
   0% {
     -webkit-transform: rotate(-25deg);
             transform: rotate(-25deg);
+    opacity: 0;
+  }
+  10% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg);
     opacity: 1;
   }
   80% {
@@ -789,6 +802,11 @@ h6 {
   0% {
     -webkit-transform: rotate(-25deg);
             transform: rotate(-25deg);
+    opacity: 0;
+  }
+  10% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg);
     opacity: 1;
   }
   80% {
@@ -800,6 +818,30 @@ h6 {
     -webkit-transform: rotate(25deg);
             transform: rotate(25deg);
     opacity: 0;
+  }
+}
+@-webkit-keyframes show-splat {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes show-splat {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 
