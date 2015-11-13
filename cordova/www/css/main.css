@@ -697,6 +697,13 @@ h6 {
   display: none;
 }
 
+.grid-bg {
+  background-color: #fff;
+  background-image: url("../img/games/photocolor/grid.png");
+  background-position: center;
+  -webkit-animation: grid-bg 2s infinite linear;
+          animation: grid-bg 2s infinite linear;
+}
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
@@ -714,6 +721,37 @@ h6 {
           animation: brush-swipe 1s 1 linear;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
+}
+#splat {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -150px;
+}
+@-webkit-keyframes grid-bg {
+  0% {
+    background-size: 20px;
+  }
+  80% {
+    background-size: 50px;
+  }
+  100% {
+    background-size: 20px;
+  }
+}
+@keyframes grid-bg {
+  0% {
+    background-size: 20px;
+  }
+  80% {
+    background-size: 50px;
+  }
+  100% {
+    background-size: 20px;
+  }
 }
 @-webkit-keyframes brush-swipe {
   0% {

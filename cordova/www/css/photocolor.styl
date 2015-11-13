@@ -1,3 +1,17 @@
+.grid-bg
+  background-color: #ffffff
+  background-image: url('../img/games/photocolor/grid.png')
+  background-position: center
+  animation: grid-bg 2s infinite linear
+  
+@keyframes grid-bg
+  0%
+    background-size: 20px
+  80%
+    background-size: 50px
+  100%
+    background-size: 20px
+
 #brush
   position: absolute
   transform: rotate(-25deg)
@@ -22,3 +36,12 @@
   100%
     transform: rotate(25deg)
     opacity: 0
+    
+#splat
+  position: absolute
+  width: 300px
+  height: 300px
+  top: 50%
+  left: 50%
+  margin-top: -150px
+  margin-left: -150px
