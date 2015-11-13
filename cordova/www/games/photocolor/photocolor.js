@@ -7,6 +7,8 @@ var Photocolor = {
   ],
   showColorDialog: [
     "That's your target color!",
+    "You need to find that exact color and snap a pic of it!",
+    "Tap this camera when you're ready!",
   ],
   tryAgainDialog: [
     "What a shame. try again eh!",
@@ -50,7 +52,7 @@ var Photocolor = {
 
     showColor.call(function(){
       Utilities.Dialog.read(_this.showColorDialog, function() {
-        //
+        $('#take-photo').addClass('show-camera');
       });
     }, null, null, "+=2");
 

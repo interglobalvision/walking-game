@@ -748,6 +748,17 @@ h6 {
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
+#take-photo {
+  position: absolute;
+  top: 100%;
+  width: 50%;
+  left: 25%;
+  -webkit-transition: top 1s;
+          transition: top 1s;
+}
+#take-photo.show-camera {
+  top: 60%;
+}
 @-webkit-keyframes grid-bg {
   0% {
     -webkit-transform: scale(1);
