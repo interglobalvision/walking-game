@@ -693,6 +693,63 @@ h6 {
   }
 }
 
+#math-form {
+  display: none;
+}
+
+#brush {
+  position: absolute;
+  -webkit-transform: rotate(-25deg);
+      -ms-transform: rotate(-25deg);
+          transform: rotate(-25deg);
+  width: 200px;
+  height: 57.191px;
+  top: 50%;
+  left: 40%;
+  margin-top: -26px;
+  pointer-events: none;
+}
+.brush-swipe {
+  -webkit-animation: brush-swipe 1s 1 linear;
+          animation: brush-swipe 1s 1 linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes brush-swipe {
+  0% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(25deg);
+            transform: rotate(25deg);
+    opacity: 0;
+  }
+}
+@keyframes brush-swipe {
+  0% {
+    -webkit-transform: rotate(-25deg);
+            transform: rotate(-25deg);
+    opacity: 1;
+  }
+  80% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(25deg);
+            transform: rotate(25deg);
+    opacity: 0;
+  }
+}
+
 #tap-button {
   width: 100vw;
   height: 50vh;

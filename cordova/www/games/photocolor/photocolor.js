@@ -4,7 +4,7 @@ var Photocolor = {
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
-  looseDialog: [
+  loseDialog: [
     "U really suck at this simple boring task",
   ],
 
@@ -29,8 +29,11 @@ var Photocolor = {
 
     _this.photoColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
+    $('#brush-color').css('fill', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
+
     $('#target-color').css('background-color', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
 
+    $("#brush").attr("class", "brush-swipe");
   },
 
   bindEvents: function() {
@@ -137,7 +140,7 @@ var Photocolor = {
 
     }, function() {
 
-      Utilities.Dialog.read(_this.looseDialog, function() {
+      Utilities.Dialog.read(_this.loseDialog, function() {
 
         Router.go('/');
 

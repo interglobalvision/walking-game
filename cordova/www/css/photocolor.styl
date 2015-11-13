@@ -1,0 +1,24 @@
+#brush
+  position: absolute
+  transform: rotate(-25deg)
+  width: 200px
+  height: 57.191px
+  top: 50%
+  left: 40%
+  margin-top: -26px
+  pointer-events: none
+  
+.brush-swipe
+  animation: brush-swipe 1s 1 linear
+  animation-fill-mode: forwards;  
+  
+@keyframes brush-swipe
+  0%
+    transform: rotate(-25deg)
+    opacity: 1
+  80%
+    transform: rotate(15deg)
+    opacity: 1
+  100%
+    transform: rotate(25deg)
+    opacity: 0
