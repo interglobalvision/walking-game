@@ -57,11 +57,10 @@
   margin-top: -150px
   margin-left: -150px
   opacity: 0
-  
-.show-splat
-  animation: show-splat 500ms 1 ease-in
-  animation-fill-mode: forwards;  
-  
+  &.show-splat
+    animation: show-splat 500ms 1 ease-in
+    animation-fill-mode: forwards
+
 @keyframes show-splat
   0%
     opacity: 0
@@ -78,4 +77,6 @@
   transition: top 1s
   &.show-camera
     top: 60%
+    
+
   

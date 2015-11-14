@@ -742,7 +742,7 @@ h6 {
   margin-left: -150px;
   opacity: 0;
 }
-.show-splat {
+#splat.show-splat {
   -webkit-animation: show-splat 500ms 1 ease-in;
           animation: show-splat 500ms 1 ease-in;
   -webkit-animation-fill-mode: forwards;

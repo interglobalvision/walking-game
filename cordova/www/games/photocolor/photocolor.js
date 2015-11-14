@@ -43,18 +43,18 @@ var Photocolor = {
 
     showColor.call(function(){
       $('#brush-color, #target-color').css('fill', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
-      $("#brush").attr("class", "brush-swipe");
+      $('#brush').attr('class', 'brush-swipe');
     });
 
     showColor.call(function(){
-      $("#splat").attr("class", "show-splat");
-    }, null, null, "+=0.7");
+      $('#splat').attr('class', 'show-splat');
+    }, null, null, '+=0.7');
 
     showColor.call(function(){
       Utilities.Dialog.read(_this.showColorDialog, function() {
         $('#take-photo').addClass('show-camera');
       });
-    }, null, null, "+=2");
+    }, null, null, '+=2');
 
   },
 
