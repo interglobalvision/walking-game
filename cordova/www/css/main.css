@@ -713,6 +713,22 @@ h6 {
   -webkit-animation: grid-bg 2s infinite ease-in-out;
           animation: grid-bg 2s infinite ease-in-out;
 }
+#photocolor-coach-bg {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  background-image: url("../img/games/photocolor/coach_bw.png");
+  background-position: center;
+  background-size: auto 10%;
+  -webkit-animation: photocolor-coach-bg 5s infinite linear;
+          animation: photocolor-coach-bg 5s infinite linear;
+}
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
@@ -785,6 +801,26 @@ h6 {
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+@-webkit-keyframes photocolor-coach-bg {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@keyframes photocolor-coach-bg {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
   }
 }
 @-webkit-keyframes brush-swipe {
