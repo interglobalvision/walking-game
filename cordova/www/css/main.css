@@ -505,19 +505,41 @@ table {
   }
 }
 
-.compass {
-  width: 0;
-  height: 40px;
-  display: inline-block;
-  border: 30px solid rgba(0,0,0,0);
-  border-bottom: 100px solid #008000;
-  margin: 0 40px;
+#compass-container {
+  text-align: center;
+  display: none;
 }
-.compass.blue {
-  border-bottom: 100px solid #00f;
+#compass {
+  width: 60%;
+  -webkit-transition: -webkit-transform 300ms linear;
+          transition: transform 300ms linear;
 }
-#compass-north {
-  border-bottom-color: #f00;
+#radar {
+  width: 10px;
+  height: 10px;
+  background: #f00;
+  -webkit-animation-name: bleep;
+          animation-name: bleep;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-duration: 0ms;
+          animation-duration: 0ms;
+}
+@-webkit-keyframes bleep {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+@keyframes bleep {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
 }
 
 img {
@@ -775,6 +797,10 @@ h6 {
   to {
     background-position: 100%;
   }
+}
+
+#math-form {
+  display: none;
 }
 
 #tap-button {

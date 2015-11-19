@@ -1,13 +1,20 @@
 var Photocolor = {
   goldenRatio: 0.618033988749895,
   photoColor: undefined,
+  tryAgainDialog: [
+    "What a shame. try again eh!",
+  ],
+  looseDialog: [
+    "U really suck at this simple boring task",
+  ],
+
   init: function() {
     var _this = this;
 
+    $('#blackout').css('opacity', 0);
+
     _this.setTargetColor();
     _this.bindEvents();
-
-    $('#target-color').css('background-color', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
 
   },
 
@@ -21,6 +28,9 @@ var Photocolor = {
     var randomHslColor = [rand, 0.7, 0.5,];
 
     _this.photoColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
+
+    $('#target-color').css('background-color', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
+
   },
 
   bindEvents: function() {
@@ -30,11 +40,13 @@ var Photocolor = {
       'click': function() {
 
         navigator.camera.getPicture(function(data) {
+          _this.previewPhoto(data);
           _this.analyzeResult(data);
         },
 
         function(error) {
           console.log(error);
+          alert('error with camera :/');
         },
 
         {
@@ -48,23 +60,33 @@ var Photocolor = {
 
   },
 
+  resetPhoto: function() {
+    var photoHolder = $('#output-img')[0];
+
+    photoHolder.src = '';
+  },
+
+  previewPhoto: function(data) {
+    var photoHolder = $('#output-img')[0];
+
+    photoHolder.src = data;
+  },
+
   analyzeResult: function(data) {
     var _this = this;
 
     var photo = new Image();
-    var photoHolder = $('#output-img')[0];
     var targetColor = _this.photoColor;
     var arrayMatch;
     var colorThief = new ColorThief();
     var paletteArray = [];
 
-    photoHolder.src = photo.src = data;
+    photo.src = data;
 
+    // is this async? this needs to block no?
     photo.onload = function() {
       paletteArray = colorThief.getPalette(photo, 2);
     };
-
-    console.log(paletteArray);
 
     var result = false;
 
@@ -76,8 +98,6 @@ var Photocolor = {
       }
     }
 
-    console.log(result);
-
     if (result) {
 
       var psuedoCloseness = [
@@ -85,23 +105,48 @@ var Photocolor = {
         targetColor[1] - paletteArray[arrayMatch][1],
         targetColor[2] - paletteArray[arrayMatch][2],
       ];
-
-      console.log(psuedoCloseness);
-
       var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
 
-      Game.setNewPoints(points);
-      Game.gameComplete();
+      _this.win(points);
 
     } else {
 
-      console.log('You loose!');
-      // try again or route to map?
-      Router.go('/');
+      _this.fail();
 
     }
 
   },
+
+  win: function(points) {
+
+    Game.gameComplete(points);
+
+  },
+
+  fail: function() {
+    var _this = this;
+
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.resetPhoto();
+        _this.setTargetColor();
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.looseDialog, function() {
+
+        Router.go('/');
+
+      });
+
+    });
+
+  },
+
 };
 
 Photocolor.init();

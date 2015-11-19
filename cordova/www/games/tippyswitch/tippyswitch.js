@@ -1,24 +1,26 @@
 var TippySwitch = {
   fullPoints: 987,
+  points: 0,
   maxMilliseconds: 12345,
   $gameBox: $('#game-box'),
   $gameBall: $('#game-ball'),
   forward: true,
   ballPosition: 15,
   startTime: null,
+  tryAgainDialog: [
+    "What a shame. try again eh!",
+  ],
+  looseDialog: [
+    "U really suck at this simple boring task",
+  ],
 
   init: function() {
     var _this = this;
 
+    $('#blackout').css('opacity', 0);
+
     _this.bind();
-
-    _this.timeout = window.setInterval(function() {
-
-      _this.switchPoles();
-
-    }, Utilities.Number.getRandomInt(888, 1234));
-
-    _this.startTime = Date.now();
+    _this.startGame();
 
   },
 
@@ -34,13 +36,34 @@ var TippySwitch = {
 
   },
 
+  unbind: function() {
+
+    if (window.DeviceOrientationEvent) {
+      $(window).unbind('deviceorientation');
+    }
+
+  },
+
+  startGame: function() {
+    var _this = this;
+
+    _this.timeout = window.setInterval(function() {
+
+      _this.switchPoles();
+
+    }, Utilities.Number.getRandomInt(789, 1009));
+
+    _this.startTime = Date.now();
+
+  },
+
   orientationChange: function(e) {
     var _this = this;
 
     if (_this.forward) {
-      _this.updateBallPosition(e.beta / 15);
+      _this.updateBallPosition(e.beta / 22);
     } else {
-      var modifier = (0 - (e.beta / 15));
+      var modifier = (0 - (e.beta / 21));
 
       _this.updateBallPosition(modifier);
     }
@@ -51,14 +74,21 @@ var TippySwitch = {
 
     _this.ballPosition += modifier;
 
-    if (_this.ballPosition > 99.5) {
+    if (_this.ballPosition > 99.9) {
       _this.win();
     }
 
     if (_this.ballPosition < 0) {
-      _this.loose();
+      _this.fail();
     }
 
+    _this.$gameBall.css('bottom', _this.ballPosition + '%');
+  },
+
+  resetBallPosition: function() {
+    var _this = this;
+
+    _this.ballPosition = 15;
     _this.$gameBall.css('bottom', _this.ballPosition + '%');
   },
 
@@ -77,6 +107,13 @@ var TippySwitch = {
 
   win: function() {
     var _this = this;
+
+    _this.unbind();
+
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+    window.clearTimeout(_this.timeout);
+
     var endTime = Date.now();
     var gameLength = endTime - _this.startTime;
     var timeOutOfMax = _this.maxMilliseconds - gameLength;
@@ -86,16 +123,48 @@ var TippySwitch = {
       percentWin = 0;
     }
 
-    var points = percentWin * _this.fullPoints;
+    _this.points = percentWin * _this.fullPoints;
 
-    Game.setNewPoints(points);
-    Game.gameComplete();
+    Utilities.Dialog.read([
+        "Yes yes YESSSS!",
+        "You won " + _this.points + " points!!!",
+      ], function() {
+
+      Game.gameComplete(_this.points);
+
+    });
+
   },
 
-  loose: function() {
+  fail: function() {
+    var _this = this;
 
-    // loose logic
-    Router.go('/');
+    _this.unbind();
+
+    window.clearInterval(_this.checker);
+    window.clearInterval(_this.countdown);
+    window.clearTimeout(_this.timeout);
+
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.resetBallPosition();
+        _this.bind();
+        _this.startGame();
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.looseDialog, function() {
+
+        Router.go('/');
+
+      });
+
+    });
+
   },
 
 };

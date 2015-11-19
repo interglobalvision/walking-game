@@ -35,6 +35,7 @@
     "Dialog",
     "Compass",
     "Game",
-    "Utilities"
+    "Utilities",
+    "ColorThief"
   ]
 }
