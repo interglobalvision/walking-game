@@ -9,7 +9,6 @@ var Maths = {
   targetNumber: null,
   $targetNumber: $('#target-number'),
   input: null,
-  $mathForm: $('#math-form'),
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
       "Time to do some MATTHHHH!!...",
@@ -42,7 +41,7 @@ var Maths = {
     _this.scene.set(_this.$blackout, {opacity: 0,});
 
     Utilities.Dialog.read(_this.introDialog, function() {
-      _this.$mathForm.fadeIn();
+
     });
 
     _this.$button.on({
@@ -51,20 +50,23 @@ var Maths = {
 
         _this.buttonVal = e.target.value;
 
-        console.log(_this.buttonVal);
-
         if (_this.buttonVal === 'clear') {
           _this.$readout.html('');
         } else if (_this.buttonVal === 'submit') {
           _this.input = _this.$readout.html().replace(/\xF7/g, '/').replace(/x/g, '*');
 
-          console.log(_this.input);
-
           if (!_this.input) {
-            console.log('no input');
+
+            Utilities.Dialog.read([
+              "You need to do something first doh",
+            ]);
+
+          } else {
+
+            _this.checkResult();
+
           }
 
-          _this.checkResult();
         } else {
           _this.$readout.html(_this.$readout.html() + _this.buttonVal);
         }
@@ -126,7 +128,7 @@ var Maths = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
-        $('#math-input').val('');
+        _this.$readout.html('');
 
       });
 
