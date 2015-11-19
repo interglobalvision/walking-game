@@ -12,7 +12,7 @@ var Maths = {
   input: null,
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
-      "Time to do some MATTHHHH!!...",
+      "Time to do some badgyal maths. Here is the challenge yeah",
       "I'm going to show you a number and you have to write the most complicated equation you can to equal that number",
       "For example if I tell you 5 you can write 1+1+1+(2*1)",
       "Plus is +, minus is -, muliply is *, divide is /, and you can use (brackets) to wrap things",
