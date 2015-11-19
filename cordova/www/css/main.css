@@ -712,6 +712,9 @@ h6 {
   font-size: 40px;
   padding: 10px;
   text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+          transition: opacity 0.5s;
 }
 #calculator {
   background-color: #ffa500;

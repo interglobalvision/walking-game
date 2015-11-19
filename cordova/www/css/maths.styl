@@ -2,18 +2,20 @@
   min-height: 100%
   background-color: black
   background-image: url('../img/games/math/star.png')
-  background-repeat: repeat 
+  background-repeat: repeat
   background-size: 10%
   animation: star-background 15s infinite linear
 
 #math-form:focus, .calculator-button:focus, #calculator-readout:focus
   outline: 0 !important
-  
+
 #math-target
   color: blue
   font-size: 40px
   padding: 10px
   text-align: center
+  opacity: 0
+  transition: opacity .5s
 
 #calculator
   background-color: orange
@@ -65,20 +67,20 @@
 
 .calculator-double
   width: 120px
-  
+
 #calculator-equals
   background-color: lightblue
   color: darkblue
-  
+
 #calculator-clear
-  background-color: red  
-  
+  background-color: red
+
 @keyframes star-background
   from
     background-position: 0%
   to
     background-position: 100%
-  
+
 @media screen and (max-width: 360px)
   #calculator
     transform: skew(-3deg) scale(0.6)

@@ -8,6 +8,7 @@ var Maths = {
   buttonVal: null,
   targetNumber: null,
   $targetNumber: $('#target-number'),
+  $targetHolder: $('#math-target'),
   input: null,
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
@@ -41,6 +42,8 @@ var Maths = {
     _this.scene.set(_this.$blackout, {opacity: 0,});
 
     Utilities.Dialog.read(_this.introDialog, function() {
+
+      _this.$targetHolder.css('opacity', 1);
 
     });
 
