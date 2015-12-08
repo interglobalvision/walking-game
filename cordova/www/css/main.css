@@ -709,12 +709,12 @@ h6 {
 .tippy-stage {
   -webkit-perspective: 700px;
           perspective: 700px;
-  background-color: #447cff;
+  background-color: #ff0;
   background-image: url("../img/squiggle.png");
   background-size: 15%;
   background-position: center;
-  -webkit-animation: tippy-background-hue 1s infinite linear;
-          animation: tippy-background-hue 1s infinite linear;
+  -webkit-animation: tippy-background-left 1s infinite linear;
+          animation: tippy-background-left 1s infinite linear;
 }
 #tippy-background {
   position: fixed;
@@ -723,8 +723,8 @@ h6 {
   background-image: url("../img/games/tippyswitch/tippy_coach.png");
   background-size: 15%;
   background-position: center;
-  -webkit-animation: tippy-background 2s infinite linear;
-          animation: tippy-background 2s infinite linear;
+  -webkit-animation: tippy-background-right 2s infinite linear;
+          animation: tippy-background-right 2s infinite linear;
   -webkit-filter: invert(100%);
           filter: invert(100%);
 }
@@ -735,31 +735,24 @@ h6 {
 }
 #tippy-box {
   height: 90%;
-  width: 40px;
+  width: 140px;
   top: 5%;
   left: 50%;
-  margin-left: -20px;
-  background: -webkit-linear-gradient(top, #e22d2d 1%, #89ff8d 100%);
-  background: linear-gradient(to bottom, #e22d2d 1%, #89ff8d 100%);
+  margin-left: -70px;
+  background: #ffa6e3;
   position: relative;
-  -webkit-transform: rotateX(20deg);
-          transform: rotateX(20deg);
   -webkit-transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
           transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
-  -webkit-animation: tippy-hue 1s infinite linear;
-          animation: tippy-hue 1s infinite linear;
   box-shadow: #fff 0 0 15px;
 }
 #tippy-box.backwards {
-  -webkit-transform: rotateX(-20deg);
-          transform: rotateX(-20deg);
-  background: -webkit-linear-gradient(top, #89ff8d 1%, #e22d2d 100%);
-  background: linear-gradient(to bottom, #89ff8d 1%, #e22d2d 100%);
+  background: #7569ff;
 }
 .tippy-face {
-  width: 40px;
-  height: 40px;
-  left: 0;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  margin-left: -40px;
   position: absolute;
   color: #fff;
   text-align: center;
@@ -768,11 +761,11 @@ h6 {
   background-position: center;
 }
 #tippy-sad {
-  bottom: 0px;
+  bottom: -25px;
   background-image: url("../img/games/tippyswitch/lose_coach.png");
 }
 #tippy-happy {
-  top: 0px;
+  top: -35px;
   background-image: url("../img/games/tippyswitch/win_coach.png");
 }
 #tippy-ball {
@@ -786,26 +779,6 @@ h6 {
   bottom: 15%;
   -webkit-animation: tippy-ball 0.5s infinite ease-out;
           animation: tippy-ball 0.5s infinite ease-out;
-}
-@-webkit-keyframes tippy-hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
-}
-@keyframes tippy-hue {
-  from {
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  }
-  to {
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
-  }
 }
 @-webkit-keyframes tippy-ball {
   0% {
@@ -829,31 +802,23 @@ h6 {
     box-shadow: #fff 0 0 10px 5px;
   }
 }
-@-webkit-keyframes tippy-background-hue {
+@-webkit-keyframes tippy-background-left {
   from {
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
     background-position: 17.5%;
   }
   to {
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
     background-position: 0%;
   }
 }
-@keyframes tippy-background-hue {
+@keyframes tippy-background-left {
   from {
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
     background-position: 17.5%;
   }
   to {
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
     background-position: 0%;
   }
 }
-@-webkit-keyframes tippy-background {
+@-webkit-keyframes tippy-background-right {
   from {
     background-position: 0;
   }
@@ -861,7 +826,7 @@ h6 {
     background-position: 17.5%;
   }
 }
-@keyframes tippy-background {
+@keyframes tippy-background-right {
   from {
     background-position: 0;
   }

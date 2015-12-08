@@ -1,10 +1,10 @@
 .tippy-stage
   perspective: 700px
-  background-color: rgb(68,124,255)
+  background-color: yellow
   background-image: url('../img/squiggle.png')
   background-size: 15%
   background-position: center
-  animation: tippy-background-hue 1s infinite linear
+  animation: tippy-background-left 1s infinite linear
   
 #tippy-background
   position: fixed
@@ -13,7 +13,7 @@
   background-image: url('../img/games/tippyswitch/tippy_coach.png')
   background-size: 15%
   background-position: center
-  animation: tippy-background 2s infinite linear
+  animation: tippy-background-right 2s infinite linear
   filter: invert(100%)
 
 #tippy-container
@@ -22,24 +22,22 @@
 
 #tippy-box
   height: 90%
-  width: 40px
+  width: 140px
   top: 5%
   left: 50%
-  margin-left: -20px
-  background: linear-gradient(to bottom, #e22d2d 1%, #89ff8d 100%)
+  margin-left: -70px
+  background: #FFA6E3
   position: relative
-  transform: rotateX(20deg)
   transition: 300ms all cubic-bezier(0.91,-0.01, 0.68, 0.19)
-  animation: tippy-hue 1s infinite linear
   box-shadow: white 0 0 15px
   &.backwards
-    transform: rotateX(-20deg) 
-    background: linear-gradient(to bottom, #89ff8d 1%, #e22d2d 100%)
+    background: #7569FF
     
 .tippy-face
-  width: 40px
-  height: 40px
-  left: 0
+  width: 80px
+  height: 80px
+  left: 50%
+  margin-left: -40px
   position: absolute
   color: white
   text-align: center
@@ -48,12 +46,12 @@
   background-position: center
 
 #tippy-sad
-  bottom: 0px
+  bottom: -25px
   background-image: url('../img/games/tippyswitch/lose_coach.png')
 
   
 #tippy-happy
-  top: 0px
+  top: -35px
   background-image: url('../img/games/tippyswitch/win_coach.png')
 
 #tippy-ball
@@ -66,14 +64,6 @@
   left: 50%
   bottom: 15%
   animation: tippy-ball .5s infinite ease-out
-  
-@keyframes tippy-hue
-  from
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
-  to
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
     
 @keyframes tippy-ball
   0%
@@ -83,17 +73,13 @@
   100%
     box-shadow: white 0 0 10px 5px
     
-@keyframes tippy-background-hue
+@keyframes tippy-background-left
   from
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg);
     background-position: 17.5%
   to
-    -webkit-filter: hue-rotate(360deg);
-    filter: hue-rotate(360deg);
     background-position: 0%
     
-@keyframes tippy-background
+@keyframes tippy-background-right
   from
     background-position: 0
   to
