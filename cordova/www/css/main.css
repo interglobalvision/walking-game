@@ -741,12 +741,15 @@ h6 {
   border-color: #000 #fff #fff #000;
   border-radius: 7px;
   width: 240px;
-  min-height: 26px;
+  height: 69px;
+  max-height: 69px;
   display: inline-block;
   text-align: right;
   background: #00008b;
   padding: 12px;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  resize: none;
   margin-bottom: 10px;
   font-size: 28px;
 }
