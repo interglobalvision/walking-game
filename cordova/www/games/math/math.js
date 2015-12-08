@@ -72,6 +72,7 @@ var Maths = {
 
         } else {
           _this.$readout.html(_this.$readout.html() + _this.buttonVal);
+          _this.$readout.scrollTop(_this.$readout[0].scrollHeight);
         }
       },
     });
