@@ -9,16 +9,18 @@
   box-sizing: border-box
   
 #tap-countdown-frame
+  width: 80vw
   top: 2.5vh
-  left: 5vw
+  left: 10vw
   border: 0
-  background-color: #FFFF7F
-  background-image: url("../img/games/supertap/corn.png")
-  background-size: 33%
-  background-position: center
+  background-color: #FFFF7F 
+  background-image: url("../img/games/supertap/corn.png") 
+  background-size: 50% 50%
   box-shadow: 0px 0px 50px 0px #FFFF7F
   font-size: 120px
-  color: white
+  color: black
+  border: 2px solid black
+  animation: supertap-background 2s infinite linear
     
 #tap-button-frame
   bottom: 2.5vh
@@ -42,3 +44,9 @@
 #tap-button-message
   pointer-events: none
   text-transform: uppercase
+  
+@keyframes supertap-background
+  from
+    background-position: 0 0
+  to
+    background-position: 0 100%

@@ -903,16 +903,19 @@ h6 {
   box-sizing: border-box;
 }
 #tap-countdown-frame {
+  width: 80vw;
   top: 2.5vh;
-  left: 5vw;
+  left: 10vw;
   border: 0;
   background-color: #ffff7f;
   background-image: url("../img/games/supertap/corn.png");
-  background-size: 33%;
-  background-position: center;
+  background-size: 50% 50%;
   box-shadow: 0px 0px 50px 0px #ffff7f;
   font-size: 120px;
-  color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  -webkit-animation: supertap-background 2s infinite linear;
+          animation: supertap-background 2s infinite linear;
 }
 #tap-button-frame {
   bottom: 2.5vh;
@@ -942,6 +945,22 @@ h6 {
 #tap-button-message {
   pointer-events: none;
   text-transform: uppercase;
+}
+@-webkit-keyframes supertap-background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+@keyframes supertap-background {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
 }
 
 #game-box {
