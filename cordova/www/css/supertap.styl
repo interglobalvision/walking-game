@@ -1,7 +1,42 @@
-#tap-button
-  width: 100vw
-  height: 50vh
-  padding: 5%
-  background: red
-  text: black
+.tap-stage 
+  background: pink
+  
+.tap-frame
+  position: absolute
+  width: 90vw
+  height: 45vh
+  padding: 3%
   box-sizing: border-box
+  
+#tap-countdown-frame
+  top: 2.5vh
+  left: 5vw
+  border: 0
+  background: linear-gradient(to bottom, #FFFF7F 0%, #E5CB20 100%)
+  box-shadow: 0px 0px 30px 0px #FFFF7F
+  font-size: 120px
+  color: white
+  transform: skew(12deg, -8deg)
+    
+#tap-button-frame
+  bottom: 2.5vh
+  left: 5vw
+  border-width: 6vw
+  border-image: linear-gradient(195deg, rgb(168,168,168) 0%, rgb(255,255,255) 26%, rgb(168,168,168) 48%, rgb(254,254,254) 70%, rgb(168,168,168) 84%, rgb(254,254,254) 100%)
+  background: linear-gradient(135deg, rgb(168,168,168) 0%, rgb(255,255,255) 26%, rgb(168,168,168) 48%, rgb(254,254,254) 70%, rgb(168,168,168) 84%, rgb(254,254,254) 100%)
+
+#tap-button
+  background: linear-gradient(45deg, rgb(210,255,82) 0%, rgb(145,232,66) 100%)
+  color: white
+  position: relative
+  border-radius: 50%
+  box-shadow: 0px 8px 0px 0px rgb(145,232,66)
+  transform: translateY(-6px)
+  width: 90%
+  height: 90%
+  margin-top: 5%
+  margin-left: 5%
+  
+#tap-button-message
+  pointer-events: none
+  text-transform: uppercase

@@ -9,6 +9,7 @@ var Supertap = {
   checker: undefined,
   countdown: undefined,
   $tap: $('#tap-button'),
+  $message: $('#tap-button-message'),
   $countdown: $('#tap-countdown'),
   winDialog: [
     "Noice one bruvva",
@@ -32,7 +33,7 @@ var Supertap = {
           _this.startTimeout();
           _this.startChecker();
           _this.startCountdown();
-          _this.$tap.html('Tap me MORE');
+          _this.$message.html('Tap me MORE');
         }
 
         _this.tap();
@@ -121,7 +122,7 @@ var Supertap = {
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
         _this.tapCount = 0;
-        _this.$tap.html('Start Tapping');
+        _this.$message.html('Start Tapping');
 
       });
 
