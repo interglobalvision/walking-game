@@ -8,11 +8,11 @@ Game = {
   ],
   gameAttempts: 2,
 
+  // USER
+
   createUser: function(username, callback) {
-    _this = this;
 
     window.localStorage.setItem('username', username);
-
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
@@ -23,6 +23,8 @@ Game = {
   getUsername: function() {
     return window.localStorage.getItem('username');
   },
+
+  // GAME STATE
 
   resetProgress: function() {
     window.localStorage.setItem('progress', 0);
@@ -69,6 +71,8 @@ Game = {
     return currentProgress / this.minigames.length;
   },
 
+  // POINTS
+
   getPoints: function() {
     return window.localStorage.getItem('points');
   },
@@ -95,6 +99,12 @@ Game = {
       window.localStorage.setItem('points', (currentPoints + points));
     }
   },
+
+  resetPoints: function() {
+    window.localStorage.setItem('points', 0);
+  },
+
+  // GEMS
 
   getGems: function() {
     return window.localStorage.getItem('gems');

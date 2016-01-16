@@ -8,13 +8,12 @@ var Reset = {
         var date = new Date();
         var hours = date.getHours();
 
-        Game.setNewGems(parseInt(hours));
-
         console.log('You just got a bunch of gems :). This many: ', hours);
 
-        Game.resetProgress();
+        Game.setNewGems(parseInt(hours));
+        Game.resetPoints();
+        Game.gameComplete();
 
-        Router.go('/');
       },
     });
 
@@ -22,6 +21,7 @@ var Reset = {
       'click': function() {
 
         console.log('ok fine');
+
         Game.gameComplete();
 
       },
