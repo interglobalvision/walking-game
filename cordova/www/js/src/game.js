@@ -30,6 +30,20 @@ Game = {
     window.localStorage.setItem('progress', 0);
   },
 
+  getProgressPercent: function() {
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+
+    return currentProgress / this.minigames.length;
+  },
+
+  nextMinigame: function() {
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+
+    Router.go('/games/' + this.minigames[currentProgress] + '/');
+  },
+
+  // MINI GAME
+
   gameFail: function(tryAgainCallback, failCallback) {
     var _this= this;
 
@@ -57,18 +71,6 @@ Game = {
     }
 
     Router.go('/');
-  },
-
-  nextMinigame: function() {
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
-
-    Router.go('/games/' + this.minigames[currentProgress] + '/');
-  },
-
-  getProgressPercent: function() {
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
-
-    return currentProgress / this.minigames.length;
   },
 
   // POINTS
