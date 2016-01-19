@@ -1,0 +1,34 @@
+{
+  "name": "interglobalvision-walking-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/interglobalvision/interglobalvision-meteor-boil.git"
+  },
+  "author": "interglobalvision",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/interglobalvision/interglobalvision-meteor-boil/issues"
+  },
+  "homepage": "https://github.com/interglobalvision/interglobalvision-meteor-boil",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jscs": "^1.6.0",
+    "gulp-jshint": "^1.11.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-stylus": "^2.1.0",
+    "gulp-util": "^3.0.7",
+    "jscs": "^1.13.1",
+    "jshint": "^2.8.0"
+  }
+}
