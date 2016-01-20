@@ -20,6 +20,10 @@ Home = {
 
       Compass.init();
     });
+
+    $('#play-next').click(function() {
+      Game.nextMinigame();
+    });
   },
 }
 

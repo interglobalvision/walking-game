@@ -1,5 +1,5 @@
 var Farewell = {
-  init: function() {  
+  init: function() {
     var _this = this;
 
     var coach = new TimelineLite(),
