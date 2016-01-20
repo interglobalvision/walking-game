@@ -6,6 +6,7 @@ Game = {
     'reset',
     'photocolor',
   ],
+  loopGamesOrder: window.localStorage.getItem('loopOrder').split(','),
   gameAttempts: 2,
 
   // USER
@@ -16,6 +17,7 @@ Game = {
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
+    window.localStorage.setItem('loops', 0);
 
     callback();
   },
@@ -26,8 +28,17 @@ Game = {
 
   // GAME STATE
 
-  resetProgress: function() {
+  setupLoop: function() {
+    var _this= this;
+
+    console.log('Setting up loop');
+
     window.localStorage.setItem('progress', 0);
+
+    _this.loopGamesOrder = Utilities.Misc.shuffleArray(_this.minigames);
+
+    window.localStorage.setItem('loopOrder', _this.loopGamesOrder);
+
   },
 
   getProgressPercent: function() {
@@ -36,10 +47,38 @@ Game = {
     return currentProgress / this.minigames.length;
   },
 
+  getLoops: function() {
+    var currentLoops = parseInt(window.localStorage.getItem('loops'));
+
+    return currentLoops;
+  },
+
   nextMinigame: function() {
+    var _this= this;
     var currentProgress = parseInt(window.localStorage.getItem('progress'));
 
-    Router.go('/games/' + this.minigames[currentProgress] + '/');
+    console.log('Loading next minigame');
+    console.log('Current progress index', currentProgress);
+    console.log('Game to load', _this.loopGamesOrder[currentProgress]);
+
+    Router.go('/games/' + _this.loopGamesOrder[currentProgress] + '/');
+  },
+
+  finishLoop: function() {
+    var _this= this;
+    var currentLoops = parseInt(window.localStorage.getItem('loops'));
+
+    if (currentLoops === null || isNaN(currentLoops)) {
+      currentLoops = 0;
+    }
+
+    console.log('Finished loop');
+
+    window.localStorage.setItem('loops', (currentLoops + 1));
+
+    console.log('Loops so far', currentLoops);
+
+    _this.setupLoop();
   },
 
   // MINI GAME
@@ -68,6 +107,10 @@ Game = {
 
     if (points) {
       _this.setNewPoints(points);
+    }
+
+    if ((currentProgress + 1) === _this.minigames.length) {
+      _this.finishLoop();
     }
 
     Router.go('/');

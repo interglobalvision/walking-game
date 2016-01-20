@@ -1,5 +1,5 @@
 var Farewell = {
-  init: function() {  
+  init: function() {
     var _this = this;
 
     var coach = new TimelineLite(),
@@ -83,6 +83,7 @@ var Farewell = {
     blackout.set($blackout, {opacity: 1,});
 
     blackout.call(function() {
+      Game.setupLoop();
       Router.go('/');
     });
 
