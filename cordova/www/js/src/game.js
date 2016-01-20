@@ -27,6 +27,7 @@ Game = {
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
+    this.setupLoop();
 
     callback();
   },

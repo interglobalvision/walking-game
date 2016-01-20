@@ -83,7 +83,6 @@ var Farewell = {
     blackout.set($blackout, {opacity: 1,});
 
     blackout.call(function() {
-      Game.setupLoop();
       Router.go('/');
     });
 
