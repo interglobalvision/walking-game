@@ -6,7 +6,16 @@ Game = {
     'reset',
     'photocolor',
   ],
-  loopGamesOrder: window.localStorage.getItem('loopOrder').split(','),
+  loopGamesOrder: function() {
+    var _this = this;
+    
+    var loopOrder = window.localStorage.getItem('loopOrder');
+    
+    if(!loopOrder) {
+      return [];
+    }
+    return loopOrder.split(',');
+  }
   gameAttempts: 2,
 
   // USER
