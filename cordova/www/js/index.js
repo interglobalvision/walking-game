@@ -326,6 +326,8 @@ Game = {
 
     console.log('Finished loop');
 
+    // perhaps a lot more needs to happen here. This is probably where the narrative should happen. But this could be a different route just for animation. Would then need to if/else in gameComplete when checking if last game in loop
+
     window.localStorage.setItem('loops', (currentLoops + 1));
 
     console.log('Loops so far', currentLoops);
