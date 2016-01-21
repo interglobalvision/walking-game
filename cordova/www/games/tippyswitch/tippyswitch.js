@@ -169,6 +169,6 @@ var TippySwitch = {
 
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   TippySwitch.init();
-});
+}, false);

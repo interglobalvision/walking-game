@@ -27,6 +27,6 @@ Home = {
   },
 }
 
-$(document).ready( function() {
+document.addEventListener('deviceready', function() {
   Home.init();
-});
+}, false);

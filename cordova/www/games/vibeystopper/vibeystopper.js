@@ -125,7 +125,6 @@ var ViberyStopper = {
 
 };
 
-document.addEventListener('deviceready', onDeviceReady, false);
-function onDeviceReady() {
+document.addEventListener('deviceready', function() {
   ViberyStopper.init();
-}
+}, false);

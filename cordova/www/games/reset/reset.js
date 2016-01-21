@@ -31,6 +31,6 @@ var Reset = {
 
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Reset.init();
-});
+}, false);

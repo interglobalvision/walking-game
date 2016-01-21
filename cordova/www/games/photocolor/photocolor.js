@@ -174,4 +174,6 @@ var Photocolor = {
 
 };
 
-Photocolor.init();
+document.addEventListener('deviceready', function() {
+  Photocolor.init();
+}, false);

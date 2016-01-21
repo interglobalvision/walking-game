@@ -15,7 +15,7 @@ Game = {
       return [];
     }
     return loopOrder.split(',');
-  }
+  },
   gameAttempts: 2,
 
   // USER
