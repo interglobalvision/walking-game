@@ -258,7 +258,16 @@ Game = {
     'reset',
     'photocolor',
   ],
-  loopGamesOrder: window.localStorage.getItem('loopOrder').split(','),
+  loopGamesOrder: function() {
+    var _this = this;
+    
+    var loopOrder = window.localStorage.getItem('loopOrder');
+    
+    if(!loopOrder) {
+      return [];
+    }
+    return loopOrder.split(',');
+  },
   gameAttempts: 2,
 
   // USER
@@ -270,6 +279,7 @@ Game = {
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
+    this.setupLoop();
 
     callback();
   },
