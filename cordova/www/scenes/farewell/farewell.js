@@ -89,7 +89,6 @@ var Farewell = {
   },
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Farewell.init();
-});
-
+}, false);

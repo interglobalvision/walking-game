@@ -250,4 +250,7 @@ Compass = {
     }
   },
 };
-Compass.init();
+
+document.addEventListener('deviceready', function() {
+  Compass.init();
+}, false);
