@@ -1,12 +1,12 @@
 Home = {
   $playGame: null,
   $compass: null,
-  $compassContainer: null,
+  $compassContainer: null, 
   init: function() {
     var _this = this;
 
     _this.$playGame = $("#play-game");
-    _this.$compassContainer = $("#compass-container");
+    _this.$compassContainer = $("#stage");
     _this.$compass = $("#compass");
 
     // Bind buttons

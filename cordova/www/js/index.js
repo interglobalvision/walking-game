@@ -260,11 +260,11 @@ Game = {
   ],
   gameAttempts: 2,
 
+  // USER
+
   createUser: function(username, callback) {
-    _this = this;
 
     window.localStorage.setItem('username', username);
-
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
@@ -276,9 +276,25 @@ Game = {
     return window.localStorage.getItem('username');
   },
 
+  // GAME STATE
+
   resetProgress: function() {
     window.localStorage.setItem('progress', 0);
   },
+
+  getProgressPercent: function() {
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+
+    return currentProgress / this.minigames.length;
+  },
+
+  nextMinigame: function() {
+    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+
+    Router.go('/games/' + this.minigames[currentProgress] + '/');
+  },
+
+  // MINI GAME
 
   gameFail: function(tryAgainCallback, failCallback) {
     var _this= this;
@@ -309,17 +325,7 @@ Game = {
     Router.go('/');
   },
 
-  nextMinigame: function() {
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
-
-    Router.go('/games/' + this.minigames[currentProgress] + '/');
-  },
-
-  getProgressPercent: function() {
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
-
-    return currentProgress / this.minigames.length;
-  },
+  // POINTS
 
   getPoints: function() {
     return window.localStorage.getItem('points');
@@ -347,6 +353,12 @@ Game = {
       window.localStorage.setItem('points', (currentPoints + points));
     }
   },
+
+  resetPoints: function() {
+    window.localStorage.setItem('points', 0);
+  },
+
+  // GEMS
 
   getGems: function() {
     return window.localStorage.getItem('gems');
@@ -590,6 +602,27 @@ Utilities.Dialog = {
 
 };
 
+Utilities.Misc = {
+  shuffleArray: function(array) {
+    var counter = array.length, temp, index;
+
+    // While there are elements in the array
+    while (counter > 0) {
+      // Pick a random index
+      index = Math.floor(Math.random() * counter);
+
+      // Decrease counter by 1
+      counter--;
+
+      // And swap the last element with it
+      temp = array[counter];
+      array[counter] = array[index];
+      array[index] = temp;
+    }
+
+    return array;
+  },
+};
 Utilities.Number = {
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

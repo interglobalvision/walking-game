@@ -505,12 +505,32 @@ table {
   }
 }
 
-#compass-container {
+.map-stage {
   text-align: center;
   display: none;
+  background-color: #00f;
+}
+#map-ground {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+#map-floor {
+  position: absolute;
+  height: 200%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: -webkit-linear-gradient(top, #f00 0%, #000 100%);
+  background: linear-gradient(to bottom, #f00 0%, #000 100%);
 }
 #compass {
-  width: 60%;
+  position: absolute;
+  width: 25%;
+  bottom: 5px;
+  left: 5px;
   -webkit-transition: -webkit-transform 300ms linear;
           transition: transform 300ms linear;
 }
@@ -608,7 +628,7 @@ html {
   width: 96%;
   padding: 4%;
   box-sizing: border-box;
-  border: 10px solid #00f;
+  border: 5px solid #00f;
   color: #00f;
   z-index: 900;
   display: none;
