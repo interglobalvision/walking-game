@@ -121,6 +121,13 @@ Compass = {
 
     var bleepSpeed = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
 
+    var negativeBleep = + ( bleepSpeed - 1000 );
+
+    var mapFloorPos = negativeBleep * .001 * 75;
+
+    console.log(mapFloorPos)
+
+    _this.$mapFloor.css('translateY', mapFloorPos + '%');
     _this.$radar.css('animation-duration', bleepSpeed + 'ms');
     _this.$radar.html(bleepSpeed + 'ms');
 
@@ -207,6 +214,7 @@ Compass = {
 
     _this.$radar = $('#radar');
     _this.$compass = $('#compass');
+    _this.$mapFloor = $('#map-floor');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
