@@ -121,15 +121,22 @@ Compass = {
 
     var bleepSpeed = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
 
-    var mapFloorPercentage = - ( bleepSpeed - 1000 );
+    var progressToDestiny = - ( bleepSpeed - 1001 );
 
-    var mapFloorPos = mapFloorPercentage * .001 * 75;
+    var mapFloorPos = progressToDestiny * 0.001 * 75;
+
+    var mapGoalScale = progressToDestiny * 0.001;
 
     if (mapFloorPos < 0) {
       mapFloorPos = 0;
     }
 
+    if (mapGoalScale < 0.001) {
+      mapGoalScale = 0.001;
+    }
+
     _this.$mapFloor.css('transform', 'translateY(' + mapFloorPos + '%)');
+    _this.$mapGoal.css('transform', 'scale(' + mapGoalScale + ')' );
     _this.$radar.css('animation-duration', bleepSpeed + 'ms');
     _this.$radar.html(bleepSpeed + 'ms');
 
@@ -217,6 +224,7 @@ Compass = {
     _this.$radar = $('#radar');
     _this.$compass = $('#compass');
     _this.$mapFloor = $('#map-floor');
+    _this.$mapGoal = $('#map-goal');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
