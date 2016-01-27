@@ -20,7 +20,7 @@ Compass = {
     maxDistance: 0.006, // in radians
   */
   minDistance: 0.0025, // in radians
-  maxDistance: 0.0028, // in radians
+  maxDistance: 0.0026, // in radians
   thresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
@@ -121,13 +121,11 @@ Compass = {
 
     var bleepSpeed = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
 
-    var negativeBleep = + ( bleepSpeed - 1000 );
+    var mapFloorPercentage = - ( bleepSpeed - 1000 );
 
-    var mapFloorPos = negativeBleep * .001 * 75;
+    var mapFloorPos = mapFloorPercentage * .001 * 75;
 
-    console.log(mapFloorPos)
-
-    _this.$mapFloor.css('translateY', mapFloorPos + '%');
+    _this.$mapFloor.css('transform', 'translateY(' + mapFloorPos + '%)');
     _this.$radar.css('animation-duration', bleepSpeed + 'ms');
     _this.$radar.html(bleepSpeed + 'ms');
 
