@@ -2,8 +2,25 @@
   text-align: center
   display: none
   background-color: blue 
+
+#map-goal-container
+  position: fixed
+  bottom: 50%
+  width: 100%
+  height: 50%
+  transform-origin: center bottom
+  transform: translateX(0%)
   
-#map-ground
+#map-goal
+  position: absolute
+  bottom: 0
+  width: 100%
+  height: 100%
+  background: green
+  transform-origin: center bottom
+  transform: scale(.01)
+  
+#map-floor-container
   height: 50%
   width: 100%
   position: fixed
