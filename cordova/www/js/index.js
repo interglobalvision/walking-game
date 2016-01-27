@@ -171,32 +171,32 @@ Compass = {
   skyColor: function() {
     var _this = this;
 
-    var now = new Date(),
-      hour = now.getHours(),
-      skyColor;
+    var now = new Date();
 
-    if ( hour > 4 && hour < 10 ) { 
+    if (now) {
+      var hour = now.getHours(),
+        skyColor;
 
-      skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
+      if ( hour > 4 && hour < 10 ) { 
 
-    } else if ( hour > 9 && hour < 17 ) { 
+        skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
 
-      skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
+      } else if ( hour > 9 && hour < 17 ) { 
 
-    } else if ( hour > 16 &&  hour < 22 ) { 
+        skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
 
-      skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
+      } else if ( hour > 16 &&  hour < 22 ) { 
 
-    } else { 
+        skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
 
-      skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
+      } else { 
 
+        skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
+
+      }
+
+      _this.$mapSky.css('background-color', skyColor); // set sky color
     }
-    
-    console.log("hour = " + hour);
-    console.log("skyColor = " + skyColor);
-
-    _this.$mapSky.css('background-color', skyColor);
   },
 
   /*
