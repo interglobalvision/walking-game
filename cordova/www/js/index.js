@@ -168,6 +168,37 @@ Compass = {
 
   },
 
+  skyColor: function() {
+    var _this = this;
+
+    var now = new Date(),
+      hour = now.getHours(),
+      skyColor;
+
+    if ( hour > 4 && hour < 10 ) { 
+
+      skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
+
+    } else if ( hour > 9 && hour < 17 ) { 
+
+      skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
+
+    } else if ( hour > 16 &&  hour < 22 ) { 
+
+      skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
+
+    } else { 
+
+      skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
+
+    }
+    
+    console.log("hour = " + hour);
+    console.log("skyColor = " + skyColor);
+
+    _this.$mapSky.css('background-color', skyColor);
+  },
+
   /*
    * Bind navigator.gelocation and deviceorientation events
    *
@@ -225,6 +256,7 @@ Compass = {
     _this.$compass = $('#compass');
     _this.$mapFloor = $('#map-floor');
     _this.$mapGoal = $('#map-goal');
+    _this.$mapSky = $('#map-sky');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
@@ -254,6 +286,8 @@ Compass = {
           lng: pos.longitude,
         });
 
+        // Set sky color
+        _this.skyColor();
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
