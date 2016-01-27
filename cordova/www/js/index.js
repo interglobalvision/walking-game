@@ -135,8 +135,16 @@ Compass = {
       mapGoalScale = 0.001;
     }
 
-    _this.$mapFloor.css('transform', 'translateY(' + mapFloorPos + '%)');
-    _this.$mapGoal.css('transform', 'scale(' + mapGoalScale + ')' );
+    _this.$mapFloor.css({
+      '-webkit-transform': 'translateY(' + mapFloorPos + '%)',
+      'transform': 'translateY(' + mapFloorPos + '%)',
+    });
+    _this.$mapGoal.css({
+      '-webkit-transform', 'scale(' + mapGoalScale + ')',
+      'transform', 'scale(' + mapGoalScale + ')',
+    });
+
+
     _this.$radar.css('animation-duration', bleepSpeed + 'ms');
     _this.$radar.html(bleepSpeed + 'ms');
 
@@ -160,6 +168,38 @@ Compass = {
     }
 
     var angle = compensationAngle + northOrientation;
+
+    // angle 290 -> 359  angle 1 -> 70
+    // xtran -100 -> -1  xtran 1 -> 100
+
+    var goalPos;
+
+    if ( angle > 289 && angle < 360 ) {
+
+      goalPos = ( ( ( angle - 290 ) / 70 ) * 100 ) - 100;
+
+    } else if ( angle > 0 && < 71 ) {
+
+      goalPos = ( angle / 70 ) * 100 ;
+
+    } else if ( angle == 0 || angle == 360 ) {
+
+      goalPos = 0;
+
+    } else if ( angle < 181 && angle > 70 ) {
+
+      goalPos = 100;
+
+    } else if ( angle < 290 && angle > 180 ) {
+
+      goalPos = -100;
+
+    }
+
+    _this.$mapGoalCont.css({
+      '-webkit-transform': 'translateX(' + goalPos + '%)',
+      'transform': 'translateX(' + goalPos + '%)',
+    });
 
     _this.$compass.css({
       '-webkit-transform': 'rotate(' + angle + 'deg)',
