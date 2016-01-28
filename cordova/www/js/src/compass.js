@@ -140,8 +140,8 @@ Compass = {
       'transform': 'translateY(' + mapFloorPos + '%)',
     });
     _this.$mapGoal.css({
-      '-webkit-transform', 'scale(' + mapGoalScale + ')',
-      'transform', 'scale(' + mapGoalScale + ')',
+      '-webkit-transform': 'scale(' + mapGoalScale + ')',
+      'transform': 'scale(' + mapGoalScale + ')',
     });
 
 
@@ -178,7 +178,7 @@ Compass = {
 
       goalPos = ( ( ( angle - 290 ) / 70 ) * 100 ) - 100;
 
-    } else if ( angle > 0 && < 71 ) {
+    } else if ( angle > 0 && angle < 71 ) {
 
       goalPos = ( angle / 70 ) * 100 ;
 
@@ -196,7 +196,7 @@ Compass = {
 
     }
 
-    _this.$mapGoalCont.css({
+    _this.$mapGoalContainer.css({
       '-webkit-transform': 'translateX(' + goalPos + '%)',
       'transform': 'translateX(' + goalPos + '%)',
     });
@@ -297,6 +297,7 @@ Compass = {
     _this.$mapFloor = $('#map-floor');
     _this.$mapGoal = $('#map-goal');
     _this.$mapSky = $('#map-sky');
+    _this.$mapGoalContainer = $('#map-goal-container');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
