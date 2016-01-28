@@ -140,7 +140,6 @@ Compass = {
       'transform': 'translateY(' + mapFloorPos + '%)',
     });
 
-    mapGoalScale = 0.3;
     _this.$mapGoal.css({
       '-webkit-transform': 'scale(' + mapGoalScale + ')',
       'transform': 'scale(' + mapGoalScale + ')',
