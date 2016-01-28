@@ -516,8 +516,8 @@ table {
   width: 100%;
   height: 100%;
   background-color: #0078ff;
-  -webkit-transition: background-color 2s;
-          transition: background-color 2s;
+  -webkit-transition: background-color 300ms linear;
+          transition: background-color 300ms linear;
 }
 #map-goal-container {
   position: fixed;
@@ -530,6 +530,8 @@ table {
   -webkit-transform: translateX(0%);
       -ms-transform: translateX(0%);
           transform: translateX(0%);
+  -webkit-transition: -webkit-transform 300ms linear;
+          transition: transform 300ms linear;
 }
 #map-goal {
   position: absolute;
@@ -543,6 +545,8 @@ table {
   -webkit-transform: scale(0.01);
       -ms-transform: scale(0.01);
           transform: scale(0.01);
+  -webkit-transition: -webkit-transform 300ms linear;
+          transition: transform 300ms linear;
 }
 #map-floor-container {
   height: 50%;
