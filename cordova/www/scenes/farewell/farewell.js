@@ -1,5 +1,5 @@
 var Farewell = {
-  init: function() {  
+  init: function() {
     var _this = this;
 
     var coach = new TimelineLite(),
@@ -89,7 +89,6 @@ var Farewell = {
   },
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Farewell.init();
-});
-
+}, false);

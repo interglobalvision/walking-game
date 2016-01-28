@@ -183,7 +183,7 @@ Compass = {
     });
 
     // Start orientation compass
-    
+
     // if cordova
     if (navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
       _this.watchId.orientation = navigator.compass.watchHeading( function(heading) {
@@ -250,4 +250,7 @@ Compass = {
     }
   },
 };
-Compass.init();
+
+document.addEventListener('deviceready', function() {
+  Compass.init();
+}, false);
