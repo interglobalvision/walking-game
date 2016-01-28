@@ -507,7 +507,6 @@ table {
 
 .map-stage {
   display: none;
-  text-align: center;
 }
 #map-sky {
   position: fixed;
@@ -576,6 +575,7 @@ table {
 #radar {
   width: 10px;
   height: 10px;
+  margin-bottom: 20px;
   background: #f00;
   -webkit-animation-name: bleep;
           animation-name: bleep;
@@ -583,6 +583,11 @@ table {
           animation-iteration-count: infinite;
   -webkit-animation-duration: 0ms;
           animation-duration: 0ms;
+}
+#angle,
+#radar {
+  color: #fff;
+  position: relative;
 }
 @-webkit-keyframes bleep {
   0%, 100% {

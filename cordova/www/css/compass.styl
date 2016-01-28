@@ -2,7 +2,6 @@ $map-transition = 300ms linear
 
 .map-stage
   display: none
-  text-align: center
 
 #map-sky
   position: fixed
@@ -58,10 +57,15 @@ $map-transition = 300ms linear
 #radar
   width: 10px
   height: 10px
+  margin-bottom: 20px
   background: red
   animation-name: bleep
   animation-iteration-count: infinite
   animation-duration: 0ms
+
+#angle, #radar
+  color: white
+  position: relative
 
 @keyframes bleep
   0%, 100%
