@@ -1,4 +1,11 @@
 Compass = {
+  $radar = $('#radar'),
+  $angle = $('#angle'),
+  $compass = $('#compass'),
+  $mapFloor = $('#map-floor'),
+  $mapGoal = $('#map-goal'),
+  $mapSky = $('#map-sky'),
+  $mapGoalContainer = $('#map-goal-container'),
   watchId: {
     orientation: null,
     position: null,
@@ -145,9 +152,6 @@ Compass = {
       'transform': 'scale(' + mapGoalScale + ')',
     });
 
-    _this.$radar.css('animation-duration', bleepSpeed + 'ms');
-    _this.$radar.html(bleepSpeed + 'ms');
-
     if( distanceToDestiny < _this.thresholdRadius ) {
       _this.stop();
       Game.nextMinigame();
@@ -169,34 +173,7 @@ Compass = {
 
     var angle = compensationAngle + northOrientation;
 
-    _this.$angle.html(angle + ' deg');
-
-    // angle 290 -> 359  angle 1 -> 70
-    // xtran -100 -> -1  xtran 1 -> 100
-
-    var goalPos = angle / 0.7;
-
-    /*if ( angle > 289 && angle < 360 ) {
-
-      goalPos = ( ( ( angle - 290 ) / 70 ) * 100 ) - 100;
-
-    } else if ( angle > 0 && angle < 71 ) {
-
-      goalPos = ( angle / 70 ) * 100 ;
-
-    } else if ( angle == 0 || angle == 360 ) {
-
-      goalPos = 0;
-
-    } else if ( angle < 181 && angle > 70 ) {
-
-      goalPos = 100;
-
-    } else if ( angle < 290 && angle > 180 ) {
-
-      goalPos = -100;
-
-    }*/
+    var goalPos = angle / 0.7; 
 
     _this.$mapGoalContainer.css({
       '-webkit-transform': 'translateX(' + goalPos + '%)',
@@ -293,14 +270,6 @@ Compass = {
 
   init: function() {
     var _this = this;
-
-    _this.$radar = $('#radar');
-    _this.$angle = $('#angle');
-    _this.$compass = $('#compass');
-    _this.$mapFloor = $('#map-floor');
-    _this.$mapGoal = $('#map-goal');
-    _this.$mapSky = $('#map-sky');
-    _this.$mapGoalContainer = $('#map-goal-container');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
