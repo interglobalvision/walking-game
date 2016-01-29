@@ -126,27 +126,26 @@ Compass = {
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    var distanceFromGoal = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
-
     // distanceFromGoal is abstract value of users distance from goal radius.
-    // distanceFromGoal begins at 1000.
+    // distanceFromGoal goes form 100 to 0 (as a percentage value)
     // distanceFromGoal decreases as user moves closer to radius
     // and increases as user moves further.
+    var distanceFromGoal = ( (distanceToDestiny - _this.thresholdRadius) * 100 ) / _this.totalDistance;// - _this.thresholdRadius;
 
     // progressToGoal is users progress toward goal radius.
     // distanceFromGoal is subtracted from 1000
     // to give us minimum 0, max 1000 (goal is reached).
-    var progressToGoal = 1000 - distanceFromGoal;
+    var progressToGoal = 100 - distanceFromGoal;
 
     // progressToGoal is multiplied to a thousandth decimal point of 75
     // to use as pecentage of 75% when moving the map floor gradient.
     // 75% is the full Y axis translation of the gradient
-    var mapFloorPos = progressToGoal * 0.001 * 75;
+    var mapFloorPos = progressToGoal * 0.75;
 
     // progressToGoal is multiplied to a thousandth decimal point
     // to use as scale of the map Goal object.
-    // 1.000 is the object at full scale (goal is reached).
-    var mapGoalScale = progressToGoal * 0.001;
+    // 1.00 is the object at full scale (goal is reached).
+    var mapGoalScale = progressToGoal * 0.01;
 
     // if mapFloorPos is less than 0, we set it to 0
     // this keeps the floor from sliding off screen
@@ -154,10 +153,10 @@ Compass = {
       mapFloorPos = 0;
     }
 
-    // if mapGoalScale is less than 0.001, we set it to 0.001
+    // if mapGoalScale is less than 0.01, we set it to 0.01
     // goal object from disappearing entirely or going negative scale
-    if (mapGoalScale < 0.001) {
-      mapGoalScale = 0.001;
+    if (mapGoalScale < 0.01) {
+      mapGoalScale = 0.01;
     }
 
     _this.$mapFloor.css({
