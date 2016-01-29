@@ -126,15 +126,15 @@ Compass = {
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    // distanceFromGoal is abstract value of users distance from goal radius.
-    // distanceFromGoal goes form 100 to 0 (as a percentage value)
-    // distanceFromGoal decreases as user moves closer to radius
-    // and increases as user moves further.
+    // distanceFromGoal is a percentage value describing how far you are from the destiny [meaning the threshold of destiny and the moment the next game triggers].
+    // This is based on your location from the moment the destiny is created.
+    // So at 100[%] you have just generated a new destiny. At 0[%] you are at destiny.
+    // This value can be larger than 100 if you move in the wrong direction.
     var distanceFromGoal = ( (distanceToDestiny - _this.destinyThresholdRadius) * 100 ) / _this.totalDistance;
 
     // progressToGoal is users progress toward goal radius.
-    // distanceFromGoal is subtracted from 1000
-    // to give us minimum 0, max 1000 (goal is reached).
+    // this is the inverse of distanceFromGoal
+    // 0[%] is moment of destiny creation and 100[%] is at destiny
     var progressToGoal = 100 - distanceFromGoal;
 
     // progressToGoal is multiplied to a thousandth decimal point of 75
