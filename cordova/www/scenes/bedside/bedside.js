@@ -61,6 +61,6 @@ var Bedside = {
   },
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Bedside.init();
-});
+}, false);

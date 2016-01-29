@@ -30,6 +30,6 @@ var Wakeup = {
   },
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Wakeup.init();
-});
+}, false);

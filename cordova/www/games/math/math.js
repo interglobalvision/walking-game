@@ -122,4 +122,6 @@ var Maths = {
   },
 };
 
-Maths.init();
+document.addEventListener('deviceready', function() {
+  Maths.init();
+}, false);

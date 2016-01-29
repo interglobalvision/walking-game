@@ -20,9 +20,13 @@ Home = {
 
       Compass.init();
     });
+
+    $('#play-next').click(function() {
+      Game.nextMinigame();
+    });
   },
 }
 
-$(document).ready( function() {
+document.addEventListener('deviceready', function() {
   Home.init();
-});
+}, false);
