@@ -169,7 +169,7 @@ Compass = {
       'transform': 'scale(' + mapGoalScale + ')',
     });
 
-    if( distanceToDestiny < _this.destinyThresholdRadius ) {
+    if (distanceToDestiny < _this.destinyThresholdRadius) {
       _this.stop();
       Game.nextMinigame();
     }
@@ -184,7 +184,7 @@ Compass = {
     var compensationAngle = _this.getAngle( _this.reference, _this.position, _this.destiny);
 
     // If destiny is at West of origin
-    if( _this.position.lng > _this.destiny.lng ) {
+    if (_this.position.lng > _this.destiny.lng) {
       compensationAngle = 360 - compensationAngle;
     }
 
@@ -216,15 +216,15 @@ Compass = {
       var hour = now.getHours(),
         skyColor;
 
-      if ( hour > 4 && hour < 10 ) {
+      if (hour > 4 && hour < 10) {
 
         skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
 
-      } else if ( hour > 9 && hour < 17 ) {
+      } else if (hour > 9 && hour < 17) {
 
         skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
 
-      } else if ( hour > 16 &&  hour < 22 ) {
+      } else if (hour > 16 &&  hour < 22) {
 
         skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
 
