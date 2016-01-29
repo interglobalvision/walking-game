@@ -572,23 +572,6 @@ table {
   -webkit-transition: -webkit-transform 300ms linear;
           transition: transform 300ms linear;
 }
-#radar {
-  width: 10px;
-  height: 10px;
-  margin-bottom: 20px;
-  background: #f00;
-  -webkit-animation-name: bleep;
-          animation-name: bleep;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-duration: 0ms;
-          animation-duration: 0ms;
-}
-#angle,
-#radar {
-  color: #fff;
-  position: relative;
-}
 @-webkit-keyframes bleep {
   0%, 100% {
     opacity: 1;
