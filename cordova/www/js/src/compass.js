@@ -28,7 +28,7 @@ Compass = {
   */
   minDistance: 0.0025, // in radians
   maxDistance: 0.0028, // in radians
-  thresholdRadius: 0.300, // in Km
+  destinyThresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
 
@@ -130,7 +130,7 @@ Compass = {
     // distanceFromGoal goes form 100 to 0 (as a percentage value)
     // distanceFromGoal decreases as user moves closer to radius
     // and increases as user moves further.
-    var distanceFromGoal = ( (distanceToDestiny - _this.thresholdRadius) * 100 ) / _this.totalDistance;// - _this.thresholdRadius;
+    var distanceFromGoal = ( (distanceToDestiny - _this.destinyThresholdRadius) * 100 ) / _this.totalDistance;
 
     // progressToGoal is users progress toward goal radius.
     // distanceFromGoal is subtracted from 1000
@@ -169,10 +169,10 @@ Compass = {
       'transform': 'scale(' + mapGoalScale + ')',
     });
 
-    if( distanceToDestiny < _this.thresholdRadius ) {
+    if( distanceToDestiny < _this.destinyThresholdRadius ) {
       _this.stop();
       Game.nextMinigame();
-    } 
+    }
   },
 
   updateOrientation: function(orientation) {
@@ -192,8 +192,8 @@ Compass = {
 
     // When the compass is pointed 70deg (+ or -) from 0 (top),
     // the arrow points offscreen.  So we get a percent of 70
-    // to position the goal object with the arrow 
-    var goalPos = angle / 0.7; 
+    // to position the goal object with the arrow
+    var goalPos = angle / 0.7;
 
     _this.$mapGoalContainer.css({
       '-webkit-transform': 'translateX(' + goalPos + '%)',
@@ -216,19 +216,19 @@ Compass = {
       var hour = now.getHours(),
         skyColor;
 
-      if ( hour > 4 && hour < 10 ) { 
+      if ( hour > 4 && hour < 10 ) {
 
         skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
 
-      } else if ( hour > 9 && hour < 17 ) { 
+      } else if ( hour > 9 && hour < 17 ) {
 
         skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
 
-      } else if ( hour > 16 &&  hour < 22 ) { 
+      } else if ( hour > 16 &&  hour < 22 ) {
 
         skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
 
-      } else { 
+      } else {
 
         skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
 
@@ -260,7 +260,7 @@ Compass = {
     });
 
     // Start orientation compass
-    
+
     // if cordova
     if (navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
       _this.watchId.orientation = navigator.compass.watchHeading( function(heading) {
@@ -311,7 +311,7 @@ Compass = {
         _this.totalDistance = _this.getDistanceInKm({
           lat: pos.latitude,
           lng: pos.longitude
-        }, _this.destiny) - _this.thresholdRadius;
+        }, _this.destiny) - _this.destinyThresholdRadius;
 
         // Set current position
         _this.updatePosition({
