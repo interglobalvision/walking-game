@@ -24,6 +24,16 @@ Home = {
     $('#play-next').click(function() {
       Game.nextMinigame();
     });
+
+    // Turn on Immersive mode for Android
+    if (navigator.userAgent.match(/(Android)/)) {
+      AndroidFullScreen.immersiveMode(function() {
+        console.log('Immersive Mode: On');
+      }, function() {
+        console.log('Immersive Mode: Failed');
+      });
+    }
+
   },
 }
 
