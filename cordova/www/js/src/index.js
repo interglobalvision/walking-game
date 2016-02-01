@@ -28,6 +28,7 @@ var app = {
   bindEvents: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
     document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
+    document.addEventListener("backbutton", this.onBackKeyDown, false);
   },
   // deviceready Event Handler
   //
@@ -38,6 +39,9 @@ var app = {
   },
   onContentLoaded: function() {
     FastClick.attach(document.body);
+  },
+  onBackKeyDown: function() {
+    return true;
   },
   // Update DOM on a Received Event
   receivedEvent: function(id) {
