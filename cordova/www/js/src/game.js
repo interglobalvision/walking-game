@@ -103,7 +103,7 @@ Game = {
 
   finishLoop: function() {
     var _this= this;
-    var currentLoops = _this.getLoops;
+    var currentLoops = _this.getLoops();
 
     console.log('Finished loop');
 
