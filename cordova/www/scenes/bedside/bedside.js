@@ -50,7 +50,7 @@ var Bedside = {
           _this.scene2.set(_this.$blackout, {opacity: 1,});
 
           _this.scene2.call(function(){
-            Router.go('/');
+            Router.go('/scenes/farewell/');
           });
 
         }
