@@ -5,25 +5,17 @@ Home = {
   init: function() {
     var _this = this;
 
-    _this.$playGame = $("#play-game");
     _this.$compassContainer = $("#stage");
-    _this.$compass = $("#compass");
 
-    // Bind buttons
-    _this.$playGame.click( function() {
+    // check if fresh game
+    if( !Game.getUsername() ) {
+      Router.go('/scenes/wakeup/');
+    } 
 
-      // Hide button
-      $(this).fadeOut();
+    _this.$compassContainer.fadeIn();
 
-      // Show compass
-      _this.$compassContainer.fadeIn();
+    Compass.init();
 
-      Compass.init();
-    });
-
-    $('#play-next').click(function() {
-      Game.nextMinigame();
-    });
   },
 }
 
