@@ -2,6 +2,7 @@ Compass = {
   $radar: $('#radar'),
   $angle: $('#angle'),
   $compass: $('#compass'),
+  $compassContainer: $('#compass-container'),
   $mapFloor: $('#map-floor'),
   $mapGoal: $('#map-goal'),
   $mapSky: $('#map-sky'),
@@ -331,6 +332,9 @@ Compass = {
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
+        
+        // Fade in compass
+        _this.$compassContainer.fadeIn();
 
       });
 
