@@ -1,27 +1,16 @@
 Home = {
   $playGame: null,
-  $compass: null,
-  $compassContainer: null, 
+  $playButton: null, 
   init: function() {
     var _this = this;
 
-    _this.$compassContainer = $("#stage");
-    _this.$compassEnd = $("#end-compass");
+    _this.$playButton = $("#play-next");
 
-    // check if fresh game
-    if( !Game.getUsername() ) {
-      Router.go('/scenes/wakeup/');
-    } 
-
-    _this.$compassEnd.click( function(event) {
+    _this.$playButton.click( function(event) {
       event.preventDefault();
 
-      Compass.stop();
+      Router.go('/pages/compass/');
     });
-
-    _this.$compassContainer.fadeIn();
-
-    Compass.init();
 
   },
 }
