@@ -83,7 +83,7 @@ var Farewell = {
     blackout.set($blackout, {opacity: 1,});
 
     blackout.call(function() {
-      Router.go('/');
+      Router.go('/pages/compass/');
     });
 
   },
