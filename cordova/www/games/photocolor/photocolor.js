@@ -13,6 +13,9 @@ var Photocolor = {
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
+  winDialog: [
+    "U did it ::::::)",
+  ],
   loseDialog: [
     "U really suck at this simple boring task",
   ],
@@ -144,8 +147,13 @@ var Photocolor = {
   },
 
   win: function(points) {
+    var _this = this;
 
-    Game.gameComplete(points);
+    Utilities.Dialog.read(_this.winDialog, function() {
+
+      Game.gameComplete(points);
+
+    });
 
   },
 
