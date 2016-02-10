@@ -34,28 +34,31 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
         <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
-
-        <title>Compass</title>
+        <title>WALKING GAME</title>
     </head>
     <body>
 
         <div class="container">
-          <h2>Compass</h2>
-          <a href="../../index.html">back</a>
-          <p id="origin">Origin location: <span></span></p>
-          <p id="position">Current location: <span></span></p>
-          <p id="destiny">Destination location: <span></span></p>
-          <p id="comp-angle">Comp Angl: <span></span></p>
-          <p id="north-angle">North Angl: <span></span></p>
-          <p id="angle">Angle: <span></span></p>
-          <p id="distance">Distance: <span></span> Km</p>
-          <span id="compass-north" class="compass"></span>
-          <span id="compass-destiny" class="compass"></span>
+          <div id="compass-container" class="map-stage">
+            <div id="map-sky"></div>
+            
+            <div id="map-goal-container">
+              <div id="map-goal"></div>
+            </div>
+
+            <div id="map-floor-container">
+              <div id="map-floor"></div>
+            </div>
+
+            <img id="compass" src="../../img/compass.png" />
+          </div>
+          <button id="end-compass">End Map</button>
+
         </div>
 
         <script type="text/javascript" src="../../cordova.js"></script>
         <script type="text/javascript" src="../../js/lib.js"></script>
         <script type="text/javascript" src="../../js/index.js"></script>
-        <script type="text/javascript" src="../../pages/compass/compass.js"></script>
+        <script type="text/javascript" src="compass.js"></script>
     </body>
 </html>

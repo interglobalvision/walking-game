@@ -1,28 +1,15 @@
 Home = {
   $playGame: null,
-  $compass: null,
-  $compassContainer: null, 
+  $playButton: null,
   init: function() {
     var _this = this;
 
-    _this.$playGame = $("#play-game");
-    _this.$compassContainer = $("#stage");
-    _this.$compass = $("#compass");
+    _this.$playButton = $("#play-next");
 
-    // Bind buttons
-    _this.$playGame.click( function() {
+    _this.$playButton.click( function(event) {
+      event.preventDefault();
 
-      // Hide button
-      $(this).fadeOut();
-
-      // Show compass
-      _this.$compassContainer.fadeIn();
-
-      Compass.init();
-    });
-
-    $('#play-next').click(function() {
-      Game.nextMinigame();
+      Router.go('/pages/compass/');
     });
 
     // Turn on Immersive mode for Android
