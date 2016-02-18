@@ -1,4 +1,4 @@
-Compass={$radar:$("#radar"),$angle:$("#angle"),$compass:$("#compass"),$mapFloor:$("#map-floor"),$mapGoal:$("#map-goal"),$mapSky:$("#map-sky"),$mapGoalContainer:$("#map-goal-container"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
+Compass={$radar:$("#radar"),$angle:$("#angle"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$mapGoal:$("#map-goal"),$mapSky:$("#map-sky"),$mapGoalContainer:$("#map-goal-container"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
@@ -52,9 +52,15 @@ var distanceToDestiny=_this.getDistanceInKm(_this.position,_this.destiny),distan
 0>mapFloorPos&&(mapFloorPos=0),
 // if mapGoalScale is less than 0.01, we set it to 0.01
 // goal object from disappearing entirely or going negative scale
-.01>mapGoalScale&&(mapGoalScale=.01),_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&(_this.stop(),Game.nextMinigame())},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
+.01>mapGoalScale&&(mapGoalScale=.01),_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),
+//mapGoalScale = 0.5; // testing
+_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&(_this.stop(),Game.nextMinigame())},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
 // If destiny is at West of origin
 _this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation,goalPos=angle/.7;_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
+   * Sets map theme graphics
+   *
+   */
+mapTheme:function(){var _this=this,themeNum="1";_this.$mapSky.addClass("sky-"+themeNum),_this.$mapFloor.addClass("floor-"+themeNum)},/*
    * Bind navigator.gelocation and deviceorientation events
    *
    */
@@ -84,6 +90,8 @@ _this.totalDistance=_this.getDistanceInKm({lat:pos.latitude,lng:pos.longitude},_
 _this.updatePosition({lat:pos.latitude,lng:pos.longitude}),
 // Set sky color
 _this.skyColor(),
+// Set map theme graphics
+_this.mapTheme(),
 // Start orientation and position watchers
 _this.startGeoWatchers()}):
 // fallback for when not possible. Why? no idea but it might happen

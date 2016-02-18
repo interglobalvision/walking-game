@@ -2,7 +2,7 @@ Compass = {
   $radar: $('#radar'),
   $angle: $('#angle'),
   $compass: $('#compass'),
-  $mapFloor: $('#map-floor'),
+  $mapFloor: $('.map-floor'),
   $mapGoal: $('#map-goal'),
   $mapSky: $('#map-sky'),
   $mapGoalContainer: $('#map-goal-container'),
@@ -164,6 +164,8 @@ Compass = {
       'transform': 'translateY(' + mapFloorPos + '%)',
     });
 
+    //mapGoalScale = 0.5; // testing
+
     _this.$mapGoal.css({
       '-webkit-transform': 'scale(' + mapGoalScale + ')',
       'transform': 'scale(' + mapGoalScale + ')',
@@ -236,6 +238,20 @@ Compass = {
 
       _this.$mapSky.css('background-color', skyColor); // set sky color
     }
+  },
+
+  /*
+   * Sets map theme graphics
+   *
+   */
+  mapTheme: function() {
+    var _this = this;
+
+    var themeNum = '1';
+
+    _this.$mapSky.addClass('sky-' + themeNum);
+
+    _this.$mapFloor.addClass('floor-' + themeNum);
   },
 
   /*
@@ -321,6 +337,9 @@ Compass = {
 
         // Set sky color
         _this.skyColor();
+
+        // Set map theme graphics
+        _this.mapTheme();
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
