@@ -503,9 +503,6 @@ table {
   }
 }
 
-.map-stage {
-  display: none;
-}
 #map-sky {
   position: fixed;
   top: 0;
@@ -601,6 +598,12 @@ table {
   transition: -webkit-transform 300ms linear;
   transition: transform 300ms linear;
   transition: transform 300ms linear, -webkit-transform 300ms linear;
+}
+#end-compass {
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
 }
 @-webkit-keyframes bleep {
   0%, 100% {
@@ -848,6 +851,14 @@ h6 {
 }
 #take-photo.show-camera {
   top: 60%;
+}
+#output-img {
+  width: 480px;
+  height: 640px;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 @-webkit-keyframes grid-bg {
   0% {

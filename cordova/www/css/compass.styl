@@ -1,8 +1,5 @@
 $map-transition = 300ms linear
 
-.map-stage
-  display: none
-
 #map-sky
   position: fixed
   top: 0
@@ -14,7 +11,7 @@ $map-transition = 300ms linear
   background-repeat: no-repeat;
   background-size: contain;
   transition: background-color $map-transition
-  
+
 .map-floor-container
   height: 50%
   width: 100%
@@ -22,7 +19,7 @@ $map-transition = 300ms linear
   bottom: 0
   left: 0
   overflow: hidden
-  
+
 .map-floor
   position: absolute
   height: 400%
@@ -30,13 +27,13 @@ $map-transition = 300ms linear
   bottom: 0
   left: 0
   background: black
-  
+
 .sky-1
   background-image: url('../img/map/sky-1.png');
 
 .floor-1
   background: linear-gradient(to bottom, #FF7BAC 0%,#2E3192 100%);
-  
+
 .sky-2
   background-image: url('../img/map/sky-2.png');
 
@@ -51,7 +48,7 @@ $map-transition = 300ms linear
   transform-origin: center bottom
   transform: translateX(0%)
   transition: transform $map-transition
-  
+
 #map-goal
   position: absolute
   bottom: 0
@@ -67,8 +64,8 @@ $map-transition = 300ms linear
   left: 50%
   width: 25%
   height: 75%
-  border-left: 5px solid red 
-  
+  border-left: 5px solid red
+
 .map-flag
   position: absolute
   top: 0
@@ -83,9 +80,15 @@ $map-transition = 300ms linear
   left: 5px
   transition: transform $map-transition
 
+#end-compass
+  position: absolute
+  z-index: 999
+  top: 10px
+  right: 10px
+
 @keyframes bleep
   0%, 100%
     opacity: 1
   50%
     opacity: 0.1
-    
+

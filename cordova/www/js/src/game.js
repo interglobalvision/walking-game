@@ -6,16 +6,6 @@ Game = {
     'reset',
     'photocolor',
   ],
-  loopGamesOrder: function() {
-    var _this = this;
-    
-    var loopOrder = window.localStorage.getItem('loopOrder');
-    
-    if(!loopOrder) {
-      return [];
-    }
-    return loopOrder.split(',');
-  },
   gameAttempts: 2,
 
   // USER
@@ -39,54 +29,87 @@ Game = {
   // GAME STATE
 
   setupLoop: function() {
-    var _this= this;
+    var _this = this;
 
     console.log('Setting up loop');
 
-    window.localStorage.setItem('progress', 0);
+    _this.setProgress(0);
 
-    _this.loopGamesOrder = Utilities.Misc.shuffleArray(_this.minigames);
-
-    window.localStorage.setItem('loopOrder', _this.loopGamesOrder);
+    _this.setLoopOrder( Utilities.Misc.shuffleArray(_this.minigames) );
 
   },
 
+  getProgress: function() {
+    var progress = parseInt(window.localStorage.getItem('progress'));
+
+    if (progress === null || isNaN(progress)) {
+      progress = 0;
+    }
+
+    return progress;
+  },
+
+  setProgress: function(progress) {
+    window.localStorage.setItem('progress', progress);
+  },
+
   getProgressPercent: function() {
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+    var _this = this;
+    var currentProgress = _this.getProgress();
 
     return currentProgress / this.minigames.length;
   },
 
   getLoops: function() {
-    var currentLoops = parseInt(window.localStorage.getItem('loops'));
+    var loops = parseInt(window.localStorage.getItem('loops'));
 
-    return currentLoops;
+    if (loops === null || isNaN(loops)) {
+      loops = 0;
+    }
+
+    return loops;
+  },
+
+  setLoops: function(loops) {
+    window.localStorage.setItem('loops', loops);
+  },
+
+  setLoopOrder: function(loopOrder) {
+    window.localStorage.setItem('loopOrder', loopOrder);
+  },
+
+  getLoopOrder: function() {
+    var _this = this;
+    
+    var loopOrder = window.localStorage.getItem('loopOrder');
+    
+    if(!loopOrder) {
+      return [];
+    }
+    return loopOrder.split(',');
   },
 
   nextMinigame: function() {
     var _this= this;
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+    var currentProgress = _this.getProgress();
+    var gameOrder = _this.getLoopOrder();
 
     console.log('Loading next minigame');
     console.log('Current progress index', currentProgress);
-    console.log('Game to load', _this.loopGamesOrder[currentProgress]);
+    console.log('Game to load', gameOrder[currentProgress]);
 
-    Router.go('/games/' + _this.loopGamesOrder[currentProgress] + '/');
+    Router.go('/games/' + gameOrder[currentProgress] + '/');
   },
 
   finishLoop: function() {
     var _this= this;
-    var currentLoops = parseInt(window.localStorage.getItem('loops'));
-
-    if (currentLoops === null || isNaN(currentLoops)) {
-      currentLoops = 0;
-    }
+    var currentLoops = _this.getLoops();
 
     console.log('Finished loop');
 
     // perhaps a lot more needs to happen here. This is probably where the narrative should happen. But this could be a different route just for animation. Would then need to if/else in gameComplete when checking if last game in loop
 
-    window.localStorage.setItem('loops', (currentLoops + 1));
+    _this.setLoops(currentLoops + 1);
 
     console.log('Loops so far', currentLoops);
 
@@ -109,13 +132,9 @@ Game = {
 
   gameComplete: function(points) {
     var _this= this;
-    var currentProgress = parseInt(window.localStorage.getItem('progress'));
+    var currentProgress = _this.getProgress();
 
-    if (currentProgress === null || isNaN(currentProgress)) {
-      currentProgress = 0;
-    }
-
-    window.localStorage.setItem('progress', (currentProgress + 1));
+    _this.setProgress(currentProgress + 1);
 
     if (points) {
       _this.setNewPoints(points);
@@ -131,51 +150,64 @@ Game = {
   // POINTS
 
   getPoints: function() {
-    return window.localStorage.getItem('points');
+    var points = window.localStorage.getItem('points');
+
+    if (points === null || isNaN(points)) {
+      points = 0;
+    }
+
+    return points;
+  },
+
+  setPoints: function(points) {
+    window.localStorage.setItem('points', points);
   },
 
   setNewPoints: function(points) {
+    var _this = this;
+
     var points = parseInt(points);
-    var currentPoints = parseInt(window.localStorage.getItem('points'));
-    var currentGems = parseInt(window.localStorage.getItem('gems'));
-
-    if (currentPoints === null || isNaN(currentPoints)) {
-      currentPoints = 0;
-    }
-
-    if (currentGems === null || isNaN(currentGems)) {
-      currentGems = 0;
-    }
+    var currentPoints = _this.getPoints();
+    var currentGems = _this.getGems();
 
     if (points > 0) {
       var modifier = (Math.log(currentGems+ 1) + 1);
       var modifiedPoints = Math.round((points * modifier));
 
-      window.localStorage.setItem('points', (currentPoints + modifiedPoints));
+      _this.setPoints( currentPoints + modifiedPoints );
     } else {
-      window.localStorage.setItem('points', (currentPoints + points));
+      _this.setPoints( currentPoints + points );
     }
   },
 
   resetPoints: function() {
-    window.localStorage.setItem('points', 0);
+    var _this = this;
+
+    _this.setPoints(0);
   },
 
   // GEMS
 
   getGems: function() {
-    return window.localStorage.getItem('gems');
+    var gems = window.localStorage.getItem('gems');
+
+    if (gems === null || isNaN(gems)) {
+      gems = 0;
+    }
+
+    return gems; 
+  },
+
+  setGems: function(gems) {
+    window.localStorage.setItem('gems', gems);
   },
 
   setNewGems: function(gems) {
+    var _this = this;
     var gems = parseInt(gems);
-    var currentGems = window.localStorage.getItem('gems');
+    var currentGems = _this.getGems();
 
-    if (currentGems === null || isNaN(currentGems)) {
-      currentGems = 0;
-    }
-
-    window.localStorage.setItem('gems', (parseInt(currentGems) + gems));
+    _this.setGems( currentGems + gems);
   },
 
 };

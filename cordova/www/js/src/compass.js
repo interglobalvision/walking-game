@@ -3,6 +3,7 @@ Compass = {
   $angle: $('#angle'),
   $compass: $('#compass'),
   $mapFloor: $('.map-floor'),
+  $compassContainer: $('#compass-container'),
   $mapGoal: $('#map-goal'),
   $mapSky: $('#map-sky'),
   $mapGoalContainer: $('#map-goal-container'),
@@ -173,7 +174,6 @@ Compass = {
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
       _this.stop();
-      Game.nextMinigame();
     }
   },
 
@@ -295,13 +295,21 @@ Compass = {
    * Ubind navigator.gelocation and deviceorientation events
    *
    */
-  stop: function() {
+  stopGeoWatchers: function() {
     var _this = this;
 
     navigator.geolocation.clearWatch( _this.watchId.position );
     navigator.compass.clearWatch( _this.watchId.orientation );
 
+  },
+
+  stop: function() {
+    var _this = this;
+
+    _this.stopGeoWatchers();
     $(window).unbind('.compassOrientation');
+
+    Game.nextMinigame();
   },
 
   init: function() {
@@ -343,6 +351,9 @@ Compass = {
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
+
+        // Fade in compass
+        _this.$compassContainer.fadeIn();
 
       });
 
