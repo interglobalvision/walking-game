@@ -503,18 +503,48 @@ table {
   }
 }
 
-.map-stage {
-  display: none;
-}
 #map-sky {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
   background-color: #0078ff;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
   -webkit-transition: background-color 300ms linear;
   transition: background-color 300ms linear;
+}
+.map-floor-container {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.map-floor {
+  position: absolute;
+  height: 400%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #000;
+}
+.sky-1 {
+  background-image: url("../img/map/sky-1.png");
+}
+.floor-1 {
+  background: -webkit-linear-gradient(top, #ff7bac 0%, #2e3192 100%);
+  background: linear-gradient(to bottom, #ff7bac 0%, #2e3192 100%);
+}
+.sky-2 {
+  background-image: url("../img/map/sky-2.png");
+}
+.floor-2 {
+  background: -webkit-linear-gradient(top, #fefefe 0%, #909090 100%);
+  background: linear-gradient(to bottom, #fefefe 0%, #909090 100%);
 }
 #map-goal-container {
   position: fixed;
@@ -535,7 +565,6 @@ table {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: #008000;
   -webkit-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: scale(0.01);
@@ -545,22 +574,20 @@ table {
   transition: transform 300ms linear;
   transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
-#map-floor-container {
-  height: 50%;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-}
-#map-floor {
+.map-flag-container {
   position: absolute;
-  height: 400%;
-  width: 100%;
   bottom: 0;
+  left: 50%;
+  width: 25%;
+  height: 75%;
+  border-left: 5px solid #f00;
+}
+.map-flag {
+  position: absolute;
+  top: 0;
   left: 0;
-  background: -webkit-linear-gradient(top, #f00 0%, #000 100%);
-  background: linear-gradient(to bottom, #f00 0%, #000 100%);
+  width: 100%;
+  height: 30%;
 }
 #compass {
   position: absolute;
@@ -571,6 +598,12 @@ table {
   transition: -webkit-transform 300ms linear;
   transition: transform 300ms linear;
   transition: transform 300ms linear, -webkit-transform 300ms linear;
+}
+#end-compass {
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
 }
 @-webkit-keyframes bleep {
   0%, 100% {
@@ -818,6 +851,14 @@ h6 {
 }
 #take-photo.show-camera {
   top: 60%;
+}
+#output-img {
+  width: 480px;
+  height: 640px;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 @-webkit-keyframes grid-bg {
   0% {

@@ -39,21 +39,25 @@
     <body>
 
         <div class="container">
-          <div id="compass-container" class="map-stage">
+          <div id="stage" class="map-stage">
             <div id="map-sky"></div>
-            
+
             <div id="map-goal-container">
-              <div id="map-goal"></div>
+              <div id="map-goal">
+                <div class="map-flag-container">
+                  <img class="map-flag" src="../../img/map/flag.gif">
+                </div>
+              </div>
             </div>
 
-            <div id="map-floor-container">
-              <div id="map-floor"></div>
+            <div class="map-floor-container">
+              <div class="map-floor"></div>
             </div>
 
             <img id="compass" src="../../img/compass.png" />
           </div>
-          <button id="end-compass">End Map</button>
 
+          <button id="end-compass">End Map</button>
         </div>
 
         <script type="text/javascript" src="../../cordova.js"></script>
