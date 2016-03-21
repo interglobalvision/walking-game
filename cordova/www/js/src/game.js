@@ -8,6 +8,12 @@ Game = {
   ],
   gameAttempts: 2,
 
+  shareTitle: function(score) {
+    return 'WOOAAAAHH! U HAVE AN AWESOME SCORe 0F ' + score + ' POIIINTSSS BRAAAHHH';
+  },
+  shareSubject: 'Subject: I did this on Walking Game. The most tiring phone game ever made',
+  shareUrl: 'http://interglobal.vision/',
+
   // USER
 
   createUser: function(username, callback) {
@@ -80,9 +86,9 @@ Game = {
 
   getLoopOrder: function() {
     var _this = this;
-    
+
     var loopOrder = window.localStorage.getItem('loopOrder');
-    
+
     if(!loopOrder) {
       return [];
     }
@@ -195,7 +201,7 @@ Game = {
       gems = 0;
     }
 
-    return gems; 
+    return gems;
   },
 
   setGems: function(gems) {
@@ -208,6 +214,29 @@ Game = {
     var currentGems = _this.getGems();
 
     _this.setGems( currentGems + gems);
+  },
+
+  // SOCIAL SHARING
+
+  shareWithOptions: function() {
+    var _this = this;
+    var score = _this.getPoints();
+
+    window.plugins.socialsharing.share(
+      _this.shareTitle(score),
+      _this.shareSubject,
+      'http://puu.sh/mTFtM/242a0fa967.png',
+      _this.shareUrl,
+      function() {
+        console.log('share ok');
+      },
+      function(errorMessage) {
+        console.log('share failed');
+        console.log(errorMessage);
+        alert('something went wrong');
+      }
+    );
+
   },
 
 };
