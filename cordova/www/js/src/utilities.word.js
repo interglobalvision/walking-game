@@ -15,11 +15,15 @@ Utilities.Word = {
    * @param {string} kind Defines what kind of word return (adj|noun)
    * @param {bool} indefinite Defines if it should append an indefinite article
    */
-  getWord: function(kind, indefinite) {
+  getWord: function(kind, indefinite, capitalize) {
     var _this = this;
 
     var list = kind ==  'adj' ? _this.adjs : _this.nouns;
     var word = list[Math.floor(Math.random() * list.length)];
+
+    if (capitalize) {
+      word = word.charAt(0).toUpperCase() + word.slice(1);
+    }
 
     if (indefinite) {
       if (_this.isVowel(word[0])) {
@@ -32,16 +36,16 @@ Utilities.Word = {
     return word;
   },
 
-  getAdj: function(indefinite) {
+  getAdj: function(indefinite, capitalize) {
     var _this = this;
 
-    return _this.getWord('adj', indefinite);
+    return _this.getWord('adj', indefinite, capitalize);
   },
 
-  getNoun: function(indefinite) {
+  getNoun: function(indefinite, capitalize) {
     var _this = this;
 
-    return _this.getWord('noun', indefinite);
+    return _this.getWord('noun', indefinite, capitalize);
   },
 
   isVowel: function(character) {
