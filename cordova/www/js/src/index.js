@@ -28,7 +28,7 @@ var app = {
   bindEvents: function() {
     document.addEventListener('deviceready', this.onDeviceReady, false);
     document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
-    document.addEventListener("backbutton", this.onBackKeyDown, false);
+    document.addEventListener('backbutton', this.onBackKeyDown, false);
   },
   // deviceready Event Handler
   //
