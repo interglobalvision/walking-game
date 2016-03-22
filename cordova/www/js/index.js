@@ -1,4 +1,4 @@
-Compass={$radar:$("#radar"),$angle:$("#angle"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$("#map-sky"),$mapSkyline:$("#map-skyline"),$mapGoalContainer:$("#map-goal-container"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
+Compass={$radar:$("#radar"),$angle:$("#angle"),$mapStage:$(".map-stage"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$(".map-sky"),$mapGoalContainer:$("#map-goal-container"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
@@ -60,7 +60,7 @@ _this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);
    * Sets map theme graphics
    *
    */
-mapTheme:function(){var _this=this,themeNum="1";_this.$mapSkyline.addClass("sky-"+themeNum),_this.$mapFloor.addClass("floor-"+themeNum)},/*
+mapTheme:function(){var _this=this;_this.$mapStage.addClass("world-"+Game.getWorld())},/*
    * Bind navigator.gelocation and deviceorientation events
    *
    */

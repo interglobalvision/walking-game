@@ -1,12 +1,12 @@
 Compass = {
   $radar: $('#radar'),
   $angle: $('#angle'),
+  $mapStage: $('.map-stage'),
   $compass: $('#compass'),
   $mapFloor: $('.map-floor'),
   $compassContainer: $('#compass-container'),
   $mapGoal: $('#map-goal'),
-  $mapSky: $('#map-sky'),
-  $mapSkyline: $('#map-skyline'),
+  $mapSky: $('.map-sky'),
   $mapGoalContainer: $('#map-goal-container'),
   watchId: {
     orientation: null,
@@ -248,11 +248,7 @@ Compass = {
   mapTheme: function() {
     var _this = this;
 
-    var themeNum = '1';
-
-    _this.$mapSkyline.addClass('sky-' + themeNum);
-
-    _this.$mapFloor.addClass('floor-' + themeNum);
+    _this.$mapStage.addClass('world-' + Game.getWorld());
   },
 
   /*
