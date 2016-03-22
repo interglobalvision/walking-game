@@ -591,9 +591,9 @@ table {
 }
 #compass {
   position: absolute;
-  width: 80px;
-  bottom: 5px;
-  left: 5px;
+  height: 12%;
+  bottom: 2%;
+  left: 5%;
   -webkit-transition: -webkit-transform 300ms linear;
   transition: -webkit-transform 300ms linear;
   transition: transform 300ms linear;
@@ -606,21 +606,32 @@ table {
   right: 10px;
 }
 #map-menu {
-  height: 80%;
-  width: 80%;
-  bottom: 5px;
-  right: 5px;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   position: absolute;
 }
-#map-menu-button {
+.map-menu-coach {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 80px;
-  width: 80px;
-  background-image: url("../img/coach-menu.png");
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 12%;
+  bottom: 2%;
+  right: 5%;
+}
+#map-menu-bubble {
+  position: absolute;
+  bottom: 18%;
+  left: 5%;
+  width: 90%;
+  max-height: 80%;
+  height: auto;
+  background: #fff;
+  box-sizing: border-box;
+  border: 5px solid #00f;
+  color: #00f;
+  border-radius: 15px;
+  padding: 4%;
+  box-sizing: border-box;
 }
 @-webkit-keyframes bleep {
   0%, 100% {
