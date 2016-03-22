@@ -1,9 +1,9 @@
 Menu = {
 	$menuBubble: $('#map-menu-bubble'),
 	$menuButton: $('#map-menu-button'),
-	$menuPoints: $('.menu-points'),
-	$menuRank: $('.menu-rank'),
-	$menuWorld: $('.menu-world'),
+	$menuPoints: $('#menu-points'),
+	$menuRank: $('#menu-rank'),
+	$menuWorld: $('#menu-world'),
 
 	toggleMenu: function() {
 		//functionality to open and close menu

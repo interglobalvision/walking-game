@@ -119,7 +119,7 @@ Game = {
 
     _this.setLoops(currentLoops + 1);
 
-    _this.setWorld(currentWorld + 1);
+    _this.nextWorld();
 
     console.log('Loops so far', currentLoops);
 
@@ -128,13 +128,15 @@ Game = {
 
   // WORLD
 
-  setWorld: function(world) {
+  nextWorld: function() {
     var _this= this;
+    var currentWorld = _this.getWorld();
+    var nextWorld = currentWorld + 1;
 
-    if ((world + 1) === _this.worlds.length) {
+    if (nextWorld === _this.worlds.length) {
       window.localStorage.setItem('world', 0);
     } else {
-      window.localStorage.setItem('world', world);
+      window.localStorage.setItem('world', nextWorld);
     }
   },
 
