@@ -17,6 +17,7 @@ Menu = {
 
 		_this.$menuPoints.html( Game.getPoints() );
 		_this.$menuWorld.html( Game.getWorldName() );
+		_this.$menuRank.html( Game.getRank() );
 
 		_this.$menuButton.on('click', function() {
 			_this.toggleMenu();

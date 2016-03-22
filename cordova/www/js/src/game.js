@@ -15,6 +15,7 @@ Game = {
   // USER
 
   createUser: function(username, callback) {
+    var _this = this;
 
     window.localStorage.setItem('username', username);
     window.localStorage.setItem('points', 0);
@@ -22,8 +23,8 @@ Game = {
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
-    window.localStorage.setItem('rank', 0);
-    this.setupLoop();
+    window.localStorage.setItem('rank', _this.setRank());
+    _this.setupLoop();
 
     callback();
   },
@@ -151,11 +152,11 @@ Game = {
   // RANK
 
   setRank: function() {
-
+    return Utilities.Word.getAdj(true, true) + ' ' + Utilities.Word.getNoun(false, true);
   },
 
   getRank: function() {
-
+    return window.localStorage.getItem('rank');
   },
 
   // MINI GAME
