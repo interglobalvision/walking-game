@@ -6,6 +6,7 @@ Compass = {
   $compassContainer: $('#compass-container'),
   $mapGoal: $('#map-goal'),
   $mapSky: $('#map-sky'),
+  $mapSkyline: $('#map-skyline'),
   $mapGoalContainer: $('#map-goal-container'),
   watchId: {
     orientation: null,
@@ -249,7 +250,7 @@ Compass = {
 
     var themeNum = '1';
 
-    _this.$mapSky.addClass('sky-' + themeNum);
+    _this.$mapSkyline.addClass('sky-' + themeNum);
 
     _this.$mapFloor.addClass('floor-' + themeNum);
   },
