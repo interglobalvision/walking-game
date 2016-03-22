@@ -621,7 +621,7 @@ table {
 #map-menu-bubble {
   position: absolute;
   bottom: 18%;
-  left: 5%;
+  right: 5%;
   width: 90%;
   max-height: 80%;
   height: auto;
@@ -632,6 +632,13 @@ table {
   border-radius: 15px;
   padding: 4%;
   box-sizing: border-box;
+  display: none;
+}
+li.menu-item {
+  margin-bottom: 1em;
+}
+ul.menu-list {
+  margin-bottom: 1em;
 }
 @-webkit-keyframes bleep {
   0%, 100% {
