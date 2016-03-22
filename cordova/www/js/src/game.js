@@ -6,6 +6,10 @@ Game = {
     'reset',
     'photocolor',
   ],
+  worlds: [
+    'Desert',
+    'City',
+  ],
   gameAttempts: 2,
 
   // USER
@@ -17,6 +21,8 @@ Game = {
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
+    window.localStorage.setItem('world', 0);
+    window.localStorage.setItem('rank', 0);
     this.setupLoop();
 
     callback();
@@ -104,6 +110,7 @@ Game = {
   finishLoop: function() {
     var _this= this;
     var currentLoops = _this.getLoops();
+    var currentWorld = _this.getWorld();
 
     console.log('Finished loop');
 
@@ -111,9 +118,44 @@ Game = {
 
     _this.setLoops(currentLoops + 1);
 
+    _this.setWorld(currentWorld + 1);
+
     console.log('Loops so far', currentLoops);
 
     _this.setupLoop();
+  },
+
+  // WORLD
+
+  setWorld: function(world) {
+    var _this= this;
+
+    if ((world + 1) === _this.worlds.length) {
+      window.localStorage.setItem('world', 0);
+    } else {
+      window.localStorage.setItem('world', world);
+    }
+  },
+
+  getWorld: function() {
+    return window.localStorage.getItem('world');
+  },
+
+  getWorldName: function() {
+    var _this= this;
+    var worldNum = _this.getWorld();
+
+    return _this.worlds[worldNum];
+  },
+
+  // RANK
+
+  setRank: function() {
+
+  },
+
+  getRank: function() {
+
   },
 
   // MINI GAME

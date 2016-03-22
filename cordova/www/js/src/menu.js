@@ -1,7 +1,9 @@
 Menu = {
 	$menuBubble: $('#map-menu-bubble'),
 	$menuButton: $('#map-menu-button'),
-	menuState: 0, //0 is closed, 1 is open
+	$menuPoints: $('.menu-points'),
+	$menuRank: $('.menu-rank'),
+	$menuWorld: $('.menu-world'),
 
 	toggleMenu: function() {
 		//functionality to open and close menu
@@ -12,6 +14,9 @@ Menu = {
 
 	init: function() {
 		var _this = this;
+
+		_this.$menuPoints.html( Game.getPoints() );
+		_this.$menuWorld.html( Game.getWorldName() );
 
 		_this.$menuButton.on('click', function() {
 			_this.toggleMenu();
