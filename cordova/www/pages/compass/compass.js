@@ -13,6 +13,7 @@ Home = {
       Router.go('/scenes/wakeup/');
     } else { 
       Compass.init();
+      Menu.init();
     }
 
   },

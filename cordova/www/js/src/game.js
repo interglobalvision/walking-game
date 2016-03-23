@@ -6,6 +6,10 @@ Game = {
     'reset',
     'photocolor',
   ],
+  worlds: [
+    'Desert',
+    'City',
+  ],
   gameAttempts: 2,
 
   shareTitle: function(score) {
@@ -17,13 +21,16 @@ Game = {
   // USER
 
   createUser: function(username, callback) {
+    var _this = this;
 
     window.localStorage.setItem('username', username);
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
-    this.setupLoop();
+    window.localStorage.setItem('world', 0);
+    window.localStorage.setItem('rank', _this.setRank());
+    _this.setupLoop();
 
     callback();
   },
@@ -110,6 +117,7 @@ Game = {
   finishLoop: function() {
     var _this= this;
     var currentLoops = _this.getLoops();
+    var currentWorld = _this.getWorld();
 
     console.log('Finished loop');
 
@@ -117,9 +125,46 @@ Game = {
 
     _this.setLoops(currentLoops + 1);
 
+    _this.nextWorld();
+
     console.log('Loops so far', currentLoops);
 
     _this.setupLoop();
+  },
+
+  // WORLD
+
+  nextWorld: function() {
+    var _this= this;
+    var current = _this.getWorld();
+    var next = current + 1;
+
+    if ( next === _this.worlds.length ) {
+      window.localStorage.setItem('world', 0);
+    } else {
+      window.localStorage.setItem('world', next);
+    }
+  },
+
+  getWorld: function() {
+    return parseInt( window.localStorage.getItem('world') );
+  },
+
+  getWorldName: function() {
+    var _this= this;
+    var worldNum = _this.getWorld();
+
+    return _this.worlds[worldNum];
+  },
+
+  // RANK
+
+  setRank: function() {
+    return Utilities.Word.getAdj(true, true) + ' ' + Utilities.Word.getNoun(false, true);
+  },
+
+  getRank: function() {
+    return window.localStorage.getItem('rank');
   },
 
   // MINI GAME
