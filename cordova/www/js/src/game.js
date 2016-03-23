@@ -130,18 +130,18 @@ Game = {
 
   nextWorld: function() {
     var _this= this;
-    var currentWorld = parseInt( _this.getWorld() );
-    var nextWorld = currentWorld + 1;
+    var current = _this.getWorld();
+    var next = current + 1;
 
-    if ( ( nextWorld + 1 ) === _this.worlds.length ) {
+    if ( next === _this.worlds.length ) {
       window.localStorage.setItem('world', 0);
     } else {
-      window.localStorage.setItem('world', nextWorld);
+      window.localStorage.setItem('world', next);
     }
   },
 
   getWorld: function() {
-    return window.localStorage.getItem('world');
+    return parseInt( window.localStorage.getItem('world') );
   },
 
   getWorldName: function() {

@@ -105,7 +105,7 @@ setupLoop:function(){var _this=this;console.log("Setting up loop"),_this.setProg
 // perhaps a lot more needs to happen here. This is probably where the narrative should happen. But this could be a different route just for animation. Would then need to if/else in gameComplete when checking if last game in loop
 _this.setLoops(currentLoops+1),_this.nextWorld(),console.log("Loops so far",currentLoops),_this.setupLoop()},
 // WORLD
-nextWorld:function(){var _this=this,currentWorld=parseInt(_this.getWorld()),nextWorld=currentWorld+1;nextWorld+1===_this.worlds.length?window.localStorage.setItem("world",0):window.localStorage.setItem("world",nextWorld)},getWorld:function(){return window.localStorage.getItem("world")},getWorldName:function(){var _this=this,worldNum=_this.getWorld();return _this.worlds[worldNum]},
+nextWorld:function(){var _this=this,current=_this.getWorld(),next=current+1;next===_this.worlds.length?window.localStorage.setItem("world",0):window.localStorage.setItem("world",next)},getWorld:function(){return parseInt(window.localStorage.getItem("world"))},getWorldName:function(){var _this=this,worldNum=_this.getWorld();return _this.worlds[worldNum]},
 // RANK
 setRank:function(){return Utilities.Word.getAdj(!0,!0)+" "+Utilities.Word.getNoun(!1,!0)},getRank:function(){return window.localStorage.getItem("rank")},
 // MINI GAME
