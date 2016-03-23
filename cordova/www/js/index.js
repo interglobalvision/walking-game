@@ -97,7 +97,7 @@ _this.startGeoWatchers(),
 // Fade in compass
 _this.$compassContainer.fadeIn()}):
 // fallback for when not possible. Why? no idea but it might happen
-console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor"],worlds:["Desert","City"],gameAttempts:2,
+console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor"],worlds:["Desert","City"],gameAttempts:2,shareTitle:function(score){return"WOOAAAAHH! U HAVE AN AWESOME SCORe 0F "+score+" POIIINTSSS BRAAAHHH"},shareSubject:"Subject: I did this on Walking Game. The most tiring phone game ever made",shareUrl:"http://interglobal.vision/",
 // USER
 createUser:function(username,callback){var _this=this;window.localStorage.setItem("username",username),window.localStorage.setItem("points",0),window.localStorage.setItem("gems",0),window.localStorage.setItem("progress",0),window.localStorage.setItem("loops",0),window.localStorage.setItem("world",0),window.localStorage.setItem("rank",_this.setRank()),_this.setupLoop(),callback()},getUsername:function(){return window.localStorage.getItem("username")},
 // GAME STATE
@@ -113,7 +113,9 @@ gameFail:function(tryAgainCallback,failCallback){var _this=this;_this.gameAttemp
 // POINTS
 getPoints:function(){var points=window.localStorage.getItem("points");return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
 // GEMS
-getGems:function(){var gems=window.localStorage.getItem("gems");return(null===gems||isNaN(gems))&&(gems=0),gems},setGems:function(gems){window.localStorage.setItem("gems",gems)},setNewGems:function(gems){var _this=this,gems=parseInt(gems),currentGems=_this.getGems();_this.setGems(currentGems+gems)}};/*
+getGems:function(){var gems=window.localStorage.getItem("gems");return(null===gems||isNaN(gems))&&(gems=0),gems},setGems:function(gems){window.localStorage.setItem("gems",gems)},setNewGems:function(gems){var _this=this,gems=parseInt(gems),currentGems=_this.getGems();_this.setGems(currentGems+gems)},
+// SOCIAL SHARING
+shareWithOptions:function(){var _this=this,score=_this.getPoints();window.plugins.socialsharing.share(_this.shareTitle(score),_this.shareSubject,"http://puu.sh/mTFtM/242a0fa967.png",_this.shareUrl,function(){console.log("share ok")},function(errorMessage){console.log("share failed"),console.log(errorMessage),alert("something went wrong")})}};/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
