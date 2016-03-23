@@ -133,7 +133,7 @@ Game = {
     var currentWorld = _this.getWorld();
     var nextWorld = currentWorld + 1;
 
-    if (nextWorld === _this.worlds.length) {
+    if ( ( nextWorld + 1 ) === _this.worlds.length ) {
       window.localStorage.setItem('world', 0);
     } else {
       window.localStorage.setItem('world', nextWorld);
