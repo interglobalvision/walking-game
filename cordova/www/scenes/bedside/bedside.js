@@ -36,7 +36,7 @@ var Bedside = {
 
     _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() { //fade to black
 
-      Router.go('/scenes/farewell/'); //go to farewell scene
+      Router.go('/scenes/farewell/'); //go to farewell scene 
 
     });
   },
@@ -57,6 +57,8 @@ var Bedside = {
         } else {
 
           Game.createUser(e.target[0].value, function() { //create user
+
+            $('#user-setup').hide();
 
             _this.partTwo();
 
