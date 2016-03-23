@@ -1,6 +1,4 @@
 var Bedside = {
-  scene: new TimelineLite(),
-  scene2: new TimelineLite(),
   $blackout: $('#blackout'),
   $form: $('#user-setup-form'),
   dialog: [
@@ -13,19 +11,34 @@ var Bedside = {
   init: function() {
     var _this = this;
 
-    //Fade from black
-    _this.scene.set(_this.$blackout, {opacity: 0,});
+    _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() { //fade from black
 
-    _this.scene.call(function() {
-      Utilities.Dialog.read(_this.dialog, function() {
-        $('#user-setup').show();
-      });
+      _this.partOne();
+      
     });
 
-    _this.scene2.pause();
+  },
 
-    _this.bindings();
+  partOne: function() {
+    var _this = this;
 
+    Utilities.Dialog.read(_this.dialog, function() { //read dialog
+
+      $('#user-setup').show(); //show username form
+
+      _this.bindings(); //bind username form action
+
+    });
+  },
+
+  partTwo: function() {
+    var _this = this;
+
+    _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() { //fade to black
+
+      Router.go('/scenes/farewell/'); //go to farewell scene
+
+    });
   },
 
   bindings: function() {
@@ -43,14 +56,10 @@ var Bedside = {
 
         } else {
 
-          Game.createUser(e.target[0].value, function() {
-            _this.scene2.play();
-          });
+          Game.createUser(e.target[0].value, function() { //create user
 
-          _this.scene2.set(_this.$blackout, {opacity: 1,});
+            _this.partTwo();
 
-          _this.scene2.call(function(){
-            Router.go('/scenes/farewell/');
           });
 
         }

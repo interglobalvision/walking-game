@@ -123,8 +123,6 @@ table {
   background: #000;
   pointer-events: none;
   opacity: 1;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
 }
 #stage {
   position: fixed;
@@ -272,11 +270,18 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
+#livingroom-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 2s;
+  transition: -webkit-transform 2s;
+  transition: transform 2s;
+  transition: transform 2s, -webkit-transform 2s;
+}
 .livingroom {
   width: 200%;
   left: -100%;
-  -webkit-transition: left 2s;
-  transition: left 2s;
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
@@ -303,8 +308,8 @@ table {
   background-size: cover;
   background-position: center;
   position: fixed;
-  -webkit-transition: opacity 2s;
-  transition: opacity 2s;
+  -webkit-transition: all 2s;
+  transition: all 2s;
   pointer-events: none;
 }
 #livingroom-compass-bg {
@@ -328,10 +333,6 @@ table {
   transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
-}
-.livingroom-transition {
-  -webkit-transition: left 2s;
-  transition: left 2s;
 }
 @media screen and (max-width: 600px) {
   html {
