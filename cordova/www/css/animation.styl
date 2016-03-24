@@ -5,7 +5,7 @@
   top: 0
   left: 0
   z-index: 800
-  background: black
+  background: white
   pointer-events: none
   opacity: 1
 
@@ -156,17 +156,26 @@
   width: 200% 
   left: -100%
   
+#livingroom-wall
+  z-index: 1
+  background-image: url('../img/bedroom/wall.png')
+  
 #livingroom-room
   background-image: url('../img/livingroom/room.png')
   z-index: 2
 
 #livingroom-aunt
-  background-image: url('../img/livingroom/aunt.png')
   z-index: 3
-  animation: livingroom-aunt .5s infinite
+  width: 100%
+  background-image:  url('../img/livingroom/aunt3.png')
+  background-repeat: no-repeat
+  background-position: 0%
+  background-size: 200% 100%
+  animation: livingroom-aunt .5s steps(2, end) infinite
 
 #livingroom-cat
   background-image: url('../img/livingroom/cat.png')
+  top: -5%
   z-index: 4
   animation: livingroom-cat 3s infinite linear
 
@@ -181,16 +190,31 @@
   position: fixed
   transition: all 2s
   pointer-events: none
+  width: 100%
+  height: 100%
+
+.show-compass
+  opacity: 1
+  #livingroom-compass-obj
+    width: 200px
+    height: 200px
+    margin-left: -100px
+    margin-top: -100px 
 
 #livingroom-compass-bg
+  position: absolute
   background-image: url('../img/livingroom/compass-bg.jpg')
+  background-size: contain
   z-index: 6
   animation: hue 4s infinite linear
   width: 100%
   height: 100%
+  
 
 #livingroom-compass-obj
+  position: absolute
   background-image: url('../img/compass.png')
+  background-size: contain
   z-index: 7
   width: 0px
   height: 0px
@@ -241,18 +265,16 @@
     filter: sepia(1) hue-rotate(160deg) brightness(1.2);
 
 @keyframes livingroom-aunt
-  0%
-    background-image: url('../img/livingroom/aunt.png')
-  50%
-    background-image: url('../img/livingroom/aunt2.png')
-  100%
-    background-image: url('../img/livingroom/aunt.png')
+  from
+    background-position: 0%
+  to
+    background-position: 200%
 
 @keyframes livingroom-cat
   from
-    left: 150%
+    transform: translateX(100%)
   to
-    left: -150%
+    transform: translateX(-100%)
 
 @keyframes livingroom-spin-compass
   from

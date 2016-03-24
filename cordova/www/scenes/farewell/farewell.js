@@ -3,7 +3,6 @@ var Farewell = {
   $coach: $('#coach-container'),
   $livingroom: $('.livingroom'),
   $compass: $('.livingroom-compass'),
-  $compassObj: $('#livingroom-compass-obj'),
   dialog: [
     "It's time to hit the road...",
     "Along the way you must complete minigame challenges!",
@@ -49,18 +48,10 @@ var Farewell = {
 
     Utilities.Dialog.read(_this.dialog2, function() {
 
-      _this.$compass.animate({'opacity': 1,}); //show compass container
+      _this.$compass.addClass('show-compass'); //show compass container
 
-      _this.$compassObj.animate({ //show compass
-        'width': '200px',  
-        'height': '200px', 
-        'margin-left': '-100px', 
-        'margin-top': '-100px',
-      }, function() {
+      _this.partThree();
 
-        _this.partThree();
-
-      });
     }); 
   },
 
@@ -69,18 +60,10 @@ var Farewell = {
 
     Utilities.Dialog.read(_this.dialog3, function() {
       
-      _this.$compass.animate({'opacity': 0,}); //hide compass container
+      _this.$compass.removeClass('show-compass');
 
-      _this.$compassObj.animate({ //hide compass
-        'width': '0px', 
-        'height': '0px', 
-        'margin-left': '0px', 
-        'margin-top': '0px',
-      }, function() {
+      _this.partFour();
 
-        _this.partFour();
-
-      });
     });
   },
 
