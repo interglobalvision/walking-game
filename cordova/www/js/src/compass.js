@@ -243,7 +243,6 @@ Compass = {
 
   /*
    * Sets map theme graphics
-   *
    */
   mapTheme: function() {
     var _this = this;

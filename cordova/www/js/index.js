@@ -58,7 +58,6 @@ _this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"sca
 // If destiny is at West of origin
 _this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation,goalPos=angle/.7;_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
    * Sets map theme graphics
-   *
    */
 mapTheme:function(){var _this=this;_this.$mapStage.addClass("world-"+Game.getWorld())},/*
    * Bind navigator.gelocation and deviceorientation events
