@@ -8,6 +8,7 @@ Compass = {
   $mapGoal: $('#map-goal'),
   $mapSky: $('.map-sky'),
   $mapGoalContainer: $('#map-goal-container'),
+  $mapOrientation: $('.map-orientation'),
   watchId: {
     orientation: null,
     position: null,
@@ -166,8 +167,6 @@ Compass = {
       'transform': 'translateY(' + mapFloorPos + '%)',
     });
 
-    //mapGoalScale = 0.5; // testing
-
     _this.$mapGoal.css({
       '-webkit-transform': 'scale(' + mapGoalScale + ')',
       'transform': 'scale(' + mapGoalScale + ')',
@@ -198,9 +197,29 @@ Compass = {
     // to position the goal object with the arrow
     var goalPos = angle / 0.7;
 
+    if (goalPos > 75) {
+      goalPos = 75;
+    } else if (goalPos < -75) {
+      goalPos = -75;
+    }
+
+    var sceneMax = 12;
+    var scenePos = ( sceneMax / 360 ) * angle;
+
+    if (goalPos > sceneMax) {
+      goalPos = sceneMax;
+    } else if (goalPos < -(sceneMax)) {
+      goalPos = -(sceneMax);
+    }
+
     _this.$mapGoalContainer.css({
       '-webkit-transform': 'translateX(' + goalPos + '%)',
       'transform': 'translateX(' + goalPos + '%)',
+    });
+
+    _this.$mapOrientation.css({
+      '-webkit-transform': 'translateX(' + scenePos + '%)',
+      'transform': 'translateX(' + scenePos + '%)',
     });
 
     _this.$compass.css({
@@ -243,6 +262,7 @@ Compass = {
 
   /*
    * Sets map theme graphics
+   *
    */
   mapTheme: function() {
     var _this = this;
