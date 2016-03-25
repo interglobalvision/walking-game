@@ -124,7 +124,7 @@ table {
   pointer-events: none;
   opacity: 1;
   -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  transition: opacity 1s;
 }
 #stage {
   position: fixed;
@@ -223,7 +223,7 @@ table {
 .mirror-border {
   background: #f5f6f6;
   background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
-  background: -webkit-radial-gradient(center, ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: -webkit-radial-gradient(center ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   position: absolute;
   top: 0;
@@ -249,8 +249,7 @@ table {
   overflow: hidden;
   z-index: 700;
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-      transform: scale(-1, 1);
+  transform: scale(-1, 1);
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
 }
@@ -268,7 +267,6 @@ table {
   left: -100px;
   margin-left: 0;
   -webkit-transform: scale(0.7);
-      -ms-transform: scale(0.7);
           transform: scale(0.7);
   top: 20%;
   -webkit-filter: saturate(0);
@@ -278,7 +276,7 @@ table {
   width: 200%;
   left: -100%;
   -webkit-transition: left 2s;
-          transition: left 2s;
+  transition: left 2s;
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
@@ -306,7 +304,7 @@ table {
   background-position: center;
   position: fixed;
   -webkit-transition: opacity 2s;
-          transition: opacity 2s;
+  transition: opacity 2s;
   pointer-events: none;
 }
 #livingroom-compass-bg {
@@ -327,13 +325,13 @@ table {
   margin-top: 0px;
   margin-left: 0px;
   -webkit-transition: all 2s;
-          transition: all 2s;
+  transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
 }
 .livingroom-transition {
   -webkit-transition: left 2s;
-          transition: left 2s;
+  transition: left 2s;
 }
 @media screen and (max-width: 600px) {
   html {
@@ -512,7 +510,9 @@ table {
 #compass {
   width: 60%;
   -webkit-transition: -webkit-transform 300ms linear;
-          transition: transform 300ms linear;
+  transition: -webkit-transform 300ms linear;
+  transition: transform 300ms linear;
+  transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
 #radar {
   width: 10px;
@@ -694,13 +694,17 @@ h6 {
 }
 
 .math-background {
-  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 200%;
   background-color: #000;
   background-image: url("../img/games/math/star.png");
   background-repeat: repeat;
-  background-size: 10%;
-  -webkit-animation: star-background 15s infinite linear;
-          animation: star-background 15s infinite linear;
+  background-size: 5% 10%;
+  -webkit-animation: star-background 10s infinite linear;
+          animation: star-background 10s infinite linear;
 }
 #math-form:focus,
 .calculator-button:focus,
@@ -714,7 +718,7 @@ h6 {
   text-align: center;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
-          transition: opacity 0.5s;
+  transition: opacity 0.5s;
 }
 #calculator {
   background-color: #ffa500;
@@ -730,7 +734,6 @@ h6 {
   margin-left: -160px;
   position: absolute;
   -webkit-transform: skew(-3deg) scale(0.9);
-      -ms-transform: skew(-3deg) scale(0.9);
           transform: skew(-3deg) scale(0.9);
   box-shadow: #fadcfa 0 0 50px;
 }
@@ -784,24 +787,27 @@ h6 {
 @media screen and (max-width: 360px) {
   #calculator {
     -webkit-transform: skew(-3deg) scale(0.6);
-        -ms-transform: skew(-3deg) scale(0.6);
             transform: skew(-3deg) scale(0.6);
   }
 }
 @-webkit-keyframes star-background {
   from {
-    background-position: 0%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
   to {
-    background-position: 100%;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 @keyframes star-background {
   from {
-    background-position: 0%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
   }
   to {
-    background-position: 100%;
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
   }
 }
 

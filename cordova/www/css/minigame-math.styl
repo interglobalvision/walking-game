@@ -1,10 +1,14 @@
 .math-background
-  min-height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  height: 100%
+  width: 200%
   background-color: black
   background-image: url('../img/games/math/star.png')
   background-repeat: repeat
-  background-size: 10%
-  animation: star-background 15s infinite linear
+  background-size: 5% 10%
+  animation: star-background 10s infinite linear
 
 #math-form:focus, .calculator-button:focus, #calculator-readout:focus
   outline: 0 !important
@@ -80,9 +84,9 @@
 
 @keyframes star-background
   from
-    background-position: 0%
+    transform: translateX(-50%)
   to
-    background-position: 100%
+    transform: translateX(0%)
 
 @media screen and (max-width: 360px)
   #calculator
