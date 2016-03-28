@@ -14,6 +14,8 @@ var gulp = require('gulp'),
 
   jshint = require('gulp-jshint'),
   jscs = require('gulp-jscs'),
+  uglify = require('gulp-uglify'),
+  sourcemaps = require('gulp-sourcemaps'),
 
   stylus = require('gulp-stylus'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -30,7 +32,12 @@ function errorNotify(error){
 gulp.task('javascript', function() {
   console.log('js');
   gulp.src(['./www/js/src/**.js'])
+  .pipe(sourcemaps.init())
   .pipe(concat('index.js'))
+  .pipe(uglify({mangle: false, preserveComments: 'all'}))
+  .on('error', errorNotify)
+  .pipe(sourcemaps.write('/'))
+  .on('error', errorNotify)
   .pipe(gulp.dest('./www/js/'))
   .pipe(notify({ message: 'Javascript Concat task complete' }));
 });
@@ -40,7 +47,12 @@ gulp.task('javascript', function() {
  */
 gulp.task('javascript-library', function() {
   gulp.src(['./www/js/lib/**.js'])
+  .pipe(sourcemaps.init())
   .pipe(concat('lib.js'))
+  .pipe(uglify({mangle: false, preserveComments: 'all'}))
+  .on('error', errorNotify)
+  .pipe(sourcemaps.write('/'))
+  .on('error', errorNotify)
   .pipe(gulp.dest('./www/js/'))
   .pipe(notify({ message: 'Javascript Library task complete' }));
 });
