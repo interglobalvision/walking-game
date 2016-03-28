@@ -1066,20 +1066,137 @@ h6 {
   box-sizing: border-box;
 }
 
-#game-box {
-  height: 90vh;
-  background-color: #00f;
+.tippy-stage {
+  -webkit-perspective: 700px;
+          perspective: 700px;
+  background-color: #ff0;
+  background-image: url("../img/squiggle.png");
+  background-size: 15%;
+  background-position: center;
+  -webkit-animation: tippy-background-left 1s infinite linear;
+          animation: tippy-background-left 1s infinite linear;
+}
+#tippy-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/games/tippyswitch/tippy_coach.png");
+  background-size: 15%;
+  background-position: center;
+  -webkit-animation: tippy-background-right 2s infinite linear;
+          animation: tippy-background-right 2s infinite linear;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+#tippy-container {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  height: 100%;
+}
+#tippy-box {
+  height: 90%;
+  width: 80%;
+  top: 5%;
+  left: 10%;
+  background-image: url("../img/games/tippyswitch/tippy_field.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #ffa6e3;
   position: relative;
+  -webkit-transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
+  transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
+  box-shadow: #fff 0 0 15px;
 }
-#game-box.backwards {
-  background-color: #f00;
+#tippy-box.backwards {
+  background-color: #7569ff;
 }
-#game-ball {
+#tippy-field {
+  height: 100%;
+}
+.tippy-face {
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  margin-left: -40px;
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+}
+#tippy-sad {
+  bottom: -25px;
+  background-image: url("../img/games/tippyswitch/lose_coach.png");
+}
+#tippy-happy {
+  top: -35px;
+  background-image: url("../img/games/tippyswitch/win_coach.png");
+}
+#tippy-ball {
   background-color: #fff;
   width: 10px;
   height: 10px;
   border-radius: 10px;
+  margin-left: -5px;
   position: absolute;
   left: 50%;
   bottom: 15%;
+  -webkit-animation: tippy-ball 0.5s infinite ease-out;
+          animation: tippy-ball 0.5s infinite ease-out;
+}
+@-webkit-keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+}
+@keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+}
+@-webkit-keyframes tippy-background-left {
+  from {
+    background-position: 17.5%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+@keyframes tippy-background-left {
+  from {
+    background-position: 17.5%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+@-webkit-keyframes tippy-background-right {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 17.5%;
+  }
+}
+@keyframes tippy-background-right {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 17.5%;
+  }
 }
