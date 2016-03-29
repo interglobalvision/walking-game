@@ -162,8 +162,6 @@ Compass = {
       mapGoalScale = 0.01; 
     }
 
-    mapGoalScale = 0.5;
-
     _this.$mapFloor.css({
       '-webkit-transform': 'translateY(' + mapFloorPos + '%)',
       'transform': 'translateY(' + mapFloorPos + '%)',
