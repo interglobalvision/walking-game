@@ -52,9 +52,29 @@ var distanceToDestiny=_this.getDistanceInKm(_this.position,_this.destiny),distan
 0>mapFloorPos&&(mapFloorPos=0),
 // if mapGoalScale is less than 0.01, we set it to 0.01
 // goal object from disappearing entirely or going negative scale
-.01>mapGoalScale&&(mapGoalScale=.01),_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&_this.stop()},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
+.01>mapGoalScale&&(mapGoalScale=.01),mapGoalScale=.5,_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&_this.stop()},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
 // If destiny is at West of origin
-_this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation,goalPos=angle/.7;goalPos>75?goalPos=75:-75>goalPos&&(goalPos=-75);var sceneMax=12,scenePos=sceneMax/360*angle;goalPos>sceneMax?goalPos=sceneMax:-sceneMax>goalPos&&(goalPos=-sceneMax),_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$mapOrientation.css({"-webkit-transform":"translateX("+scenePos+"%)",transform:"translateX("+scenePos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
+_this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation;
+// All the following alculations are based on a
+// the angle from 0 - 360, so we add 360 if the angle
+// is negative.
+0>angle&&(angle+=360);
+// Here we save the angle in a new variable to use for
+// the goal positioning.
+var goalAngle=angle;
+// We make that new angle from -180 - 180, because CSS
+// translateX transform will need a pos or neg value
+// to move the element left and right of center.
+angle>180&&(goalAngle=angle-360);
+// When the compass is pointed 70deg (+ or -) from 0 (top),
+// the arrow points offscreen.  So we get a percent of 70
+// to position the goal object with the arrow
+var goalPos=goalAngle/.7;
+// If the flag is offscreen, we don't move it
+goalPos>75?goalPos=75:-75>goalPos&&(goalPos=-75);
+// for the scene we want a value from -25% - 25% to translate
+// left or right of center.  180 / 25 = 7.2
+var scenePos=angle/7.2;angle>180&&(scenePos=(angle-180)/7.2-25),_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$mapOrientation.css({"-webkit-transform":"translateX("+scenePos+"%)",transform:"translateX("+scenePos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
    * Sets map theme graphics
    *
    */
@@ -109,7 +129,7 @@ setRank:function(){return Utilities.Word.getAdj(!0,!0)+" "+Utilities.Word.getNou
 // MINI GAME
 gameFail:function(tryAgainCallback,failCallback){var _this=this;_this.gameAttempts>1?(_this.gameAttempts--,tryAgainCallback()):failCallback()},gameComplete:function(points){var _this=this,currentProgress=_this.getProgress();_this.setProgress(currentProgress+1),points&&_this.setNewPoints(points),currentProgress+1===_this.minigames.length&&_this.finishLoop(),Router.go("/")},
 // POINTS
-getPoints:function(){var points=window.localStorage.getItem("points");return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
+getPoints:function(){var points=parseInt(window.localStorage.getItem("points"));return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
 // GEMS
 getGems:function(){var gems=window.localStorage.getItem("gems");return(null===gems||isNaN(gems))&&(gems=0),gems},setGems:function(gems){window.localStorage.setItem("gems",gems)},setNewGems:function(gems){var _this=this,gems=parseInt(gems),currentGems=_this.getGems();_this.setGems(currentGems+gems)},
 // SOCIAL SHARING

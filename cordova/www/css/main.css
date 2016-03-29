@@ -512,8 +512,8 @@ table {
   background-color: #0078ff;
 }
 .map-orientation {
-  margin-left: -75%;
-  width: 150%;
+  margin-left: -200%;
+  width: 400%;
 }
 .map-clouds {
   position: fixed;
@@ -521,7 +521,7 @@ table {
   left: 50%;
   height: 50%;
   background-repeat: repeat-x;
-  background-size: 250% 100%;
+  background-size: 50% 100%;
   background-position-x: 0%;
   background-image: url("../img/map/clouds.gif");
   opacity: 0.9;
@@ -533,7 +533,7 @@ table {
   height: 50%;
   background-position: center bottom;
   background-repeat: repeat-x;
-  background-size: 85% 50%;
+  background-size: 25% 50%;
 }
 .map-floor-container {
   height: 50%;
@@ -557,7 +557,7 @@ table {
   bottom: 0;
   left: 50%;
   background-repeat: repeat-x;
-  background-size: 75% 100%;
+  background-size: 25% 100%;
 }
 .world-0 .map-skyline {
   background-image: url("../img/map/sky-0.png");
@@ -633,10 +633,6 @@ table {
   height: 12%;
   bottom: 2%;
   left: 5%;
-  -webkit-transition: -webkit-transform 300ms linear;
-  transition: -webkit-transform 300ms linear;
-  transition: transform 300ms linear;
-  transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
 #end-compass {
   position: absolute;

@@ -159,8 +159,10 @@ Compass = {
     // if mapGoalScale is less than 0.01, we set it to 0.01
     // goal object from disappearing entirely or going negative scale
     if (mapGoalScale < 0.01) {
-      mapGoalScale = 0.01;
+      mapGoalScale = 0.01; 
     }
+
+    mapGoalScale = 0.5;
 
     _this.$mapFloor.css({
       '-webkit-transform': 'translateY(' + mapFloorPos + '%)',
@@ -192,24 +194,42 @@ Compass = {
 
     var angle = compensationAngle + northOrientation;
 
+    // All the following alculations are based on a
+    // the angle from 0 - 360, so we add 360 if the angle
+    // is negative.
+    if (angle < 0) {
+      angle = angle + 360;
+    }
+    
+    // Here we save the angle in a new variable to use for
+    // the goal positioning.
+    var goalAngle = angle;
+
+    // We make that new angle from -180 - 180, because CSS
+    // translateX transform will need a pos or neg value
+    // to move the element left and right of center.
+    if (angle > 180) {
+      goalAngle = angle - 360;
+    }
+
     // When the compass is pointed 70deg (+ or -) from 0 (top),
     // the arrow points offscreen.  So we get a percent of 70
     // to position the goal object with the arrow
-    var goalPos = angle / 0.7;
+    var goalPos = goalAngle / 0.7;
 
+    // If the flag is offscreen, we don't move it
     if (goalPos > 75) {
       goalPos = 75;
     } else if (goalPos < -75) {
       goalPos = -75;
     }
 
-    var sceneMax = 12;
-    var scenePos = ( sceneMax / 360 ) * angle;
+    // for the scene we want a value from -25% - 25% to translate
+    // left or right of center.  180 / 25 = 7.2
+    var scenePos = angle / 7.2;
 
-    if (goalPos > sceneMax) {
-      goalPos = sceneMax;
-    } else if (goalPos < -(sceneMax)) {
-      goalPos = -(sceneMax);
+    if (angle > 180) {
+      scenePos = ( ( angle - 180 ) / 7.2 ) - 25;
     }
 
     _this.$mapGoalContainer.css({
