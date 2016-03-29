@@ -1,52 +1,51 @@
-.tap-stage 
-  background: pink
+.tap-background
+  position: absolute
+  width: 100%
+  height: 100% 
+  background-image: url("../img/games/supertap/tap-background.png")
+  background-size: 105% 105%
+  background-position: center
   
 .tap-frame
   position: absolute
   width: 90vw
   height: 45vh
-  padding: 3%
   box-sizing: border-box
   
 #tap-countdown-frame
   width: 80vw
   top: 2.5vh
   left: 10vw
-  border: 0
-  background-color: #FFFF7F 
-  background-image: url("../img/games/supertap/corn.png") 
-  background-size: 50% 50%
-  box-shadow: 0px 0px 50px 0px #FFFF7F
-  font-size: 120px
-  color: black
-  border: 2px solid black
-  animation: supertap-background 2s infinite linear
+  background-image: url("../img/games/supertap/tap-number-frame.png")
+  background-size: cover
+  font-size: 180px
+  color: white
+  background-size: 100% 100%
+  background-position: center
+  
+.tap-countdown
+  position: absolute
     
 #tap-button-frame
   bottom: 2.5vh
   left: 5vw
-  border-width: 6vw
-  border-image: linear-gradient(195deg, rgb(168,168,168) 0%, rgb(255,255,255) 26%, rgb(168,168,168) 48%, rgb(254,254,254) 70%, rgb(168,168,168) 84%, rgb(254,254,254) 100%)
-  background: linear-gradient(135deg, rgb(168,168,168) 0%, rgb(255,255,255) 26%, rgb(168,168,168) 48%, rgb(254,254,254) 70%, rgb(168,168,168) 84%, rgb(254,254,254) 100%)
 
 #tap-button
-  background: linear-gradient(45deg, rgb(210,255,82) 0%, rgb(145,232,66) 100%)
+  background-color: lightcoral
+  background-image: url("../img/games/supertap/tap-coach.png")
+  background-size: contain
+  background-position: center
+  background-repeat: no-repeat
   color: white
   position: relative
+  border: 5px grey solid
   border-radius: 50%
-  box-shadow: 0px 8px 0px 0px rgb(145,232,66)
-  transform: translateY(-6px)
-  width: 90%
-  height: 90%
-  margin-top: 5%
-  margin-left: 5%
-  
-#tap-button-message
-  pointer-events: none
-  text-transform: uppercase
-  
-@keyframes supertap-background
-  from
-    background-position: 0 0
-  to
-    background-position: 0 100%
+  box-shadow: 0px 20px 0px 0px darkgrey
+  transform: translateY(-10px)
+  width: 80%
+  height: 80%
+  margin-top: 10%
+  margin-left: 10%
+  &:active
+    box-shadow: 0px 15px 0px 0px darkgrey
+    transform: translateY(-5px)

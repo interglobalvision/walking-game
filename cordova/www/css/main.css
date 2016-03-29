@@ -124,7 +124,7 @@ table {
   pointer-events: none;
   opacity: 1;
   -webkit-transition: opacity 1s;
-          transition: opacity 1s;
+  transition: opacity 1s;
 }
 #stage {
   position: fixed;
@@ -223,7 +223,7 @@ table {
 .mirror-border {
   background: #f5f6f6;
   background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
-  background: -webkit-radial-gradient(center, ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: -webkit-radial-gradient(center ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   position: absolute;
   top: 0;
@@ -249,8 +249,7 @@ table {
   overflow: hidden;
   z-index: 700;
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-      transform: scale(-1, 1);
+  transform: scale(-1, 1);
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
 }
@@ -268,7 +267,6 @@ table {
   left: -100px;
   margin-left: 0;
   -webkit-transform: scale(0.7);
-      -ms-transform: scale(0.7);
           transform: scale(0.7);
   top: 20%;
   -webkit-filter: saturate(0);
@@ -278,7 +276,7 @@ table {
   width: 200%;
   left: -100%;
   -webkit-transition: left 2s;
-          transition: left 2s;
+  transition: left 2s;
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
@@ -306,7 +304,7 @@ table {
   background-position: center;
   position: fixed;
   -webkit-transition: opacity 2s;
-          transition: opacity 2s;
+  transition: opacity 2s;
   pointer-events: none;
 }
 #livingroom-compass-bg {
@@ -327,13 +325,13 @@ table {
   margin-top: 0px;
   margin-left: 0px;
   -webkit-transition: all 2s;
-          transition: all 2s;
+  transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
 }
 .livingroom-transition {
   -webkit-transition: left 2s;
-          transition: left 2s;
+  transition: left 2s;
 }
 @media screen and (max-width: 600px) {
   html {
@@ -512,7 +510,9 @@ table {
 #compass {
   width: 60%;
   -webkit-transition: -webkit-transform 300ms linear;
-          transition: transform 300ms linear;
+  transition: -webkit-transform 300ms linear;
+  transition: transform 300ms linear;
+  transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
 #radar {
   width: 10px;
@@ -704,7 +704,6 @@ h6 {
   width: 100%;
   height: 100%;
   -webkit-transform-origin: center;
-      -ms-transform-origin: center;
           transform-origin: center;
   background-color: #fff;
   background-image: url("../img/games/photocolor/grid.png");
@@ -721,7 +720,6 @@ h6 {
   width: 100%;
   height: 200%;
   -webkit-transform-origin: center;
-      -ms-transform-origin: center;
           transform-origin: center;
   background-image: url("../img/games/photocolor/coach_bw.png");
   background-position: center;
@@ -732,7 +730,6 @@ h6 {
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
-      -ms-transform: rotate(-25deg);
           transform: rotate(-25deg);
   width: 200px;
   height: 57.191px;
@@ -770,7 +767,7 @@ h6 {
   width: 50%;
   left: 25%;
   -webkit-transition: top 1s;
-          transition: top 1s;
+  transition: top 1s;
 }
 #take-photo.show-camera {
   top: 60%;
@@ -892,75 +889,60 @@ h6 {
   }
 }
 
-.tap-stage {
-  background: #ffc0cb;
+.tap-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/games/supertap/tap-background.png");
+  background-size: 105% 105%;
+  background-position: center;
 }
 .tap-frame {
   position: absolute;
   width: 90vw;
   height: 45vh;
-  padding: 3%;
   box-sizing: border-box;
 }
 #tap-countdown-frame {
   width: 80vw;
   top: 2.5vh;
   left: 10vw;
-  border: 0;
-  background-color: #ffff7f;
-  background-image: url("../img/games/supertap/corn.png");
-  background-size: 50% 50%;
-  box-shadow: 0px 0px 50px 0px #ffff7f;
-  font-size: 120px;
-  color: #000;
-  border: 2px solid #000;
-  -webkit-animation: supertap-background 2s infinite linear;
-          animation: supertap-background 2s infinite linear;
+  background-image: url("../img/games/supertap/tap-number-frame.png");
+  background-size: cover;
+  font-size: 180px;
+  color: #fff;
+  background-size: 100% 100%;
+  background-position: center;
+}
+.tap-countdown {
+  position: absolute;
 }
 #tap-button-frame {
   bottom: 2.5vh;
   left: 5vw;
-  border-width: 6vw;
-  -webkit-border-image: -webkit-linear-gradient(255deg, #a8a8a8 0%, #fff 26%, #a8a8a8 48%, #fefefe 70%, #a8a8a8 84%, #fefefe 100%);
-       -o-border-image: linear-gradient(195deg, #a8a8a8 0%, #fff 26%, #a8a8a8 48%, #fefefe 70%, #a8a8a8 84%, #fefefe 100%);
-          border-image: linear-gradient(195deg, #a8a8a8 0%, #fff 26%, #a8a8a8 48%, #fefefe 70%, #a8a8a8 84%, #fefefe 100%);
-  background: -webkit-linear-gradient(315deg, #a8a8a8 0%, #fff 26%, #a8a8a8 48%, #fefefe 70%, #a8a8a8 84%, #fefefe 100%);
-  background: linear-gradient(135deg, #a8a8a8 0%, #fff 26%, #a8a8a8 48%, #fefefe 70%, #a8a8a8 84%, #fefefe 100%);
 }
 #tap-button {
-  background: -webkit-linear-gradient(45deg, #d2ff52 0%, #91e842 100%);
-  background: linear-gradient(45deg, #d2ff52 0%, #91e842 100%);
+  background-color: #f08080;
+  background-image: url("../img/games/supertap/tap-coach.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   color: #fff;
   position: relative;
+  border: 5px #808080 solid;
   border-radius: 50%;
-  box-shadow: 0px 8px 0px 0px #91e842;
-  -webkit-transform: translateY(-6px);
-      -ms-transform: translateY(-6px);
-          transform: translateY(-6px);
-  width: 90%;
-  height: 90%;
-  margin-top: 5%;
-  margin-left: 5%;
+  box-shadow: 0px 20px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
 }
-#tap-button-message {
-  pointer-events: none;
-  text-transform: uppercase;
-}
-@-webkit-keyframes supertap-background {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 0 100%;
-  }
-}
-@keyframes supertap-background {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 0 100%;
-  }
+#tap-button:active {
+  box-shadow: 0px 15px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
 }
 
 #game-box {

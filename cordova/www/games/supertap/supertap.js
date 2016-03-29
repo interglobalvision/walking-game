@@ -3,14 +3,14 @@ var Supertap = {
   lastTap: undefined,
   startTime: undefined,
   endTime: undefined,
-  gameMiniseconds: 10000,
+  gameMiniseconds: 9000,
   thresholdMiniseconds: 400,
   timeout: undefined,
   checker: undefined,
   countdown: undefined,
   $tap: $('#tap-button'),
   $message: $('#tap-button-message'),
-  $countdown: $('#tap-countdown'),
+  $countdown: $('.tap-countdown-number'),
   winDialog: [
     "Noice one bruvva",
   ],
@@ -65,7 +65,7 @@ var Supertap = {
 
   },
 
-  startChecker: function() {
+  startChecker: function() { 
     var _this = this;
 
     _this.checker = window.setInterval(function() {
