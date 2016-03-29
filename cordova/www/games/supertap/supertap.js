@@ -11,8 +11,12 @@ var Supertap = {
   $tap: $('#tap-button'),
   $message: $('#tap-button-message'),
   $countdown: $('.tap-countdown-number'),
+  introDialog: [
+    "Alright " + Utilities.Word.getNoun() + ", get your finger warmed up...it's time to play SUPERTAP!",
+    "Tap that button with MY FACE on it to start the countdown! And keep tapping FAST FAST until the countdown ends!",
+  ],
   winDialog: [
-    "Noice one bruvva",
+    "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
   ],
   tryAgainDialog: [
     "What a shame. try again eh!",
@@ -25,6 +29,8 @@ var Supertap = {
     var _this = this;
 
     $('#blackout').css('opacity', 0);
+
+    Utilities.Dialog.read(_this.introDialog);
 
     _this.$tap.on({
       'click': function() {
