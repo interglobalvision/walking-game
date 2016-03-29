@@ -19,10 +19,11 @@ var Supertap = {
     "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
   ],
   tryAgainDialog: [
-    "What a shame. try again eh!",
+    "UFFFF what a shame. Try again eh, " + Utilities.Word.getNoun() + "!",
   ],
-  looseDialog: [
-    "U really suck at this simple boring task",
+  loseDialog: [
+    "U really suck at this simple boring task...well guess WHAT?",
+    "NOW WE GOTTA WALK AGAIN!!",
   ],
 
   init: function() {
@@ -134,7 +135,7 @@ var Supertap = {
 
     }, function() {
 
-      Utilities.Dialog.read(_this.looseDialog, function() {
+      Utilities.Dialog.read(_this.loseDialog, function() {
 
         Router.go('/');
 
