@@ -6,31 +6,31 @@ $map-transition = 300ms linear
   left: 0
   width: 100%
   height: 50%
-  background-color: rgb(0,120,255);
-  transition: background-color $map-transition
+  background-color: rgb(0,120,255)
+  
+.map-orientation
+  margin-left: -200%
+  width: 400%
   
 .map-clouds
   position: fixed
   top: 0
-  left: 0
-  width: 100%
+  left: 50%
   height: 50%
-  background-repeat: repeat-x;
-  background-size: 400% 100%;
-  background-position-x: 0%;
-  background-image: url('../img/map/clouds.gif');
+  background-repeat: repeat-x
+  background-size: 50% 100%
+  background-position-x: 0%
+  background-image: url('../img/map/clouds.gif')
   opacity: 0.9
-  animation: clouds 60s infinite linear
   
 .map-skyline
   position: fixed
   top: 0
-  left: 0
-  width: 100%
+  left: 50%
   height: 50%
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-position: center bottom
+  background-repeat: repeat-x
+  background-size: 25% 50%
 
 .map-floor-container
   height: 50%
@@ -51,10 +51,10 @@ $map-transition = 300ms linear
 .map-object
   position: absolute
   height: 100%
-  width: 100%
   bottom: 0
-  left: 0
-  background-size: contain;
+  left: 50%
+  background-repeat: repeat-x
+  background-size: 25% 100%
 
 //DESERT
 .world-0
@@ -90,7 +90,7 @@ $map-transition = 300ms linear
   height: 50%
   transform-origin: center bottom
   transform: translateX(0%)
-  transition: transform $map-transition
+  //transition: transform $map-transition
 
 #map-goal
   position: absolute
@@ -121,7 +121,7 @@ $map-transition = 300ms linear
   height: 12%
   bottom: 2%
   left: 5%
-  transition: transform $map-transition
+  //transition: transform $map-transition
 
 #end-compass
   position: absolute
@@ -169,4 +169,3 @@ ul.menu-list
     background-position-x: 0%
   100%
     background-position-x: 400%
-
