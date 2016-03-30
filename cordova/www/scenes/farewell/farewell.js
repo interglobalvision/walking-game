@@ -74,7 +74,7 @@ var Farewell = {
                     
       _this.$blackout.animate({'opacity': 1,}, function() {
 
-        Router.go('/pages/compass/');
+        Router.go('/scenes/letsgo/');
 
       });
     });
