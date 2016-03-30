@@ -3,27 +3,35 @@ var Supertap = {
   lastTap: undefined,
   startTime: undefined,
   endTime: undefined,
-  gameMiniseconds: 10000,
+  gameMiniseconds: 9000,
   thresholdMiniseconds: 400,
   timeout: undefined,
   checker: undefined,
   countdown: undefined,
   $tap: $('#tap-button'),
-  $countdown: $('#tap-countdown'),
+  $message: $('#tap-button-message'),
+  $countdown: $('.tap-countdown-number'),
+  introDialog: [
+    "Alright " + Utilities.Word.getNoun() + ", get your finger warmed up...it's time to play SUPERTAP!",
+    "Tap that button with MY FACE on it to start the countdown! And keep tapping FAST FAST until the countdown ends!",
+  ],
   winDialog: [
-    "Noice one bruvva",
+    "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
   ],
   tryAgainDialog: [
-    "What a shame. try again eh!",
+    "UFFFF what a shame. Try again eh, " + Utilities.Word.getNoun() + "!",
   ],
-  looseDialog: [
-    "U really suck at this simple boring task",
+  loseDialog: [
+    "U really suck at this simple boring task...well guess WHAT?",
+    "NOW WE GOTTA WALK AGAIN!!",
   ],
 
   init: function() {
     var _this = this;
 
     $('#blackout').css('opacity', 0);
+
+    Utilities.Dialog.read(_this.introDialog);
 
     _this.$tap.on({
       'click': function() {
@@ -32,7 +40,7 @@ var Supertap = {
           _this.startTimeout();
           _this.startChecker();
           _this.startCountdown();
-          _this.$tap.html('Tap me MORE');
+          _this.$message.html('Tap me MORE');
         }
 
         _this.tap();
@@ -64,7 +72,7 @@ var Supertap = {
 
   },
 
-  startChecker: function() {
+  startChecker: function() { 
     var _this = this;
 
     _this.checker = window.setInterval(function() {
@@ -121,13 +129,13 @@ var Supertap = {
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
         _this.tapCount = 0;
-        _this.$tap.html('Start Tapping');
+        _this.$message.html('Start Tapping');
 
       });
 
     }, function() {
 
-      Utilities.Dialog.read(_this.looseDialog, function() {
+      Utilities.Dialog.read(_this.loseDialog, function() {
 
         Router.go('/');
 
