@@ -23,7 +23,7 @@ Compass = {
   position: {
     lat: null,
     lng: null,
-  },
+  }, 
   /*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
