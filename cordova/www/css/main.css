@@ -363,12 +363,34 @@ table {
   background: #000;
   width: 100%;
   height: 100%;
-  -webkit-animation: letsgo-background 0.7s infinite linear;
-          animation: letsgo-background 0.7s infinite linear;
+  -webkit-animation: letsgo-background 2s infinite linear;
+          animation: letsgo-background 2s infinite linear;
+}
+.coach-shiny {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  background-image: url("../img/letsgo/coach-shiny.png");
+  background-size: 400% 100%;
+  background-position: 0% center;
+  -webkit-animation: coach-shiny 1s steps(4, end) infinite;
+          animation: coach-shiny 1s steps(4, end) infinite;
 }
 @media screen and (max-width: 600px) {
   html {
     width: 100%;
+  }
+}
+@-webkit-keyframes coach-shiny {
+  100% {
+    background-position: 400% center;
+  }
+}
+@keyframes coach-shiny {
+  100% {
+    background-position: 400% center;
   }
 }
 @-webkit-keyframes letsgo-background {
