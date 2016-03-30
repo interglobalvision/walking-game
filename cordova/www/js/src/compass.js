@@ -1,4 +1,5 @@
 Compass = {
+  $blackout: $('#blackout'),
   $radar: $('#radar'),
   $angle: $('#angle'),
   $mapStage: $('.map-stage'),
@@ -386,8 +387,8 @@ Compass = {
         // Start orientation and position watchers
         _this.startGeoWatchers();
 
-        // Fade in compass
-        _this.$compassContainer.fadeIn();
+        // Fade in map
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
       });
 

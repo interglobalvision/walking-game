@@ -221,9 +221,24 @@
   top: 50%
   left: 50%
   margin-top: 0px
-  margin-left: 0px
+  margin-left: 0px 
   transition: all 2s
   animation: livingroom-spin-compass 2s infinite linear
+  
+.letsgo-background
+  position: absolute
+  background: black 
+  width: 100%
+  height: 100%
+  animation: letsgo-background 0.7s infinite linear
+  
+@keyframes letsgo-background
+  0%
+    background: black
+  50% 
+    background: white
+  100%
+    background: black
 
 @keyframes bear-clock
   100%

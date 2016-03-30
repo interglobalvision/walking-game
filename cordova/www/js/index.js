@@ -1,4 +1,4 @@
-Compass={$radar:$("#radar"),$angle:$("#angle"),$mapStage:$(".map-stage"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$(".map-sky"),$mapGoalContainer:$("#map-goal-container"),$mapOrientation:$(".map-orientation"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
+Compass={$blackout:$("#blackout"),$radar:$("#radar"),$angle:$("#angle"),$mapStage:$(".map-stage"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$(".map-sky"),$mapGoalContainer:$("#map-goal-container"),$mapOrientation:$(".map-orientation"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
@@ -112,8 +112,8 @@ _this.skyColor(),
 _this.mapTheme(),
 // Start orientation and position watchers
 _this.startGeoWatchers(),
-// Fade in compass
-_this.$compassContainer.fadeIn()}):
+// Fade in map
+_this.$blackout.animate({opacity:0},1e3,"linear")}):
 // fallback for when not possible. Why? no idea but it might happen
 console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor"],worlds:["Desert","City"],gameAttempts:2,shareTitle:function(score){return"WOOAAAAHH! U HAVE AN AWESOME SCORe 0F "+score+" POIIINTSSS BRAAAHHH"},shareSubject:"Subject: I did this on Walking Game. The most tiring phone game ever made",shareUrl:"http://interglobal.vision/",
 // USER
