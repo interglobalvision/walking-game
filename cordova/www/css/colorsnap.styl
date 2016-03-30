@@ -77,11 +77,14 @@
   margin-left: -150px
   opacity: 0
   &.show-splat
-    animation: show-splat 500ms 1 ease-in
+    animation: show-splat 1000ms 1 ease-in
     animation-fill-mode: forwards
 
 @keyframes show-splat
   0%
+    opacity: 0
+    transform: scale(0.3)
+  70%
     opacity: 0
     transform: scale(0.3)
   100%

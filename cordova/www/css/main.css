@@ -652,8 +652,8 @@ table {
   opacity: 0;
 }
 #splat.show-splat {
-  -webkit-animation: show-splat 500ms 1 ease-in;
-          animation: show-splat 500ms 1 ease-in;
+  -webkit-animation: show-splat 1000ms 1 ease-in;
+          animation: show-splat 1000ms 1 ease-in;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
@@ -774,6 +774,11 @@ table {
     -webkit-transform: scale(0.3);
             transform: scale(0.3);
   }
+  70% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+  }
   100% {
     opacity: 1;
     -webkit-transform: scale(1);
@@ -782,6 +787,11 @@ table {
 }
 @keyframes show-splat {
   0% {
+    opacity: 0;
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+  }
+  70% {
     opacity: 0;
     -webkit-transform: scale(0.3);
             transform: scale(0.3);
