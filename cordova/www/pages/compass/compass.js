@@ -2,11 +2,6 @@ Home = {
   init: function() {
     var _this = this;
 
-    $('#end-compass').click( function(event) {
-      event.preventDefault();
-      Compass.stop();
-    });
-
     $('#menu-share').click(function() {
       Game.shareWithOptions();
     });

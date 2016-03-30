@@ -709,12 +709,6 @@ table {
   bottom: 2%;
   left: 5%;
 }
-#end-compass {
-  position: absolute;
-  z-index: 999;
-  top: 10px;
-  right: 10px;
-}
 #map-menu {
   height: 100%;
   width: 100%;
@@ -746,6 +740,9 @@ table {
 }
 li.menu-item {
   margin-bottom: 1em;
+}
+li.menu-item a {
+  text-decoration: underline;
 }
 ul.menu-list {
   margin-bottom: 1em;
