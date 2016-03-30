@@ -120,11 +120,9 @@ table {
   top: 0;
   left: 0;
   z-index: 800;
-  background: #000;
+  background: #fff;
   pointer-events: none;
   opacity: 1;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
 }
 #stage {
   position: fixed;
@@ -272,24 +270,40 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
+#livingroom-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 500ms;
+  transition: -webkit-transform 500ms;
+  transition: transform 500ms;
+  transition: transform 500ms, -webkit-transform 500ms;
+}
 .livingroom {
   width: 200%;
   left: -100%;
-  -webkit-transition: left 2s;
-  transition: left 2s;
+}
+#livingroom-wall {
+  z-index: 1;
+  background-image: url("../img/bedroom/wall.png");
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
   z-index: 2;
 }
 #livingroom-aunt {
-  background-image: url("../img/livingroom/aunt.png");
   z-index: 3;
-  -webkit-animation: livingroom-aunt 0.5s infinite;
-          animation: livingroom-aunt 0.5s infinite;
+  width: 100%;
+  background-image: url("../img/livingroom/aunt3.png");
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: 200% 100%;
+  -webkit-animation: livingroom-aunt 0.5s steps(2, end) infinite;
+          animation: livingroom-aunt 0.5s steps(2, end) infinite;
 }
 #livingroom-cat {
   background-image: url("../img/livingroom/cat.png");
+  top: -5%;
   z-index: 4;
   -webkit-animation: livingroom-cat 3s infinite linear;
           animation: livingroom-cat 3s infinite linear;
@@ -303,12 +317,25 @@ table {
   background-size: cover;
   background-position: center;
   position: fixed;
-  -webkit-transition: opacity 2s;
-  transition: opacity 2s;
+  -webkit-transition: all 2s;
+  transition: all 2s;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.show-compass {
+  opacity: 1;
+}
+.show-compass #livingroom-compass-obj {
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: -100px;
 }
 #livingroom-compass-bg {
+  position: absolute;
   background-image: url("../img/livingroom/compass-bg.jpg");
+  background-size: contain;
   z-index: 6;
   -webkit-animation: hue 4s infinite linear;
           animation: hue 4s infinite linear;
@@ -316,7 +343,9 @@ table {
   height: 100%;
 }
 #livingroom-compass-obj {
+  position: absolute;
   background-image: url("../img/compass.png");
+  background-size: contain;
   z-index: 7;
   width: 0px;
   height: 0px;
@@ -328,10 +357,6 @@ table {
   transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
-}
-.livingroom-transition {
-  -webkit-transition: left 2s;
-  transition: left 2s;
 }
 @media screen and (max-width: 600px) {
   html {
@@ -445,41 +470,39 @@ table {
   }
 }
 @-webkit-keyframes livingroom-aunt {
-  0% {
-    background-image: url("../img/livingroom/aunt.png");
+  from {
+    background-position: 0%;
   }
-  50% {
-    background-image: url("../img/livingroom/aunt2.png");
-  }
-  100% {
-    background-image: url("../img/livingroom/aunt.png");
+  to {
+    background-position: 200%;
   }
 }
 @keyframes livingroom-aunt {
-  0% {
-    background-image: url("../img/livingroom/aunt.png");
+  from {
+    background-position: 0%;
   }
-  50% {
-    background-image: url("../img/livingroom/aunt2.png");
-  }
-  100% {
-    background-image: url("../img/livingroom/aunt.png");
+  to {
+    background-position: 200%;
   }
 }
 @-webkit-keyframes livingroom-cat {
   from {
-    left: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   to {
-    left: -100%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
 }
 @keyframes livingroom-cat {
   from {
-    left: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   to {
-    left: -100%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
 }
 @-webkit-keyframes livingroom-spin-compass {
@@ -503,42 +526,192 @@ table {
   }
 }
 
-#compass-container {
-  text-align: center;
-  display: none;
+.map-sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-color: #0078ff;
 }
-#compass {
-  width: 60%;
+.map-orientation {
+  margin-left: -200%;
+  width: 400%;
+}
+.map-clouds {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 50%;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  background-position-x: 0%;
+  background-image: url("../img/map/clouds.gif");
+  opacity: 0.9;
+}
+.map-skyline {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: 50%;
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  background-size: 25% 50%;
+}
+.map-floor-container {
+  height: 50%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+.map-floor {
+  position: absolute;
+  height: 400%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: #000;
+}
+.map-object {
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  left: 50%;
+  background-repeat: repeat-x;
+  background-size: 25% 100%;
+}
+.world-0 .map-skyline {
+  background-image: url("../img/map/sky-0.png");
+}
+.world-0 .map-floor {
+  background: -webkit-linear-gradient(top, #ff7bac 0%, #2e3192 100%);
+  background: linear-gradient(to bottom, #ff7bac 0%, #2e3192 100%);
+}
+.world-0 .map-object {
+  background-image: url("../img/map/object-0.png");
+}
+.world-1 .map-skyline {
+  background-image: url("../img/map/sky-1.png");
+}
+.world-1 .map-floor {
+  background: -webkit-linear-gradient(top, #fefefe 0%, #909090 100%);
+  background: linear-gradient(to bottom, #fefefe 0%, #909090 100%);
+}
+.world-1 .map-object {
+  background-image: url("../img/map/object-1.png");
+}
+.world-2 .map-skyline {
+  background-image: url("../img/map/sky-2.png");
+}
+.world-2 .map-floor {
+  background: -webkit-linear-gradient(top, #29abe2 0%, #00686a 100%);
+  background: linear-gradient(to bottom, #29abe2 0%, #00686a 100%);
+}
+.world-2 .map-object {
+  background-image: url("../img/map/object-2.png");
+}
+#map-goal-container {
+  position: fixed;
+  bottom: 50%;
+  width: 100%;
+  height: 50%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+#map-goal {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-origin: center bottom;
+          transform-origin: center bottom;
+  -webkit-transform: scale(0.01);
+          transform: scale(0.01);
   -webkit-transition: -webkit-transform 300ms linear;
   transition: -webkit-transform 300ms linear;
   transition: transform 300ms linear;
   transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
-#radar {
-  width: 10px;
-  height: 10px;
-  background: #f00;
-  -webkit-animation-name: bleep;
-          animation-name: bleep;
-  -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
-  -webkit-animation-duration: 0ms;
-          animation-duration: 0ms;
+.map-flag-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 25%;
+  height: 75%;
+  border-left: 5px solid #f00;
 }
-@-webkit-keyframes bleep {
-  0%, 100% {
-    opacity: 1;
+.map-flag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+}
+#compass {
+  position: absolute;
+  height: 12%;
+  bottom: 2%;
+  left: 5%;
+}
+#end-compass {
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  right: 10px;
+}
+#map-menu {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.map-menu-coach {
+  position: absolute;
+  height: 12%;
+  bottom: 2%;
+  right: 5%;
+}
+#map-menu-bubble {
+  position: absolute;
+  bottom: 18%;
+  right: 5%;
+  width: 90%;
+  max-height: 80%;
+  height: auto;
+  background: #fff;
+  box-sizing: border-box;
+  border: 5px solid #00f;
+  color: #00f;
+  border-radius: 15px;
+  padding: 4%;
+  box-sizing: border-box;
+  display: none;
+}
+li.menu-item {
+  margin-bottom: 1em;
+}
+ul.menu-list {
+  margin-bottom: 1em;
+}
+@-webkit-keyframes clouds {
+  0% {
+    background-position-x: 0%;
   }
-  50% {
-    opacity: 0.1;
+  100% {
+    background-position-x: 400%;
   }
 }
-@keyframes bleep {
-  0%, 100% {
-    opacity: 1;
+@keyframes clouds {
+  0% {
+    background-position-x: 0%;
   }
-  50% {
-    opacity: 0.1;
+  100% {
+    background-position-x: 400%;
   }
 }
 
@@ -608,7 +781,7 @@ html {
   width: 96%;
   padding: 4%;
   box-sizing: border-box;
-  border: 10px solid #00f;
+  border: 5px solid #00f;
   color: #00f;
   z-index: 900;
   display: none;
@@ -771,6 +944,14 @@ h6 {
 }
 #take-photo.show-camera {
   top: 60%;
+}
+#output-img {
+  width: 480px;
+  height: 640px;
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 @-webkit-keyframes grid-bg {
   0% {
@@ -946,20 +1127,137 @@ h6 {
           transform: translateY(-5px);
 }
 
-#game-box {
-  height: 90vh;
-  background-color: #00f;
+.tippy-stage {
+  -webkit-perspective: 700px;
+          perspective: 700px;
+  background-color: #ff0;
+  background-image: url("../img/squiggle.png");
+  background-size: 15%;
+  background-position: center;
+  -webkit-animation: tippy-background-left 1s infinite linear;
+          animation: tippy-background-left 1s infinite linear;
+}
+#tippy-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/games/tippyswitch/tippy_coach.png");
+  background-size: 15%;
+  background-position: center;
+  -webkit-animation: tippy-background-right 2s infinite linear;
+          animation: tippy-background-right 2s infinite linear;
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+#tippy-container {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  height: 100%;
+}
+#tippy-box {
+  height: 90%;
+  width: 80%;
+  top: 5%;
+  left: 10%;
+  background-image: url("../img/games/tippyswitch/tippy_field.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #ffa6e3;
   position: relative;
+  -webkit-transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
+  transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
+  box-shadow: #fff 0 0 15px;
 }
-#game-box.backwards {
-  background-color: #f00;
+#tippy-box.backwards {
+  background-color: #7569ff;
 }
-#game-ball {
+#tippy-field {
+  height: 100%;
+}
+.tippy-face {
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  margin-left: -40px;
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-position: center;
+}
+#tippy-sad {
+  bottom: -25px;
+  background-image: url("../img/games/tippyswitch/lose_coach.png");
+}
+#tippy-happy {
+  top: -35px;
+  background-image: url("../img/games/tippyswitch/win_coach.png");
+}
+#tippy-ball {
   background-color: #fff;
   width: 10px;
   height: 10px;
   border-radius: 10px;
+  margin-left: -5px;
   position: absolute;
   left: 50%;
   bottom: 15%;
+  -webkit-animation: tippy-ball 0.5s infinite ease-out;
+          animation: tippy-ball 0.5s infinite ease-out;
+}
+@-webkit-keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+}
+@keyframes tippy-ball {
+  0% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+  20% {
+    box-shadow: #fff 0 0 0px 0px;
+  }
+  100% {
+    box-shadow: #fff 0 0 10px 5px;
+  }
+}
+@-webkit-keyframes tippy-background-left {
+  from {
+    background-position: 17.5%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+@keyframes tippy-background-left {
+  from {
+    background-position: 17.5%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
+@-webkit-keyframes tippy-background-right {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 17.5%;
+  }
+}
+@keyframes tippy-background-right {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 17.5%;
+  }
 }

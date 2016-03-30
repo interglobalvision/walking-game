@@ -147,6 +147,6 @@ var Supertap = {
 
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Supertap.init();
-});
+}, false);

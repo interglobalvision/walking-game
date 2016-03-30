@@ -1,4 +1,14 @@
 Compass = {
+  $radar: $('#radar'),
+  $angle: $('#angle'),
+  $mapStage: $('.map-stage'),
+  $compass: $('#compass'),
+  $mapFloor: $('.map-floor'),
+  $compassContainer: $('#compass-container'),
+  $mapGoal: $('#map-goal'),
+  $mapSky: $('.map-sky'),
+  $mapGoalContainer: $('#map-goal-container'),
+  $mapOrientation: $('.map-orientation'),
   watchId: {
     orientation: null,
     position: null,
@@ -14,14 +24,14 @@ Compass = {
   position: {
     lat: null,
     lng: null,
-  },
+  }, 
   /*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
   minDistance: 0.0025, // in radians
   maxDistance: 0.0028, // in radians
-  thresholdRadius: 0.300, // in Km
+  destinyThresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
 
@@ -119,15 +129,52 @@ Compass = {
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
-    var bleepSpeed = ( (distanceToDestiny - _this.thresholdRadius) * 1000 ) / _this.totalDistance;// - _this.thresholdRadius;
+    // distanceFromGoal is a percentage value describing how far you are from the destiny [meaning the threshold of destiny and the moment the next game triggers].
+    // This is based on your location from the moment the destiny is created.
+    // So at 100[%] you have just generated a new destiny. At 0[%] you are at destiny.
+    // This value can be larger than 100 if you move in the wrong direction.
+    var distanceFromGoal = ( (distanceToDestiny - _this.destinyThresholdRadius) * 100 ) / _this.totalDistance;
 
-    _this.$radar.css('animation-duration', bleepSpeed + 'ms');
-    _this.$radar.html(bleepSpeed + 'ms');
+    // progressToGoal is users progress toward goal radius.
+    // this is the inverse of distanceFromGoal
+    // 0[%] is moment of destiny creation and 100[%] is at destiny
+    var progressToGoal = 100 - distanceFromGoal;
 
-    if( distanceToDestiny < _this.thresholdRadius ) {
+    // progressToGoal is multiplied to a thousandth decimal point of 75
+    // to use as pecentage of 75% when moving the map floor gradient.
+    // 75% is the full Y axis translation of the gradient
+    var mapFloorPos = progressToGoal * 0.75;
+
+    // progressToGoal is multiplied to a thousandth decimal point
+    // to use as scale of the map Goal object.
+    // 1.00 is the object at full scale (goal is reached).
+    var mapGoalScale = progressToGoal * 0.01;
+
+    // if mapFloorPos is less than 0, we set it to 0
+    // this keeps the floor from sliding off screen
+    if (mapFloorPos < 0) {
+      mapFloorPos = 0;
+    }
+
+    // if mapGoalScale is less than 0.01, we set it to 0.01
+    // goal object from disappearing entirely or going negative scale
+    if (mapGoalScale < 0.01) {
+      mapGoalScale = 0.01; 
+    }
+
+    _this.$mapFloor.css({
+      '-webkit-transform': 'translateY(' + mapFloorPos + '%)',
+      'transform': 'translateY(' + mapFloorPos + '%)',
+    });
+
+    _this.$mapGoal.css({
+      '-webkit-transform': 'scale(' + mapGoalScale + ')',
+      'transform': 'scale(' + mapGoalScale + ')',
+    });
+
+    if (distanceToDestiny < _this.destinyThresholdRadius) {
       _this.stop();
-      Game.nextMinigame();
-    } 
+    }
   },
 
   updateOrientation: function(orientation) {
@@ -139,17 +186,106 @@ Compass = {
     var compensationAngle = _this.getAngle( _this.reference, _this.position, _this.destiny);
 
     // If destiny is at West of origin
-    if( _this.position.lng > _this.destiny.lng ) {
+    if (_this.position.lng > _this.destiny.lng) {
       compensationAngle = 360 - compensationAngle;
     }
 
     var angle = compensationAngle + northOrientation;
+
+    // All the following alculations are based on a
+    // the angle from 0 - 360, so we add 360 if the angle
+    // is negative.
+    if (angle < 0) {
+      angle = angle + 360;
+    }
+    
+    // Here we save the angle in a new variable to use for
+    // the goal positioning.
+    var goalAngle = angle;
+
+    // We make that new angle from -180 - 180, because CSS
+    // translateX transform will need a pos or neg value
+    // to move the element left and right of center.
+    if (angle > 180) {
+      goalAngle = angle - 360;
+    }
+
+    // When the compass is pointed 70deg (+ or -) from 0 (top),
+    // the arrow points offscreen.  So we get a percent of 70
+    // to position the goal object with the arrow
+    var goalPos = goalAngle / 0.7;
+
+    // If the flag is offscreen, we don't move it
+    if (goalPos > 75) {
+      goalPos = 75;
+    } else if (goalPos < -75) {
+      goalPos = -75;
+    }
+
+    // for the scene we want a value from -25% - 25% to translate
+    // left or right of center.  180 / 25 = 7.2
+    var scenePos = angle / 7.2;
+
+    if (angle > 180) {
+      scenePos = ( ( angle - 180 ) / 7.2 ) - 25;
+    }
+
+    _this.$mapGoalContainer.css({
+      '-webkit-transform': 'translateX(' + goalPos + '%)',
+      'transform': 'translateX(' + goalPos + '%)',
+    });
+
+    _this.$mapOrientation.css({
+      '-webkit-transform': 'translateX(' + scenePos + '%)',
+      'transform': 'translateX(' + scenePos + '%)',
+    });
 
     _this.$compass.css({
       '-webkit-transform': 'rotate(' + angle + 'deg)',
       'transform': 'rotate(' + angle + 'deg)',
     });
 
+  },
+
+  skyColor: function() {
+    var _this = this;
+
+    var now = new Date();
+
+    if (now) {
+      var hour = now.getHours(),
+        skyColor;
+
+      if (hour > 4 && hour < 10) {
+
+        skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
+
+      } else if (hour > 9 && hour < 17) {
+
+        skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
+
+      } else if (hour > 16 &&  hour < 22) {
+
+        skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
+
+      } else {
+
+        skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
+
+      }
+
+      _this.$mapSky.css('background-color', skyColor); // set sky color
+    }
+  },
+
+  /*
+   * Sets map theme graphics
+   *
+   */
+  mapTheme: function() {
+    var _this = this;
+
+    _this.$mapStage.addClass('world-' + Game.getWorld());
   },
 
   /*
@@ -174,7 +310,7 @@ Compass = {
     });
 
     // Start orientation compass
-    
+
     // if cordova
     if (navigator.userAgent.match(/(iPhone|iPod|Android)/)) {
       _this.watchId.orientation = navigator.compass.watchHeading( function(heading) {
@@ -193,20 +329,25 @@ Compass = {
    * Ubind navigator.gelocation and deviceorientation events
    *
    */
-  stop: function() {
+  stopGeoWatchers: function() {
     var _this = this;
 
     navigator.geolocation.clearWatch( _this.watchId.position );
     navigator.compass.clearWatch( _this.watchId.orientation );
 
+  },
+
+  stop: function() {
+    var _this = this;
+
+    _this.stopGeoWatchers();
     $(window).unbind('.compassOrientation');
+
+    Game.nextMinigame();
   },
 
   init: function() {
     var _this = this;
-
-    _this.$radar = $('#radar');
-    _this.$compass = $('#compass');
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
@@ -228,7 +369,7 @@ Compass = {
         _this.totalDistance = _this.getDistanceInKm({
           lat: pos.latitude,
           lng: pos.longitude
-        }, _this.destiny) - _this.thresholdRadius;
+        }, _this.destiny) - _this.destinyThresholdRadius;
 
         // Set current position
         _this.updatePosition({
@@ -236,9 +377,17 @@ Compass = {
           lng: pos.longitude,
         });
 
+        // Set sky color
+        _this.skyColor();
+
+        // Set map theme graphics
+        _this.mapTheme();
 
         // Start orientation and position watchers
         _this.startGeoWatchers();
+
+        // Fade in compass
+        _this.$compassContainer.fadeIn();
 
       });
 

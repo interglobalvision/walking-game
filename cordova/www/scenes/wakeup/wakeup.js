@@ -1,35 +1,42 @@
 var Wakeup = {
+  $blackout: $('#blackout'),
+  dialog: [
+    'Goodness!  I have been screaming my ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' off trying to get you out of bed!',
+    'You ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!  Youre ' + Utilities.Word.getAdj(true) + ' ' + Utilities.Word.getNoun() + '!',
+    'And your bedroom smells like ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' and ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!',
+  ],
+
   init: function() {
     var _this = this;
 
-    var scene = new TimelineLite(),
-      scene2 = new TimelineLite(),
-      $blackout = $('#blackout'),
-      dialog = [
-        'Goodness!  I have been screaming my ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' off trying to get you out of bed!',
-        'You ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!  Youre ' + Utilities.Word.getAdj(true) + ' ' + Utilities.Word.getNoun() + '!',
-        'And your bedroom smells like ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + ' and ' + Utilities.Word.getAdj() + ' ' + Utilities.Word.getNoun() + '!',
-      ];
+    _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() {
 
-    scene.set($blackout, {opacity: 0,});
+      _this.partOne();
 
-    scene.call(function() {
-      Utilities.Dialog.read(dialog, function() {
-        scene2.play();
-      });
     });
+  },
 
-    scene2.pause();
+  partOne: function() {
+    var _this = this;
 
-    scene2.set($blackout, {opacity: 1,});
+    Utilities.Dialog.read(_this.dialog, function() {
 
-    scene2.call(function() {
+      _this.partTwo();
+
+    });
+  },
+
+  partTwo: function() {
+    var _this = this;
+
+    _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() {
+
       Router.go('/scenes/bedside/');
-    });
 
+    });
   },
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   Wakeup.init();
-});
+}, false);

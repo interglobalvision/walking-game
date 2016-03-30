@@ -1,6 +1,6 @@
 var Photocolor = {
   goldenRatio: 0.618033988749895,
-  photoColor: undefined,
+  targetColor: undefined,
   introDialog: [
     "It's time to play COLORSNAP!",
     "Allow me to paint your target color...",
@@ -12,6 +12,9 @@ var Photocolor = {
   ],
   tryAgainDialog: [
     "What a shame. try again eh!",
+  ],
+  winDialog: [
+    "U did it ::::::)",
   ],
   loseDialog: [
     "U really suck at this simple boring task",
@@ -39,10 +42,10 @@ var Photocolor = {
 
     var randomHslColor = [rand, 0.7, 0.5,];
 
-    _this.photoColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
+    _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
     showColor.call(function(){
-      $('#brush-color, #target-color').css('fill', 'rgb(' + _this.photoColor[0] + ', ' + _this.photoColor[1] + ', ' + _this.photoColor[2] + ')');
+      $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
       $('#brush').attr('class', 'brush-swipe');
     });
 
@@ -101,50 +104,56 @@ var Photocolor = {
     var _this = this;
 
     var photo = new Image();
-    var targetColor = _this.photoColor;
-    var arrayMatch;
-    var colorThief = new ColorThief();
-    var paletteArray = [];
 
     photo.src = data;
 
     // is this async? this needs to block no?
     photo.onload = function() {
-      paletteArray = colorThief.getPalette(photo, 2);
+      var targetColor = _this.targetColor;
+      var arrayMatch;
+      var colorThief = new ColorThief();
+      var paletteArray = colorThief.getPalette(photo, 2);
+
+      for (var i = 0; i < paletteArray.length; i++) {
+        if (Utilities.Color.isNeighborColor(targetColor, paletteArray[i], 88) ) {
+          result = true;
+          arrayMatch = i;
+          break;
+        }
+      }
+
+      if (result) {
+
+        var psuedoCloseness = [
+          targetColor[0] - paletteArray[arrayMatch][0],
+          targetColor[1] - paletteArray[arrayMatch][1],
+          targetColor[2] - paletteArray[arrayMatch][2],
+        ];
+
+        var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
+
+        _this.win(points);
+
+      } else {
+
+        _this.fail();
+
+      }
+
     };
 
     var result = false;
 
-    for (var i = 0; i < paletteArray.length; i++) {
-      if (Utilities.Color.isNeighborColor(targetColor, paletteArray[i], 88) ) {
-        result = true;
-        arrayMatch = i;
-        break;
-      }
-    }
-
-    if (result) {
-
-      var psuedoCloseness = [
-        targetColor[0] - paletteArray[arrayMatch][0],
-        targetColor[1] - paletteArray[arrayMatch][1],
-        targetColor[2] - paletteArray[arrayMatch][2],
-      ];
-      var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
-
-      _this.win(points);
-
-    } else {
-
-      _this.fail();
-
-    }
-
   },
 
   win: function(points) {
+    var _this = this;
 
-    Game.gameComplete(points);
+    Utilities.Dialog.read(_this.winDialog, function() {
+
+      Game.gameComplete(points);
+
+    });
 
   },
 
@@ -174,4 +183,6 @@ var Photocolor = {
 
 };
 
-Photocolor.init();
+document.addEventListener('deviceready', function() {
+  Photocolor.init();
+}, false);
