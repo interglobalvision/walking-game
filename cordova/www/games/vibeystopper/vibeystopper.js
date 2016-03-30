@@ -4,13 +4,20 @@ var ViberyStopper = {
   minWait: 1010,
   maxWait: 8888,
   winThreshold: 1111,
-  $gameBlock: $('#game-block'),
+  $switch: $('.vibey-switch'),
+  $machine: $('.vibey-machine'),
+  $background: $('.vibey-background'),
   startTime: null,
   endTime: null,
+  introDialog: [
+    "OK I'm feeling TURNED ONNN! Which means were about to play..... VIBEY STOPPER!",
+    "When the red box turns to green the machine is on! When the machine starts to overheat it will flash and shake.....",
+    "That's when you hit the BIG YELLOW SWITCH to turn it off!! READY??? Lets GO!",
+  ],
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
-  looseDialog: [
+  loseDialog: [
     "U really suck at this simple boring task",
   ],
 
@@ -23,15 +30,19 @@ var ViberyStopper = {
 
     $('#blackout').css('opacity', 0);
 
-    _this.startGame();
+    Utilities.Dialog.read(_this.introDialog, function() {
+      _this.startGame();
+    });
 
   },
 
   bind: function() {
     var _this = this;
 
-   _this.$gameBlock.on({
+   _this.$switch.on({
       click: function() {
+        _this.$machine.removeClass('vibey-on');
+        _this.$background.removeClass('vibey-flash');
         navigator.vibrate(0);
         _this.win();
       },
@@ -42,20 +53,26 @@ var ViberyStopper = {
   unbind: function() {
     var _this = this;
 
-    _this.$gameBlock.off();
+    _this.$switch.off();
 
   },
 
   startGame: function() {
     var _this = this;
 
+    _this.$machine.addClass('vibey-on');
+
     _this.wait = window.setTimeout(function() {
 
       _this.startTime = Date.now();
-      navigator.vibrate(1000);
+      _this.$background.addClass('vibey-flash');
+      navigator.vibrate(500);
       _this.bind();
 
       _this.timeout = window.setTimeout(function() {
+
+        _this.$machine.removeClass('vibey-on');
+        _this.$background.removeClass('vibey-flash');
 
         _this.fail();
 
@@ -85,9 +102,9 @@ var ViberyStopper = {
     _this.points = percentWin * _this.fullPoints;
 
     Utilities.Dialog.read([
-        "Yes yes YESSSS!",
-        "You won " + _this.points + " points!!!",
-      ], function() {
+      "Yes yes YESSSS!",
+      "You won " + _this.points + " points!!!",
+    ], function() {
 
       Game.gameComplete(_this.points);
 
@@ -113,7 +130,7 @@ var ViberyStopper = {
 
     }, function() {
 
-      Utilities.Dialog.read(_this.looseDialog, function() {
+      Utilities.Dialog.read(_this.loseDialog, function() {
 
         Router.go('/');
 
