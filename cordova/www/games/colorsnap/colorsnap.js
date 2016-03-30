@@ -1,4 +1,4 @@
-var Photocolor = {
+var Colorsnap = {
   goldenRatio: 0.618033988749895,
   targetColor: undefined,
   introDialog: [
@@ -30,7 +30,7 @@ var Photocolor = {
     });
 
     _this.bindEvents();
-  },
+  }, 
 
   setTargetColor: function() {
     var _this = this;
@@ -184,5 +184,5 @@ var Photocolor = {
 };
 
 document.addEventListener('deviceready', function() {
-  Photocolor.init();
+  Colorsnap.init();
 }, false);

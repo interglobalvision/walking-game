@@ -593,7 +593,7 @@ table {
   }
 }
 
-#photocolor-bg {
+#colorsnap-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -602,13 +602,13 @@ table {
   -webkit-transform-origin: center;
           transform-origin: center;
   background-color: #fff;
-  background-image: url("../img/games/photocolor/grid.png");
+  background-image: url("../img/games/colorsnap/grid.png");
   background-position: center;
   background-size: 30px;
   -webkit-animation: grid-bg 2s infinite ease-in-out;
           animation: grid-bg 2s infinite ease-in-out;
 }
-#photocolor-coach-bg {
+#colorsnap-coach-bg {
   background-color: transparent;
   position: fixed;
   top: 0;
@@ -617,11 +617,11 @@ table {
   height: 200%;
   -webkit-transform-origin: center;
           transform-origin: center;
-  background-image: url("../img/games/photocolor/coach_bw.png");
+  background-image: url("../img/games/colorsnap/coach_bw.png");
   background-position: center;
   background-size: auto 10%;
-  -webkit-animation: photocolor-coach-bg 5s infinite linear;
-          animation: photocolor-coach-bg 5s infinite linear;
+  -webkit-animation: colorsnap-coach-bg 5s infinite linear;
+          animation: colorsnap-coach-bg 5s infinite linear;
 }
 #brush {
   position: absolute;
@@ -704,7 +704,7 @@ table {
             transform: scale(1);
   }
 }
-@-webkit-keyframes photocolor-coach-bg {
+@-webkit-keyframes colorsnap-coach-bg {
   from {
     -webkit-transform: translateY(0%);
             transform: translateY(0%);
@@ -714,7 +714,7 @@ table {
             transform: translateY(-50%);
   }
 }
-@keyframes photocolor-coach-bg {
+@keyframes colorsnap-coach-bg {
   from {
     -webkit-transform: translateY(0%);
             transform: translateY(0%);
