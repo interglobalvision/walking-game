@@ -201,7 +201,7 @@ Game = {
   // POINTS
 
   getPoints: function() {
-    var points = window.localStorage.getItem('points');
+    var points = parseInt( window.localStorage.getItem('points') );
 
     if (points === null || isNaN(points)) {
       points = 0;

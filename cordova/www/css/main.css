@@ -120,11 +120,9 @@ table {
   top: 0;
   left: 0;
   z-index: 800;
-  background: #000;
+  background: #fff;
   pointer-events: none;
   opacity: 1;
-  -webkit-transition: opacity 1s;
-  transition: opacity 1s;
 }
 #stage {
   position: fixed;
@@ -272,24 +270,40 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
+#livingroom-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: -webkit-transform 500ms;
+  transition: -webkit-transform 500ms;
+  transition: transform 500ms;
+  transition: transform 500ms, -webkit-transform 500ms;
+}
 .livingroom {
   width: 200%;
   left: -100%;
-  -webkit-transition: left 2s;
-  transition: left 2s;
+}
+#livingroom-wall {
+  z-index: 1;
+  background-image: url("../img/bedroom/wall.png");
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
   z-index: 2;
 }
 #livingroom-aunt {
-  background-image: url("../img/livingroom/aunt.png");
   z-index: 3;
-  -webkit-animation: livingroom-aunt 0.5s infinite;
-          animation: livingroom-aunt 0.5s infinite;
+  width: 100%;
+  background-image: url("../img/livingroom/aunt3.png");
+  background-repeat: no-repeat;
+  background-position: 0%;
+  background-size: 200% 100%;
+  -webkit-animation: livingroom-aunt 0.5s steps(2, end) infinite;
+          animation: livingroom-aunt 0.5s steps(2, end) infinite;
 }
 #livingroom-cat {
   background-image: url("../img/livingroom/cat.png");
+  top: -5%;
   z-index: 4;
   -webkit-animation: livingroom-cat 3s infinite linear;
           animation: livingroom-cat 3s infinite linear;
@@ -303,12 +317,25 @@ table {
   background-size: cover;
   background-position: center;
   position: fixed;
-  -webkit-transition: opacity 2s;
-  transition: opacity 2s;
+  -webkit-transition: all 2s;
+  transition: all 2s;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+.show-compass {
+  opacity: 1;
+}
+.show-compass #livingroom-compass-obj {
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: -100px;
 }
 #livingroom-compass-bg {
+  position: absolute;
   background-image: url("../img/livingroom/compass-bg.jpg");
+  background-size: contain;
   z-index: 6;
   -webkit-animation: hue 4s infinite linear;
           animation: hue 4s infinite linear;
@@ -316,7 +343,9 @@ table {
   height: 100%;
 }
 #livingroom-compass-obj {
+  position: absolute;
   background-image: url("../img/compass.png");
+  background-size: contain;
   z-index: 7;
   width: 0px;
   height: 0px;
@@ -329,13 +358,76 @@ table {
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
 }
-.livingroom-transition {
-  -webkit-transition: left 2s;
-  transition: left 2s;
+.letsgo-background {
+  position: absolute;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  background-image: url("../img/letsgo/letsgo-background.png");
+  background-size: cover;
+  -webkit-animation: letsgo-background 2s infinite linear;
+          animation: letsgo-background 2s infinite linear;
+}
+.coach-shiny {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  background-image: url("../img/letsgo/coach-shiny.png");
+  background-size: 400% 100%;
+  background-position: 0% center;
+  -webkit-animation: coach-shiny 1s steps(4, end) infinite;
+          animation: coach-shiny 1s steps(4, end) infinite;
 }
 @media screen and (max-width: 600px) {
   html {
     width: 100%;
+  }
+}
+@-webkit-keyframes coach-shiny {
+  100% {
+    background-position: 400% center;
+  }
+}
+@keyframes coach-shiny {
+  100% {
+    background-position: 400% center;
+  }
+}
+@-webkit-keyframes letsgo-background {
+  0% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(100deg);
+    filter: hue-rotate(100deg);
+  }
+  50% {
+    background-color: #fff;
+    -webkit-filter: hue-rotate(150deg);
+    filter: hue-rotate(150deg);
+  }
+  100% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(100deg);
+    filter: hue-rotate(100deg);
+  }
+}
+@keyframes letsgo-background {
+  0% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(100deg);
+    filter: hue-rotate(100deg);
+  }
+  50% {
+    background-color: #fff;
+    -webkit-filter: hue-rotate(150deg);
+    filter: hue-rotate(150deg);
+  }
+  100% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(100deg);
+    filter: hue-rotate(100deg);
   }
 }
 @-webkit-keyframes bear-clock {
@@ -445,41 +537,39 @@ table {
   }
 }
 @-webkit-keyframes livingroom-aunt {
-  0% {
-    background-image: url("../img/livingroom/aunt.png");
+  from {
+    background-position: 0%;
   }
-  50% {
-    background-image: url("../img/livingroom/aunt2.png");
-  }
-  100% {
-    background-image: url("../img/livingroom/aunt.png");
+  to {
+    background-position: 200%;
   }
 }
 @keyframes livingroom-aunt {
-  0% {
-    background-image: url("../img/livingroom/aunt.png");
+  from {
+    background-position: 0%;
   }
-  50% {
-    background-image: url("../img/livingroom/aunt2.png");
-  }
-  100% {
-    background-image: url("../img/livingroom/aunt.png");
+  to {
+    background-position: 200%;
   }
 }
 @-webkit-keyframes livingroom-cat {
   from {
-    left: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   to {
-    left: -100%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
 }
 @keyframes livingroom-cat {
   from {
-    left: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
   }
   to {
-    left: -100%;
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
   }
 }
 @-webkit-keyframes livingroom-spin-compass {
@@ -510,32 +600,30 @@ table {
   width: 100%;
   height: 50%;
   background-color: #0078ff;
-  -webkit-transition: background-color 300ms linear;
-  transition: background-color 300ms linear;
+}
+.map-orientation {
+  margin-left: -200%;
+  width: 400%;
 }
 .map-clouds {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
   height: 50%;
   background-repeat: repeat-x;
-  background-size: 400% 100%;
+  background-size: 50% 100%;
   background-position-x: 0%;
   background-image: url("../img/map/clouds.gif");
   opacity: 0.9;
-  -webkit-animation: clouds 60s infinite linear;
-          animation: clouds 60s infinite linear;
 }
 .map-skyline {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 50%;
   height: 50%;
   background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: contain;
+  background-repeat: repeat-x;
+  background-size: 25% 50%;
 }
 .map-floor-container {
   height: 50%;
@@ -556,10 +644,10 @@ table {
 .map-object {
   position: absolute;
   height: 100%;
-  width: 100%;
   bottom: 0;
-  left: 0;
-  background-size: contain;
+  left: 50%;
+  background-repeat: repeat-x;
+  background-size: 25% 100%;
 }
 .world-0 .map-skyline {
   background-image: url("../img/map/sky-0.png");
@@ -600,10 +688,6 @@ table {
           transform-origin: center bottom;
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
-  -webkit-transition: -webkit-transform 300ms linear;
-  transition: -webkit-transform 300ms linear;
-  transition: transform 300ms linear;
-  transition: transform 300ms linear, -webkit-transform 300ms linear;
 }
 #map-goal {
   position: absolute;
@@ -639,16 +723,6 @@ table {
   height: 12%;
   bottom: 2%;
   left: 5%;
-  -webkit-transition: -webkit-transform 300ms linear;
-  transition: -webkit-transform 300ms linear;
-  transition: transform 300ms linear;
-  transition: transform 300ms linear, -webkit-transform 300ms linear;
-}
-#end-compass {
-  position: absolute;
-  z-index: 999;
-  top: 10px;
-  right: 10px;
 }
 #map-menu {
   height: 100%;
@@ -681,6 +755,9 @@ table {
 }
 li.menu-item {
   margin-bottom: 1em;
+}
+li.menu-item a {
+  text-decoration: underline;
 }
 ul.menu-list {
   margin-bottom: 1em;
@@ -1057,13 +1134,61 @@ h6 {
   }
 }
 
-#tap-button {
-  width: 100vw;
-  height: 50vh;
-  padding: 5%;
-  background: #f00;
-  text: #000;
+.tap-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00adff;
+  background-image: url("../img/games/supertap/tap-background.png");
+  background-size: 105% 105%;
+  background-position: center;
+}
+.tap-frame {
+  position: absolute;
+  width: 90vw;
+  height: 45vh;
   box-sizing: border-box;
+}
+#tap-countdown-frame {
+  width: 80vw;
+  top: 2.5vh;
+  left: 10vw;
+  background-image: url("../img/games/supertap/tap-number-frame.png");
+  background-size: cover;
+  font-size: 180px;
+  color: #fff;
+  background-size: 100% 100%;
+  background-position: center;
+}
+.tap-countdown {
+  position: absolute;
+}
+#tap-button-frame {
+  bottom: 2.5vh;
+  left: 5vw;
+}
+#tap-button {
+  background-color: #f08080;
+  background-image: url("../img/games/supertap/tap-coach.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff;
+  position: relative;
+  border: 5px #808080 solid;
+  border-radius: 50%;
+  box-shadow: 0px 20px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+#tap-button:active {
+  box-shadow: 0px 15px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
 }
 
 .tippy-stage {

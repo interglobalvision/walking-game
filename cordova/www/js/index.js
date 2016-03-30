@@ -1,4 +1,4 @@
-Compass={$radar:$("#radar"),$angle:$("#angle"),$mapStage:$(".map-stage"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$(".map-sky"),$mapGoalContainer:$("#map-goal-container"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
+Compass={$blackout:$("#blackout"),$radar:$("#radar"),$angle:$("#angle"),$mapStage:$(".map-stage"),$compass:$("#compass"),$mapFloor:$(".map-floor"),$compassContainer:$("#compass-container"),$mapGoal:$("#map-goal"),$mapSky:$(".map-sky"),$mapGoalContainer:$("#map-goal-container"),$mapOrientation:$(".map-orientation"),watchId:{orientation:null,position:null},origin:{lat:null,lng:null},destiny:{lat:null,lng:null},position:{lat:null,lng:null},/*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
@@ -52,12 +52,31 @@ var distanceToDestiny=_this.getDistanceInKm(_this.position,_this.destiny),distan
 0>mapFloorPos&&(mapFloorPos=0),
 // if mapGoalScale is less than 0.01, we set it to 0.01
 // goal object from disappearing entirely or going negative scale
-.01>mapGoalScale&&(mapGoalScale=.01),_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),
-//mapGoalScale = 0.5; // testing
-_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&_this.stop()},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
+.01>mapGoalScale&&(mapGoalScale=.01),_this.$mapFloor.css({"-webkit-transform":"translateY("+mapFloorPos+"%)",transform:"translateY("+mapFloorPos+"%)"}),_this.$mapGoal.css({"-webkit-transform":"scale("+mapGoalScale+")",transform:"scale("+mapGoalScale+")"}),distanceToDestiny<_this.destinyThresholdRadius&&_this.stop()},updateOrientation:function(orientation){var _this=this,northOrientation=-1*orientation,compensationAngle=_this.getAngle(_this.reference,_this.position,_this.destiny);
 // If destiny is at West of origin
-_this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation,goalPos=angle/.7;_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
+_this.position.lng>_this.destiny.lng&&(compensationAngle=360-compensationAngle);var angle=compensationAngle+northOrientation;
+// All the following alculations are based on a
+// the angle from 0 - 360, so we add 360 if the angle
+// is negative.
+0>angle&&(angle+=360);
+// Here we save the angle in a new variable to use for
+// the goal positioning.
+var goalAngle=angle;
+// We make that new angle from -180 - 180, because CSS
+// translateX transform will need a pos or neg value
+// to move the element left and right of center.
+angle>180&&(goalAngle=angle-360);
+// When the compass is pointed 70deg (+ or -) from 0 (top),
+// the arrow points offscreen.  So we get a percent of 70
+// to position the goal object with the arrow
+var goalPos=goalAngle/.7;
+// If the flag is offscreen, we don't move it
+goalPos>75?goalPos=75:-75>goalPos&&(goalPos=-75);
+// for the scene we want a value from -25% - 25% to translate
+// left or right of center.  180 / 25 = 7.2
+var scenePos=angle/7.2;angle>180&&(scenePos=(angle-180)/7.2-25),_this.$mapGoalContainer.css({"-webkit-transform":"translateX("+goalPos+"%)",transform:"translateX("+goalPos+"%)"}),_this.$mapOrientation.css({"-webkit-transform":"translateX("+scenePos+"%)",transform:"translateX("+scenePos+"%)"}),_this.$compass.css({"-webkit-transform":"rotate("+angle+"deg)",transform:"rotate("+angle+"deg)"})},skyColor:function(){var _this=this,now=new Date;if(now){var skyColor,hour=now.getHours();skyColor=hour>4&&10>hour?"rgb(100, 160, 255)":hour>9&&17>hour?"rgb(0, 120, 255)":hour>16&&22>hour?"rgb(10, 40, 95)":"rgb(0, 20, 60)",_this.$mapSky.css("background-color",skyColor)}},/*
    * Sets map theme graphics
+   *
    */
 mapTheme:function(){var _this=this;_this.$mapStage.addClass("world-"+Game.getWorld())},/*
    * Bind navigator.gelocation and deviceorientation events
@@ -93,8 +112,8 @@ _this.skyColor(),
 _this.mapTheme(),
 // Start orientation and position watchers
 _this.startGeoWatchers(),
-// Fade in compass
-_this.$compassContainer.fadeIn()}):
+// Fade in map
+_this.$blackout.animate({opacity:0},1e3,"linear")}):
 // fallback for when not possible. Why? no idea but it might happen
 console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor"],worlds:["Desert","City"],gameAttempts:2,shareTitle:function(score){return"WOOAAAAHH! U HAVE AN AWESOME SCORe 0F "+score+" POIIINTSSS BRAAAHHH"},shareSubject:"Subject: I did this on Walking Game. The most tiring phone game ever made",shareUrl:"http://interglobal.vision/",
 // USER
@@ -110,7 +129,7 @@ setRank:function(){return Utilities.Word.getAdj(!0,!0)+" "+Utilities.Word.getNou
 // MINI GAME
 gameFail:function(tryAgainCallback,failCallback){var _this=this;_this.gameAttempts>1?(_this.gameAttempts--,tryAgainCallback()):failCallback()},gameComplete:function(points){var _this=this,currentProgress=_this.getProgress();_this.setProgress(currentProgress+1),points&&_this.setNewPoints(points),currentProgress+1===_this.minigames.length&&_this.finishLoop(),Router.go("/")},
 // POINTS
-getPoints:function(){var points=window.localStorage.getItem("points");return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
+getPoints:function(){var points=parseInt(window.localStorage.getItem("points"));return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
 // GEMS
 getGems:function(){var gems=window.localStorage.getItem("gems");return(null===gems||isNaN(gems))&&(gems=0),gems},setGems:function(gems){window.localStorage.setItem("gems",gems)},setNewGems:function(gems){var _this=this,gems=parseInt(gems),currentGems=_this.getGems();_this.setGems(currentGems+gems)},
 // SOCIAL SHARING
@@ -148,7 +167,7 @@ onDeviceReady:function(){app.receivedEvent("deviceready")},onContentLoaded:funct
 // Update DOM on a Received Event
 receivedEvent:function(id){console.log("Received Event: "+id),$("#game-username").html(Game.getUsername()),$("#game-points").html(Game.getPoints()),$("#game-gems").html(Game.getGems()),$("#game-progress").html(Game.getProgressPercent())}};app.initialize(),Utilities={},Menu={$menuBubble:$("#map-menu-bubble"),$menuButton:$("#map-menu-button"),$menuPoints:$("#menu-points"),$menuRank:$("#menu-rank"),$menuWorld:$("#menu-world"),toggleMenu:function(){
 //functionality to open and close menu
-var _this=this;_this.$menuBubble.toggle("fast")},init:function(){var _this=this;_this.$menuPoints.html(Game.getPoints()),_this.$menuWorld.html(Game.getWorldName()),_this.$menuRank.html(Game.getRank()),_this.$menuButton.on("click",function(){_this.toggleMenu()})}},Router={init:function(){var _this=this,regex=/(.+?(?:www))/;_this.basePath=regex.exec(window.location.href),"browser"===window.cordova.platformId?_this.isBrowser=!0:_this.isBrowser=!1},go:function(url){var _this=this;_this.isBrowser?window.location=url:window.location=_this.basePath[0]+url+"index.html"}},Router.init(),Utilities.Color={isNeighborColor:function(color1,color2,tolerance){return void 0==tolerance&&(tolerance=32),Math.abs(color1[0]-color2[0])<=tolerance&&Math.abs(color1[1]-color2[1])<=tolerance&&Math.abs(color1[2]-color2[2])<=tolerance},hslToRgb:function(h,s,l){var r,g,b;if(0==s)r=g=b=l;else{var hue2rgb=function(p,q,t){return 0>t&&(t+=1),t>1&&(t-=1),1/6>t?p+6*(q-p)*t:.5>t?q:2/3>t?p+(q-p)*(2/3-t)*6:p},q=.5>l?l*(1+s):l+s-l*s,p=2*l-q;r=hue2rgb(p,q,h+1/3),g=hue2rgb(p,q,h),b=hue2rgb(p,q,h-1/3)}return[Math.round(255*r),Math.round(255*g),Math.round(255*b)]}},Utilities.Dialog={$target:$(".text-box-dialog"),$parent:$("#dialog"),interval:44,arrayIndex:0,lineIndex:0,lineTimer:0,read:function(dialogArray,callback){var _this=this;_this.$parent=$("#dialog"),_this.$target=$(".text-box-dialog"),_this.dialogArray=dialogArray,_this.arrayIndex=0,_this.callback=callback,_this.$parent.show(),_this.$parent.off("click.dialogRead").on({"click.dialogRead":function(){_this.lineTimer>0?_this.skipLine():_this.arrayIndex===_this.dialogArray.length-1?_this.finish():(_this.arrayIndex++,_this.readLine())}}),_this.readLine()},readLine:function(){var _this=this,dialogLine=_this.dialogArray[_this.arrayIndex];_this.lineIndex=0,_this.$target.html(""),_this.lineTimer=setInterval(function(){_this.lineIndex<dialogLine.length?(_this.$target.append(dialogLine[_this.lineIndex]),_this.lineIndex++):(_this.clearLineInterval(),_this.$target.append('<a class="text-box-next">&rarr;</a>'))},_this.interval)},clearLineInterval:function(){var _this=this;clearInterval(_this.lineTimer),_this.lineTimer=0},skipLine:function(){var _this=this;_this.clearLineInterval(),_this.$target.html(_this.dialogArray[_this.arrayIndex]),_this.$target.append('<a class="text-box-next">&rarr;</a>')},finish:function(){var _this=this;_this.$parent.hide(),_this.$target.html(""),_this.callback()}},Utilities.Misc={shuffleArray:function(array){
+var _this=this;_this.$menuBubble.toggle("fast")},init:function(){var _this=this;_this.$menuPoints.html(Game.getPoints()),_this.$menuWorld.html(Game.getWorldName()),_this.$menuRank.html(Game.getRank()),_this.$menuButton.on("click",function(){_this.toggleMenu()}),$("#end-compass").on("click",function(event){event.preventDefault(),Compass.stop()})}},Router={init:function(){var _this=this,regex=/(.+?(?:www))/;_this.basePath=regex.exec(window.location.href),"browser"===window.cordova.platformId?_this.isBrowser=!0:_this.isBrowser=!1},go:function(url){var _this=this;_this.isBrowser?window.location=url:window.location=_this.basePath[0]+url+"index.html"}},Router.init(),Utilities.Color={isNeighborColor:function(color1,color2,tolerance){return void 0==tolerance&&(tolerance=32),Math.abs(color1[0]-color2[0])<=tolerance&&Math.abs(color1[1]-color2[1])<=tolerance&&Math.abs(color1[2]-color2[2])<=tolerance},hslToRgb:function(h,s,l){var r,g,b;if(0==s)r=g=b=l;else{var hue2rgb=function(p,q,t){return 0>t&&(t+=1),t>1&&(t-=1),1/6>t?p+6*(q-p)*t:.5>t?q:2/3>t?p+(q-p)*(2/3-t)*6:p},q=.5>l?l*(1+s):l+s-l*s,p=2*l-q;r=hue2rgb(p,q,h+1/3),g=hue2rgb(p,q,h),b=hue2rgb(p,q,h-1/3)}return[Math.round(255*r),Math.round(255*g),Math.round(255*b)]}},Utilities.Dialog={$target:$(".text-box-dialog"),$parent:$("#dialog"),interval:44,arrayIndex:0,lineIndex:0,lineTimer:0,read:function(dialogArray,callback){var _this=this;_this.$parent=$("#dialog"),_this.$target=$(".text-box-dialog"),_this.dialogArray=dialogArray,_this.arrayIndex=0,_this.callback=callback,_this.$parent.show(),_this.$parent.off("click.dialogRead").on({"click.dialogRead":function(){_this.lineTimer>0?_this.skipLine():_this.arrayIndex===_this.dialogArray.length-1?_this.finish():(_this.arrayIndex++,_this.readLine())}}),_this.readLine()},readLine:function(){var _this=this,dialogLine=_this.dialogArray[_this.arrayIndex];_this.lineIndex=0,_this.$target.html(""),_this.lineTimer=setInterval(function(){_this.lineIndex<dialogLine.length?(_this.$target.append(dialogLine[_this.lineIndex]),_this.lineIndex++):(_this.clearLineInterval(),_this.$target.append('<a class="text-box-next">&rarr;</a>'))},_this.interval)},clearLineInterval:function(){var _this=this;clearInterval(_this.lineTimer),_this.lineTimer=0},skipLine:function(){var _this=this;_this.clearLineInterval(),_this.$target.html(_this.dialogArray[_this.arrayIndex]),_this.$target.append('<a class="text-box-next">&rarr;</a>')},finish:function(){var _this=this;_this.$parent.hide(),_this.$target.html(""),_this.callback()}},Utilities.Misc={shuffleArray:function(array){
 // While there are elements in the array
 for(var temp,index,counter=array.length;counter>0;)index=Math.floor(Math.random()*counter),counter--,temp=array[counter],array[counter]=array[index],array[index]=temp;return array}},Utilities.Number={getRandomInt:function(min,max){return Math.floor(Math.random()*(max-min+1))+min}},Utilities.Word={adjs:[],nouns:[],init:function(adjsList,nounList){var _this=this;_this.adjs=adjsList,_this.nouns=nounList},/**
    * Returns a word from the lists

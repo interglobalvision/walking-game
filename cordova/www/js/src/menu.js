@@ -20,8 +20,13 @@ Menu = {
     _this.$menuRank.html( Game.getRank() );
 
     _this.$menuButton.on('click', function() {
-    _this.toggleMenu();
+      _this.toggleMenu();
     }); 
+
+    $('#end-compass').on('click', function(event) {
+      event.preventDefault();
+      Compass.stop();
+    });
   }
 
 };
