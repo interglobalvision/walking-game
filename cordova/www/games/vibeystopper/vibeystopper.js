@@ -5,6 +5,7 @@ var ViberyStopper = {
   maxWait: 8888,
   winThreshold: 1111,
   $switch: $('.vibey-switch'),
+  $machine: $('.vibey-machine'),
   $background: $('.vibey-background'),
   startTime: null,
   endTime: null,
@@ -40,7 +41,7 @@ var ViberyStopper = {
 
    _this.$switch.on({
       click: function() {
-        _this.$switch.removeClass('vibey-on');
+        _this.$machine.removeClass('vibey-on');
         _this.$background.removeClass('vibey-flash');
         navigator.vibrate(0);
         _this.win();
@@ -59,7 +60,7 @@ var ViberyStopper = {
   startGame: function() {
     var _this = this;
 
-    _this.$switch.addClass('vibey-on');
+    _this.$machine.addClass('vibey-on');
 
     _this.wait = window.setTimeout(function() {
 
@@ -70,7 +71,7 @@ var ViberyStopper = {
 
       _this.timeout = window.setTimeout(function() {
 
-        _this.$switch.removeClass('vibey-on');
+        _this.$machine.removeClass('vibey-on');
         _this.$background.removeClass('vibey-flash');
 
         _this.fail();

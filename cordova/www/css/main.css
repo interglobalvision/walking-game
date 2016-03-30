@@ -1226,28 +1226,54 @@ h6 {
   -webkit-transition: background-color 300ms;
   transition: background-color 300ms;
 }
-.vibey-on {
-  background-color: #adff2f;
-  -webkit-transform: scale(-1, 1);
-          transform: scale(-1, 1);
-}
-.vibey-machine-1 {
+.vibey-part-1 {
   position: absolute;
   top: 0;
   background-image: url("../img/games/vibeystopper/vibey-1.png");
+  -webkit-filter: hue-rotate(0deg);
+          filter: hue-rotate(0deg);
 }
-.vibey-machine-2 {
+.vibey-part-2 {
   position: absolute;
   top: 70%;
   background-image: url("../img/games/vibeystopper/vibey-2.png");
 }
-.vibey-machine {
+.vibey-parts {
   position: absolute;
   height: 30%;
   width: 100%;
   background-size: 80% 80%;
   background-position: center;
   background-repeat: no-repeat;
+}
+.vibey-on .vibey-switch {
+  background-color: #adff2f;
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+.vibey-on .vibey-part-1 {
+  -webkit-animation: vibey-blink 500ms steps(2, end) infinite;
+          animation: vibey-blink 500ms steps(2, end) infinite;
+}
+@-webkit-keyframes vibey-blink {
+  from {
+    -webkit-filter: hue-rotate(100deg);
+            filter: hue-rotate(100deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(300deg);
+            filter: hue-rotate(300deg);
+  }
+}
+@keyframes vibey-blink {
+  from {
+    -webkit-filter: hue-rotate(100deg);
+            filter: hue-rotate(100deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(300deg);
+            filter: hue-rotate(300deg);
+  }
 }
 @-webkit-keyframes vibey-flash {
   from {
