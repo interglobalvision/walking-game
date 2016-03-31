@@ -2,7 +2,7 @@ Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
   $skip: undefined,
-  interval: 33,
+  interval: WalkingVariables.typeSpeed,
 
   arrayIndex: 0,
 
