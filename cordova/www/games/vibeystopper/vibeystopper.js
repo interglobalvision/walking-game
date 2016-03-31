@@ -1,4 +1,4 @@
-var ViberyStopper = {
+var VibeyStopper = {
   fullPoints: 4321,
   points: 0,
   minWait: 1010,
@@ -143,5 +143,5 @@ var ViberyStopper = {
 };
 
 document.addEventListener('deviceready', function() {
-  ViberyStopper.init();
+  VibeyStopper.init();
 }, false);
