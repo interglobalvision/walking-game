@@ -4,7 +4,7 @@ Game = {
     'math',
     'supertap',
     'reset',
-    'photocolor',
+    'colorsnap',
   ],
   worlds: [
     'Desert',
