@@ -1,12 +1,14 @@
 Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
-  interval: 44,
+  $skip: undefined,
+  interval: 33,
 
   arrayIndex: 0,
 
   lineIndex: 0,
   lineTimer: 0,
+  outputText: '',
 
   read: function(dialogArray, callback) {
 
@@ -21,7 +23,10 @@ Utilities.Dialog = {
 
     _this.$parent.show();
 
-    _this.$parent.off('click.dialogRead').on({
+    _this.$parent.append('<div id="dialog-skip"></div>');
+    _this.$skip = $('#dialog-skip');
+
+    _this.$skip.off('click.dialogRead').on({
       'click.dialogRead': function() {
         if (_this.lineTimer > 0) {
           _this.skipLine();
@@ -46,11 +51,15 @@ Utilities.Dialog = {
 
     _this.lineIndex = 0;
     _this.$target.html('');
+    _this.outputText = '';
+
     _this.lineTimer = setInterval(function() {
 
       if (_this.lineIndex < dialogLine.length) {
 
-        _this.$target.append(dialogLine[_this.lineIndex]);
+        _this.outputText += dialogLine[_this.lineIndex];
+        _this.$target[0].innerHTML = _this.outputText;
+
         _this.lineIndex++;
 
       } else {
@@ -84,6 +93,7 @@ Utilities.Dialog = {
 
     _this.$parent.hide();
     _this.$target.html('');
+    _this.$skip.remove();
 
     _this.callback();
   },

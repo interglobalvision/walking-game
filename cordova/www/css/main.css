@@ -883,6 +883,14 @@ html {
 #dialog:hover {
   cursor: pointer;
 }
+#dialog-skip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
 .button {
   font-size: 1em;
   margin-bottom: 0 !important;
