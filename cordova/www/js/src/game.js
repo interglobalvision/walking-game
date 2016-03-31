@@ -3,7 +3,6 @@ Game = {
     'tippyswitch',
     'math',
     'supertap',
-    'reset',
     'photocolor',
   ],
   worlds: [
@@ -240,7 +239,7 @@ Game = {
   // GEMS
 
   getGems: function() {
-    var gems = window.localStorage.getItem('gems');
+    var gems = parseInt( window.localStorage.getItem('gems') );
 
     if (gems === null || isNaN(gems)) {
       gems = 0;
