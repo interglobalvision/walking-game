@@ -133,7 +133,7 @@ nextWorld:function(){var _this=this,current=_this.getWorld(),next=current+1;next
 // RANK
 setRank:function(){return Utilities.Word.getAdj(!0,!0)+" "+Utilities.Word.getNoun(!1,!0)},getRank:function(){return window.localStorage.getItem("rank")},
 // MINI GAME
-gameFail:function(tryAgainCallback,failCallback){var _this=this;_this.gameAttempts>1?(_this.gameAttempts--,tryAgainCallback()):failCallback()},gameComplete:function(points){var _this=this,currentProgress=_this.getProgress();_this.setProgress(currentProgress+1),points&&_this.setNewPoints(points),currentProgress+1===_this.minigames.length&&_this.finishLoop(),Router.go("/")},
+gameFail:function(tryAgainCallback,failCallback){var _this=this;_this.gameAttempts>1?(_this.gameAttempts--,tryAgainCallback()):failCallback()},gameComplete:function(points){var _this=this,currentProgress=_this.getProgress();_this.setProgress(currentProgress+1),points&&_this.setNewPoints(points),currentProgress+1===_this.minigames.length&&_this.finishLoop(),Router.go("/pages/compass/")},
 // POINTS
 getPoints:function(){var points=parseInt(window.localStorage.getItem("points"));return(null===points||isNaN(points))&&(points=0),points},setPoints:function(points){window.localStorage.setItem("points",points)},setNewPoints:function(points){var _this=this,points=parseInt(points),currentPoints=_this.getPoints(),currentGems=_this.getGems();if(points>0){var modifier=Math.log(currentGems+1)+1,modifiedPoints=Math.round(points*modifier);_this.setPoints(currentPoints+modifiedPoints)}else _this.setPoints(currentPoints+points)},resetPoints:function(){var _this=this;_this.setPoints(0)},
 // GEMS

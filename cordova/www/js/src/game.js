@@ -197,7 +197,7 @@ Game = {
       _this.finishLoop();
     }
 
-    Router.go('/');
+    Router.go('/pages/compass/');
   },
 
   // POINTS
