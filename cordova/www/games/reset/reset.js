@@ -26,7 +26,7 @@ var Reset = {
 
       _this.$yes.on({
         'click': function() {
-          
+
           _this.yesReset();
 
         },
@@ -49,7 +49,7 @@ var Reset = {
     var date = new Date();
     var hours = date.getHours();
 
-    Utilities.Dialog.read(["Congratulations! You just got " + hours + " gems!!! Ok back to walking now...",], function() {
+    Utilities.Dialog.read(["Congratulations! You just got " + hours + " gems!!! And lost all your points. Ok back to walking now...",], function() {
 
       Game.setNewGems(parseInt(hours));
       Game.resetPoints();
@@ -67,7 +67,7 @@ var Reset = {
     var _this = this;
 
     Utilities.Dialog.read(["WOOWWW you're soooo boring....", "OK, then back to walking practice for you!!",], function() {
-      
+
       _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
 
         Game.gameComplete();
