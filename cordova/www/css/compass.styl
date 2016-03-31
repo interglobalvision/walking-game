@@ -20,7 +20,7 @@ $map-transition = 300ms linear
   background-repeat: repeat-x
   background-size: 50% 100%
   background-position-x: 0%
-  background-image: url('../img/map/clouds.gif')
+  background-image: url('../img/map/clouds.png')
   opacity: 0.9
   
 .map-skyline
@@ -30,7 +30,7 @@ $map-transition = 300ms linear
   height: 50%
   background-position: center bottom
   background-repeat: repeat-x
-  background-size: 25% 50%
+  background-size: 25% 25%
 
 .map-floor-container
   height: 50%
@@ -70,7 +70,7 @@ $map-transition = 300ms linear
   .map-skyline
     background-image: url('../img/map/sky-1.png');
   .map-floor
-    background: linear-gradient(to bottom, #fefefe 0%,#909090 100%);
+    background: linear-gradient(to bottom, #A6CCCC 0%,#A19633 100%);
   .map-object
     background-image: url('../img/map/object-1.png');
   
@@ -82,6 +82,15 @@ $map-transition = 300ms linear
     background: linear-gradient(to bottom, #29ABE2 0%,#00686A 100%);
   .map-object
     background-image: url('../img/map/object-2.png');
+    
+//JUNGLE
+.world-3
+  .map-skyline
+    background-image: url('../img/map/sky-3.png');
+  .map-floor
+    background: linear-gradient(to bottom, #00F5AC 0%,#002B3F 100%);
+  .map-object
+    background-image: url('../img/map/object-3.png');
 
 #map-goal-container
   position: fixed
@@ -90,7 +99,6 @@ $map-transition = 300ms linear
   height: 50%
   transform-origin: center bottom
   transform: translateX(0%)
-  //transition: transform $map-transition
 
 #map-goal
   position: absolute
