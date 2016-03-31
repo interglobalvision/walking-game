@@ -614,7 +614,7 @@ table {
   background-repeat: repeat-x;
   background-size: 50% 100%;
   background-position-x: 0%;
-  background-image: url("../img/map/clouds.gif");
+  background-image: url("../img/map/clouds.png");
   opacity: 0.9;
 }
 .map-skyline {
@@ -624,7 +624,7 @@ table {
   height: 50%;
   background-position: center bottom;
   background-repeat: repeat-x;
-  background-size: 25% 50%;
+  background-size: 25% 25%;
 }
 .map-floor-container {
   height: 50%;
@@ -664,8 +664,8 @@ table {
   background-image: url("../img/map/sky-1.png");
 }
 .world-1 .map-floor {
-  background: -webkit-linear-gradient(top, #fefefe 0%, #909090 100%);
-  background: linear-gradient(to bottom, #fefefe 0%, #909090 100%);
+  background: -webkit-linear-gradient(top, #a6cccc 0%, #a19633 100%);
+  background: linear-gradient(to bottom, #a6cccc 0%, #a19633 100%);
 }
 .world-1 .map-object {
   background-image: url("../img/map/object-1.png");
@@ -679,6 +679,16 @@ table {
 }
 .world-2 .map-object {
   background-image: url("../img/map/object-2.png");
+}
+.world-3 .map-skyline {
+  background-image: url("../img/map/sky-3.png");
+}
+.world-3 .map-floor {
+  background: -webkit-linear-gradient(top, #00f5ac 0%, #002b3f 100%);
+  background: linear-gradient(to bottom, #00f5ac 0%, #002b3f 100%);
+}
+.world-3 .map-object {
+  background-image: url("../img/map/object-3.png");
 }
 #map-goal-container {
   position: fixed;
