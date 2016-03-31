@@ -1,7 +1,8 @@
 Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
-  interval: 44,
+  $skip: undefined,
+  interval: 33,
 
   arrayIndex: 0,
 
@@ -21,7 +22,10 @@ Utilities.Dialog = {
 
     _this.$parent.show();
 
-    _this.$parent.off('click.dialogRead').on({
+    _this.$parent.append('<div id="dialog-skip"></div>');
+    _this.$skip = $('#dialog-skip');
+
+    _this.$skip.off('click.dialogRead').on({
       'click.dialogRead': function() {
         if (_this.lineTimer > 0) {
           _this.skipLine();
@@ -84,6 +88,7 @@ Utilities.Dialog = {
 
     _this.$parent.hide();
     _this.$target.html('');
+    _this.$skip.remove();
 
     _this.callback();
   },
