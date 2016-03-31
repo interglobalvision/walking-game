@@ -2,12 +2,13 @@ Utilities.Dialog = {
   $target: $('.text-box-dialog'),
   $parent: $('#dialog'),
   $skip: undefined,
-  interval: WalkingVariables.typeSpeed,
+  interval: 33,
 
   arrayIndex: 0,
 
   lineIndex: 0,
   lineTimer: 0,
+  outputText: '',
 
   read: function(dialogArray, callback) {
 
@@ -50,11 +51,15 @@ Utilities.Dialog = {
 
     _this.lineIndex = 0;
     _this.$target.html('');
+    _this.outputText = '';
+
     _this.lineTimer = setInterval(function() {
 
       if (_this.lineIndex < dialogLine.length) {
 
-        _this.$target.append(dialogLine[_this.lineIndex]);
+        _this.outputText += dialogLine[_this.lineIndex];
+        _this.$target[0].innerHTML = _this.outputText;
+
         _this.lineIndex++;
 
       } else {
