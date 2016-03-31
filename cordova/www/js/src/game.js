@@ -5,10 +5,13 @@ Game = {
     'supertap',
     'reset',
     'photocolor',
+    'vibeystopper',
   ],
   worlds: [
     'Desert',
     'City',
+    'Arctic',
+    'Jungle',
   ],
   gameAttempts: 2,
 

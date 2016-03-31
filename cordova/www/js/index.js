@@ -115,7 +115,7 @@ _this.startGeoWatchers(),
 // Fade in map
 _this.$blackout.animate({opacity:0},1e3,"linear")}):
 // fallback for when not possible. Why? no idea but it might happen
-console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor"],worlds:["Desert","City"],gameAttempts:2,shareTitle:function(score){return"WOOAAAAHH! U HAVE AN AWESOME SCORe 0F "+score+" POIIINTSSS BRAAAHHH"},shareSubject:"Subject: I did this on Walking Game. The most tiring phone game ever made",shareUrl:"http://interglobal.vision/",
+console.log(":(")}},Game={minigames:["tippyswitch","math","supertap","reset","photocolor","vibeystopper"],worlds:["Desert","City","Arctic","Jungle"],gameAttempts:2,shareTitle:function(score){return"WOOAAAAHH! U HAVE AN AWESOME SCORe 0F "+score+" POIIINTSSS BRAAAHHH"},shareSubject:"Subject: I did this on Walking Game. The most tiring phone game ever made",shareUrl:"http://interglobal.vision/",
 // USER
 createUser:function(username,callback){var _this=this;window.localStorage.setItem("username",username),window.localStorage.setItem("points",0),window.localStorage.setItem("gems",0),window.localStorage.setItem("progress",0),window.localStorage.setItem("loops",0),window.localStorage.setItem("world",0),window.localStorage.setItem("rank",_this.setRank()),_this.setupLoop(),callback()},getUsername:function(){return window.localStorage.getItem("username")},
 // GAME STATE
