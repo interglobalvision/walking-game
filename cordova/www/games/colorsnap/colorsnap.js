@@ -46,6 +46,7 @@ var Colorsnap = {
     _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
     $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
+    $('.colorsnap-background').css('background-color', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
     $('#brush').attr('class', 'brush-swipe');
     $('#splat').attr('class', 'show-splat');
 
