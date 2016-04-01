@@ -20,21 +20,22 @@
   text-align: center
   opacity: 0
   transition: opacity .5s
+  position: absolute
 
 #calculator
   background-color: orange
   background-image: url('../img/squiggle.png')
-  background-size: 30px
-  width: 280px
-  height: auto
-  padding: 20px
+  background-size: 10%
+  width: 80%
+  top: 15%
+  left: 10%
+  position: absolute
+  padding: 2%
   border: solid rgb(50,120,100)
   border-radius: 12px
   border-width: 0 20px 20px 0
-  left: 50%
-  margin-left: -160px
-  position: absolute
-  transform: skew(-3deg) scale(0.9)
+  box-sizing: border-box
+  transform: skew(-3deg)
   box-shadow: rgb(250,220,250) 0 0 50px
 
 #calculator-readout
@@ -43,17 +44,16 @@
   border: 3px solid
   border-color: black white white black
   border-radius: 7px
-  width: 240px
-  height: 69px
-  max-height: 69px
+  width: 88%
+  height: auto
   display: inline-block
   text-align: right
   background: darkblue
-  padding: 12px
+  padding: 2%
   overflow-y: scroll
   overflow-x: hidden
   resize: none
-  margin-bottom: 10px
+  margin-bottom: 8%
   font-size: 28px
 
 .calculator-button
@@ -62,18 +62,18 @@
   border: 3px solid
   border-color: white black black white
   border-radius: 7px
-  width: 53px
-  margin-bottom: 10px
-  margin-right: 10px
+  width: 20%
+  margin-bottom: 5%
+  margin-right: 3%
   display: inline-block
   text-align: center
-  padding: 10px 0
+  padding: 3% 0
   font-size: 18px
   &:nth-child(4n), &:last-child
     margin-right: 0px
 
 .calculator-double
-  width: 120px
+  width: 45%
 
 #calculator-equals
   background-color: lightblue
@@ -87,7 +87,3 @@
     transform: translateX(-50%)
   to
     transform: translateX(0%)
-
-@media screen and (max-width: 360px)
-  #calculator
-    transform: skew(-3deg) scale(0.6)

@@ -1,14 +1,11 @@
 var Maths = {
-  scene: new TimelineLite(),
   $blackout: $('#blackout'),
   $button: $('.calculator-button'),
   $readout: $('#calculator-readout'),
   $clear: $('#calculator-clear'),
   $equals: $('#calculator-equals'),
   buttonVal: null,
-  targetNumber: null,
-  $targetNumber: $('#target-number'),
-  $targetHolder: $('#math-target'),
+  targetNumber: 0,
   input: null,
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
@@ -31,59 +28,56 @@ var Maths = {
     "U really suck at this simple boring task",
   ],
 
-  init: function() {
-    var _this = this;
-
-    $('#blackout').css('opacity', 0);
-
-    _this.generateNumber();
-
-    //Fade from black
-    _this.scene.set(_this.$blackout, {opacity: 0,});
-
-    Utilities.Dialog.read(_this.introDialog, function() {
-
-      _this.$targetHolder.css('opacity', 1);
-
-    });
-
-    _this.$button.on({
-      click: function(e) {
-        e.preventDefault();
-
-        _this.buttonVal = e.target.value;
-
-        if (_this.buttonVal === 'clear') {
-          _this.$readout.html('');
-        } else if (_this.buttonVal === 'submit') {
-          _this.input = _this.$readout.html().replace(/\xF7/g, '/').replace(/x/g, '*');
-
-          if (!_this.input) {
-
-            Utilities.Dialog.read([
-              "You need to do something first doh",
-            ]);
-
-          } else {
-
-            _this.checkResult();
-
-          }
-
-        } else {
-          _this.$readout.html(_this.$readout.html() + _this.buttonVal);
-          _this.$readout.scrollTop(_this.$readout[0].scrollHeight);
-        }
-      },
-    });
-
-  },
-
   generateNumber: function() {
     var _this = this;
 
     _this.targetNumber = Math.floor((Math.random() * 100) + 1);
-    _this.$targetNumber.html(_this.targetNumber);
+
+    _this.introDialog.push("Now remember " + Game.getUsername() + ", your target number is... " + _this.targetNumber);
+    _this.tryAgainDialog.push("And don't forget your target number is... " + _this.targetNumber);
+  },
+
+  init: function() {
+    var _this = this;
+
+    _this.generateNumber();
+
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+
+    Utilities.Dialog.read(_this.introDialog, function() { 
+
+      _this.$button.on({
+        click: function(e) {
+          e.preventDefault();
+
+          _this.buttonVal = e.target.value;
+
+          if (_this.buttonVal === 'clear') {
+            _this.$readout.val('');
+          } else if (_this.buttonVal === 'submit') {
+            _this.input = _this.$readout.val().replace(/\xF7/g, '/').replace(/x/g, '*');
+
+            if (!_this.input) {
+
+              Utilities.Dialog.read([
+                "You need to do something first doh",
+              ]);
+
+            } else {
+
+              _this.checkResult();
+
+            }
+
+          } else {
+            _this.$readout.val(_this.$readout.val() + _this.buttonVal);
+            _this.$readout.scrollTop(_this.$readout[0].scrollHeight);
+          }
+        },
+      });
+
+    });
+
   },
 
   checkResult: function() {
@@ -132,7 +126,7 @@ var Maths = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
-        _this.$readout.html('');
+        _this.$readout.val('');
 
       });
 
