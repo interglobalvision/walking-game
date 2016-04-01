@@ -1,15 +1,92 @@
-#game-box
-  height: 90vh
-  background-color: blue
-  position: relative
-  &.backwards
-    background-color: red
+.tippy-stage
+  perspective: 700px
+  background-color: yellow
+  background-image: url('../img/squiggle.png')
+  background-size: 15%
+  background-position: center
+  animation: tippy-background-left 1s infinite linear
+  
+#tippy-background
+  position: fixed
+  width: 100%
+  height: 100%
+  background-image: url('../img/games/tippyswitch/tippy_coach.png')
+  background-size: 15%
+  background-position: center
+  animation: tippy-background-right 2s infinite linear
+  filter: invert(100%)
 
-#game-ball
+#tippy-container
+  transform-style: preserve-3d
+  height: 100%
+
+#tippy-box
+  height: 90%
+  width: 80%
+  top: 5%
+  left: 10%
+  background-image: url('../img/games/tippyswitch/tippy_field.png')
+  background-position: center
+  background-size: 100% 100%
+  background-repeat: no-repeat 
+  background-color: #FFA6E3
+  position: relative
+  transition: 300ms all cubic-bezier(0.91,-0.01, 0.68, 0.19)
+  box-shadow: white 0 0 15px
+  &.backwards
+    background-color: #7569FF
+    
+#tippy-field
+  height: 100%
+    
+.tippy-face
+  width: 80px
+  height: 80px
+  left: 50%
+  margin-left: -40px
+  position: absolute
+  color: white
+  text-align: center
+  background-repeat: no-repeat
+  background-size: 90%
+  background-position: center
+
+#tippy-sad
+  bottom: -25px
+  background-image: url('../img/games/tippyswitch/lose_coach.png')
+
+  
+#tippy-happy
+  top: -35px
+  background-image: url('../img/games/tippyswitch/win_coach.png')
+
+#tippy-ball
   background-color: white
   width: 10px
   height: 10px
   border-radius: 10px
+  margin-left: -5px
   position: absolute
   left: 50%
   bottom: 15%
+  animation: tippy-ball .5s infinite ease-out
+    
+@keyframes tippy-ball
+  0%
+    box-shadow: white 0 0 10px 5px
+  20%
+    box-shadow: white 0 0 0px 0px
+  100%
+    box-shadow: white 0 0 10px 5px
+    
+@keyframes tippy-background-left
+  from
+    background-position: 17.5%
+  to
+    background-position: 0%
+    
+@keyframes tippy-background-right
+  from
+    background-position: 0
+  to
+    background-position: 17.5%

@@ -2,8 +2,8 @@ var TippySwitch = {
   fullPoints: 987,
   points: 0,
   maxMilliseconds: 12345,
-  $gameBox: $('#game-box'),
-  $gameBall: $('#game-ball'),
+  $gameBox: $('#tippy-box'),
+  $gameBall: $('#tippy-ball'),
   forward: true,
   ballPosition: 15,
   startTime: null,
@@ -169,6 +169,6 @@ var TippySwitch = {
 
 };
 
-$(document).ready(function() {
+document.addEventListener('deviceready', function() {
   TippySwitch.init();
-});
+}, false);

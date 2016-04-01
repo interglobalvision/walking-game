@@ -34,28 +34,61 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
         <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
-
-        <title>Compass</title>
+        <title>WALKING GAME</title>
     </head>
     <body>
 
         <div class="container">
-          <h2>Compass</h2>
-          <a href="../../index.html">back</a>
-          <p id="origin">Origin location: <span></span></p>
-          <p id="position">Current location: <span></span></p>
-          <p id="destiny">Destination location: <span></span></p>
-          <p id="comp-angle">Comp Angl: <span></span></p>
-          <p id="north-angle">North Angl: <span></span></p>
-          <p id="angle">Angle: <span></span></p>
-          <p id="distance">Distance: <span></span> Km</p>
-          <span id="compass-north" class="compass"></span>
-          <span id="compass-destiny" class="compass"></span>
+          <div id="stage" class="map-stage">
+            <div class="map-sky"></div>
+            <div class="map-clouds map-orientation"></div>
+            <div class="map-skyline map-orientation"></div>
+
+            <div id="map-goal-container">
+              <div id="map-goal">
+                <div class="map-flag-container">
+                  <img class="map-flag" src="../../img/map/flag.gif">
+                </div>
+              </div>
+            </div>
+
+            <div class="map-floor-container">
+              <div class="map-floor"></div>
+              <div class="map-object map-orientation"></div>
+            </div>
+
+            <img id="compass" src="../../img/compass.png" />
+
+            <div id="map-menu">
+              <a href="#" id="map-menu-button"><img src="../../img/coach-menu.png" class="map-menu-coach"></a>
+              <div id="map-menu-bubble">
+                <ul class="menu-list">
+                  <li class="menu-item">You are <span id="menu-rank"></span></li>
+                  <li class="menu-item">in the <span id="menu-world"></span></li>
+                  <li class="menu-item">with <span id="menu-points"></span> points.</li>
+                  <li class="menu-item"><a id="menu-share">Share</a></li>
+                </ul>
+                <ul class="menu-list">
+                  <li class="menu-item"><a>How to play?</a></li>
+                  <li class="menu-item"><a id="play-reset-game">Play Reset Game!</a></li>
+                  <li class="menu-item"><a>Credits...</a></li>
+                  <li class="menu-item"><a href="../../index.html">Dev: Menu</a></li>
+                  <li class="menu-item"><a id="end-compass">Dev: End Map</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Common footer -->
+            <div id="blackout"></div>
+            <div class="text-box" id="dialog">
+              <div class="text-box-dialog"></div>
+            </div>
+          </div>
         </div>
 
         <script type="text/javascript" src="../../cordova.js"></script>
         <script type="text/javascript" src="../../js/lib.js"></script>
         <script type="text/javascript" src="../../js/index.js"></script>
-        <script type="text/javascript" src="../../pages/compass/compass.js"></script>
+        <script type="text/javascript" src="compass.js"></script>
     </body>
 </html>
