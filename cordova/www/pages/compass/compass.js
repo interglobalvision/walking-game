@@ -6,6 +6,9 @@ Home = {
       Game.shareWithOptions();
     });
 
+    Compass.init();
+    Menu.init();
+
   },
 }
 
