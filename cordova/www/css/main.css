@@ -976,6 +976,15 @@ ul.u-inline-list li {
   vertical-align: middle;
 }
 
+.reset-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #06ff94;
+  background-image: url("../img/jankenpon/jankenpon-background.png");
+  background-size: cover;
+}
+
 html {
   background-color: #fff;
   color: #000;

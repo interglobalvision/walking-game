@@ -1,6 +1,6 @@
 var Jankenpon = {
   introDialog: [
-    "Time.....to play.....",
+    "\u30ef\u30a6!! IT'S TIME.....to play.....",
     "JAN--KEN--PON!!!!", 
     "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
     "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
@@ -10,7 +10,7 @@ var Jankenpon = {
     "Again",
   ],
   oneWinDialog: [
-    "Yes yes YESSSS!",
+    "NO NO NOooooo!",
     "You won! Let's play again",
   ],
   finalWinDialog: [
@@ -18,8 +18,8 @@ var Jankenpon = {
     "Let's go for a walk",
   ],
   failDialog: [
-    "Psh, sucka",
-    "Lets play again",
+    "Psh, suckaAaaa",
+    "Lets play again hmmm?!",
   ],
   $blackout: $('#blackout'),
   $element: $('.element'), 
@@ -72,7 +72,7 @@ var Jankenpon = {
 
     } else if( userChoice === 'rock') {
 
-      if( masterChoice == 'paper' ) {
+      if( masterChoice === 'paper' ) {
         _this.fail(); // paper covers rock
       } else {
         _this.win(); // rock breaks scissors
@@ -80,7 +80,7 @@ var Jankenpon = {
 
     } else if ( userChoice === 'paper' ) {
 
-      if( masterChoice == 'scissors' ) {
+      if( masterChoice === 'scissors' ) {
         _this.fail(); // scissors cut paper
       } else {
         _this.win(); // paper covers rock
@@ -88,7 +88,7 @@ var Jankenpon = {
 
     } else if ( userChoice === 'scissors' ) {
 
-      if( masterChoice == 'rock' ) { 
+      if( masterChoice === 'rock' ) { 
         _this.fail(); // rock breaks scissors
       } else {
         _this.win(); // scissors cut paper
@@ -122,7 +122,7 @@ var Jankenpon = {
     var _this = this;
 
     _this.wins += 1;
-    _this.loses == 0;
+    _this.loses = 0;
 
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read(_this.finalWinDialog, function() {
@@ -141,7 +141,7 @@ var Jankenpon = {
   fail: function() {
     var _this = this;
 
-    _this.wins == 0;
+    _this.wins = 0;
 
     Utilities.Dialog.read(_this.failDialog, function() {
 
