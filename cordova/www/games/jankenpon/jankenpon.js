@@ -1,8 +1,8 @@
 var Jankenpon = {
   introDialog: [
-    "Time...",
-    "...to play...",
-    "JAN-KEN-PON!",
+    "ワウ!! Time...to play...JAN-KEN-PON!!!!", 
+    "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
+    "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
   ],
   tryAgainDialog: [
     "What a shame. try again eh!",
@@ -14,7 +14,7 @@ var Jankenpon = {
   $element: $('.element'), 
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
-  elements: [ 'rock', 'paper', 'scissors' ],
+  elements: [ 'rock', 'paper', 'scissors',],
   wins: 0,
   minWins: 3,
 
@@ -140,7 +140,6 @@ var Jankenpon = {
     ], function() {
 
     });
-
 
     /*
     Game.gameFail(function() {
