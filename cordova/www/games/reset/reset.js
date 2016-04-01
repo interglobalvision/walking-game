@@ -69,9 +69,7 @@ var Reset = {
     Utilities.Dialog.read(["WOOWWW you're soooo boring....", "OK, then back to walking practice for you!!",], function() {
 
       _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
-
         Router.go('/pages/compass/');
-
       });
 
     });

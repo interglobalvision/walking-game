@@ -147,7 +147,9 @@ var Maths = {
 
       Utilities.Dialog.read(_this.looseDialog, function() {
 
-        Router.go('/pages/compass/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 
