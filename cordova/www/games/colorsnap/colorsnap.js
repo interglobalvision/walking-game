@@ -1,6 +1,8 @@
-var Photocolor = {
+var Colorsnap = {
   goldenRatio: 0.618033988749895,
   targetColor: undefined,
+  $blackout: $('#blackout'),
+  $takePhoto: $('#take-photo'),
   introDialog: [
     "It's time to play COLORSNAP!",
     "Allow me to paint your target color...",
@@ -23,19 +25,18 @@ var Photocolor = {
   init: function() {
     var _this = this;
 
-    $('#blackout').css('opacity', 0);
+    _this.$blackout.css('opacity', 0);
 
     Utilities.Dialog.read(_this.introDialog, function() {
       _this.setTargetColor();
     });
 
     _this.bindEvents();
-  },
+  }, 
 
   setTargetColor: function() {
     var _this = this;
     var rand = Math.random();
-    var showColor = new TimelineLite();
 
     rand += _this.goldenRatio;
     rand %= 1;
@@ -44,27 +45,21 @@ var Photocolor = {
 
     _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
-    showColor.call(function(){
-      $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
-      $('#brush').attr('class', 'brush-swipe');
+    $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
+    $('.colorsnap-background').css('background-color', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
+    $('#brush').attr('class', 'brush-swipe');
+    $('#splat').attr('class', 'show-splat');
+
+    Utilities.Dialog.read(_this.showColorDialog, function() {
+      _this.$takePhoto.addClass('show-camera');
     });
-
-    showColor.call(function(){
-      $('#splat').attr('class', 'show-splat');
-    }, null, null, '+=0.7');
-
-    showColor.call(function(){
-      Utilities.Dialog.read(_this.showColorDialog, function() {
-        $('#take-photo').addClass('show-camera');
-      });
-    }, null, null, '+=2');
 
   },
 
   bindEvents: function() {
     var _this = this;
 
-    $('#take-photo').on({
+    _this.$takePhoto.on({
       'click': function() {
 
         navigator.camera.getPicture(function(data) {
@@ -184,5 +179,5 @@ var Photocolor = {
 };
 
 document.addEventListener('deviceready', function() {
-  Photocolor.init();
+  Colorsnap.init();
 }, false);
