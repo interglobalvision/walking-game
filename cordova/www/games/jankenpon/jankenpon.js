@@ -1,9 +1,8 @@
 var Jankenpon = {
   introDialog: [
-    "Time.....to play.....",
-    "JAN--KEN--PON!!!!", 
-    "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
-    "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
+    "Time...",
+    "...to play...",
+    "JAN-KEN-PON!",
   ],
   tryAgainDialog: [
     "What a shame. try again eh!",
@@ -15,7 +14,7 @@ var Jankenpon = {
   $element: $('.element'), 
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
-  elements: [ 'rock', 'paper', 'scissors',],
+  elements: [ 'rock', 'paper', 'scissors' ],
   wins: 0,
   minWins: 3,
 
@@ -57,25 +56,33 @@ var Jankenpon = {
 
     // Compare with users choice
     if( userChoice === masterChoice ) {
+
       _this.tie();
+
     } else if( userChoice === 'rock') {
-      if( masterChoice == 'paper' ) {
-        _this.fail();
-      } 
 
-      _this.win();
+      if( masterChoice == 'paper' ) { 
+        _this.fail(); // Paper covers rock
+      } else {
+        _this.win(); // Rock breaks scissors
+      }
+
     } else if ( userChoice === 'paper' ) {
-      if( masterChoice == 'scissors' ) {
-        _this.fail();
-      } 
 
-      _this.win();
+      if( masterChoice == 'scissors' ) { 
+        _this.fail(); // Scissors cut paper
+      } else {
+        _this.win(); // Paper covers rock
+      }
+
     } else if ( userChoice === 'scissors' ) {
-      if( masterChoice == 'rock' ) {
-        _this.fail();
-      } 
 
-      _this.win();
+      if( masterChoice == 'rock' ) { 
+        _this.fail(); // Rock breaks scissors
+      } else {
+        _this.win(); // Scissors cut paper
+      }
+
     }
   },
 
@@ -89,10 +96,13 @@ var Jankenpon = {
     var _this = this;
 
     _this.bind();
+
   },
 
   tie: function() {
     var _this = this;
+
+    console.log('tie');
 
     Utilities.Dialog.read([
       "Ugh, same. ook ok",
@@ -106,8 +116,10 @@ var Jankenpon = {
   win: function() {
     var _this = this;
 
+    console.log('win');
+
     _this.wins += 1;
-    _this.loses == 0; //whats this?
+    _this.loses == 0;
 
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read([
@@ -132,6 +144,8 @@ var Jankenpon = {
   fail: function() {
     var _this = this;
 
+    console.log('fail');
+
     _this.wins == 0;
 
     Utilities.Dialog.read([
@@ -140,6 +154,7 @@ var Jankenpon = {
     ], function() {
 
     });
+
 
     /*
     Game.gameFail(function() {
