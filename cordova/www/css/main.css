@@ -909,6 +909,7 @@ table {
   padding: 4%;
   box-sizing: border-box;
   display: none;
+  overflow-y: scroll;
 }
 li.menu-item {
   margin-bottom: 1em;
