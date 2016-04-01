@@ -57,25 +57,33 @@ var Jankenpon = {
 
     // Compare with users choice
     if( userChoice === masterChoice ) {
+
       _this.tie();
+
     } else if( userChoice === 'rock') {
+
       if( masterChoice == 'paper' ) {
-        _this.fail();
-      } 
+        _this.fail(); // paper covers rock
+      } else {
+        _this.win(); // rock breaks scissors
+      }
 
-      _this.win();
     } else if ( userChoice === 'paper' ) {
+
       if( masterChoice == 'scissors' ) {
-        _this.fail();
-      } 
+        _this.fail(); // scissors cut paper
+      } else {
+        _this.win(); // paper covers rock
+      }
 
-      _this.win();
     } else if ( userChoice === 'scissors' ) {
-      if( masterChoice == 'rock' ) {
-        _this.fail();
-      } 
 
-      _this.win();
+      if( masterChoice == 'rock' ) { 
+        _this.fail(); // rock breaks scissors
+      } else {
+        _this.win(); // scissors cut paper
+      }
+
     }
   },
 
@@ -107,7 +115,7 @@ var Jankenpon = {
     var _this = this;
 
     _this.wins += 1;
-    _this.loses == 0; //whats this?
+    _this.loses == 0;
 
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read([
