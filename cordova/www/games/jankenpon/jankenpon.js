@@ -1,6 +1,7 @@
 var Jankenpon = {
   introDialog: [
-    "ワウ!! Time...to play...JAN-KEN-PON!!!!", 
+    "Time.....to play.....",
+    "JAN--KEN--PON!!!!", 
     "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
     "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
   ],
@@ -88,7 +89,6 @@ var Jankenpon = {
     var _this = this;
 
     _this.bind();
-
   },
 
   tie: function() {
@@ -107,7 +107,7 @@ var Jankenpon = {
     var _this = this;
 
     _this.wins += 1;
-    _this.loses == 0;
+    _this.loses == 0; //whats this?
 
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read([
