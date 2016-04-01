@@ -3,7 +3,7 @@ var VibeyStopper = {
   points: 0,
   minWait: 1010,
   maxWait: 8888,
-  winThreshold: 1111,
+  winThreshold: 611,
   $switch: $('.vibey-switch'),
   $machine: $('.vibey-machine'),
   $background: $('.vibey-background'),
@@ -53,7 +53,7 @@ var VibeyStopper = {
   unbind: function() {
     var _this = this;
 
-    _this.$switch.off();
+    _this.$switch.off(); 
 
   },
 
