@@ -5,11 +5,21 @@ var Jankenpon = {
     "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
     "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
   ],
-  tryAgainDialog: [
-    "What a shame. try again eh!",
+  tieDialog: [
+    "Ugh, same. ook ok",
+    "Again",
   ],
-  loseDialog: [
-    "U really suck at this simple boring task",
+  oneWinDialog: [
+    "Yes yes YESSSS!",
+    "You won! Let's play again",
+  ],
+  finalWinDialog: [
+    "Woah u good at this...",
+    "Let's go for a walk",
+  ],
+  failDialog: [
+    "Psh, sucka",
+    "Lets play again",
   ],
   $blackout: $('#blackout'),
   $element: $('.element'), 
@@ -102,10 +112,7 @@ var Jankenpon = {
   tie: function() {
     var _this = this;
 
-    Utilities.Dialog.read([
-      "Ugh, same. ook ok",
-      "Again",
-    ], function() {
+    Utilities.Dialog.read(_this.tieDialog, function() {
 
     });
 
@@ -118,19 +125,13 @@ var Jankenpon = {
     _this.loses == 0;
 
     if( _this.wins === _this.minWins ) {
-      Utilities.Dialog.read([
-        "Woah u good at this...",
-        "Let's go for a walk",
-      ], function() {
+      Utilities.Dialog.read(_this.finalWinDialog, function() {
 
         Game.gameComplete(_this.points);
 
       });
     } else {
-      Utilities.Dialog.read([
-        "Yes yes YESSSS!",
-        "You won! Let's play again",
-      ], function() {
+      Utilities.Dialog.read(_this.oneWinDialog, function() {
 
       });
     }
@@ -142,33 +143,13 @@ var Jankenpon = {
 
     _this.wins == 0;
 
-    Utilities.Dialog.read([
-      "Psh, sucka",
-      "Lets play again",
-    ], function() {
+    Utilities.Dialog.read(_this.failDialog, function() {
 
-    });
-
-    /*
-    Game.gameFail(function() {
-
-      Utilities.Dialog.read(_this.tryAgainDialog, function() {
-
-        _this.startGame();
-
+      _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+        Router.go('/pages/compass/');
       });
 
-    }, function() {
-
-      Utilities.Dialog.read(_this.loseDialog, function() {
-
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
-          Router.go('/pages/compass/');
-        });
-
-      });
     });
-    */
 
   },
 
