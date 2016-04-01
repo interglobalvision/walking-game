@@ -137,7 +137,7 @@ var Supertap = {
 
       Utilities.Dialog.read(_this.loseDialog, function() {
 
-        Router.go('/');
+        Router.go('/pages/compass/');
 
       });
 

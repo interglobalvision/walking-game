@@ -660,6 +660,7 @@ table {
   position: absolute;
   border: 5px solid #000;
   border-radius: 15px;
+  opacity: 0;
 }
 @-webkit-keyframes brush-swipe {
   0% {

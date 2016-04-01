@@ -70,7 +70,7 @@ var Reset = {
 
       _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
 
-        Game.gameComplete();
+        Router.go('/pages/compass/');
 
       });
 

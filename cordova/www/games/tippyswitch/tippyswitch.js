@@ -159,7 +159,7 @@ var TippySwitch = {
 
       Utilities.Dialog.read(_this.looseDialog, function() {
 
-        Router.go('/');
+        Router.go('/pages/compass/');
 
       });
 
