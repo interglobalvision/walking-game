@@ -137,7 +137,7 @@ var TippySwitch = {
 
     Utilities.Dialog.read([
         "Yes yes YESSSS!",
-        "You won " + _this.points + " points!!!",
+        "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
       ], function() {
 
       Game.gameComplete(_this.points);

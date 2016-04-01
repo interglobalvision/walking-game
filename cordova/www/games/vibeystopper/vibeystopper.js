@@ -54,7 +54,7 @@ var VibeyStopper = {
   unbind: function() {
     var _this = this;
 
-    _this.$switch.off(); 
+    _this.$switch.off();
 
   },
 
@@ -104,7 +104,7 @@ var VibeyStopper = {
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
-      "You won " + _this.points + " points!!!",
+      "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
     ], function() {
 
       Game.gameComplete(_this.points);
