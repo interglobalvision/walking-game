@@ -8,6 +8,7 @@ var Supertap = {
   timeout: undefined,
   checker: undefined,
   countdown: undefined,
+  $blackout: $('#blackout'),
   $tap: $('#tap-button'),
   $message: $('#tap-button-message'),
   $countdown: $('.tap-countdown-number'),
@@ -29,7 +30,7 @@ var Supertap = {
   init: function() {
     var _this = this;
 
-    $('#blackout').css('opacity', 0);
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     Utilities.Dialog.read(_this.introDialog);
 
@@ -137,7 +138,9 @@ var Supertap = {
 
       Utilities.Dialog.read(_this.loseDialog, function() {
 
-        Router.go('/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 

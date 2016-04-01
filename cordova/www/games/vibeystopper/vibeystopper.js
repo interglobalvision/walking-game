@@ -3,7 +3,8 @@ var VibeyStopper = {
   points: 0,
   minWait: 1010,
   maxWait: 8888,
-  winThreshold: 1111,
+  winThreshold: 611,
+  $blackout: $('#blackout'),
   $switch: $('.vibey-switch'),
   $machine: $('.vibey-machine'),
   $background: $('.vibey-background'),
@@ -28,7 +29,7 @@ var VibeyStopper = {
       console.log('no vibration for you :-(');
     }
 
-    $('#blackout').css('opacity', 0);
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     Utilities.Dialog.read(_this.introDialog, function() {
       _this.startGame();
@@ -103,7 +104,7 @@ var VibeyStopper = {
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
-      "You won " + _this.points + " points!!!",
+      "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
     ], function() {
 
       Game.gameComplete(_this.points);
@@ -132,7 +133,9 @@ var VibeyStopper = {
 
       Utilities.Dialog.read(_this.loseDialog, function() {
 
-        Router.go('/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 

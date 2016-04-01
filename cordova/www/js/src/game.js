@@ -5,7 +5,6 @@ Game = {
     'supertap',
     'reset',
     'colorsnap',
-    'photocolor',
     'vibeystopper',
   ],
   worlds: [

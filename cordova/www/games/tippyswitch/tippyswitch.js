@@ -2,11 +2,17 @@ var TippySwitch = {
   fullPoints: 987,
   points: 0,
   maxMilliseconds: 12345,
+  $blackout: $('#blackout'),
   $gameBox: $('#tippy-box'),
   $gameBall: $('#tippy-ball'),
   forward: true,
-  ballPosition: 15,
+  ballPosition: 50,
   startTime: null,
+  introDialog: [
+    "Welcome to TIPPY SWITCH! When the field is PINK: gravity is DOWN ... and when it's PURPLE: gravity is UP!",
+    "Try to get the glowing ball to the green coach by tipping your phone!!",
+    "Hold your phone flat to begin... Here we go!!...",
+  ],
   tryAgainDialog: [
     "What a shame. try again eh!",
   ],
@@ -17,10 +23,14 @@ var TippySwitch = {
   init: function() {
     var _this = this;
 
-    $('#blackout').css('opacity', 0);
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
-    _this.bind();
-    _this.startGame();
+    Utilities.Dialog.read(_this.introDialog, function() {
+
+      _this.bind();
+      _this.startGame();
+
+    });
 
   },
 
@@ -88,7 +98,7 @@ var TippySwitch = {
   resetBallPosition: function() {
     var _this = this;
 
-    _this.ballPosition = 15;
+    _this.ballPosition = 50;
     _this.$gameBall.css('bottom', _this.ballPosition + '%');
   },
 
@@ -127,7 +137,7 @@ var TippySwitch = {
 
     Utilities.Dialog.read([
         "Yes yes YESSSS!",
-        "You won " + _this.points + " points!!!",
+        "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
       ], function() {
 
       Game.gameComplete(_this.points);
@@ -159,7 +169,9 @@ var TippySwitch = {
 
       Utilities.Dialog.read(_this.looseDialog, function() {
 
-        Router.go('/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 

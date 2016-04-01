@@ -3,6 +3,7 @@ var Colorsnap = {
   targetColor: undefined,
   $blackout: $('#blackout'),
   $takePhoto: $('#take-photo'),
+  $photoHolder: $('#output-img'),
   introDialog: [
     "It's time to play COLORSNAP!",
     "Allow me to paint your target color...",
@@ -25,7 +26,7 @@ var Colorsnap = {
   init: function() {
     var _this = this;
 
-    _this.$blackout.css('opacity', 0);
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     Utilities.Dialog.read(_this.introDialog, function() {
       _this.setTargetColor();
@@ -46,8 +47,11 @@ var Colorsnap = {
     _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
     $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
+    
     $('.colorsnap-background').css('background-color', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
+    
     $('#brush').attr('class', 'brush-swipe');
+    
     $('#splat').attr('class', 'show-splat');
 
     Utilities.Dialog.read(_this.showColorDialog, function() {
@@ -61,6 +65,8 @@ var Colorsnap = {
 
     _this.$takePhoto.on({
       'click': function() {
+
+        _this.$takePhoto.removeClass('show-camera');
 
         navigator.camera.getPicture(function(data) {
           _this.previewPhoto(data);
@@ -84,15 +90,19 @@ var Colorsnap = {
   },
 
   resetPhoto: function() {
-    var photoHolder = $('#output-img')[0];
+    var _this = this;
 
-    photoHolder.src = '';
+    _this.$photoHolder.animate({'opacity': 0,}, 500, 'linear', function() {
+      _this.$photoHolder.attr('src', '');
+    });
+
+    $('#brush, #splat').attr('class', '');
   },
 
   previewPhoto: function(data) {
-    var photoHolder = $('#output-img')[0];
+    var _this = this;
 
-    photoHolder.src = data;
+    _this.$photoHolder.attr('src', data).animate({'opacity': 1,}, 500, 'linear');
   },
 
   analyzeResult: function(data) {
@@ -168,7 +178,9 @@ var Colorsnap = {
 
       Utilities.Dialog.read(_this.loseDialog, function() {
 
-        Router.go('/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 

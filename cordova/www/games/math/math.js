@@ -8,24 +8,20 @@ var Maths = {
   targetNumber: 0,
   input: null,
   introDialog: [
-      "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
-      "Time to do some badgyal maths. Here is the challenge yeah",
+      "Time to do some badgyal maths. Here is the challenge yeah " + Game.getUsername() + "?",
       "I'm going to show you a number and you have to write the most complicated equation you can to equal that number",
       "For example if I tell you 5 you can write 1+1+1+(2*1)",
-      "Plus is +, minus is -, muliply is *, divide is /, and you can use (brackets) to wrap things",
   ],
   winDialog: [
       "Nice 1 you know how to do maths",
       "Maybe you think you are pretty hot with your complicated math skills.",
-      "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths.",
-      "Remember K.I.S.S.",
-      "and maybe remember D.A.R.E. too..?",
+      "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
   ],
   tryAgainDialog: [
-    "What a shame. try again eh!",
+    "What a shame...try again eh!",
   ],
   looseDialog: [
-    "U really suck at this simple boring task",
+    "U really suck at this simple boring task...",
   ],
 
   generateNumber: function() {
@@ -147,7 +143,9 @@ var Maths = {
 
       Utilities.Dialog.read(_this.looseDialog, function() {
 
-        Router.go('/');
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
 
       });
 
