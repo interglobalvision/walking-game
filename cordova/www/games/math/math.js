@@ -53,9 +53,9 @@ var Maths = {
           _this.buttonVal = e.target.value;
 
           if (_this.buttonVal === 'clear') {
-            _this.$readout.val('');
+            _this.$readout.html('0');
           } else if (_this.buttonVal === 'submit') {
-            _this.input = _this.$readout.val().replace(/\xF7/g, '/').replace(/x/g, '*');
+            _this.input = _this.$readout.html().replace(/\xF7/g, '/').replace(/x/g, '*');
 
             if (!_this.input) {
 
@@ -70,8 +70,21 @@ var Maths = {
             }
 
           } else {
-            _this.$readout.val(_this.$readout.val() + _this.buttonVal);
-            _this.$readout.scrollTop(_this.$readout[0].scrollHeight);
+
+            if ( _this.$readout.html().length < 12 ) {
+
+              if ( _this.$readout.html() === '0' ) {
+                _this.$readout.html(_this.buttonVal);
+              } else {
+                _this.$readout.html(_this.$readout.html() + _this.buttonVal);
+              }
+
+            } else {
+
+              console.log('Too much numbbas, dickhead'); 
+
+            }
+
           }
         },
       });
@@ -126,7 +139,7 @@ var Maths = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
-        _this.$readout.val('');
+        _this.$readout.html('0');
 
       });
 
