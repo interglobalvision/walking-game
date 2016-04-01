@@ -6,10 +6,10 @@ var TippySwitch = {
   $gameBox: $('#tippy-box'),
   $gameBall: $('#tippy-ball'),
   forward: true,
-  ballPosition: 15,
+  ballPosition: 50,
   startTime: null,
   introDialog: [
-    "Welcome to TIPPY SWITCH! When the field is PINK: gravity is UP, and when it's BLUE: gravity is DOWN!",
+    "Welcome to TIPPY SWITCH! When the field is PINK: gravity is DOWN ... and when it's PURPLE: gravity is UP!",
     "Try to get the glowing ball to the green coach by tipping your phone!!",
     "Hold your phone flat to begin... Here we go!!...",
   ],
@@ -98,7 +98,7 @@ var TippySwitch = {
   resetBallPosition: function() {
     var _this = this;
 
-    _this.ballPosition = 15;
+    _this.ballPosition = 50;
     _this.$gameBall.css('bottom', _this.ballPosition + '%');
   },
 
