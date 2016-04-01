@@ -5,10 +5,14 @@ Game = {
     'supertap',
     'reset',
     'colorsnap',
+    'photocolor',
+    'vibeystopper',
   ],
   worlds: [
     'Desert',
     'City',
+    'Arctic',
+    'Jungle',
   ],
   gameAttempts: 2,
 
@@ -195,7 +199,7 @@ Game = {
       _this.finishLoop();
     }
 
-    Router.go('/');
+    Router.go('/pages/compass/');
   },
 
   // POINTS
@@ -240,7 +244,7 @@ Game = {
   // GEMS
 
   getGems: function() {
-    var gems = window.localStorage.getItem('gems');
+    var gems = parseInt( window.localStorage.getItem('gems') );
 
     if (gems === null || isNaN(gems)) {
       gems = 0;

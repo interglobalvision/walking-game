@@ -189,6 +189,7 @@ table {
   width: 100%;
   height: 100%;
   z-index: 800;
+  pointer-events: none;
 }
 #coach-angry {
   position: absolute;
@@ -221,7 +222,7 @@ table {
 .mirror-border {
   background: #f5f6f6;
   background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
-  background: -webkit-radial-gradient(center ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: -webkit-radial-gradient(center, ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   position: absolute;
   top: 0;
@@ -247,7 +248,8 @@ table {
   overflow: hidden;
   z-index: 700;
   -webkit-transform: scale(-1, 1);
-  transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+      transform: scale(-1, 1);
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
 }
@@ -265,6 +267,7 @@ table {
   left: -100px;
   margin-left: 0;
   -webkit-transform: scale(0.7);
+      -ms-transform: scale(0.7);
           transform: scale(0.7);
   top: 20%;
   -webkit-filter: saturate(0);
@@ -275,9 +278,7 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transition: -webkit-transform 500ms;
-  transition: -webkit-transform 500ms;
-  transition: transform 500ms;
-  transition: transform 500ms, -webkit-transform 500ms;
+          transition: transform 500ms;
 }
 .livingroom {
   width: 200%;
@@ -318,7 +319,7 @@ table {
   background-position: center;
   position: fixed;
   -webkit-transition: all 2s;
-  transition: all 2s;
+          transition: all 2s;
   pointer-events: none;
   width: 100%;
   height: 100%;
@@ -354,7 +355,7 @@ table {
   margin-top: 0px;
   margin-left: 0px;
   -webkit-transition: all 2s;
-  transition: all 2s;
+          transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
 }
@@ -604,11 +605,12 @@ table {
   background-position: center;
   background-size: 100% 100%;
   -webkit-transition: background-color 2000ms;
-  transition: background-color 2000ms;
+          transition: background-color 2000ms;
 }
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
+      -ms-transform: rotate(-25deg);
           transform: rotate(-25deg);
   width: 200px;
   height: 57.191px;
@@ -646,7 +648,7 @@ table {
   width: 50%;
   left: 25%;
   -webkit-transition: top 1s;
-  transition: top 1s;
+          transition: top 1s;
 }
 #take-photo.show-camera {
   top: 60%;
@@ -759,7 +761,7 @@ table {
   background-repeat: repeat-x;
   background-size: 50% 100%;
   background-position-x: 0%;
-  background-image: url("../img/map/clouds.gif");
+  background-image: url("../img/map/clouds.png");
   opacity: 0.9;
 }
 .map-skyline {
@@ -769,7 +771,7 @@ table {
   height: 50%;
   background-position: center bottom;
   background-repeat: repeat-x;
-  background-size: 25% 50%;
+  background-size: 25% 25%;
 }
 .map-floor-container {
   height: 50%;
@@ -809,8 +811,8 @@ table {
   background-image: url("../img/map/sky-1.png");
 }
 .world-1 .map-floor {
-  background: -webkit-linear-gradient(top, #fefefe 0%, #909090 100%);
-  background: linear-gradient(to bottom, #fefefe 0%, #909090 100%);
+  background: -webkit-linear-gradient(top, #a6cccc 0%, #a19633 100%);
+  background: linear-gradient(to bottom, #a6cccc 0%, #a19633 100%);
 }
 .world-1 .map-object {
   background-image: url("../img/map/object-1.png");
@@ -825,14 +827,26 @@ table {
 .world-2 .map-object {
   background-image: url("../img/map/object-2.png");
 }
+.world-3 .map-skyline {
+  background-image: url("../img/map/sky-3.png");
+}
+.world-3 .map-floor {
+  background: -webkit-linear-gradient(top, #00f5ac 0%, #002b3f 100%);
+  background: linear-gradient(to bottom, #00f5ac 0%, #002b3f 100%);
+}
+.world-3 .map-object {
+  background-image: url("../img/map/object-3.png");
+}
 #map-goal-container {
   position: fixed;
   bottom: 50%;
   width: 100%;
   height: 50%;
   -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
           transform: translateX(0%);
 }
 #map-goal {
@@ -841,13 +855,13 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: scale(0.01);
+      -ms-transform: scale(0.01);
           transform: scale(0.01);
   -webkit-transition: -webkit-transform 300ms linear;
-  transition: -webkit-transform 300ms linear;
-  transition: transform 300ms linear;
-  transition: transform 300ms linear, -webkit-transform 300ms linear;
+          transition: transform 300ms linear;
 }
 .map-flag-container {
   position: absolute;
@@ -1018,6 +1032,14 @@ html {
 #dialog:hover {
   cursor: pointer;
 }
+#dialog-skip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
 .button {
   font-size: 1em;
   margin-bottom: 0 !important;
@@ -1080,6 +1102,97 @@ h6 {
   display: none;
 }
 
+.reset-background {
+  position: absolute;
+  background: #000;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  background-image: url("../img/letsgo/letsgo-background.png");
+  background-size: cover;
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
+  -webkit-animation: reset-background 2s infinite linear;
+          animation: reset-background 2s infinite linear;
+}
+.coach-reset {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  background-image: url("../img/letsgo/coach-shiny.png");
+  background-size: 400% 100%;
+  background-position: 0% center;
+  -webkit-animation: coach-reset 1s steps(4, end) infinite;
+          animation: coach-reset 1s steps(4, end) infinite;
+  -webkit-filter: hue-rotate(250deg);
+          filter: hue-rotate(250deg);
+  pointer-events: none;
+}
+.reset-option {
+  position: absolute;
+  width: 50%;
+  height: 25%;
+  border-radius: 50%;
+  left: 25%;
+  border-width: 10px;
+  background: #a9a9a9;
+  color: #fff;
+  font-size: 20px;
+}
+.reset-yes {
+  top: 10%;
+}
+.reset-no {
+  bottom: 10%;
+}
+@-webkit-keyframes coach-reset {
+  100% {
+    background-position: 400% center;
+  }
+}
+@keyframes coach-reset {
+  100% {
+    background-position: 400% center;
+  }
+}
+@-webkit-keyframes reset-background {
+  0% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(200deg);
+            filter: hue-rotate(200deg);
+  }
+  50% {
+    background-color: #fff;
+    -webkit-filter: hue-rotate(250deg);
+            filter: hue-rotate(250deg);
+  }
+  100% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(200deg);
+            filter: hue-rotate(200deg);
+  }
+}
+@keyframes reset-background {
+  0% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(200deg);
+            filter: hue-rotate(200deg);
+  }
+  50% {
+    background-color: #fff;
+    -webkit-filter: hue-rotate(250deg);
+            filter: hue-rotate(250deg);
+  }
+  100% {
+    background-color: #000;
+    -webkit-filter: hue-rotate(200deg);
+            filter: hue-rotate(200deg);
+  }
+}
+
 .tap-background {
   position: absolute;
   width: 100%;
@@ -1125,6 +1238,7 @@ h6 {
   border-radius: 50%;
   box-shadow: 0px 20px 0px 0px #a9a9a9;
   -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
           transform: translateY(-10px);
   width: 80%;
   height: 80%;
@@ -1134,6 +1248,7 @@ h6 {
 #tap-button:active {
   box-shadow: 0px 15px 0px 0px #a9a9a9;
   -webkit-transform: translateY(-5px);
+      -ms-transform: translateY(-5px);
           transform: translateY(-5px);
 }
 
@@ -1176,7 +1291,7 @@ h6 {
   background-color: #ffa6e3;
   position: relative;
   -webkit-transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
-  transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
+          transition: 300ms all cubic-bezier(0.91, -0.01, 0.68, 0.19);
   box-shadow: #fff 0 0 15px;
 }
 #tippy-box.backwards {
@@ -1269,5 +1384,98 @@ h6 {
   }
   to {
     background-position: 17.5%;
+  }
+}
+
+.vibey-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #d3d3d3;
+}
+.vibey-flash {
+  -webkit-animation: vibey-flash 50ms infinite linear;
+          animation: vibey-flash 50ms infinite linear;
+}
+.vibey-switch {
+  position: absolute;
+  height: 45%;
+  width: 70%;
+  top: 26%;
+  left: 15%;
+  background-color: #ff6347;
+  background-image: url("../img/games/vibeystopper/vibey-switch.png");
+  background-size: 100% 100%;
+  -webkit-transform: scale(1, -1);
+      -ms-transform: scale(1, -1);
+          transform: scale(1, -1);
+  border: 3px solid #000;
+  -webkit-transition: background-color 300ms;
+          transition: background-color 300ms;
+}
+.vibey-part-1 {
+  position: absolute;
+  top: 0;
+  background-image: url("../img/games/vibeystopper/vibey-1.png");
+  -webkit-filter: hue-rotate(0deg);
+          filter: hue-rotate(0deg);
+}
+.vibey-part-2 {
+  position: absolute;
+  top: 70%;
+  background-image: url("../img/games/vibeystopper/vibey-2.png");
+}
+.vibey-parts {
+  position: absolute;
+  height: 30%;
+  width: 100%;
+  background-size: 80% 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.vibey-on .vibey-switch {
+  background-color: #adff2f;
+  -webkit-transform: scale(-1, 1);
+      -ms-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+.vibey-on .vibey-part-1 {
+  -webkit-animation: vibey-blink 500ms steps(2, end) infinite;
+          animation: vibey-blink 500ms steps(2, end) infinite;
+}
+@-webkit-keyframes vibey-blink {
+  from {
+    -webkit-filter: hue-rotate(100deg);
+            filter: hue-rotate(100deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(300deg);
+            filter: hue-rotate(300deg);
+  }
+}
+@keyframes vibey-blink {
+  from {
+    -webkit-filter: hue-rotate(100deg);
+            filter: hue-rotate(100deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(300deg);
+            filter: hue-rotate(300deg);
+  }
+}
+@-webkit-keyframes vibey-flash {
+  from {
+    background: #000;
+  }
+  to {
+    background: #fff;
+  }
+}
+@keyframes vibey-flash {
+  from {
+    background: #000;
+  }
+  to {
+    background: #fff;
   }
 }

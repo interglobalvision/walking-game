@@ -1,4 +1,5 @@
 Menu = {
+  $blackout: $('#blackout'),
   $menuBubble: $('#map-menu-bubble'),
   $menuButton: $('#map-menu-button'),
   $menuPoints: $('#menu-points'),
@@ -22,6 +23,14 @@ Menu = {
     _this.$menuButton.on('click', function() {
       _this.toggleMenu();
     }); 
+
+    $('#play-reset-game').on('click', function(event) {
+
+      _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() {
+        Router.go('/games/reset');
+      })
+      
+    });
 
     $('#end-compass').on('click', function(event) {
       event.preventDefault();
