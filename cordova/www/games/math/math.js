@@ -44,7 +44,7 @@ var Maths = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
-    Utilities.Dialog.read(_this.introDialog, function() { 
+    Utilities.Dialog.read(_this.introDialog, function() {
 
       _this.$button.on({
         click: function(e) {
@@ -81,7 +81,7 @@ var Maths = {
 
             } else {
 
-              console.log('Too much numbbas, dickhead'); 
+              console.log('Too much numbbas, dickhead');
 
             }
 

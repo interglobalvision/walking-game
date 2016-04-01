@@ -3,6 +3,8 @@ Game = {
     'tippyswitch',
     'math',
     'supertap',
+    'reset',
+    'colorsnap',
     'photocolor',
     'vibeystopper',
   ],
