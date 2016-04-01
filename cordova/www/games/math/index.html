@@ -38,23 +38,33 @@
         <title>MATH</title>
     </head>
     <body>
-        <div class="container">
+        <div id="stage">
+          <div class="math-background"></div>
 
-          <p>
-            <i>MATH TIME</i>
-          </p>
-          <p>
-            Time to do some badboy/badgal maths. Here is the challenge yeah
-          </p>
-
-          <form id="math-form">
-            <h3>Target is: <span id="target-number"></span></h3>
-
-            <input id="math-input" type="text" placeholder="DO MATHS HERE" />
-
-            <button type="submit">Mark me mark me</button>
-          </form>
-
+          <div id="calculator">
+            <div id="calculator-readout">0</div>
+            <div id="calculator-buttons">
+              <button class="calculator-button" value=".">.</button>
+              <button class="calculator-button" value="(">(</button>
+              <button class="calculator-button" value=")">)</button>
+              <button class="calculator-button" id="calculator-clear" value="clear">C</button>
+              <button class="calculator-button" value="1">1</button>
+              <button class="calculator-button" value="2">2</button>
+              <button class="calculator-button" value="3">3</button>
+              <button class="calculator-button" value="&divide;">&divide;</button>
+              <button class="calculator-button" value="4">4</button>
+              <button class="calculator-button" value="5">5</button>
+              <button class="calculator-button" value="6">6</button>
+              <button class="calculator-button" value="x">x</button>
+              <button class="calculator-button" value="7">7</button>
+              <button class="calculator-button" value="8">8</button>
+              <button class="calculator-button" value="9">9</button>
+              <button class="calculator-button" value="-">&ndash;</button>
+              <button class="calculator-button calculator-double" value="0">0</button>
+              <button class="calculator-button" id="calculator-equals" value="submit">=</button>
+              <button class="calculator-button" value="+">+</button>
+            </div>
+          </div>
         </div>
 
         <!-- Common footer -->

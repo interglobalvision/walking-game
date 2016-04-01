@@ -1,13 +1,16 @@
 var Maths = {
-
-  targetNumber: null,
-  $targetNumber: $('#target-number'),
+  $blackout: $('#blackout'),
+  $button: $('.calculator-button'),
+  $readout: $('#calculator-readout'),
+  $clear: $('#calculator-clear'),
+  $equals: $('#calculator-equals'),
+  buttonVal: null,
+  targetNumber: 0,
   input: null,
-  $mathForm: $('#math-form'),
   introDialog: [
       "Lets not just exercise those leg muscles, lets get it on with the brain muscle too.",
-      "Time to do some badboy/badgyal maths. Here is the challenge yeah",
-      "I'm going to show you a number and you have to write the most complicated math you can to get to that number",
+      "Time to do some badgyal maths. Here is the challenge yeah",
+      "I'm going to show you a number and you have to write the most complicated equation you can to equal that number",
       "For example if I tell you 5 you can write 1+1+1+(2*1)",
       "Plus is +, minus is -, muliply is *, divide is /, and you can use (brackets) to wrap things",
   ],
@@ -25,38 +28,69 @@ var Maths = {
     "U really suck at this simple boring task",
   ],
 
-  init: function() {
-    var _this = this;
-
-    $('#blackout').css('opacity', 0);
-
-    _this.generateNumber();
-
-    Utilities.Dialog.read(_this.introDialog, function() {
-      _this.$mathForm.fadeIn();
-    });
-
-    _this.$mathForm.on({
-      submit: function(e) {
-        e.preventDefault();
-
-        _this.input = e.target[0].value;
-
-        if (!_this.input) {
-          console.log('no imput');
-        }
-
-        _this.checkResult();
-      },
-    });
-
-  },
-
   generateNumber: function() {
     var _this = this;
 
     _this.targetNumber = Math.floor((Math.random() * 100) + 1);
-    _this.$targetNumber.html(_this.targetNumber);
+
+    _this.introDialog.push("Now remember " + Game.getUsername() + ", your target number is... " + _this.targetNumber);
+    _this.tryAgainDialog.push("And don't forget your target number is... " + _this.targetNumber);
+  },
+
+  init: function() {
+    var _this = this;
+
+    _this.generateNumber();
+
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+
+    Utilities.Dialog.read(_this.introDialog, function() {
+
+      _this.$button.on({
+        click: function(e) {
+          e.preventDefault();
+
+          _this.buttonVal = e.target.value;
+
+          if (_this.buttonVal === 'clear') {
+            _this.$readout.html('0');
+          } else if (_this.buttonVal === 'submit') {
+            _this.input = _this.$readout.html().replace(/\xF7/g, '/').replace(/x/g, '*');
+
+            if (!_this.input) {
+
+              Utilities.Dialog.read([
+                "You need to do something first doh",
+              ]);
+
+            } else {
+
+              _this.checkResult();
+
+            }
+
+          } else {
+
+            if ( _this.$readout.html().length < 12 ) {
+
+              if ( _this.$readout.html() === '0' ) {
+                _this.$readout.html(_this.buttonVal);
+              } else {
+                _this.$readout.html(_this.$readout.html() + _this.buttonVal);
+              }
+
+            } else {
+
+              console.log('Too much numbbas, dickhead');
+
+            }
+
+          }
+        },
+      });
+
+    });
+
   },
 
   checkResult: function() {
@@ -105,7 +139,7 @@ var Maths = {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
-        $('#math-input').val('');
+        _this.$readout.html('0');
 
       });
 
