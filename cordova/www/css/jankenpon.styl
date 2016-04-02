@@ -42,8 +42,12 @@
   border-radius: 15px
   background-color: #d3d3d3
   padding: 2%
-  opacity: 0
+  display: none
   pointer-events: none
+  &.jankenpon-win
+    background-color: green
+  &.jankenpon-lose
+    background-color: red
   
 .jankenpon-choice
   display: none

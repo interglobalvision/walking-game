@@ -1023,8 +1023,14 @@ ul.u-inline-list li {
   border-radius: 15px;
   background-color: #d3d3d3;
   padding: 2%;
-  opacity: 0;
+  display: none;
   pointer-events: none;
+}
+.jankenpon-result.jankenpon-win {
+  background-color: #008000;
+}
+.jankenpon-result.jankenpon-lose {
+  background-color: #f00;
 }
 .jankenpon-choice {
   display: none;

@@ -7,27 +7,26 @@ var Jankenpon = {
   ],
   tieDialog: [
     "Ugh, same. ook ok",
-    "Again",
   ],
   oneWinDialog: [
-    "NO NO NOooooo!",
-    "You won! Let's play again",
-  ],
-  finalWinDialog: [
     "Woah u good at this...",
-    "Let's go for a walk",
   ],
   oneFailDialog: [
     "Pshh my win suckaAaaa",
-    "Lets play again hmmm?!",
+  ],
+  finalWinDialog: [
+    "NO NO NOooooo " + Game.getUsername() + "!! You win it all!",
+    "Let's go for a walk",
   ],
   finalFailDialog: [
-    "I win!! HAHAHAAHAHA.... Now time for walking practice!!!",
+    "I win!! HAHAHAAHAHA.... Now time for walking practice " + Game.getUsername() + "!!!",
   ],
   $blackout: $('#blackout'),
   $element: $('.jankenpon-element'), 
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
+  userChoice: null,
+  masterChoice: null,
   $result: $('.jankenpon-result'),
   rock: $('img.jankenpon-rock').attr('src'),
   paper: $('img.jankenpon-paper').attr('src'),
@@ -36,6 +35,11 @@ var Jankenpon = {
   wins: 0,
   losses: 0,
   minWins: 3,
+  color: {
+    tie: 'rgb(177, 225, 255)',
+    win: 'rgb(184, 255, 190)',
+    lose: 'rgb(255, 188, 170',
+  },
 
   init: function() {
     var _this = this;
@@ -65,14 +69,10 @@ var Jankenpon = {
 
   playElement: function(userChoice) {
     var _this = this;
+    var masterChoice = _this.getMasterChoice(); 
 
-    // Generate masters choice
-    var masterChoice = _this.getMasterChoice();
-
-    // Print in screen
-    _this.$userChoice.children( '[data-choice=' + userChoice + ']' ).css('display', 'block');
-    _this.$masterChoice.children( '[data-choice=' + masterChoice + ']' ).css('display', 'block');
-    _this.$result.animate({'opacity': 1,}, 500, 'linear');
+    _this.userChoice = userChoice;  
+    _this.masterChoice = masterChoice;
 
     // Compare with users choice
     if( userChoice === masterChoice ) {
@@ -112,12 +112,27 @@ var Jankenpon = {
     return _this.elements[ Utilities.Number.getRandomInt(0,2) ];
   },
 
+  showResult: function(color) {
+    var _this = this;
+    var userChoice = _this.userChoice;
+    var masterChoice = _this.masterChoice;
+
+    _this.$userChoice.children( '[data-choice=' + userChoice + ']' ).css('display', 'block');
+    _this.$masterChoice.children( '[data-choice=' + masterChoice + ']' ).css('display', 'block');
+    _this.$result.css({
+      'display': 'block',
+      'background-color': color,
+    });
+
+  },
+
   hideResult: function() {
     var _this = this;
 
-    _this.$result.animate({'opacity': 0,}, 500, 'linear', function() {
-      _this.$userChoice.children( 'img' ).css('display', 'none');
-      _this.$masterChoice.children( 'img' ).css('display', 'none');
+    _this.$userChoice.children( 'img' ).css('display', 'none');
+    _this.$masterChoice.children( 'img' ).css('display', 'none');
+    _this.$result.css({
+      'display': 'none',
     });
     
   },
@@ -137,6 +152,8 @@ var Jankenpon = {
   tie: function() {
     var _this = this;
 
+    _this.showResult(_this.color.tie);
+
     Utilities.Dialog.read(_this.tieDialog, function() {
       _this.hideResult();
     });
@@ -150,10 +167,14 @@ var Jankenpon = {
 
     _this.wins += 1;
 
+    _this.showResult(_this.color.win);
+
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read(_this.finalWinDialog, function() {
 
-        Game.gameComplete(_this.points);
+        _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+          Game.gameComplete(_this.points);
+        });
 
       });
     } else {
@@ -171,11 +192,13 @@ var Jankenpon = {
 
     _this.losses += 1;
 
+    _this.showResult(_this.color.lose);
+
     if( _this.losses === _this.minWins ) {
 
       Utilities.Dialog.read(_this.finalFailDialog, function() {
 
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+        _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
           Router.go('/pages/compass/');
         });
 
