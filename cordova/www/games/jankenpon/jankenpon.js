@@ -22,7 +22,7 @@ var Jankenpon = {
     "Lets play again hmmm?!",
   ],
   $blackout: $('#blackout'),
-  $element: $('.element'), 
+  $element: $('.jankenpon-element'), 
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
   elements: [ 'rock', 'paper', 'scissors',],
