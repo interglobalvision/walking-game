@@ -3,7 +3,7 @@ var Jankenpon = {
     "\u30ef\u30a6!! IT'S TIME.....to play.....",
     "JAN--KEN--PON!!!!", 
     "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
-    "Jan-ken-pon is Japanese rock-paper-scissors!! You know what to do... Lets gooooooo...!!",
+    "Jan-ken-pon is Japanese rock-paper-scissors!! First to 3 wins! Lets gooooooo...!!",
   ],
   tieDialog: [
     "Ugh, same. ook ok",
@@ -17,16 +17,24 @@ var Jankenpon = {
     "Woah u good at this...",
     "Let's go for a walk",
   ],
-  failDialog: [
-    "Psh, suckaAaaa",
+  oneFailDialog: [
+    "Pshh my win suckaAaaa",
     "Lets play again hmmm?!",
+  ],
+  finalFailDialog: [
+    "I win!! HAHAHAAHAHA.... Now time for walking practice!!!",
   ],
   $blackout: $('#blackout'),
   $element: $('.jankenpon-element'), 
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
+  $result: $('.jankenpon-result'),
+  rock: $('img.jankenpon-rock').attr('src'),
+  paper: $('img.jankenpon-paper').attr('src'),
+  scissors: $('img.jankenpon-scissors').attr('src'),
   elements: [ 'rock', 'paper', 'scissors',],
   wins: 0,
+  losses: 0,
   minWins: 3,
 
   init: function() {
@@ -62,8 +70,9 @@ var Jankenpon = {
     var masterChoice = _this.getMasterChoice();
 
     // Print in screen
-    _this.$userChoice.html(userChoice);
-    _this.$masterChoice.html(masterChoice);
+    _this.$userChoice.children( '[data-choice=' + userChoice + ']' ).css('display', 'block');
+    _this.$masterChoice.children( '[data-choice=' + masterChoice + ']' ).css('display', 'block');
+    _this.$result.animate({'opacity': 1,}, 500, 'linear');
 
     // Compare with users choice
     if( userChoice === masterChoice ) {
@@ -103,18 +112,36 @@ var Jankenpon = {
     return _this.elements[ Utilities.Number.getRandomInt(0,2) ];
   },
 
+  hideResult: function() {
+    var _this = this;
+
+    _this.$result.animate({'opacity': 0,}, 500, 'linear', function() {
+      _this.$userChoice.children( 'img' ).css('display', 'none');
+      _this.$masterChoice.children( 'img' ).css('display', 'none');
+    });
+    
+  },
+
   startGame: function() {
     var _this = this;
 
     _this.bind();
   },
 
+  logScore: function() {
+    var _this = this;
+
+    console.log('coach: ' + _this.losses + ', player:' + _this.wins);
+  },
+
   tie: function() {
     var _this = this;
 
     Utilities.Dialog.read(_this.tieDialog, function() {
-
+      _this.hideResult();
     });
+
+    _this.logScore();
 
   },
 
@@ -122,7 +149,6 @@ var Jankenpon = {
     var _this = this;
 
     _this.wins += 1;
-    _this.loses = 0;
 
     if( _this.wins === _this.minWins ) {
       Utilities.Dialog.read(_this.finalWinDialog, function() {
@@ -132,24 +158,38 @@ var Jankenpon = {
       });
     } else {
       Utilities.Dialog.read(_this.oneWinDialog, function() {
-
+        _this.hideResult();
       });
     }
+
+    _this.logScore();
 
   },
 
   fail: function() {
     var _this = this;
 
-    _this.wins = 0;
+    _this.losses += 1;
 
-    Utilities.Dialog.read(_this.failDialog, function() {
+    if( _this.losses === _this.minWins ) {
 
-      _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
-        Router.go('/pages/compass/');
+      Utilities.Dialog.read(_this.finalFailDialog, function() {
+
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
+
       });
 
-    });
+    } else {
+
+      Utilities.Dialog.read(_this.oneFailDialog, function() {
+        _this.hideResult();
+      });
+
+    }
+
+    _this.logScore();
 
   },
 
