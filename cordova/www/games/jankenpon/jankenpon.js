@@ -1,7 +1,7 @@
 var Jankenpon = {
   introDialog: [
     "\u30ef\u30a6!! IT'S TIME.....to play.....",
-    "JAN--KEN--PON!!!!", 
+    "JAN--KEN--PON!!!!",
     "What?! Of course I know Japanese, " + Game.getUsername() + "-chan!",
     "Jan-ken-pon is Japanese rock-paper-scissors!! First to 3 wins! Lets gooooooo...!!",
   ],
@@ -22,7 +22,7 @@ var Jankenpon = {
     "I win!! HAHAHAAHAHA.... Now time for walking practice " + Game.getUsername() + "!!!",
   ],
   $blackout: $('#blackout'),
-  $element: $('.jankenpon-element'), 
+  $element: $('.jankenpon-element'),
   $userChoice: $('#user-choice'),
   $masterChoice: $('#master-choice'),
   userChoice: null,
@@ -35,6 +35,7 @@ var Jankenpon = {
   wins: 0,
   losses: 0,
   minWins: 3,
+  userFeelTimeout: undefined,
   color: {
     tie: 'rgb(177, 225, 255)',
     win: 'rgb(184, 255, 190)',
@@ -58,10 +59,12 @@ var Jankenpon = {
    _this.$element.on({
       click: function(event) {
 
-        var userChoice = event.currentTarget.dataset.element; 
+        var userChoice = event.currentTarget.dataset.element;
 
-        _this.playElement(userChoice);
-        
+        _this.userFeelTimeout = setTimeout(function() {
+          _this.playElement(userChoice);
+        }, 250);
+
       },
     });
 
@@ -69,9 +72,11 @@ var Jankenpon = {
 
   playElement: function(userChoice) {
     var _this = this;
-    var masterChoice = _this.getMasterChoice(); 
+    var masterChoice = _this.getMasterChoice();
 
-    _this.userChoice = userChoice;  
+    clearTimeout(_this.userFeelTimeout);
+
+    _this.userChoice = userChoice;
     _this.masterChoice = masterChoice;
 
     // Compare with users choice
@@ -97,7 +102,7 @@ var Jankenpon = {
 
     } else if ( userChoice === 'scissors' ) {
 
-      if( masterChoice === 'rock' ) { 
+      if( masterChoice === 'rock' ) {
         _this.fail(); // rock breaks scissors
       } else {
         _this.win(); // scissors cut paper
@@ -132,7 +137,7 @@ var Jankenpon = {
     _this.$userChoice.children( 'img' ).css('display', 'none');
     _this.$masterChoice.children( 'img' ).css('display', 'none');
     _this.$result.css('display', 'none');
-    
+
   },
 
   startGame: function() {
