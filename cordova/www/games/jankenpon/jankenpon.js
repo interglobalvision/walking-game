@@ -143,12 +143,6 @@ var Jankenpon = {
     _this.bind();
   },
 
-  logScore: function() {
-    var _this = this;
-
-    console.log('coach: ' + _this.losses + ', player:' + _this.wins);
-  },
-
   tie: function() {
     var _this = this;
 
@@ -157,8 +151,6 @@ var Jankenpon = {
     Utilities.Dialog.read(_this.tieDialog, function() {
       _this.hideResult();
     });
-
-    _this.logScore();
 
   },
 
@@ -182,8 +174,6 @@ var Jankenpon = {
         _this.hideResult();
       });
     }
-
-    _this.logScore();
 
   },
 
@@ -211,8 +201,6 @@ var Jankenpon = {
       });
 
     }
-
-    _this.logScore();
 
   },
 
