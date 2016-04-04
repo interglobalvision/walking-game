@@ -1,0 +1,74 @@
+.jankenpon-stage
+  background-color: #06FF94
+
+.jankenpon-background
+  position: absolute
+  width: 100%
+  height: 100%
+  background-image: url(../img/games/jankenpon/jankenpon-background.svg)
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  animation: jankenpon-background 1s infinite
+  
+.jankenpon-element
+  position: absolute
+  &:active
+    transform: scale(1.2)
+  
+.jankenpon-scissors
+  width: 50%
+  top: 5%
+  left: 10%
+  
+.jankenpon-rock
+  width: 50%
+  top: 30%
+  left: 40%
+
+.jankenpon-paper
+  width: 40%
+  top: 60%
+  left: 5%
+  
+.jankenpon-result
+  position: absolute
+  height: 20%
+  width: 80%
+  top: 40%
+  left: 10%
+  border: 10px solid gold
+  box-sizing: border-box
+  border-radius: 15px
+  background-color: #d3d3d3
+  padding: 2%
+  display: none
+  pointer-events: none
+  &.jankenpon-win
+    background-color: green
+  &.jankenpon-lose
+    background-color: red
+  
+.jankenpon-choice
+  display: none
+  position: absolute
+  top: 10%
+  width: 50%
+  height: 80%
+  
+#user-choice
+  .jankenpon-choice
+    left: 0
+    
+#master-choice
+  .jankenpon-choice
+    right: 0
+    
+  
+@keyframes jankenpon-background
+  0%
+    transform: skew(-10deg)
+  50%
+    transform: skew(10deg)
+  100%
+    transform: skew(-10deg)

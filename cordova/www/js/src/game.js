@@ -6,6 +6,7 @@ Game = {
     'reset',
     'colorsnap',
     'vibeystopper',
+    'jankenpon',
   ],
   worlds: [
     'Desert',
