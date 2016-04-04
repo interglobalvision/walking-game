@@ -131,9 +131,7 @@ var Jankenpon = {
 
     _this.$userChoice.children( 'img' ).css('display', 'none');
     _this.$masterChoice.children( 'img' ).css('display', 'none');
-    _this.$result.css({
-      'display': 'none',
-    });
+    _this.$result.css('display', 'none');
     
   },
 
