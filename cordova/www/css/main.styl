@@ -59,17 +59,26 @@ html
   line-height: $font-leading-basic
   form
     width: 100%
+    box-sizing: border-box
   label
     font-size: $font-size-h3
   input
     font-size: $font-size-basic
-    border: 0
-    border-bottom: 10px solid blue
+    border: 5px solid blue
     width: 100%
-    margin-bottom: 1.5em
-    margin-top: 0.5em
+    margin: 1em 0
+    border-radius: 0
+    box-sizing: border-box
+    -webkit-appearance: none
+    padding: 10px
     &:focus
       outline: 0
+  input[type=submit]
+    border: none
+    background: blue
+    color: white
+    border-radius: 20px
+    margin-top: 0
 
 #dialog:hover
   cursor: pointer
