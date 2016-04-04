@@ -139,23 +139,38 @@ table {
   width: 100%;
   height: 100%;
 }
+.bedroom-stage {
+  background-color: #00008b;
+}
 #bedroom-wall {
   z-index: 1;
-  background-image: url("../img/bedroom/wall.png");
-  -webkit-animation: hue 4s infinite;
-          animation: hue 4s infinite;
+  background-image: url("../img/bedroom/wallpaper.gif");
+  -webkit-filter: hue-rotate(10deg);
+          filter: hue-rotate(10deg);
+  height: 75%;
+  background-size: 30%;
+  background-repeat: repeat;
 }
 #bedroom-furniture {
   z-index: 2;
-  background-image: url("../img/bedroom/furniture.png");
+  background-image: url("../img/bedroom/furniture.svg");
+  background-size: 115% 115%;
+  background-position: center 75%;
 }
 #bedroom-bed {
   z-index: 3;
-  background-image: url("../img/bedroom/bed.png");
+  background-image: url("../img/bedroom/bed.svg");
+  height: 50%;
+  background-size: 115%;
+  background-position: center 0;
+  bottom: 0;
 }
 #bedroom-bedside {
   z-index: 1;
-  background-image: url("../img/bedroom/bedside.png");
+  background-image: url("../img/bedroom/bedside.svg");
+  background-size: 115%;
+  background-position: center 90%;
+  background-repeat: no-repeat;
 }
 #bear-clock {
   position: absolute;
@@ -177,8 +192,8 @@ table {
   width: 100%;
   height: 100%;
   background-image: url("../img/bedroom/wallpaper.gif");
-  -webkit-animation: hue 4s infinite;
-          animation: hue 4s infinite;
+  -webkit-filter: hue-rotate(10deg);
+          filter: hue-rotate(10deg);
 }
 #coach-container {
   -webkit-animation: coach-fly 1s infinite;
@@ -286,11 +301,15 @@ table {
 }
 #livingroom-wall {
   z-index: 1;
-  background-image: url("../img/bedroom/wall.png");
+  -webkit-filter: hue-rotate(10deg);
+          filter: hue-rotate(10deg);
+  background-image: url("../img/bedroom/wallpaper.gif");
+  background-size: 15%;
 }
 #livingroom-room {
   background-image: url("../img/livingroom/room.png");
   z-index: 2;
+  backround-size: 100% 100%;
 }
 #livingroom-aunt {
   z-index: 3;
@@ -303,11 +322,14 @@ table {
           animation: livingroom-aunt 0.5s steps(2, end) infinite;
 }
 #livingroom-cat {
-  background-image: url("../img/livingroom/cat.png");
+  background-image: url("../img/livingroom/cat.svg");
   top: -5%;
   z-index: 4;
   -webkit-animation: livingroom-cat 3s infinite linear;
           animation: livingroom-cat 3s infinite linear;
+  background-size: 15% 15%;
+  background-position: 20% 80%;
+  background-repeat: no-repeat;
 }
 #livingroom-sofa {
   background-image: url("../img/livingroom/sofa.png");
@@ -601,7 +623,7 @@ table {
   width: 100%;
   height: 100%;
   background-color: #a9a9a9;
-  background-image: url("../img/games/colorsnap/colorsnap-background.png");
+  background-image: url("../img/games/colorsnap/colorsnap-background.svg");
   background-position: center;
   background-size: 100% 100%;
   -webkit-transition: background-color 2000ms;
@@ -644,10 +666,14 @@ table {
 #take-photo {
   position: absolute;
   top: 100%;
-  width: 50%;
   left: 25%;
   -webkit-transition: top 1s;
   transition: top 1s;
+  width: 50%;
+  height: 25%;
+  background-image: url("../img/games/colorsnap/colorsnap-camera.svg");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 #take-photo.show-camera {
   top: 60%;
@@ -759,9 +785,9 @@ table {
   left: 50%;
   height: 50%;
   background-repeat: repeat-x;
-  background-size: 50% 100%;
-  background-position-x: 0%;
-  background-image: url("../img/map/clouds.png");
+  background-size: 50%;
+  background-position: center;
+  background-image: url("../img/map/clouds.svg");
   opacity: 0.9;
 }
 .map-skyline {
@@ -771,7 +797,7 @@ table {
   height: 50%;
   background-position: center bottom;
   background-repeat: repeat-x;
-  background-size: 25% 25%;
+  background-size: 25%;
 }
 .map-floor-container {
   height: 50%;
@@ -798,44 +824,44 @@ table {
   background-size: 25% 100%;
 }
 .world-0 .map-skyline {
-  background-image: url("../img/map/sky-0.png");
+  background-image: url("../img/map/sky-0.svg");
 }
 .world-0 .map-floor {
   background: -webkit-linear-gradient(top, #ff7bac 0%, #2e3192 100%);
   background: linear-gradient(to bottom, #ff7bac 0%, #2e3192 100%);
 }
 .world-0 .map-object {
-  background-image: url("../img/map/object-0.png");
+  background-image: url("../img/map/object-0.svg");
 }
 .world-1 .map-skyline {
-  background-image: url("../img/map/sky-1.png");
+  background-image: url("../img/map/sky-1.svg");
 }
 .world-1 .map-floor {
   background: -webkit-linear-gradient(top, #a6cccc 0%, #a19633 100%);
   background: linear-gradient(to bottom, #a6cccc 0%, #a19633 100%);
 }
 .world-1 .map-object {
-  background-image: url("../img/map/object-1.png");
+  background-image: url("../img/map/object-1.svg");
 }
 .world-2 .map-skyline {
-  background-image: url("../img/map/sky-2.png");
+  background-image: url("../img/map/sky-2.svg");
 }
 .world-2 .map-floor {
   background: -webkit-linear-gradient(top, #29abe2 0%, #00686a 100%);
   background: linear-gradient(to bottom, #29abe2 0%, #00686a 100%);
 }
 .world-2 .map-object {
-  background-image: url("../img/map/object-2.png");
+  background-image: url("../img/map/object-2.svg");
 }
 .world-3 .map-skyline {
-  background-image: url("../img/map/sky-3.png");
+  background-image: url("../img/map/sky-3.svg");
 }
 .world-3 .map-floor {
   background: -webkit-linear-gradient(top, #00f5ac 0%, #002b3f 100%);
   background: linear-gradient(to bottom, #00f5ac 0%, #002b3f 100%);
 }
 .world-3 .map-object {
-  background-image: url("../img/map/object-3.png");
+  background-image: url("../img/map/object-3.svg");
 }
 #map-goal-container {
   position: fixed;

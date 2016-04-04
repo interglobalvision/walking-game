@@ -24,22 +24,37 @@
   width: 100%
   height: 100%
 
+.bedroom-stage
+  background-color: darkblue
+
 #bedroom-wall
   z-index: 1
-  background-image: url('../img/bedroom/wall.png')
-  animation: hue 4s infinite
+  background-image: url('../img/bedroom/wallpaper.gif')
+  filter: hue-rotate(10deg)
+  height: 75%
+  background-size: 30%
+  background-repeat: repeat
 
 #bedroom-furniture
   z-index: 2
-  background-image: url('../img/bedroom/furniture.png')
+  background-image: url('../img/bedroom/furniture.svg')
+  background-size: 115% 115%
+  background-position: center 75%
 
 #bedroom-bed
   z-index: 3
-  background-image: url('../img/bedroom/bed.png')
+  background-image: url('../img/bedroom/bed.svg')
+  height: 50%
+  background-size: 115%
+  background-position: center 0
+  bottom: 0
 
 #bedroom-bedside
   z-index: 1
-  background-image: url('../img/bedroom/bedside.png')
+  background-image: url('../img/bedroom/bedside.svg')
+  background-size: 115%
+  background-position: center 90%
+  background-repeat: no-repeat
 
 #bear-clock
   position: absolute
@@ -60,7 +75,7 @@
   width: 100%
   height: 100%
   background-image: url('../img/bedroom/wallpaper.gif')
-  animation: hue 4s infinite
+  filter: hue-rotate(10deg)
 
 #coach-container
   animation: coach-fly 1s infinite
@@ -159,11 +174,14 @@
   
 #livingroom-wall
   z-index: 1
-  background-image: url('../img/bedroom/wall.png')
+  filter: hue-rotate(10deg)
+  background-image: url("../img/bedroom/wallpaper.gif")
+  background-size: 15%
   
 #livingroom-room
   background-image: url('../img/livingroom/room.png')
   z-index: 2
+  backround-size: 100% 100%
 
 #livingroom-aunt
   z-index: 3
@@ -175,11 +193,14 @@
   animation: livingroom-aunt .5s steps(2, end) infinite
 
 #livingroom-cat
-  background-image: url('../img/livingroom/cat.png')
+  background-image: url('../img/livingroom/cat.svg')
   top: -5%
   z-index: 4
   animation: livingroom-cat 3s infinite linear
-
+  background-size: 15% 15%
+  background-position: 20% 80%
+  background-repeat: no-repeat
+  
 #livingroom-sofa
   background-image: url('../img/livingroom/sofa.png')
   z-index: 5
