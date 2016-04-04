@@ -6,10 +6,10 @@ var Farewell = {
   dialog: [
     "It's time to hit the road...",
     "Along the way you must complete minigame challenges!",
-    "That is the only way to become the best. Now say goodbye to your auntie...",
+    "That is the only way to become the best, " + Game.getUsername() + ". Now say goodbye to your auntie...",
   ],
   dialog2: [
-    "Oh my " + Utilities.Word.getAdj(false, false) + " " + Utilities.Word.getNoun(false, false) + " i'm soo " + Utilities.Word.getAdj(false, false) + " to see you go... but you must go with your coach and train...",
+    "Oh my " + Utilities.Word.getAdj(false, false) + " " + Game.getUsername() + " i'm soo " + Utilities.Word.getAdj(false, false) + " to see you go... but you must go with your coach and train...",
     "...train train train to be the BEST at walking in the world!",
     "But look ~ I have something special for you...",
   ],
@@ -18,7 +18,7 @@ var Farewell = {
     "It will tell you which way to walk to reach your next minigame challenge!",
   ],
   dialog4: [
-    "Now go with your coach...and good luck!",
+    "Now " + Game.getUsername() + ", go with your coach...and good luck!!",
   ],
 
   init: function() {
