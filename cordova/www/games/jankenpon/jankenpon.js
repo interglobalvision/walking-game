@@ -2,7 +2,7 @@ var Jankenpon = {
   introDialog: [
     "\u30ef\u30a6!! IT'S TIME.....to play.....",
     "JAN--KEN--PON!!!!", 
-    "What?! Of course I know Japanese, " + Game.getUsername() + "-san!",
+    "What?! Of course I know Japanese, " + Game.getUsername() + "-chan!",
     "Jan-ken-pon is Japanese rock-paper-scissors!! First to 3 wins! Lets gooooooo...!!",
   ],
   tieDialog: [
