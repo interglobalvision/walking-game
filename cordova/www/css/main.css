@@ -1013,20 +1013,30 @@ html {
 }
 .text-box form {
   width: 100%;
+  box-sizing: border-box;
 }
 .text-box label {
   font-size: 24px;
 }
 .text-box input {
   font-size: 19px;
-  border: 0;
-  border-bottom: 10px solid #00f;
+  border: 5px solid #00f;
   width: 100%;
-  margin-bottom: 1.5em;
-  margin-top: 0.5em;
+  margin: 1em 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  padding: 10px;
 }
 .text-box input:focus {
   outline: 0;
+}
+.text-box input[type=submit] {
+  border: none;
+  background: #00f;
+  color: #fff;
+  border-radius: 20px;
+  margin-top: 0;
 }
 #dialog:hover {
   cursor: pointer;
