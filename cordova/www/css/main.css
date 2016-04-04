@@ -1325,12 +1325,22 @@ h6 {
 
 .tap-background {
   position: absolute;
-  width: 100%;
+  width: 200%;
   height: 100%;
-  background-color: #00adff;
-  background-image: url("../img/games/supertap/tap-background.png");
-  background-size: 105% 105%;
+  background-size: 50% 100%;
   background-position: center;
+  background-repeat: repeat-x;
+}
+.tap-background-1 {
+  background-color: #00adff;
+  background-image: url("../img/games/supertap/tap-background-1.svg");
+  -webkit-animation: tap-background-1 1.5s infinite linear;
+          animation: tap-background-1 1.5s infinite linear;
+}
+.tap-background-2 {
+  background-image: url("../img/games/supertap/tap-background-2.svg");
+  -webkit-animation: tap-background-2 1.5s infinite linear;
+          animation: tap-background-2 1.5s infinite linear;
 }
 .tap-frame {
   position: absolute;
@@ -1342,7 +1352,7 @@ h6 {
   width: 80vw;
   top: 2.5vh;
   left: 10vw;
-  background-image: url("../img/games/supertap/tap-number-frame.png");
+  background-image: url("../img/games/supertap/tap-number-frame.svg");
   background-size: cover;
   font-size: 180px;
   color: #fff;
@@ -1358,7 +1368,7 @@ h6 {
 }
 #tap-button {
   background-color: #f08080;
-  background-image: url("../img/games/supertap/tap-coach.png");
+  background-image: url("../img/games/supertap/tap-coach.svg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -1378,6 +1388,46 @@ h6 {
   box-shadow: 0px 15px 0px 0px #a9a9a9;
   -webkit-transform: translateY(-5px);
           transform: translateY(-5px);
+}
+@-webkit-keyframes tap-background-1 {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@keyframes tap-background-1 {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@-webkit-keyframes tap-background-2 {
+  from {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  to {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+@keyframes tap-background-2 {
+  from {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  to {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
 }
 
 .tippy-stage {
@@ -1516,9 +1566,15 @@ h6 {
 
 .vibey-background {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: #d3d3d3;
+  background-color: #d3d3d3;
+  background-image: url("../img/games/vibeystopper/vibey-background.svg");
+  background-size: 95% 95%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .vibey-flash {
   -webkit-animation: vibey-flash 50ms infinite linear;
@@ -1526,45 +1582,48 @@ h6 {
 }
 .vibey-switch {
   position: absolute;
-  height: 45%;
+  height: 36%;
   width: 70%;
-  top: 26%;
+  top: 32%;
   left: 15%;
-  background-color: #ff6347;
-  background-image: url("../img/games/vibeystopper/vibey-switch.png");
-  background-size: 100% 100%;
+  border: 5px solid #000;
+  background-color: #ff5562;
+  background-image: url("../img/games/vibeystopper/vibey-switch.svg");
+  background-size: 80% 40%;
+  background-position: center 10%;
+  background-repeat: no-repeat;
   -webkit-transform: scale(1, -1);
           transform: scale(1, -1);
-  border: 3px solid #000;
   -webkit-transition: background-color 300ms;
   transition: background-color 300ms;
 }
-.vibey-part-1 {
-  position: absolute;
-  top: 0;
-  background-image: url("../img/games/vibeystopper/vibey-1.png");
-  -webkit-filter: hue-rotate(0deg);
-          filter: hue-rotate(0deg);
-}
-.vibey-part-2 {
-  position: absolute;
-  top: 70%;
-  background-image: url("../img/games/vibeystopper/vibey-2.png");
-}
-.vibey-parts {
-  position: absolute;
-  height: 30%;
-  width: 100%;
-  background-size: 80% 80%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+/* 
+.vibey-part-1
+  position: absolute
+  top: 0
+  background-image: url('../img/games/vibeystopper/vibey-1.png')
+  filter: hue-rotate(0deg)
+  
+.vibey-part-2
+  position: absolute
+  top: 70%
+  background-image: url('../img/games/vibeystopper/vibey-2.png')
+*/
+/*
+.vibey-parts 
+  position: absolute
+  height: 30%
+  width: 100%
+  background-size: 80% 80%
+  background-position: center
+  background-repeat: no-repeat
+*/
 .vibey-on .vibey-switch {
-  background-color: #adff2f;
+  background-color: #78ff57;
   -webkit-transform: scale(-1, 1);
           transform: scale(-1, 1);
 }
-.vibey-on .vibey-part-1 {
+.vibey-on .vibey-background {
   -webkit-animation: vibey-blink 500ms steps(2, end) infinite;
           animation: vibey-blink 500ms steps(2, end) infinite;
 }
@@ -1590,17 +1649,17 @@ h6 {
 }
 @-webkit-keyframes vibey-flash {
   from {
-    background: #000;
+    background-color: #000;
   }
   to {
-    background: #fff;
+    background-color: #fff;
   }
 }
 @keyframes vibey-flash {
   from {
-    background: #000;
+    background-color: #000;
   }
   to {
-    background: #fff;
+    background-color: #fff;
   }
 }
