@@ -1028,6 +1028,104 @@ ul.u-inline-list li {
   vertical-align: middle;
 }
 
+.jankenpon-stage {
+  background-color: #06ff94;
+}
+.jankenpon-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/games/jankenpon/jankenpon-background.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-animation: jankenpon-background 1s infinite;
+          animation: jankenpon-background 1s infinite;
+}
+.jankenpon-element {
+  position: absolute;
+}
+.jankenpon-element:active {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+.jankenpon-scissors {
+  width: 50%;
+  top: 5%;
+  left: 10%;
+}
+.jankenpon-rock {
+  width: 50%;
+  top: 30%;
+  left: 40%;
+}
+.jankenpon-paper {
+  width: 40%;
+  top: 60%;
+  left: 5%;
+}
+.jankenpon-result {
+  position: absolute;
+  height: 20%;
+  width: 80%;
+  top: 40%;
+  left: 10%;
+  border: 10px solid #ffd700;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: #d3d3d3;
+  padding: 2%;
+  display: none;
+  pointer-events: none;
+}
+.jankenpon-result.jankenpon-win {
+  background-color: #008000;
+}
+.jankenpon-result.jankenpon-lose {
+  background-color: #f00;
+}
+.jankenpon-choice {
+  display: none;
+  position: absolute;
+  top: 10%;
+  width: 50%;
+  height: 80%;
+}
+#user-choice .jankenpon-choice {
+  left: 0;
+}
+#master-choice .jankenpon-choice {
+  right: 0;
+}
+@-webkit-keyframes jankenpon-background {
+  0% {
+    -webkit-transform: skew(-10deg);
+            transform: skew(-10deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  100% {
+    -webkit-transform: skew(-10deg);
+            transform: skew(-10deg);
+  }
+}
+@keyframes jankenpon-background {
+  0% {
+    -webkit-transform: skew(-10deg);
+            transform: skew(-10deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  100% {
+    -webkit-transform: skew(-10deg);
+            transform: skew(-10deg);
+  }
+}
+
 html {
   background-color: #fff;
   color: #000;
@@ -1065,20 +1163,30 @@ html {
 }
 .text-box form {
   width: 100%;
+  box-sizing: border-box;
 }
 .text-box label {
   font-size: 24px;
 }
 .text-box input {
   font-size: 19px;
-  border: 0;
-  border-bottom: 10px solid #00f;
+  border: 5px solid #00f;
   width: 100%;
-  margin-bottom: 1.5em;
-  margin-top: 0.5em;
+  margin: 1em 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  padding: 10px;
 }
 .text-box input:focus {
   outline: 0;
+}
+.text-box input[type=submit] {
+  border: none;
+  background: #00f;
+  color: #fff;
+  border-radius: 20px;
+  margin-top: 0;
 }
 #dialog:hover {
   cursor: pointer;
