@@ -26,7 +26,7 @@ var VibeyStopper = {
     var _this = this;
 
     if (!navigator.vibrate) {
-      console.log('no vibration for you :-(');
+      WalkingError.unsupported('vibration');
     }
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
@@ -77,7 +77,7 @@ var VibeyStopper = {
       if (navigator.vibrate) {
         navigator.vibrate(500);
       }
-      
+
       _this.bind();
 
       _this.timeout = window.setTimeout(function() {
