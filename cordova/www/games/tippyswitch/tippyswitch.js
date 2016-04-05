@@ -9,15 +9,15 @@ var TippySwitch = {
   ballPosition: 50,
   startTime: null,
   introDialog: [
-    "Welcome to TIPPY SWITCH! When the field is PINK: gravity is DOWN ... and when it's PURPLE: gravity is UP!",
+    "Welcome to TIPPY SWITCH, " + Game.getUsername() + "! When the field is PINK: gravity is DOWN ... and when it's PURPLE: gravity is UP!",
     "Try to get the glowing ball to the green coach by tipping your phone!!",
     "Hold your phone flat to begin... Here we go!!...",
   ],
   tryAgainDialog: [
-    "What a shame. try again eh!",
+    "What a shame " + Game.getUsername() + "! Try again eh!",
   ],
   looseDialog: [
-    "U really suck at this simple boring task",
+    "Yikes, " + Game.getUsername() + "!!!! You're the worst!!",
   ],
 
   init: function() {

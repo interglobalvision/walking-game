@@ -14,16 +14,19 @@ var Supertap = {
   $countdown: $('.tap-countdown-number'),
   introDialog: [
     "Alright " + Utilities.Word.getNoun() + ", get your finger warmed up...it's time to play SUPERTAP!",
-    "Tap that button with MY FACE on it to start the countdown! And keep tapping FAST FAST until the countdown ends!",
+    "Tap that button with MY FACE on it to start the countdown, " + Game.getUsername() + "! And keep tapping FAST FAST until the countdown ends!",
   ],
   winDialog: [
+    "OK GREAT! NOW STOP!",
     "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
   ],
   tryAgainDialog: [
+    "STOP STOP STOP!!",
     "UFFFF what a shame. Try again eh, " + Utilities.Word.getNoun() + "!",
   ],
   loseDialog: [
-    "U really suck at this simple boring task...well guess WHAT?",
+    "OK NOW STOP!",
+    "U really suck at this simple boring task, " + Game.getUsername() + "...well guess WHAT?",
     "NOW WE GOTTA WALK AGAIN!!",
   ],
 

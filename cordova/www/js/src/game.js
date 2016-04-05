@@ -13,7 +13,7 @@ Game = {
     'Desert',
     'City',
     'Arctic',
-    'Jungle',
+    'Jungle', 
   ],
   gameAttempts: 2,
 

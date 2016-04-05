@@ -14,14 +14,15 @@ var Maths = {
   ],
   winDialog: [
       "Nice 1 you know how to do maths",
-      "Maybe you think you are pretty hot with your complicated math skills.",
+      "Maybe you think you are pretty hot with your complicated math skills, " + Game.getUsername() + "...",
       "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
   ],
   tryAgainDialog: [
-    "What a shame...try again eh!",
+    "What a shame " + Game.getUsername() + "...try again eh!?!",
   ],
   looseDialog: [
-    "U really suck at this simple boring task...",
+    "Wow " + Game.getUsername() + "!! Terrible!",
+    "Time for a walk...",
   ],
 
   generateNumber: function() {

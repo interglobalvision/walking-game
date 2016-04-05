@@ -24,34 +24,49 @@
   width: 100%
   height: 100%
 
+.bedroom-stage
+  background-color: darkblue
+
 #bedroom-wall
   z-index: 1
-  background-image: url('../img/bedroom/wall.png')
-  animation: hue 4s infinite
+  background-image: url('../img/bedroom/wallpaper.gif')
+  filter: hue-rotate(10deg)
+  height: 75%
+  background-size: 30%
+  background-repeat: repeat
 
 #bedroom-furniture
   z-index: 2
-  background-image: url('../img/bedroom/furniture.png')
+  background-image: url('../img/bedroom/furniture.svg')
+  background-size: 115% 115%
+  background-position: center 75%
 
 #bedroom-bed
   z-index: 3
-  background-image: url('../img/bedroom/bed.png')
+  background-image: url('../img/bedroom/bed.svg')
+  height: 50%
+  background-size: 115%
+  background-position: center 0
+  bottom: 0
 
 #bedroom-bedside
   z-index: 1
-  background-image: url('../img/bedroom/bedside.png')
+  background-image: url('../img/bedroom/bedside.svg')
+  background-size: 115%
+  background-position: center 90%
+  background-repeat: no-repeat
 
 #bear-clock
   position: absolute
   z-index: 2
-  width: 100px
-  height: 100px
+  width: 30%
+  height: 20%
   top: 20%
   left: 5%
   background-image:  url('../img/sprites/bear-clock.png')
-  background-repeat: no-repeat
-  background-position: 0
-  background-size: 600px
+  background-repeat: repeat-x
+  background-position: 0%
+  background-size: 600% 100%
   animation: bear-clock .7s steps(6, end) infinite
 
 #bedroom-wallpaper
@@ -60,7 +75,7 @@
   width: 100%
   height: 100%
   background-image: url('../img/bedroom/wallpaper.gif')
-  animation: hue 4s infinite
+  filter: hue-rotate(10deg)
 
 #coach-container
   animation: coach-fly 1s infinite
@@ -74,28 +89,26 @@
 
 #coach-angry
   position: absolute
-  top: 0%
-  left: 50%
-  margin-left: -100px
-  width: 200px
-  height: 100%
+  top: 32%
+  left: 20%
+  width: 60%
+  height: 36%
   background-image:  url('../img/sprites/coach-angry.png')
-  background-repeat: no-repeat
-  background-position: 0
-  background-size: 800px
+  background-repeat: repeat-x
+  background-position: 0%
+  background-size: 400% 100%
   animation: coach-angry .5s steps(4, end) infinite
 
 #coach-mellow
   position: absolute
-  top: 0%
-  left: 50%
-  margin-left: -100px
-  width: 200px
-  height: 100%
-  background-image:  url('../img/sprites/coach-mellow.png')
-  background-repeat: no-repeat
-  background-position: 0
-  background-size: 1600px
+  top: 32%
+  left: 20%
+  width: 60%
+  height: 36%
+  background-image: url("../img/sprites/coach-mellow.png");
+  background-repeat: repeat-x
+  background-position: 0%
+  background-size: 800% 100%
   animation: coach-mellow 1s steps(8, end) infinite
 
 .mirror-border
@@ -159,11 +172,14 @@
   
 #livingroom-wall
   z-index: 1
-  background-image: url('../img/bedroom/wall.png')
+  filter: hue-rotate(10deg)
+  background-image: url("../img/bedroom/wallpaper.gif")
+  background-size: 15%
   
 #livingroom-room
-  background-image: url('../img/livingroom/room.png')
+  background-image: url('../img/livingroom/room.svg')
   z-index: 2
+  backround-size: 100% 100%
 
 #livingroom-aunt
   z-index: 3
@@ -175,14 +191,20 @@
   animation: livingroom-aunt .5s steps(2, end) infinite
 
 #livingroom-cat
-  background-image: url('../img/livingroom/cat.png')
+  background-image: url('../img/livingroom/cat.svg')
   top: -5%
   z-index: 4
   animation: livingroom-cat 3s infinite linear
-
+  background-size: 15% 15%
+  background-position: 20% 80%
+  background-repeat: no-repeat
+  
 #livingroom-sofa
-  background-image: url('../img/livingroom/sofa.png')
+  background-image: url('../img/livingroom/sofa.svg')
   z-index: 5
+  background-size: 50% 45%
+  background-repeat: no-repeat
+  background-position: bottom center
 
 .livingroom-compass
   opacity: 0
@@ -211,7 +233,6 @@
   width: 100%
   height: 100%
   
-
 #livingroom-compass-obj
   position: absolute
   background-image: url('../img/compass.png')
@@ -228,13 +249,13 @@
   
 .letsgo-background
   position: absolute
-  background: black 
   width: 100%
   height: 100%
   background-color: black
-  background-image: url('../img/letsgo/letsgo-background.png')
-  background-size: cover
-  animation: letsgo-background 2s infinite linear
+  background-image: url('../img/letsgo/letsgo-background.svg')
+  background-size: 110% 110%
+  background-position: center
+  animation: letsgo-background 2s infinite ease-in-out
   
 .coach-shiny
   position: absolute
@@ -243,13 +264,16 @@
   width: 80%
   height: 50%
   background-image: url('../img/letsgo/coach-shiny.png')
+  background-repeat: repeat-x
+  background-position: 0%
   background-size: 400% 100%
-  background-position: 0% center
   animation: coach-shiny 1s steps(4, end) infinite
   
 @keyframes coach-shiny
-  100%
-    background-position: 400% center
+  from 
+    background-position: 0%
+  to
+    background-position: 400%
   
 @keyframes letsgo-background
   0%
@@ -266,8 +290,10 @@
     filter: hue-rotate(100deg)
 
 @keyframes bear-clock
-  100%
-    background-position: -600px
+  from
+    background-position: 0%
+  to 
+    background-position: 600%
 
 @keyframes coach-fly
   0%
@@ -278,12 +304,16 @@
     transform: translateY(0px)
 
 @keyframes coach-angry
-  100%
-    background-position: -800px
+  from
+    background-position: 0%
+  to
+    background-position: 400%
 
 @keyframes coach-mellow
-  100%
-    background-position: -1600px
+  from
+    background-position: 0%
+  to
+    background-position: 800%
 
 @keyframes hue
   from

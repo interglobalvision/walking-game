@@ -4,10 +4,13 @@
   width: 100%
   height: 100%
   background-color: black
-  background-image: url('../img/letsgo/letsgo-background.png')
-  background-size: cover
+  background-image: url('../img/letsgo/letsgo-background.svg')
+  background-size: 130%
+  background-repeat: no-repeat
+  background-position: center
   transform: rotate(180deg)
-  animation: reset-background 2s infinite linear
+  filter: hue-rotate(200deg)
+  animation: reset-background 2s infinite ease-in-out
   
 .coach-reset
   position: absolute
@@ -17,7 +20,8 @@
   height: 50%
   background-image: url('../img/letsgo/coach-shiny.png')
   background-size: 400% 100%
-  background-position: 0% center
+  background-position: 0%
+  background-repeat: repeat-x
   animation: coach-reset 1s steps(4, end) infinite
   filter: hue-rotate(250deg)
   pointer-events: none
@@ -40,16 +44,15 @@
   bottom: 10%
   
 @keyframes coach-reset
-  100%
-    background-position: 400% center
+  from
+    background-position: 0%
+  to
+    background-position: 400%
   
 @keyframes reset-background
   0%
     background-color: black
-    filter: hue-rotate(200deg)
   50% 
     background-color: white
-    filter: hue-rotate(250deg)
   100%
     background-color: black
-    filter: hue-rotate(200deg) 

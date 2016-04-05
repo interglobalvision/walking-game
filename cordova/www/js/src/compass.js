@@ -278,7 +278,7 @@ Compass = {
       _this.$mapSky.css('background-color', skyColor); // set sky color
     }
   },
-
+ 
   /*
    * Sets map theme graphics
    *

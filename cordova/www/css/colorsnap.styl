@@ -5,9 +5,9 @@
   width: 100%
   height: 100%
   background-color: darkgrey
-  background-image: url('../img/games/colorsnap/colorsnap-background.png')
+  background-image: url('../img/games/colorsnap/colorsnap-background.svg')
   background-position: center
-  background-size: 100% 100% 
+  background-size: cover
   transition: background-color 2000ms
 
 #brush
@@ -66,9 +66,13 @@
 #take-photo
   position: absolute
   top: 100%
-  width: 50%
   left: 25% 
   transition: top 1s
+  width: 50%
+  height: 20%
+  background-image: url('../img/games/colorsnap/colorsnap-camera.svg')
+  background-size: cover
+  background-repeat: no-repeat
   &.show-camera
     top: 60%
     

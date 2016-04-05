@@ -1,37 +1,36 @@
 .tippy-stage
   perspective: 700px
   background-color: yellow
-  background-image: url('../img/squiggle.png')
-  background-size: 15%
+  background-image: url('../img/squiggle.svg')
+  background-size: 10% 5%
   background-position: center
-  animation: tippy-background-left 1s infinite linear
   
 #tippy-background
   position: fixed
-  width: 100%
+  width: 200%
   height: 100%
-  background-image: url('../img/games/tippyswitch/tippy_coach.png')
-  background-size: 15%
-  background-position: center
-  animation: tippy-background-right 2s infinite linear
+  background-image: url('../img/games/tippyswitch/tippy_coach.svg')
+  background-size: 10%
+  background-position: 0
+  animation: tippy-background 5s infinite linear
   filter: invert(100%)
 
 #tippy-container
-  transform-style: preserve-3d
   height: 100%
 
 #tippy-box
-  height: 90%
+  height: 80%
   width: 80%
-  top: 5%
+  top: 10%
   left: 10%
-  background-image: url('../img/games/tippyswitch/tippy_field.png')
+  background-image: url('../img/games/tippyswitch/tippy_field.svg')
   background-position: center
-  background-size: 100% 100%
+  background-size: 95% 95%
   background-repeat: no-repeat 
   background-color: #FFA6E3
   position: relative
   box-shadow: white 0 0 15px
+  border-radius: 20px
   &.backwards
     background-color: #7569FF
     
@@ -39,10 +38,9 @@
   height: 100%
     
 .tippy-face
-  width: 80px
-  height: 80px
-  left: 50%
-  margin-left: -40px
+  width: 28%
+  height: 28%
+  left: 36%
   position: absolute
   color: white
   text-align: center
@@ -52,12 +50,12 @@
 
 #tippy-sad
   bottom: -25px
-  background-image: url('../img/games/tippyswitch/lose_coach.png')
+  background-image: url('../img/games/tippyswitch/lose_coach.svg')
 
   
 #tippy-happy
   top: -35px
-  background-image: url('../img/games/tippyswitch/win_coach.png')
+  background-image: url('../img/games/tippyswitch/win_coach.svg')
 
 #tippy-ball
   background-color: white
@@ -79,14 +77,8 @@
   100%
     box-shadow: white 0 0 10px 5px
     
-@keyframes tippy-background-left
+@keyframes tippy-background
   from
-    background-position: 17.5%
+    transform: translateX(0%)
   to
-    background-position: 0%
-    
-@keyframes tippy-background-right
-  from
-    background-position: 0
-  to
-    background-position: 17.5%
+    transform: translateX(-50%)
