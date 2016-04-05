@@ -113,9 +113,7 @@ _this.mapTheme(),
 // Start orientation and position watchers
 _this.startGeoWatchers(),
 // Fade in map
-_this.$blackout.animate({opacity:0},1e3,"linear")}):
-// fallback for when not possible. Why? no idea but it might happen
-console.log(":(")}},WalkingError={unsupportedCompensation:1e3,
+_this.$blackout.animate({opacity:0},1e3,"linear")}):WalkingError.unsupportedGPS()}},WalkingError={unsupportedCompensation:1e3,
 // most basic not sure if useful
 "throw":function(log,message){console.log(log),alert(message)},
 // most likely usecase
