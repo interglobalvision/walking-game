@@ -2,22 +2,20 @@
   perspective: 700px
   background-color: yellow
   background-image: url('../img/squiggle.svg')
-  background-size: 15%
+  background-size: 20%
   background-position: center
-  animation: tippy-background-left 1s infinite linear
   
 #tippy-background
   position: fixed
-  width: 100%
+  width: 200%
   height: 100%
   background-image: url('../img/games/tippyswitch/tippy_coach.svg')
-  background-size: 15%
-  background-position: center
-  animation: tippy-background-right 2s infinite linear
+  background-size: 10%
+  background-position: 0
+  animation: tippy-background 5s infinite linear
   filter: invert(100%)
 
 #tippy-container
-  transform-style: preserve-3d
   height: 100%
 
 #tippy-box
@@ -25,7 +23,7 @@
   width: 80%
   top: 10%
   left: 10%
-  background-image: url('../img/games/tippyswitch/tippy_field.svg')
+  background-image: url('../img/games/tippyswitch/tippy_field.png')
   background-position: center
   background-size: 90%
   background-repeat: no-repeat 
@@ -80,14 +78,8 @@
   100%
     box-shadow: white 0 0 10px 5px
     
-@keyframes tippy-background-left
+@keyframes tippy-background
   from
-    background-position: 17.5%
+    transform: translateX(0%)
   to
-    background-position: 0%
-    
-@keyframes tippy-background-right
-  from
-    background-position: 0
-  to
-    background-position: 17.5%
+    transform: translateX(-50%)
