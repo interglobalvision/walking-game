@@ -175,14 +175,14 @@ table {
 #bear-clock {
   position: absolute;
   z-index: 2;
-  width: 100px;
-  height: 100px;
+  width: 30%;
+  height: 20%;
   top: 20%;
   left: 5%;
   background-image: url("../img/sprites/bear-clock.png");
-  background-repeat: no-repeat;
-  background-position: 0;
-  background-size: 600px;
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 600% 100%;
   -webkit-animation: bear-clock 0.7s steps(6, end) infinite;
           animation: bear-clock 0.7s steps(6, end) infinite;
 }
@@ -208,29 +208,27 @@ table {
 }
 #coach-angry {
   position: absolute;
-  top: 0%;
-  left: 50%;
-  margin-left: -100px;
-  width: 200px;
-  height: 100%;
+  top: 32%;
+  left: 20%;
+  width: 60%;
+  height: 36%;
   background-image: url("../img/sprites/coach-angry.png");
-  background-repeat: no-repeat;
-  background-position: 0;
-  background-size: 800px;
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 400% 100%;
   -webkit-animation: coach-angry 0.5s steps(4, end) infinite;
           animation: coach-angry 0.5s steps(4, end) infinite;
 }
 #coach-mellow {
   position: absolute;
-  top: 0%;
-  left: 50%;
-  margin-left: -100px;
-  width: 200px;
-  height: 100%;
+  top: 32%;
+  left: 20%;
+  width: 60%;
+  height: 36%;
   background-image: url("../img/sprites/coach-mellow.png");
-  background-repeat: no-repeat;
-  background-position: 0;
-  background-size: 1600px;
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 800% 100%;
   -webkit-animation: coach-mellow 1s steps(8, end) infinite;
           animation: coach-mellow 1s steps(8, end) infinite;
 }
@@ -386,14 +384,14 @@ table {
 }
 .letsgo-background {
   position: absolute;
-  background: #000;
   width: 100%;
   height: 100%;
   background-color: #000;
   background-image: url("../img/letsgo/letsgo-background.svg");
   background-size: 110% 110%;
-  -webkit-animation: letsgo-background 2s infinite linear;
-          animation: letsgo-background 2s infinite linear;
+  background-position: center;
+  -webkit-animation: letsgo-background 2s infinite ease-in-out;
+          animation: letsgo-background 2s infinite ease-in-out;
 }
 .coach-shiny {
   position: absolute;
@@ -402,9 +400,9 @@ table {
   width: 80%;
   height: 50%;
   background-image: url("../img/letsgo/coach-shiny.png");
-  background-size: 130%;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 400% 100%;
   -webkit-animation: coach-shiny 1s steps(4, end) infinite;
           animation: coach-shiny 1s steps(4, end) infinite;
 }
@@ -414,13 +412,19 @@ table {
   }
 }
 @-webkit-keyframes coach-shiny {
-  100% {
-    background-position: 400% center;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @keyframes coach-shiny {
-  100% {
-    background-position: 400% center;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @-webkit-keyframes letsgo-background {
@@ -458,13 +462,19 @@ table {
   }
 }
 @-webkit-keyframes bear-clock {
-  100% {
-    background-position: -600px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 600%;
   }
 }
 @keyframes bear-clock {
-  100% {
-    background-position: -600px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 600%;
   }
 }
 @-webkit-keyframes coach-fly {
@@ -496,23 +506,35 @@ table {
   }
 }
 @-webkit-keyframes coach-angry {
-  100% {
-    background-position: -800px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @keyframes coach-angry {
-  100% {
-    background-position: -800px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @-webkit-keyframes coach-mellow {
-  100% {
-    background-position: -1600px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 800%;
   }
 }
 @keyframes coach-mellow {
-  100% {
-    background-position: -1600px;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 800%;
   }
 }
 @-webkit-keyframes hue {
@@ -1249,8 +1271,10 @@ h6 {
   background-position: center;
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
-  -webkit-animation: reset-background 2s infinite linear;
-          animation: reset-background 2s infinite linear;
+  -webkit-filter: hue-rotate(200deg);
+          filter: hue-rotate(200deg);
+  -webkit-animation: reset-background 2s infinite ease-in-out;
+          animation: reset-background 2s infinite ease-in-out;
 }
 .coach-reset {
   position: absolute;
@@ -1260,7 +1284,8 @@ h6 {
   height: 50%;
   background-image: url("../img/letsgo/coach-shiny.png");
   background-size: 400% 100%;
-  background-position: 0% center;
+  background-position: 0%;
+  background-repeat: repeat-x;
   -webkit-animation: coach-reset 1s steps(4, end) infinite;
           animation: coach-reset 1s steps(4, end) infinite;
   -webkit-filter: hue-rotate(250deg);
@@ -1285,47 +1310,41 @@ h6 {
   bottom: 10%;
 }
 @-webkit-keyframes coach-reset {
-  100% {
-    background-position: 400% center;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @keyframes coach-reset {
-  100% {
-    background-position: 400% center;
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
   }
 }
 @-webkit-keyframes reset-background {
   0% {
     background-color: #000;
-    -webkit-filter: hue-rotate(200deg);
-            filter: hue-rotate(200deg);
   }
   50% {
     background-color: #fff;
-    -webkit-filter: hue-rotate(250deg);
-            filter: hue-rotate(250deg);
   }
   100% {
     background-color: #000;
-    -webkit-filter: hue-rotate(200deg);
-            filter: hue-rotate(200deg);
   }
 }
 @keyframes reset-background {
   0% {
     background-color: #000;
-    -webkit-filter: hue-rotate(200deg);
-            filter: hue-rotate(200deg);
   }
   50% {
     background-color: #fff;
-    -webkit-filter: hue-rotate(250deg);
-            filter: hue-rotate(250deg);
   }
   100% {
     background-color: #000;
-    -webkit-filter: hue-rotate(200deg);
-            filter: hue-rotate(200deg);
   }
 }
 
