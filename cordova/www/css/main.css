@@ -1559,6 +1559,14 @@ h6 {
   width: 100%;
   height: 100%;
   background-color: #d3d3d3;
+}
+.vibey-background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
   background-image: url("../img/games/vibeystopper/vibey-background.svg");
   background-size: 95% 95%;
   background-position: center;
@@ -1590,7 +1598,7 @@ h6 {
   -webkit-transform: scale(-1, 1);
           transform: scale(-1, 1);
 }
-.vibey-on .vibey-background {
+.vibey-on .vibey-background-img {
   -webkit-animation: vibey-blink 500ms steps(2, end) infinite;
           animation: vibey-blink 500ms steps(2, end) infinite;
 }
