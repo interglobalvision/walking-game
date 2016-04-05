@@ -42,12 +42,16 @@ var VibeyStopper = {
 
    _this.$switch.on({
       click: function() {
+
         _this.$machine.removeClass('vibey-on');
         _this.$background.removeClass('vibey-flash');
+
         if (navigator.vibrate) {
           navigator.vibrate(0);
         }
+
         _this.win();
+
       },
     });
 
@@ -69,9 +73,11 @@ var VibeyStopper = {
 
       _this.startTime = Date.now();
       _this.$background.addClass('vibey-flash');
+
       if (navigator.vibrate) {
         navigator.vibrate(500);
       }
+      
       _this.bind();
 
       _this.timeout = window.setTimeout(function() {

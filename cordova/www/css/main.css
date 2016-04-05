@@ -307,7 +307,7 @@ table {
   background-size: 15%;
 }
 #livingroom-room {
-  background-image: url("../img/livingroom/room.png");
+  background-image: url("../img/livingroom/room.svg");
   z-index: 2;
   backround-size: 100% 100%;
 }
@@ -332,8 +332,11 @@ table {
   background-repeat: no-repeat;
 }
 #livingroom-sofa {
-  background-image: url("../img/livingroom/sofa.png");
+  background-image: url("../img/livingroom/sofa.svg");
   z-index: 5;
+  background-size: 50% 45%;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 .livingroom-compass {
   opacity: 0;
@@ -626,7 +629,7 @@ table {
   background-color: #a9a9a9;
   background-image: url("../img/games/colorsnap/colorsnap-background.svg");
   background-position: center;
-  background-size: 100%;
+  background-size: cover;
   -webkit-transition: background-color 2000ms;
   transition: background-color 2000ms;
 }
@@ -671,9 +674,9 @@ table {
   -webkit-transition: top 1s;
   transition: top 1s;
   width: 50%;
-  height: 25%;
+  height: 20%;
   background-image: url("../img/games/colorsnap/colorsnap-camera.svg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 #take-photo.show-camera {
@@ -786,7 +789,7 @@ table {
   left: 50%;
   height: 50%;
   background-repeat: repeat-x;
-  background-size: 50%;
+  background-size: 50% 80%;
   background-position: center;
   background-image: url("../img/map/clouds.svg");
   opacity: 0.9;
@@ -894,7 +897,7 @@ table {
   left: 50%;
   width: 25%;
   height: 75%;
-  border-left: 5px solid #f00;
+  border-left: 7px ridge #c0c0c0;
 }
 .map-flag {
   position: absolute;
@@ -1330,7 +1333,7 @@ h6 {
   position: absolute;
   width: 200%;
   height: 100%;
-  background-size: 50% 100%;
+  background-size: 50% 110%;
   background-position: center;
   background-repeat: repeat-x;
 }
@@ -1438,7 +1441,7 @@ h6 {
           perspective: 700px;
   background-color: #ff0;
   background-image: url("../img/squiggle.svg");
-  background-size: 20%;
+  background-size: 10% 5%;
   background-position: center;
 }
 #tippy-background {
@@ -1461,7 +1464,7 @@ h6 {
   width: 80%;
   top: 10%;
   left: 10%;
-  background-image: url("../img/games/tippyswitch/tippy_field.png");
+  background-image: url("../img/games/tippyswitch/tippy_field.svg");
   background-position: center;
   background-size: 95% 95%;
   background-repeat: no-repeat;
