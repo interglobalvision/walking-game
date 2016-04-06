@@ -86,7 +86,7 @@ var Worldtraveler = {
       lng: savedPos[1],
     };
 
-    return  initialPos; 
+    return initialPos; 
   },
 
   setInitialPos: function(position) {

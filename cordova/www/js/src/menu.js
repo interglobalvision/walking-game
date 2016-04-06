@@ -5,6 +5,9 @@ Menu = {
   $menuPoints: $('#menu-points'),
   $menuRank: $('#menu-rank'),
   $menuWorld: $('#menu-world'),
+  $buttonShare: $('[data-ref="menu-share"]'),
+  $buttonSub: $('.toggle-sub'),
+  $buttonEnd: $('[data-ref="menu-end"]'),
 
   toggleMenu: function() {
   //functionality to open and close menu
@@ -21,21 +24,28 @@ Menu = {
     _this.$menuRank.html( Game.getRank() );
 
     _this.$menuButton.on('click', function() {
-      _this.toggleMenu();
+      _this.toggleMenu(); 
     }); 
 
-    $('#play-reset-game').on('click', function(event) {
-
-      _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() {
-        Router.go('/games/reset');
-      })
-      
-    });
-
-    $('#end-compass').on('click', function(event) {
+    _this.$buttonEnd.on('click', function(event) {
       event.preventDefault();
       Compass.stop();
     });
-  }
+
+    _this.$buttonShare.on('click', function(event) {
+      event.preventDefault();
+      Game.shareWithOptions();
+    });
+
+    _this.buttonSub.on('click', function(event) {
+      event.preventDefault();
+      _this.openSubMenu('class');
+    });
+
+  },
+
+  openSubMenu: function(class) {
+    console.log(class);
+  },
 
 };
