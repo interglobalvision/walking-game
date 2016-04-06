@@ -1,10 +1,10 @@
 var Worldtraveler = {
   introDialog: [
     "OK " + Game.getUsername() + ".... it's time for WORLD TRAVELER..!!",
-    "The game where U gotta travel the distance between two famous pyramids...",
-    "Templo Mayor and Piramide del Sol...thats like...a lot of traveling...",
-    "If you have travelled that far by the next round... You win!",
-    "........now....lets see how far you travelled......",
+    "The game where U gotta be as far as the distance between two famous pyramids...",
+    "Templo Mayor and Piramide del Sol...thats like...really far...",
+    "If you are that far away by the next world... You win!",
+    "........now....lets see how far you are......",
     "......gimme " + Utilities.Word.getAdj(true, false) + " minute!!!...",
   ],
   tieDialog: [
@@ -16,16 +16,16 @@ var Worldtraveler = {
     "OK! See ya next time...",
   ],
   finalWinDialog: [
-    "Woah, u r such a good travler!",
-    "You travelled more than the distance between the pyramids!!",
-    "Since u love traveling, " + Game.getUsername() + "... let's go for a walk...!!!",
+    "Woah, u r such a good traveler!",
+    "You are at least as far the distance between the pyramids!!",
+    "Since u love going far, " + Game.getUsername() + "... let's go for a walk...!!!",
   ],
   finalFailDialog: [
-    "Nah, u didnt travel enough, " + Game.getUsername() + "...",
-    "I'll set ur new position as the starting line for the next time...",
+    "Nah, u arent far enough, " + Game.getUsername() + "...",
+    "I'll set ur new position as the starting point for the next time...",
     "........",
     "........",
-    "OK! Back to walking...see ya next round...",
+    "OK! Back to walking...see ya in the next world...",
   ],
   distanceThreshold: 41.62, // Actual distance between the piramides
   $blackout: $('#blackout'),
