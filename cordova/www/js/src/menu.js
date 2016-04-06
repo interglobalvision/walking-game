@@ -7,7 +7,11 @@ Menu = {
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
   $buttonSub: $('.toggle-sub'),
-  $buttonEnd: $('[data-ref="menu-end"]'),
+  $buttonBack: $('.menu-back'),
+
+  // Dev controls
+  $devMenu: $('[data-ref="dev-menu"]'),
+  $devEnd: $('[data-ref="dev-end-map"]'),
 
   toggleMenu: function() {
   //functionality to open and close menu
@@ -27,25 +31,42 @@ Menu = {
       _this.toggleMenu(); 
     }); 
 
-    _this.$buttonEnd.on('click', function(event) {
-      event.preventDefault();
-      Compass.stop();
-    });
-
     _this.$buttonShare.on('click', function(event) {
       event.preventDefault();
       Game.shareWithOptions();
     });
 
-    _this.buttonSub.on('click', function(event) {
+    _this.$buttonSub.on('click', function(event) {
       event.preventDefault();
-      _this.openSubMenu('class');
+      _this.openSubMenu( $(this).attr('data-ref') );
+    });
+
+    _this.$buttonBack.on('click', function(event) {
+      event.preventDefault();
+      _this.closeSubMenu();
+    });
+
+    // Dev control click events
+    _this.$devMenu.on('click', function(event) {
+      event.preventDefault();
+      Router.go('../dev/index.html');
+    });
+
+    _this.$devEnd.on('click', function(event) {
+      event.preventDefault();
+      Compass.stop();
     });
 
   },
 
-  openSubMenu: function(class) {
-    console.log(class);
+  openSubMenu: function(menu) {
+    $('#menu-main').addClass('show-sub-menu');
+    $('#' + menu).addClass('show-sub-menu');
+  },
+
+  closeSubMenu: function() {
+    $('#menu-main').removeClass('show-sub-menu');
+    $('.sub-menu').removeClass('show-sub-menu');
   },
 
 };

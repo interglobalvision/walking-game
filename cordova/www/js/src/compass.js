@@ -14,7 +14,7 @@ Compass = {
     orientation: null,
     position: null,
   },
-  origin: {
+  origin: { 
     lat: null,
     lng: null,
   },

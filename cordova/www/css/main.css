@@ -952,26 +952,45 @@ table {
   bottom: 18%;
   right: 5%;
   width: 90%;
-  max-height: 80%;
-  height: auto;
+  height: 80%;
   background: #fff;
   box-sizing: border-box;
   border: 5px solid #00f;
   color: #00f;
   border-radius: 15px;
-  padding: 4%;
   box-sizing: border-box;
   display: none;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 li.menu-item {
   margin-bottom: 1em;
 }
-li.menu-item a {
-  text-decoration: underline;
-}
 ul.menu-list {
   margin-bottom: 1em;
+}
+.menu {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 4%;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  -webkit-transition: -webkit-transform 100ms ease-in;
+  transition: -webkit-transform 100ms ease-in;
+  transition: transform 100ms ease-in;
+  transition: transform 100ms ease-in, -webkit-transform 100ms ease-in;
+}
+.menu.sub-menu {
+  left: 100%;
+}
+.menu.show-sub-menu {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+.menu a {
+  text-decoration: underline;
 }
 @-webkit-keyframes clouds {
   0% {
