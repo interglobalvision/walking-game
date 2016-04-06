@@ -9,6 +9,8 @@ Menu = {
   $buttonSub: $('.toggle-sub'),
   $buttonBack: $('.menu-back'),
 
+  howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
+
   // Dev controls
   $devMenu: $('[data-ref="dev-menu"]'),
   $devEnd: $('[data-ref="dev-end-map"]'),
@@ -26,6 +28,8 @@ Menu = {
     _this.$menuPoints.html( Game.getPoints() );
     _this.$menuWorld.html( Game.getWorldName() );
     _this.$menuRank.html( Game.getRank() );
+
+    $('.howto-text').prepend( _this.howtoGreeting );
 
     _this.$menuButton.on('click', function() {
       _this.toggleMenu(); 
