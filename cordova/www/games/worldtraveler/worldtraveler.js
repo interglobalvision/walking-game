@@ -1,21 +1,31 @@
 var Worldtraveler = {
   introDialog: [
-    "U gotta travel the distance between Templo Mayor and Piramide del Sol",
-    "thats like a lot",
-    "much traveler points woop woop",
+    "OK " + Game.getUsername() + ".... it's time for WORLD TRAVELER..!!",
+    "The game where U gotta travel the distance between two famous pyramids...",
+    "Templo Mayor and Piramide del Sol...thats like...a lot of traveling...",
+    "If you have travelled that far by the next round... You win!",
+    "........now....lets see how far you travelled......",
+    "......gimme " + Utilities.Word.getAdj(true, false) + " minute!!!...",
   ],
   tieDialog: [
-    "Seem's like you haven't set an initial position",
-    "I'll save it now",
-    "See ya next time",
+    "OH! this is the first round of WORLD TRAVELER for you " + Game.getUsername() + "!",
+    "...and it seems like you haven't set an starting position",
+    "I'll save it now...",
+    "........",
+    "........",
+    "OK! See ya next time...",
   ],
   finalWinDialog: [
-    "Woah, u r such a good travler",
-    "Since u love traveling let's go for a walk",
+    "Woah, u r such a good travler!",
+    "You travelled more than the distance between the pyramids!!",
+    "Since u love traveling, " + Game.getUsername() + "... let's go for a walk...!!!",
   ],
   finalFailDialog: [
-    "Nah, u didnt travel enough",
-    "ill set ur actual position as initial position for the next time",
+    "Nah, u didnt travel enough, " + Game.getUsername() + "...",
+    "I'll set ur new position as the starting line for the next time...",
+    "........",
+    "........",
+    "OK! Back to walking...see ya next round...",
   ],
   distanceThreshold: 41.62, // Actual distance between the piramides
   $blackout: $('#blackout'),
@@ -24,11 +34,16 @@ var Worldtraveler = {
   init: function() {
     var _this = this;
 
+    $('.worldtraveler-pyramids').addClass('worldtraveler-pyramids-anim');
+    $('.worldtraveler-background').addClass('worldtraveler-background-anim');
+
     if ( navigator.geolocation && window.DeviceOrientationEvent ) {
 
       _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
       Utilities.Dialog.read(_this.introDialog, function() {
+        _this.$blackout.addClass('worldtraveler-flash');
+        $('#coach-container').addClass('worldtraveler-spin');
         _this.startGame();
       });
 
@@ -43,6 +58,9 @@ var Worldtraveler = {
 
     // Get current location
     navigator.geolocation.getCurrentPosition( function(geoposition) {
+
+      _this.$blackout.removeClass('worldtraveler-flash');
+      $('#coach-container').removeClass('worldtraveler-spin');
 
       var position = {
         lat: geoposition.coords.latitude,
@@ -86,7 +104,7 @@ var Worldtraveler = {
       lng: savedPos[1],
     };
 
-    return  initialPos; 
+    return initialPos; 
   },
 
   setInitialPos: function(position) {
@@ -100,6 +118,8 @@ var Worldtraveler = {
   },
 
   resetInitialPos: function() {
+    var _this = this;
+
     return window.localStorage.removeItem(_this.prefix + 'intialPos');
   },
 
