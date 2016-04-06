@@ -992,6 +992,9 @@ ul.menu-list {
 .menu a {
   text-decoration: underline;
 }
+.credits-logo {
+  max-width: 50%;
+}
 @-webkit-keyframes clouds {
   0% {
     background-position-x: 0%;
