@@ -40,7 +40,7 @@ var Jankenpon = {
   color: {
     tie: 'rgb(177, 225, 255)',
     win: 'rgb(184, 255, 190)',
-    lose: 'rgb(255, 188, 170',
+    lose: 'rgb(255, 188, 170)',
   },
 
   init: function() {
