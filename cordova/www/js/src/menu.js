@@ -16,10 +16,10 @@ Menu = {
   $devEnd: $('[data-ref="dev-end-map"]'),
 
   toggleMenu: function() {
-  //functionality to open and close menu
-  var _this = this;
+    //functionality to open and close menu
+    var _this = this;
 
-  _this.$menuBubble.toggle("fast");
+    _this.$menuBubble.toggle("fast");
   },
 
   init: function() {
