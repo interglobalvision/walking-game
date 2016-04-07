@@ -26,7 +26,7 @@ var VibeyStopper = {
     var _this = this;
 
     if (!navigator.vibrate) {
-      WalkingError.unsupported('vibration');
+      console.log('no vibration support');
     }
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
