@@ -7,7 +7,7 @@ Menu = {
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
   $buttonSub: $('.toggle-sub'),
-  $buttonBack: $('.menu-back'),
+  $buttonBack: $('.menu-back'), 
 
   howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
 
@@ -16,8 +16,9 @@ Menu = {
   $devEnd: $('[data-ref="dev-end-map"]'),
 
   toggleMenu: function() {
-    //functionality to open and close menu
     var _this = this;
+
+    _this.closeSubMenu();
 
     _this.$menuBubble.toggle("fast");
   },
