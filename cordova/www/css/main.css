@@ -988,7 +988,11 @@ table {
 li.menu-item {
   margin-bottom: 1em;
 }
-li.menu-item a {
+li.menu-item a,
+li.menu-item a:link,
+li.menu-item a:visited,
+li.menu-item a:active {
+  color: #00f;
   text-decoration: underline;
 }
 ul.menu-list {
@@ -1538,9 +1542,9 @@ h6 {
   position: relative;
   border: 5px #808080 solid;
   border-radius: 50%;
-  box-shadow: 0px 20px 0px 0px #a9a9a9;
-  -webkit-transform: translateY(-10px);
-          transform: translateY(-10px);
+  box-shadow: 0px 30px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
   width: 80%;
   height: 80%;
   margin-top: 10%;
@@ -1548,9 +1552,9 @@ h6 {
   will-change: transform, box-shadow;
 }
 #tap-button:active {
-  box-shadow: 0px 15px 0px 0px #a9a9a9;
-  -webkit-transform: translateY(-5px);
-          transform: translateY(-5px);
+  box-shadow: 0px 10px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(10px);
+          transform: translateY(10px);
 }
 .tap-background-1-anim {
   -webkit-animation: tap-background-1 1.5s infinite linear;
@@ -1822,6 +1826,7 @@ h6 {
   background-size: 110% 50%;
   background-position: center 0%;
   background-repeat: repeat-y;
+  will-change: transform;
 }
 .worldtraveler-pyramids {
   position: absolute;
@@ -1833,6 +1838,7 @@ h6 {
   background-size: 50% 95%;
   background-position: 0% 120%;
   background-repeat: repeat-x;
+  will-change: transform;
 }
 .worldtraveler-coach {
   position: absolute;
@@ -1846,6 +1852,7 @@ h6 {
   background-size: 400% 100%;
   -webkit-animation: worldtraveler-coach 1s steps(4, end) infinite;
           animation: worldtraveler-coach 1s steps(4, end) infinite;
+  will-change: background-position, transform;
 }
 .worldtraveler-background-anim {
   -webkit-animation: worldtraveler-background 20s infinite linear;
