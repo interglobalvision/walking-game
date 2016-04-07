@@ -28,12 +28,16 @@ var Colorsnap = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
+    if (!navigator.camera) {
+      WalkingError.unsupported('camera');
+    }
+
     Utilities.Dialog.read(_this.introDialog, function() {
       _this.setTargetColor();
     });
 
     _this.bindEvents();
-  }, 
+  },
 
   setTargetColor: function() {
     var _this = this;
@@ -47,11 +51,11 @@ var Colorsnap = {
     _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
 
     $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
-    
+
     $('.colorsnap-background').css('background-color', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
-    
+
     $('#brush').attr('class', 'brush-swipe');
-    
+
     $('#splat').attr('class', 'show-splat');
 
     Utilities.Dialog.read(_this.showColorDialog, function() {
@@ -74,8 +78,8 @@ var Colorsnap = {
         },
 
         function(error) {
-          console.log(error);
-          alert('error with camera :/');
+          WalkingError.throw(error, 'Something went wrong taking the photo. Did you cancel the camera?')
+          _this.fail();
         },
 
         {

@@ -25,7 +25,7 @@ Compass = {
   position: {
     lat: null,
     lng: null,
-  }, 
+  },
   /*
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
@@ -160,7 +160,7 @@ Compass = {
     // if mapGoalScale is less than 0.01, we set it to 0.01
     // goal object from disappearing entirely or going negative scale
     if (mapGoalScale < 0.01) {
-      mapGoalScale = 0.01; 
+      mapGoalScale = 0.01;
     }
 
     _this.$mapFloor.css({
@@ -199,7 +199,7 @@ Compass = {
     if (angle < 0) {
       angle = angle + 360;
     }
-    
+
     // Here we save the angle in a new variable to use for
     // the goal positioning.
     var goalAngle = angle;
@@ -278,7 +278,7 @@ Compass = {
       _this.$mapSky.css('background-color', skyColor); // set sky color
     }
   },
- 
+
   /*
    * Sets map theme graphics
    *
@@ -394,8 +394,8 @@ Compass = {
 
     } else {
 
-      // fallback for when not possible. Why? no idea but it might happen
-      console.log(':(');
+      WalkingError.unsupportedGPS();
+
     }
   },
 };
