@@ -54,7 +54,7 @@ Menu = {
     // Dev control click events
     _this.$devMenu.on('click', function(event) {
       event.preventDefault();
-      Router.go('../dev/index.html');
+      Router.go('/pages/dev/');
     });
 
     _this.$devEnd.on('click', function(event) {
