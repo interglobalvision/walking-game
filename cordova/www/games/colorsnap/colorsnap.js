@@ -78,7 +78,7 @@ var Colorsnap = {
         },
 
         function(error) {
-          WalkingError.throw(error, 'Something went wrong taking the photo. Did you cancel the camera?')
+          WalkingError.throw(error, 'Something went wrong taking the photo. Did you cancel the camera?');
           _this.fail();
         },
 
