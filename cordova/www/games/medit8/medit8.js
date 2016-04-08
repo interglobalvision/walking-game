@@ -6,7 +6,6 @@ var Medit8 = {
   $coach3: $('.medit8-coach-3'),
   $clockHands: $('.medit8-clock-hands'),
   $clockFace: $('.medit8-clock-face'),
-  $dialogBox: $('#dialog'),
   introDialog: [
     "learn to be patient, " + Game.getUsername() + "... years can pass like seconds",
     "don't wish your " + Utilities.Word.getAdj(false, false) + " day away...its time to play...",
