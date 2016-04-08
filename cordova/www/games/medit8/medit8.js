@@ -4,7 +4,8 @@ var Medit8 = {
   $coach1: $('.medit8-coach-1'),
   $coach2: $('.medit8-coach-2'),
   $coach3: $('.medit8-coach-3'),
-  $clock: $('.medit8-clock-hands'),
+  $clockHands: $('.medit8-clock-hands'),
+  $clock: $('.medit8-clock'),
   introDialog: [
     "learn to be patient... years can pass like seconds",
     "don\'t wish your day away",
@@ -108,7 +109,11 @@ var Medit8 = {
           _this.$coach3.css('opacity', 1);
         }
 
-        _this.$clock.css('transform', 'rotate(' + degrees + 'deg)');
+        _this.$clockHands.css('transform', 'rotate(' + degrees + 'deg)');
+        _this.$clock.css({
+          '-webkit-filter': 'hue-rotate(' + degrees + 'deg)',
+          'filter': 'hue-rotate(' + degrees + 'deg)',
+        });
 
         // If waitTime has passed, clear interval
         if(timeCounter >= waitTime) {
