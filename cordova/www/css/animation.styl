@@ -280,6 +280,64 @@
   animation: coach-shiny 1s steps(4, end) infinite
   will-change: background-position
   
+.levelup-coach
+  position: absolute
+  top: 25%
+  left: 10% 
+  width: 80%
+  height: 50%
+  background-image: url('../img/levelup/levelup-coach.svg')
+  background-repeat: repeat-x
+  background-position: 0%
+  background-size: 600% 100%
+  animation: levelup-coach 1s steps(6, end) infinite
+  will-change: background-position
+  
+.levelup-background
+  position: absolute
+  width: 100%
+  height: 100%
+  background-position: center
+  background-repeat: no-repeat
+  
+.levelup-background-1
+  background-image: url('../img/levelup/levelup-background1.svg')
+  background-size: 100% 100%
+  
+.levelup-background-2
+  height: 200%
+  background-image: url('../img/levelup/levelup-background2.svg')
+  background-size: 120% 5%
+  background-repeat: repeat-y
+  
+.levelup-background-3
+  background-image: url('../img/levelup/levelup-background3.svg')
+  background-size: 120%
+  
+.levelup-background-2-anim
+  animation: levelup-background-2 1s infinite linear
+  
+.levelup-background-3-anim
+  animation: levelup-background-3 1s infinite linear
+
+@keyframes levelup-coach
+  from 
+    background-position: 0%
+  to
+    background-position: 600%
+    
+@keyframes levelup-background-2
+  from 
+    transform: translateY(0%)
+  to
+    transform: translateY(-50%)
+    
+@keyframes levelup-background-3
+  from 
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)
+
 @keyframes coach-shiny
   from 
     background-position: 0%
