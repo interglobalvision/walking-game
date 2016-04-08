@@ -123,6 +123,7 @@ table {
   background: #fff;
   pointer-events: none;
   opacity: 1;
+  will-change: opacity;
 }
 #stage {
   position: fixed;
@@ -185,6 +186,7 @@ table {
   background-size: 600% 100%;
   -webkit-animation: bear-clock 0.7s steps(6, end) infinite;
           animation: bear-clock 0.7s steps(6, end) infinite;
+  will-change: background-position;
 }
 #bedroom-wallpaper {
   z-index: 1;
@@ -205,6 +207,7 @@ table {
   height: 100%;
   z-index: 800;
   pointer-events: none;
+  will-change: transform;
 }
 #coach-angry {
   position: absolute;
@@ -218,6 +221,7 @@ table {
   background-size: 400% 100%;
   -webkit-animation: coach-angry 0.5s steps(4, end) infinite;
           animation: coach-angry 0.5s steps(4, end) infinite;
+  will-change: background-position;
 }
 #coach-mellow {
   position: absolute;
@@ -231,6 +235,7 @@ table {
   background-size: 800% 100%;
   -webkit-animation: coach-mellow 1s steps(8, end) infinite;
           animation: coach-mellow 1s steps(8, end) infinite;
+  will-change: background-position;
 }
 .mirror-border {
   background: #f5f6f6;
@@ -292,6 +297,7 @@ table {
   height: 100%;
   -webkit-transition: -webkit-transform 500ms;
           transition: transform 500ms;
+  will-change: transform;
 }
 .livingroom {
   width: 200%;
@@ -318,6 +324,7 @@ table {
   background-size: 200% 100%;
   -webkit-animation: livingroom-aunt 0.5s steps(2, end) infinite;
           animation: livingroom-aunt 0.5s steps(2, end) infinite;
+  will-change: background-position;
 }
 #livingroom-cat {
   background-image: url("../img/livingroom/cat.svg");
@@ -328,6 +335,7 @@ table {
   background-size: 15% 15%;
   background-position: 20% 80%;
   background-repeat: no-repeat;
+  will-change: transform;
 }
 #livingroom-sofa {
   background-image: url("../img/livingroom/sofa.svg");
@@ -381,6 +389,7 @@ table {
           transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
+  will-change: transform;
 }
 .letsgo-background {
   position: absolute;
@@ -392,6 +401,7 @@ table {
   background-position: center;
   -webkit-animation: letsgo-background 2s infinite ease-in-out;
           animation: letsgo-background 2s infinite ease-in-out;
+  will-change: background-color, filter;
 }
 .coach-shiny {
   position: absolute;
@@ -405,6 +415,7 @@ table {
   background-size: 400% 100%;
   -webkit-animation: coach-shiny 1s steps(4, end) infinite;
           animation: coach-shiny 1s steps(4, end) infinite;
+  will-change: background-position;
 }
 @media screen and (max-width: 600px) {
   html {
@@ -654,6 +665,7 @@ table {
   background-size: cover;
   -webkit-transition: background-color 2000ms;
           transition: background-color 2000ms;
+  will-change: background-color;
 }
 #brush {
   position: absolute;
@@ -667,6 +679,7 @@ table {
   margin-top: -26px;
   pointer-events: none;
   opacity: 0;
+  will-change: transform, opacity;
 }
 .brush-swipe {
   -webkit-animation: brush-swipe 1s 1 linear;
@@ -683,6 +696,7 @@ table {
   margin-top: -150px;
   margin-left: -150px;
   opacity: 0;
+  will-change: transform, opacity;
 }
 #splat.show-splat {
   -webkit-animation: show-splat 1000ms 1 ease-in;
@@ -701,6 +715,7 @@ table {
   background-image: url("../img/games/colorsnap/colorsnap-camera.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  will-change: top;
 }
 #take-photo.show-camera {
   top: 60%;
@@ -714,6 +729,7 @@ table {
   border: 5px solid #000;
   border-radius: 15px;
   opacity: 0;
+  will-change: opacity;
 }
 @-webkit-keyframes brush-swipe {
   0% {
@@ -801,10 +817,12 @@ table {
   width: 100%;
   height: 50%;
   background-color: #0078ff;
+  will-change: background-color;
 }
 .map-orientation {
   margin-left: -200%;
   width: 400%;
+  will-change: transform;
 }
 .map-clouds {
   position: fixed;
@@ -901,6 +919,7 @@ table {
   -webkit-transform: translateX(0%);
       -ms-transform: translateX(0%);
           transform: translateX(0%);
+  will-change: transform;
 }
 #map-goal {
   position: absolute;
@@ -915,6 +934,7 @@ table {
           transform: scale(0.01);
   -webkit-transition: -webkit-transform 300ms linear;
           transition: transform 300ms linear;
+  will-change: transform;
 }
 .map-flag-container {
   position: absolute;
@@ -936,6 +956,7 @@ table {
   height: 12%;
   bottom: 2%;
   left: 5%;
+  will-change: transform;
 }
 #map-menu {
   height: 100%;
@@ -967,6 +988,13 @@ table {
 }
 li.menu-item {
   margin-bottom: 1em;
+}
+li.menu-item a,
+li.menu-item a:link,
+li.menu-item a:visited,
+li.menu-item a:active {
+  color: #00f;
+  text-decoration: underline;
 }
 ul.menu-list {
   margin-bottom: 1em;
@@ -1168,6 +1196,12 @@ html {
   font-size: 19px;
   line-height: 1.4em;
 }
+* {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 .container {
   margin-top: 20px;
 }
@@ -1233,6 +1267,7 @@ html {
   color: #fff;
   text-decoration: none;
   box-shadow: 5px 5px 0px 0px #008000;
+  will-change: box-shadow;
 }
 .button:active {
   box-shadow: 0px 0px 0px 0px #008000;
@@ -1247,6 +1282,7 @@ html {
   -webkit-animation: blink 0.5s infinite;
           animation: blink 0.5s infinite;
   padding-left: 1em;
+  will-change: opacity;
 }
 h1 {
   font-size: 40px;
@@ -1294,6 +1330,7 @@ h6 {
   background-size: 5% 10%;
   -webkit-animation: star-background 10s infinite linear;
           animation: star-background 10s infinite linear;
+  will-change: transform;
 }
 #math-form:focus,
 .calculator-button:focus,
@@ -1410,6 +1447,7 @@ h6 {
           filter: hue-rotate(200deg);
   -webkit-animation: reset-background 2s infinite ease-in-out;
           animation: reset-background 2s infinite ease-in-out;
+  will-change: background-color;
 }
 .coach-reset {
   position: absolute;
@@ -1426,6 +1464,7 @@ h6 {
   -webkit-filter: hue-rotate(250deg);
           filter: hue-rotate(250deg);
   pointer-events: none;
+  will-change: background-position;
 }
 .reset-option {
   position: absolute;
@@ -1490,6 +1529,7 @@ h6 {
   background-size: 50% 110%;
   background-position: center;
   background-repeat: repeat-x;
+  will-change: transform;
 }
 .tap-background-1 {
   background-color: #00adff;
@@ -1532,20 +1572,21 @@ h6 {
   position: relative;
   border: 5px #808080 solid;
   border-radius: 50%;
-  box-shadow: 0px 20px 0px 0px #a9a9a9;
-  -webkit-transform: translateY(-10px);
-      -ms-transform: translateY(-10px);
-          transform: translateY(-10px);
+  box-shadow: 0px 30px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
+          transform: translateY(-20px);
   width: 80%;
   height: 80%;
   margin-top: 10%;
   margin-left: 10%;
+  will-change: transform, box-shadow;
 }
 #tap-button:active {
-  box-shadow: 0px 15px 0px 0px #a9a9a9;
-  -webkit-transform: translateY(-5px);
-      -ms-transform: translateY(-5px);
-          transform: translateY(-5px);
+  box-shadow: 0px 10px 0px 0px #a9a9a9;
+  -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
+          transform: translateY(10px);
 }
 .tap-background-1-anim {
   -webkit-animation: tap-background-1 1.5s infinite linear;
@@ -1615,6 +1656,7 @@ h6 {
           animation: tippy-background 5s infinite linear;
   -webkit-filter: invert(100%);
           filter: invert(100%);
+  will-change: transform;
 }
 #tippy-container {
   height: 100%;
@@ -1632,6 +1674,7 @@ h6 {
   position: relative;
   box-shadow: #fff 0 0 15px;
   border-radius: 20px;
+  will-change: background-color;
 }
 #tippy-box.backwards {
   background-color: #7569ff;
@@ -1670,6 +1713,7 @@ h6 {
   bottom: 50%;
   -webkit-animation: tippy-ball 0.5s infinite ease-out;
           animation: tippy-ball 0.5s infinite ease-out;
+  will-change: box-shadow, bottom;
 }
 @-webkit-keyframes tippy-ball {
   0% {
@@ -1721,6 +1765,7 @@ h6 {
   width: 100%;
   height: 100%;
   background-color: #d3d3d3;
+  will-change: background-color;
 }
 .vibey-background-img {
   position: absolute;
@@ -1755,6 +1800,7 @@ h6 {
           transform: scale(1, -1);
   -webkit-transition: background-color 300ms;
           transition: background-color 300ms;
+  will-change: background-color, transform;
 }
 .vibey-on .vibey-switch {
   background-color: #78ff57;
@@ -1814,6 +1860,7 @@ h6 {
   background-size: 110% 50%;
   background-position: center 0%;
   background-repeat: repeat-y;
+  will-change: transform;
 }
 .worldtraveler-pyramids {
   position: absolute;
@@ -1825,6 +1872,7 @@ h6 {
   background-size: 50% 95%;
   background-position: 0% 120%;
   background-repeat: repeat-x;
+  will-change: transform;
 }
 .worldtraveler-coach {
   position: absolute;
@@ -1838,6 +1886,7 @@ h6 {
   background-size: 400% 100%;
   -webkit-animation: worldtraveler-coach 1s steps(4, end) infinite;
           animation: worldtraveler-coach 1s steps(4, end) infinite;
+  will-change: background-position, transform;
 }
 .worldtraveler-background-anim {
   -webkit-animation: worldtraveler-background 20s infinite linear;
