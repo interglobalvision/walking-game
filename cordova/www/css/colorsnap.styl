@@ -9,6 +9,7 @@
   background-position: center
   background-size: cover
   transition: background-color 2000ms
+  will-change: background-color
 
 #brush
   position: absolute
@@ -20,6 +21,7 @@
   margin-top: -26px
   pointer-events: none
   opacity: 0
+  will-change: transform, opacity
   
 .brush-swipe
   animation: brush-swipe 1s 1 linear
@@ -48,6 +50,7 @@
   margin-top: -150px
   margin-left: -150px
   opacity: 0
+  will-change: transform, opacity
   &.show-splat
     animation: show-splat 1000ms 1 ease-in
     animation-fill-mode: forwards
@@ -73,6 +76,7 @@
   background-image: url('../img/games/colorsnap/colorsnap-camera.svg')
   background-size: cover
   background-repeat: no-repeat
+  will-change: top
   &.show-camera
     top: 60%
     
@@ -85,3 +89,4 @@
   border: 5px solid black
   border-radius: 15px
   opacity: 0
+  will-change: opacity
