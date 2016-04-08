@@ -109,6 +109,10 @@ Game = {
     var randomDistance = distances[Math.floor(Math.random()*distances.length)];
     var calcDistance = totalDistance / randomDistance[0];
 
+    if ( calcDistance > 1 ) {
+      calcDistance = calcDistance.toFixed(3);
+    } 
+
     return calcDistance + ' ' + randomDistance[1];
   },
 
