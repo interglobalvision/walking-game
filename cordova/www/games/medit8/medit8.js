@@ -101,60 +101,60 @@ var Medit8 = {
           }
         } 
 
-        // Calc 0-100%
-        var progress = (timeCounter / waitTime) * 100;
-
-        //console.log(progress);
-
-        // Calc 0-360 deg
-        var degrees = progress * 3.60; 
-
-        //console.log(degrees);
-
-        if (progress === 20) {
-          Utilities.Dialog.read(_this.medDialog1);
-        }
-
-        if (progress === 50) {
-          Utilities.Dialog.read(_this.medDialog2);
-        }
-
-        if (progress === 80) {
-          Utilities.Dialog.read(_this.medDialog3);
-        }
-
-        if (progress >= 30 && progress <= 35) {
-          _this.$coach1.css('opacity', 0);
-          _this.$coach2.css('opacity', 1);
-        }
-
-        if (progress >= 60 && progress <= 65) {
-          _this.$coach2.css('opacity', 0);
-          _this.$coach3.css('opacity', 1);
-        }
-
-        _this.$clockHands.css('transform', 'rotate(' + degrees + 'deg)');
-        _this.$clockFace.css({
-          '-webkit-filter': 'hue-rotate(' + degrees + 'deg)',
-          'filter': 'hue-rotate(' + degrees + 'deg)',
-        });
-
-        // If waitTime has passed, clear interval
-        if(timeCounter >= waitTime) {
-
-          console.log('time\'s up');
-
-          clearInterval(timer);
-
-          // Win
-          _this.win(timeCounter * 0.19839); // Just because
-
-        }
-
-        timeCounter++;
-
       });
-      
+
+      // Calc 0-100%
+      var progress = (timeCounter / waitTime) * 100;
+
+      //console.log(progress);
+
+      // Calc 0-360 deg
+      var degrees = progress * 3.60; 
+
+      //console.log(degrees);
+
+      if (progress === 20) {
+        Utilities.Dialog.read(_this.medDialog1);
+      }
+
+      if (progress === 50) {
+        Utilities.Dialog.read(_this.medDialog2);
+      }
+
+      if (progress === 80) {
+        Utilities.Dialog.read(_this.medDialog3);
+      }
+
+      if (progress >= 30 && progress <= 35) {
+        _this.$coach1.css('opacity', 0);
+        _this.$coach2.css('opacity', 1);
+      }
+
+      if (progress >= 60 && progress <= 65) {
+        _this.$coach2.css('opacity', 0);
+        _this.$coach3.css('opacity', 1);
+      }
+
+      _this.$clockHands.css('transform', 'rotate(' + degrees + 'deg)');
+      _this.$clockFace.css({
+        '-webkit-filter': 'hue-rotate(' + degrees + 'deg)',
+        'filter': 'hue-rotate(' + degrees + 'deg)',
+      });
+
+      // If waitTime has passed, clear interval
+      if(timeCounter >= waitTime) {
+
+        console.log('time\'s up');
+
+        clearInterval(timer);
+
+        // Win
+        _this.win(timeCounter * 0.19839); // Just because
+
+      }
+
+      timeCounter++;
+
     }, 1000); // Run every second
 
   },
