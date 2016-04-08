@@ -33,6 +33,7 @@ Game = {
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
+    window.localStorage.setItem('distance', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
     window.localStorage.setItem('rank', _this.setRank());
@@ -78,6 +79,18 @@ Game = {
 
     return currentProgress / this.minigames.length;
   },
+
+  setDistance: function(newDistance) {
+    var _this = this;
+    var oldDistance = _this.getDistance();
+    var newDistance = parseInt(newDistance);
+
+    window.localStorage.setItem('distance', oldDistance + newDistance);
+  }
+
+  getDistance: function() {
+    return parseInt(window.localStorage.getItem('distance'));
+  }
 
   getLoops: function() {
     var loops = parseInt(window.localStorage.getItem('loops'));
