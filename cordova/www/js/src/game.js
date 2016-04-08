@@ -8,6 +8,7 @@ Game = {
     'vibeystopper',
     'jankenpon',
     'wordltraveler',
+    'medit8',
   ],
   worlds: [
     'Desert',
