@@ -1003,6 +1003,7 @@ ul.menu-list {
   transition: -webkit-transform 100ms ease-in;
   transition: transform 100ms ease-in;
   transition: transform 100ms ease-in, -webkit-transform 100ms ease-in;
+  will-change: transform, display;
 }
 .menu.sub-menu {
   left: 100%;
