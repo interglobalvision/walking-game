@@ -886,6 +886,8 @@ table {
 }
 .world-1 .map-object {
   background-image: url("../img/map/object-1.svg");
+  -webkit-filter: hue-rotate(30deg);
+          filter: hue-rotate(30deg);
 }
 .world-2 .map-skyline {
   background-image: url("../img/map/sky-2.svg");
