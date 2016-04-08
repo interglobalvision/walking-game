@@ -174,7 +174,11 @@ Compass = {
     });
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
+
+      Game.setDistance(distanceToDestiny);
+      
       _this.stop();
+
     }
   },
 
