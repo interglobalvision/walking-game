@@ -9,11 +9,9 @@
 .tap-background-1
   background-color: #00ADFF
   background-image: url("../img/games/supertap/tap-background-1.svg")
-  animation: tap-background-1 1.5s infinite linear
 
 .tap-background-2
   background-image: url("../img/games/supertap/tap-background-2.svg")
-  animation: tap-background-2 1.5s infinite linear
   
 .tap-frame
   position: absolute
@@ -58,6 +56,12 @@
   &:active
     box-shadow: 0px 15px 0px 0px darkgrey
     transform: translateY(-5px)
+    
+.tap-background-1-anim
+  animation: tap-background-1 1.5s infinite linear
+  
+.tap-background-2-anim
+  animation: tap-background-2 1.5s infinite linear
     
 @keyframes tap-background-1
   from

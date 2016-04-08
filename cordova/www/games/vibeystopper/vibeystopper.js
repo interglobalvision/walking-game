@@ -26,7 +26,7 @@ var VibeyStopper = {
     var _this = this;
 
     if (!navigator.vibrate) {
-      console.log('no vibration for you :-(');
+      console.log('no vibration support');
     }
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
@@ -37,18 +37,25 @@ var VibeyStopper = {
 
   },
 
-  bind: function() {
+  bindEarlyTap: function() {
     var _this = this;
 
-   _this.$switch.on({
+    _this.$switch.on({
       click: function() {
 
-        _this.$machine.removeClass('vibey-on');
-        _this.$background.removeClass('vibey-flash');
+        _this.fail();
 
-        if (navigator.vibrate) {
-          navigator.vibrate(0);
-        }
+      },
+    });
+
+  },
+
+  bindTap: function() {
+    var _this = this;
+
+    _this.$switch.off();
+    _this.$switch.on({
+      click: function() {
 
         _this.win();
 
@@ -60,6 +67,13 @@ var VibeyStopper = {
   unbind: function() {
     var _this = this;
 
+    _this.$background.removeClass('vibey-flash');
+    _this.$machine.removeClass('vibey-on');
+
+    if (navigator.vibrate) {
+      navigator.vibrate(0);
+    }
+
     _this.$switch.off();
 
   },
@@ -67,9 +81,13 @@ var VibeyStopper = {
   startGame: function() {
     var _this = this;
 
+    _this.bindEarlyTap();
+
     _this.$machine.addClass('vibey-on');
 
     _this.wait = window.setTimeout(function() {
+
+      _this.bindTap();
 
       _this.startTime = Date.now();
       _this.$background.addClass('vibey-flash');
@@ -77,13 +95,8 @@ var VibeyStopper = {
       if (navigator.vibrate) {
         navigator.vibrate(500);
       }
-      
-      _this.bind();
 
       _this.timeout = window.setTimeout(function() {
-
-        _this.$machine.removeClass('vibey-on');
-        _this.$background.removeClass('vibey-flash');
 
         _this.fail();
 

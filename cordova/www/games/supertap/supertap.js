@@ -34,6 +34,8 @@ var Supertap = {
     var _this = this;
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+    $('.tap-background-1').addClass('tap-background-1-anim');
+    $('.tap-background-2').addClass('tap-background-2-anim');
 
     Utilities.Dialog.read(_this.introDialog);
 

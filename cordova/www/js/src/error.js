@@ -16,7 +16,9 @@ WalkingError = {
     }
 
     console.log(tech + ' is unsupported on this device');
-    alert('Sorry your device does not support ' + tech + ' :( But you have unclaimed misssold PPI. Collect ' + _this.unsupportedCompensation + ' points and pass go.');
+
+    alert('Sorry ' + Game.getUsername() + ', but your device does not support ' + tech + '!! But I will give you a consolation prize... Here\'s ' + _this.unsupportedCompensation + ' points. Now get outta here!');
+
     Game.gameComplete(_this.unsupportedCompensation);
   },
 
@@ -24,7 +26,7 @@ WalkingError = {
   unsupportedGPS: function() {
 
     console.log('Fuck. No GPS');
-    alert('Sorry but your device does not support the required GPS or you have denied the app access to your location. You can\'t go walking if the Coach doesn\'t know where you are');
+    alert('Sorry ' + Game.getUsername() + ', but your device does not support GPS or you have denied the app access to your location. You can\'t go walking if I don\'t know where you are. Open the Walking Game settings on your device and allow location access!!');
 
   },
 }

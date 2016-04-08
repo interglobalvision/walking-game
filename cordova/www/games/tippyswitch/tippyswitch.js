@@ -23,6 +23,10 @@ var TippySwitch = {
   init: function() {
     var _this = this;
 
+    if (!window.DeviceOrientationEvent) {
+      WalkingError.unsupported('accelerometer');
+    }
+
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     Utilities.Dialog.read(_this.introDialog, function() {
