@@ -178,6 +178,10 @@ var Medit8 = {
 
     _this.$coach3.css('opacity', 0);
     _this.$coachTalk.css('opacity', 1);
+
+    if (navigator.vibrate) {
+      navigator.vibrate(1000);
+    }
     
     Utilities.Dialog.read(_this.winDialog, function() {
 
