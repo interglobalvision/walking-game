@@ -971,7 +971,7 @@ table {
   right: 5%;
 }
 li.menu-item {
-  margin-bottom: 1em;
+  margin-bottom: 12px;
 }
 li.menu-item a,
 li.menu-item a:link,
@@ -981,7 +981,7 @@ li.menu-item a:active {
   text-decoration: underline;
 }
 ul.menu-list {
-  margin-bottom: 1em;
+  margin-bottom: 12px;
 }
 .menu {
   position: absolute;
