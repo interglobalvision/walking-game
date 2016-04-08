@@ -89,7 +89,7 @@ Game = {
   },
 
   getDistance: function() {
-    return parseFloat(window.localStorage.getItem('distance'));
+    return window.localStorage.getItem('distance') ? window.localStorage.getItem('distance') : 0;
   },
 
   getRandomDistance: function() {
