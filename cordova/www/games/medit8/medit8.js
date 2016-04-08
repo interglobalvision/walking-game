@@ -5,17 +5,29 @@ var Medit8 = {
   $coach2: $('.medit8-coach-2'),
   $coach3: $('.medit8-coach-3'),
   $clockHands: $('.medit8-clock-hands'),
-  $clock: $('.medit8-clock'),
+  $clockFace: $('.medit8-clock-face'),
   introDialog: [
-    "learn to be patient... years can pass like seconds",
-    "don\'t wish your day away",
+    "learn to be patient, " + Game.getUsername() + "... years can pass like seconds",
+    "don't wish your " + Utilities.Word.getAdj(false, false) + " day away...its time to play...",
+    "MEDIT8...8.....8.......",
+    "Just relax and don't move around too much....",
+  ],
+  medDialog1: [
+    "just be " + Utilities.Word.getAdj(false, false) + ", " + Game.getUsername() + "...",
+  ],
+  medDialog2: [
+    "open your " + Utilities.Word.getNoun(false, false) + " to the " + Utilities.Word.getNoun(false, false) + "....",
+  ],
+  medDialog3: [
+    "don't be too " + Utilities.Word.getAdj(false, false) + ".....",
   ],
   winDialog: [
-    "Patience is bitter, but its fruit is sweet",
-    "let\'s go for a walk",
+    Utilities.Word.getNoun(false, true) + " is bitter, but " + Utilities.Word.getNoun(false, false) + " is sweet",
+    "let's go for a walk, " + Game.getUsername() + "!!",
   ],
   failDialog: [
-    "You moved! Bummer...",
+    "You moved! " + Utilities.Word.getAdj(false, true) + " bummer....",
+    "Next time be more patient....",
   ],
 
   baseTime: 60, // 1 min
@@ -98,7 +110,19 @@ var Medit8 = {
         var degrees = progress * 3.60; 
 
         //console.log(degrees);
-        
+
+        if (progress === 20) {
+          Utilities.Dialog.read(_this.medDialog1);
+        }
+
+        if (progress === 50) {
+          Utilities.Dialog.read(_this.medDialog2);
+        }
+
+        if (progress === 80) {
+          Utilities.Dialog.read(_this.medDialog3);
+        }
+
         if (progress >= 30 && progress <= 35) {
           _this.$coach1.css('opacity', 0);
           _this.$coach2.css('opacity', 1);
@@ -110,7 +134,7 @@ var Medit8 = {
         }
 
         _this.$clockHands.css('transform', 'rotate(' + degrees + 'deg)');
-        _this.$clock.css({
+        _this.$clockFace.css({
           '-webkit-filter': 'hue-rotate(' + degrees + 'deg)',
           'filter': 'hue-rotate(' + degrees + 'deg)',
         });
