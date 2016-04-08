@@ -9,6 +9,7 @@ Utilities.Dialog = {
   lineIndex: 0,
   lineTimer: 0,
   outputText: '',
+  inProgress: false,
 
   read: function(dialogArray, callback) {
 
@@ -22,6 +23,7 @@ Utilities.Dialog = {
     _this.callback = callback;
 
     _this.$parent.show();
+    _this.inProgress = true;
 
     _this.$parent.append('<div id="dialog-skip"></div>');
     _this.$skip = $('#dialog-skip');
@@ -92,6 +94,7 @@ Utilities.Dialog = {
     var _this = this;
 
     _this.$parent.hide();
+    _this.inProgress = false;
     _this.$target.html('');
     _this.$skip.remove();
 
