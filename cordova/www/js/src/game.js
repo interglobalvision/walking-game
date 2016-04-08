@@ -86,11 +86,11 @@ Game = {
     var newDistance = parseInt(newDistance);
 
     window.localStorage.setItem('distance', oldDistance + newDistance);
-  }
+  },
 
   getDistance: function() {
     return parseInt(window.localStorage.getItem('distance'));
-  }
+  },
 
   getLoops: function() {
     var loops = parseInt(window.localStorage.getItem('loops'));
