@@ -447,10 +447,12 @@ table {
   background-image: url("../img/levelup/levelup-background2.svg");
   background-size: 120% 5%;
   background-repeat: repeat-y;
+  will-change: transform;
 }
 .levelup-background-3 {
   background-image: url("../img/levelup/levelup-background3.svg");
   background-size: 120%;
+  will-change: transform;
 }
 .levelup-background-2-anim {
   -webkit-animation: levelup-background-2 1s infinite linear;
