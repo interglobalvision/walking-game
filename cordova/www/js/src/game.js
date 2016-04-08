@@ -83,13 +83,33 @@ Game = {
   setDistance: function(newDistance) {
     var _this = this;
     var oldDistance = _this.getDistance();
-    var newDistance = parseInt(newDistance);
+    var newDistance = parseFloat(newDistance);
 
     window.localStorage.setItem('distance', oldDistance + newDistance);
   },
 
   getDistance: function() {
-    return parseInt(window.localStorage.getItem('distance'));
+    return parseFloat(window.localStorage.getItem('distance'));
+  },
+
+  getRandomDistance: function() {
+    var _this = this;
+    var totalDistance = _this.getDistance();
+
+    var distances = [
+      [ 0.0046, 'anacondas', ],
+      [ 0.025, 'blue whales', ],
+      [ 0.828, 'Burj Khalifas', ],
+      [ 0.006, 'elephant trunks', ],
+      [ 0.00206, 'Ebenezer Places', ],
+      [ 385000.6, 'Lunar distances', ],
+      [ 40075.0, 'Earth circumferences', ],
+    ];
+
+    var randomDistance = distances[Math.floor(Math.random()*distances.length)];
+    var calcDistance = totalDistance / randomDistance[0];
+
+    return calcDistance + ' ' + randomDistance[1];
   },
 
   getLoops: function() {
