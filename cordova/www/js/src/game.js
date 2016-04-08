@@ -34,7 +34,7 @@ Game = {
     window.localStorage.setItem('progress', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
-    window.localStorage.setItem('rank', _this.setRank());
+    window.localStorage.setItem('rank', _this.newRank());
     _this.setupLoop();
 
     callback();
@@ -131,6 +131,7 @@ Game = {
     _this.setLoops(currentLoops + 1);
 
     _this.nextWorld();
+    _this.setRank();
 
     console.log('Loops so far', currentLoops);
 
@@ -163,8 +164,11 @@ Game = {
   },
 
   // RANK
-
   setRank: function() {
+    window.localStorage.setItem('rank', _this.newRank());
+  },
+
+  newRank: function() {
     return Utilities.Word.getAdj(true, true) + ' ' + Utilities.Word.getNoun(false, true);
   },
 

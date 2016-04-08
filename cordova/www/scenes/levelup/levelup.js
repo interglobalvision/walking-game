@@ -1,14 +1,13 @@
 var Levelup = {
   $blackout: $('#blackout'),
   dialog: [
-      "Great " + Game.getUsername() + "!! We're on our way...",
-      "And it's time to go on our first walk...",
-      "Follow the compass that your Auntie gave you, and find the golden flag...",
-      "Each time you reach a flag - I will give you a MINIGAME CHALLENGE!!!",
-      "Complete 3 minigame challenges to move to the next world...AND gain a new rank!!",
-      "To begin you are ... " + Game.getRank() + " in the " + Game.getWorldName() + ".",
-      "If you get lost on your way, just tap me at the bottom right...",
-      "OK! LETS GO!",
+      "WOW " + Game.getUsername() + "!! I really can't believe you made it this far!",
+      "No really...",
+      "I'm simply " + Utilities.Word.getAdj(false, false) + "! And to show it I will award you with a new Rank!",
+      "You are now.......",
+      Game.getRank() + "!!!!!!!!",
+      "How nice.",
+      "Now let's see how you do walking in the next world: the " + Game.getWorldName() + ".......",
   ],
 
   init: function() {
