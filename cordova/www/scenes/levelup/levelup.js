@@ -1,0 +1,59 @@
+var Levelup = {
+  $blackout: $('#blackout'),
+  dialog: [
+      "WOW " + Game.getUsername() + "!! I really can't believe you made it this far!",
+      "No really...",
+      "I'm simply " + Utilities.Word.getAdj(false, false) + "! And to show it I will award you with a new Rank!",
+      "You are now.......",
+      Game.getRank() + "!!!!!!!!",
+      "How nice.",
+      "Now let's see how you do walking in the next world: the " + Game.getWorldName() + ".......",
+  ],
+
+  init: function() {
+    var _this = this;
+
+    var filterDeg = Math.random() * (360 - 1) + 1; 
+
+    $('.levelup-stage').css({
+      '-webkit-filter': 'hue-rotate(' + filterDeg + 'deg)',
+      'filter': 'hue-rotate(' + filterDeg + 'deg)',
+    });
+    $('.levelup-background-2').addClass('levelup-background-2-anim');
+    $('.levelup-background-3').addClass('levelup-background-3-anim');
+
+    _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() { //fade from black
+
+      _this.partOne(); 
+      
+    });
+
+  },
+
+  partOne: function() {
+    var _this = this;
+
+    Utilities.Dialog.read(_this.dialog, function() {
+
+      _this.partTwo();
+
+    });
+
+  },
+
+  partTwo: function() {
+    var _this = this;
+
+    _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() { //fade to black
+
+      Router.go('/pages/compass/'); //go to map
+
+    });
+
+  },
+
+};
+
+document.addEventListener('deviceready', function() {
+  Levelup.init();
+}, false);
