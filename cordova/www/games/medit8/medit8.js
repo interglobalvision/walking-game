@@ -118,10 +118,18 @@ var Medit8 = {
       }
 
       if (progress === 50) {
+        if ( Utilities.Dialog.inProgress ) { 
+          Utilities.Dialog.finish();
+        }
+
         Utilities.Dialog.read(_this.medDialog2);
       }
 
       if (progress === 80) {
+        if ( Utilities.Dialog.inProgress ) { 
+          Utilities.Dialog.finish();
+        }
+
         Utilities.Dialog.read(_this.medDialog3);
       }
 
@@ -182,6 +190,10 @@ var Medit8 = {
     if (navigator.vibrate) {
       navigator.vibrate(1000);
     }
+
+    if ( Utilities.Dialog.inProgress ) { 
+      Utilities.Dialog.finish();
+    }
     
     Utilities.Dialog.read(_this.winDialog, function() {
 
@@ -200,6 +212,10 @@ var Medit8 = {
     _this.$coach2.css('opacity', 0);
     _this.$coach3.css('opacity', 0);
     _this.$coachTalk.css('opacity', 1);
+
+    if ( Utilities.Dialog.inProgress ) { 
+      Utilities.Dialog.finish();
+    }
 
     Utilities.Dialog.read(_this.failDialog, function() {
 
