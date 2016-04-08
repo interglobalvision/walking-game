@@ -32,7 +32,7 @@ $map-transition = 300ms linear
   height: 50%
   background-position: center bottom
   background-repeat: repeat-x
-  background-size: 25%
+  background-size: 25% 35%
 
 .map-floor-container
   height: 50%
@@ -72,7 +72,7 @@ $map-transition = 300ms linear
   .map-skyline
     background-image: url('../img/map/sky-1.svg');
   .map-floor
-    background: linear-gradient(to bottom, #A6CCCC 0%,#A19633 100%);
+    background: linear-gradient(to bottom, #635FFF 0%,#FF8A5E 100%);
   .map-object
     background-image: url('../img/map/object-1.svg');
   
@@ -149,21 +149,6 @@ $map-transition = 300ms linear
   bottom: 2%
   right: 5%
   
-#map-menu-bubble
-  position: absolute
-  bottom: 18%
-  right: 5%
-  width: 90%
-  height: 80%
-  background: white
-  box-sizing: border-box
-  border: 5px solid blue
-  color: blue
-  border-radius: 15px
-  box-sizing: border-box
-  display: none
-  overflow: hidden
-  
 li.menu-item
   margin-bottom: 1em
   a, a:link, a:visited, a:active
@@ -175,20 +160,33 @@ ul.menu-list
   
 .menu 
   position: absolute
-  height: 100%
-  width: 100%
+  bottom: 18%
+  right: 5%
+  width: 90%
+  height: auto
+  max-height: 80%
+  background: white
+  border: 5px solid blue
+  color: blue
+  border-radius: 15px
+  display: none
   padding: 4%
   overflow-y: scroll
   box-sizing: border-box
-  left: 0
-  top: 0
+  font-size: 18px
   transition: transform 100ms ease-in
   &.sub-menu 
     left: 100%
+    font-size: 14px
   &.show-sub-menu
-    transform: translateX(-100%)
+    transform: translateX(-106%)
   a 
     text-decoration: underline
+  h1
+    font-size: 18px
+    margin: 14px 0
+  p 
+    margin-bottom: 12px
     
 .credits-logo
   max-width: 50%

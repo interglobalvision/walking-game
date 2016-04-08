@@ -69,6 +69,7 @@ var StayStill = {
 
           // Calc 0-360 deg
           var degrees = progress * 3.60;
+          
           console.log(degrees);
           
           /*

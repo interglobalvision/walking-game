@@ -263,7 +263,7 @@ Compass = {
 
       } else if (hour > 9 && hour < 17) {
 
-        skyColor = 'rgb(0, 120, 255)'; // Day 10 - 16
+        skyColor = 'rgb(145, 205, 242)'; // Day 10 - 16
 
       } else if (hour > 16 &&  hour < 22) {
 
