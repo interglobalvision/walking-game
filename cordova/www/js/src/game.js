@@ -120,7 +120,7 @@ Game = {
   },
 
   finishLoop: function() {
-    var _this= this;
+    var _this = this;
     var currentLoops = _this.getLoops();
     var currentWorld = _this.getWorld();
 
@@ -136,12 +136,14 @@ Game = {
     console.log('Loops so far', currentLoops);
 
     _this.setupLoop();
+
+    Router.go('/scenes/levelup/');
   },
 
   // WORLD
 
   nextWorld: function() {
-    var _this= this;
+    var _this = this;
     var current = _this.getWorld();
     var next = current + 1;
 
@@ -157,7 +159,7 @@ Game = {
   },
 
   getWorldName: function() {
-    var _this= this;
+    var _this = this;
     var worldNum = _this.getWorld();
 
     return _this.worlds[worldNum];
@@ -165,6 +167,8 @@ Game = {
 
   // RANK
   setRank: function() {
+    var _this = this;
+
     window.localStorage.setItem('rank', _this.newRank());
   },
 
@@ -202,9 +206,10 @@ Game = {
 
     if ((currentProgress + 1) === _this.minigames.length) {
       _this.finishLoop();
+    } else {
+      Router.go('/pages/compass/');
     }
 
-    Router.go('/pages/compass/');
   },
 
   // POINTS
