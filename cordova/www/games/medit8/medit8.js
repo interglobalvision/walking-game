@@ -1,8 +1,13 @@
-var StayStill = {
+var Medit8 = {
   $blackout: $('#blackout'),
+  $coachTalk: $('.medit8-coach-talk'),
+  $coach1: $('.medit8-coach-1'),
+  $coach2: $('.medit8-coach-2'),
+  $coach3: $('.medit8-coach-3'),
+  $clock: $('.medit8-clock-hands'),
   introDialog: [
     "learn to be patient... years can pass like seconds",
-    "don’t wish your day away",
+    "don\'t wish your day away",
   ],
   winDialog: [
     "Patience is bitter, but its fruit is sweet",
@@ -15,9 +20,13 @@ var StayStill = {
   baseTime: 60, // 1 min
   levelFactor: 30, // Add this factor of time for each level
   moves: 0,
+  movesMax: 2,
 
   init: function() {
     var _this = this;
+
+    $('.medit8-coach-container').addClass('medit8-coach-container-anim');
+    $('.medit8-background').addClass('medit8-background-anim');
 
     if ( navigator.geolocation && window.DeviceOrientationEvent ) {
 
@@ -42,7 +51,7 @@ var StayStill = {
     var newLat;
     var newLng;
     var oldLat;
-    var oldLang;
+    var oldLng;
 
     navigator.geolocation.getCurrentPosition( function(geoposition) {
 
@@ -50,6 +59,9 @@ var StayStill = {
       oldLng = geoposition.coords.longitude;
 
     });
+
+    _this.$coachTalk.css('opacity', 0);
+    _this.$coach1.css('opacity', 1);
 
     var timer = setInterval(function() {
 
@@ -60,46 +72,57 @@ var StayStill = {
 
         console.log('lat = ' + newLat + ', lng = ' + newLng);
 
-        if ( ( Math.abs(oldLat - newLat) <= .001 ) && ( Math.abs(oldLng - newLng) <= .001 ) ) {
+        //check if position has changed, at least 0.001 in either direction
+        if ( Math.abs(oldLat - newLat) >= 0.001 || Math.abs(oldLng - newLng) >= 0.001 ) {
 
-          // Calc 0-100%
-          var progress = (timeCounter / waitTime) * 100;
+          //if position has changed, increase moves counter
+          _this.moves++;
 
-          console.log(progress);
-
-          // Calc 0-360 deg
-          var degrees = progress * 3.60;
-          console.log(degrees);
-          
-          /*
-           *
-           *      Do stuff here.
-           * 
-           * 〜(・▽・〜) (〜・▽・)〜
-           *
-           *        ⊂( ^ω^)⊃
-           *
-           */
-
-          // If waitTime has passed, clear interval
-          if(timeCounter >= waitTime) {
+          //if moves counter reaches max, fail
+          if (_this.moves === _this.movesMax) {
 
             clearInterval(timer);
 
-            // Win
-            _this.win(timeCounter * 0.19839); // Just because
+            _this.fail();
 
           }
+        } 
 
-          timeCounter++;
+        // Calc 0-100%
+        var progress = (timeCounter / waitTime) * 100;
 
-        } else {
+        //console.log(progress);
+
+        // Calc 0-360 deg
+        var degrees = progress * 3.60; 
+
+        //console.log(degrees);
+        
+        if (progress >= 30 && progress <= 35) {
+          _this.$coach1.css('opacity', 0);
+          _this.$coach2.css('opacity', 1);
+        }
+
+        if (progress >= 60 && progress <= 65) {
+          _this.$coach2.css('opacity', 0);
+          _this.$coach3.css('opacity', 1);
+        }
+
+        _this.$clock.css('transform', 'rotate(' + degrees + 'deg)');
+
+        // If waitTime has passed, clear interval
+        if(timeCounter >= waitTime) {
+
+          console.log('time\'s up');
 
           clearInterval(timer);
 
-          _this.fail();
+          // Win
+          _this.win(timeCounter * 0.19839); // Just because
 
         }
+
+        timeCounter++;
 
       });
       
@@ -124,6 +147,9 @@ var StayStill = {
   win: function(points) {
     var _this = this;
 
+    _this.$coach3.css('opacity', 0);
+    _this.$coachTalk.css('opacity', 1);
+    
     Utilities.Dialog.read(_this.winDialog, function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
@@ -136,6 +162,11 @@ var StayStill = {
 
   fail: function() {
     var _this = this;
+
+    _this.$coach1.css('opacity', 0);
+    _this.$coach2.css('opacity', 0);
+    _this.$coach3.css('opacity', 0);
+    _this.$coachTalk.css('opacity', 1);
 
     Utilities.Dialog.read(_this.failDialog, function() {
 
@@ -150,5 +181,5 @@ var StayStill = {
 };
 
 document.addEventListener('deviceready', function() {
-  StayStill.init();
+  Medit8.init();
 }, false);

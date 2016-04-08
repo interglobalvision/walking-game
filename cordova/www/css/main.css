@@ -1367,6 +1367,197 @@ h6 {
   }
 }
 
+.medit8-stage {
+  background-color: #000;
+}
+.medit8-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background-image: url("../img/games/medit8/medit8-background.svg");
+  will-change: transform;
+  background-size: 30%;
+  background-position: center;
+  background-repeat: repeat;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+}
+.medit8-clock {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transform: skew(-10deg);
+          transform: skew(-10deg);
+  will-change: transform;
+}
+.medit8-clock-face {
+  background-image: url("../img/games/medit8/medit8-clock.svg");
+}
+.medit8-clock-hands {
+  background-image: url("../img/games/medit8/medit8-clockhands.svg");
+}
+.medit8-coach-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+.medit8-coach {
+  position: absolute;
+  top: 32%;
+  left: 20%;
+  width: 60%;
+  height: 36%;
+  background-size: 100% 100%;
+  opacity: 0;
+  -webkit-transition: opacity 5s;
+  transition: opacity 5s;
+  will-change: background-image, background-size, opacity;
+}
+.medit8-coach-talk {
+  background-image: url("../img/games/medit8/medit8-coach-talk.svg");
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 400% 100%;
+  opacity: 1;
+  -webkit-animation: medit8-coach 1s steps(4, end) infinite;
+          animation: medit8-coach 1s steps(4, end) infinite;
+}
+.medit8-coach-1 {
+  background-image: url("../img/games/medit8/medit8-coach-1.svg");
+}
+.medit8-coach-2 {
+  background-image: url("../img/games/medit8/medit8-coach-2.svg");
+}
+.medit8-coach-3 {
+  background-image: url("../img/games/medit8/medit8-coach-3.svg");
+}
+.medit8-background-anim {
+  -webkit-animation: medit8-background 5s infinite linear;
+          animation: medit8-background 5s infinite linear;
+}
+.medit8-coach-container-anim {
+  -webkit-animation: medit8-coach-container 10s infinite ease-in-out;
+          animation: medit8-coach-container 10s infinite ease-in-out;
+}
+@-webkit-keyframes medit8-background {
+  0% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  25% {
+    -webkit-transform: skew(0deg);
+            transform: skew(0deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  75% {
+    -webkit-transform: skew(20deg);
+            transform: skew(20deg);
+  }
+  100% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+}
+@keyframes medit8-background {
+  0% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  25% {
+    -webkit-transform: skew(0deg);
+            transform: skew(0deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  75% {
+    -webkit-transform: skew(20deg);
+            transform: skew(20deg);
+  }
+  100% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+}
+@-webkit-keyframes medit8-coach-container {
+  0% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+  25% {
+    -webkit-transform: translate(25%, 0%);
+            transform: translate(25%, 0%);
+  }
+  50% {
+    -webkit-transform: translate(0%, 10%);
+            transform: translate(0%, 10%);
+  }
+  75% {
+    -webkit-transform: translate(-25%, 0%);
+            transform: translate(-25%, 0%);
+  }
+  100% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+}
+@keyframes medit8-coach-container {
+  0% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+  25% {
+    -webkit-transform: translate(25%, 0%);
+            transform: translate(25%, 0%);
+  }
+  50% {
+    -webkit-transform: translate(0%, 10%);
+            transform: translate(0%, 10%);
+  }
+  75% {
+    -webkit-transform: translate(-25%, 0%);
+            transform: translate(-25%, 0%);
+  }
+  100% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+}
+@-webkit-keyframes medit8-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
+}
+@keyframes medit8-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
+}
+
 .reset-background {
   position: absolute;
   background: #000;
