@@ -149,25 +149,41 @@ $map-transition = 300ms linear
   bottom: 18%
   right: 5%
   width: 90%
-  max-height: 80%
-  height: auto
+  height: 80%
   background: white
   box-sizing: border-box
   border: 5px solid blue
   color: blue
   border-radius: 15px
-  padding: 4%
   box-sizing: border-box
   display: none
-  overflow-y: scroll
+  overflow: hidden
   
 li.menu-item
   margin-bottom: 1em
-  a 
-    text-decoration: underline
   
 ul.menu-list
   margin-bottom: 1em
+  
+.menu 
+  position: absolute
+  height: 100%
+  width: 100%
+  padding: 4%
+  overflow-y: scroll
+  box-sizing: border-box
+  left: 0
+  top: 0
+  transition: transform 100ms ease-in
+  &.sub-menu 
+    left: 100%
+  &.show-sub-menu
+    transform: translateX(-100%)
+  a 
+    text-decoration: underline
+    
+.credits-logo
+  max-width: 50%
     
 @keyframes clouds
   0%

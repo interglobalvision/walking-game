@@ -13,5 +13,5 @@ Home = {
 }
 
 document.addEventListener('deviceready', function() {
-  Home.init();
+  Home.init(); 
 }, false);
