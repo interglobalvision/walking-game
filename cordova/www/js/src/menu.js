@@ -3,6 +3,7 @@ Menu = {
   $menuBubble: $('#map-menu-bubble'),
   $menuButton: $('#map-menu-button'),
   $menuPoints: $('#menu-points'),
+  $menuDistance: $('#menu-distance'),
   $menuRank: $('#menu-rank'),
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
