@@ -20,7 +20,6 @@ Utilities.Dialog = {
 
     _this.dialogArray = dialogArray;
     _this.arrayIndex = 0;
-    _this.callback = callback;
 
     _this.$parent.show();
     _this.inProgress = true;
@@ -34,7 +33,7 @@ Utilities.Dialog = {
           _this.skipLine();
         } else {
           if (_this.arrayIndex === (_this.dialogArray.length - 1)) {
-            _this.finish();
+            _this.finish(callback);
           } else {
             _this.arrayIndex++;
             _this.readLine();
@@ -90,7 +89,7 @@ Utilities.Dialog = {
 
   },
 
-  finish: function() {
+  finish: function(callback) {
     var _this = this;
 
     _this.$parent.hide();
@@ -98,7 +97,9 @@ Utilities.Dialog = {
     _this.$target.html('');
     _this.$skip.remove();
 
-    _this.callback();
+    if (callback) {
+      callback();
+    }
   },
 
 };
