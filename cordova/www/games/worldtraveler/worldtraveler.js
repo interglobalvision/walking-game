@@ -153,9 +153,11 @@ var Worldtraveler = {
     var _this = this;
 
     Utilities.Dialog.read(_this.tieDialog, function() {
+
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        Router.go('/pages/compass/');
+        Game.gameComplete(0);
       });
+      
     });
 
   },
@@ -179,7 +181,7 @@ var Worldtraveler = {
     Utilities.Dialog.read(_this.finalFailDialog, function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        Router.go('/pages/compass/');
+        Game.gameComplete(0);
       });
 
     });
