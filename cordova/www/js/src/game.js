@@ -7,7 +7,7 @@ Game = {
     'colorsnap',
     'vibeystopper',
     'jankenpon',
-    'wordltraveler',
+    'worldtraveler',
     'medit8',
   ],
   worlds: [
