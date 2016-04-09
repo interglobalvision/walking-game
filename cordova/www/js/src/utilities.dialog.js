@@ -9,6 +9,7 @@ Utilities.Dialog = {
   lineIndex: 0,
   lineTimer: 0,
   outputText: '',
+  inProgress: false,
 
   read: function(dialogArray, callback) {
 
@@ -19,9 +20,9 @@ Utilities.Dialog = {
 
     _this.dialogArray = dialogArray;
     _this.arrayIndex = 0;
-    _this.callback = callback;
 
     _this.$parent.show();
+    _this.inProgress = true;
 
     _this.$parent.append('<div id="dialog-skip"></div>');
     _this.$skip = $('#dialog-skip');
@@ -32,7 +33,7 @@ Utilities.Dialog = {
           _this.skipLine();
         } else {
           if (_this.arrayIndex === (_this.dialogArray.length - 1)) {
-            _this.finish();
+            _this.finish(callback);
           } else {
             _this.arrayIndex++;
             _this.readLine();
@@ -88,14 +89,17 @@ Utilities.Dialog = {
 
   },
 
-  finish: function() {
+  finish: function(callback) {
     var _this = this;
 
     _this.$parent.hide();
+    _this.inProgress = false;
     _this.$target.html('');
     _this.$skip.remove();
 
-    _this.callback();
+    if (callback) {
+      callback();
+    }
   },
 
 };

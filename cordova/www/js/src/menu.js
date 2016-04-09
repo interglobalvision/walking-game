@@ -1,6 +1,6 @@
 Menu = {
   $blackout: $('#blackout'),
-  $menuBubble: $('#map-menu-bubble'),
+  $menu: $('.menu'),
   $menuButton: $('#map-menu-button'),
   $menuPoints: $('#menu-points'),
   $menuDistance: $('#menu-distance'),
@@ -21,7 +21,7 @@ Menu = {
 
     _this.closeSubMenu();
 
-    _this.$menuBubble.toggle("fast");
+    _this.$menu.toggle("fast");
   },
 
   init: function() {

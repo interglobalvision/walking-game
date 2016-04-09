@@ -180,7 +180,7 @@ table {
   height: 20%;
   top: 20%;
   left: 5%;
-  background-image: url("../img/sprites/bear-clock.png");
+  background-image: url("../img/sprites/bear-clock.svg");
   background-repeat: repeat-x;
   background-position: 0%;
   background-size: 600% 100%;
@@ -215,7 +215,7 @@ table {
   left: 20%;
   width: 60%;
   height: 36%;
-  background-image: url("../img/sprites/coach-angry.png");
+  background-image: url("../img/sprites/coach-angry.svg");
   background-repeat: repeat-x;
   background-position: 0%;
   background-size: 400% 100%;
@@ -229,7 +229,7 @@ table {
   left: 20%;
   width: 60%;
   height: 36%;
-  background-image: url("../img/sprites/coach-mellow.png");
+  background-image: url("../img/sprites/coach-mellow.svg");
   background-repeat: repeat-x;
   background-position: 0%;
   background-size: 800% 100%;
@@ -240,7 +240,7 @@ table {
 .mirror-border {
   background: #f5f6f6;
   background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
-  background: -webkit-radial-gradient(center ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: -webkit-radial-gradient(center, ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   position: absolute;
   top: 0;
@@ -266,7 +266,8 @@ table {
   overflow: hidden;
   z-index: 700;
   -webkit-transform: scale(-1, 1);
-  transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+      transform: scale(-1, 1);
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
 }
@@ -284,6 +285,7 @@ table {
   left: -100px;
   margin-left: 0;
   -webkit-transform: scale(0.7);
+      -ms-transform: scale(0.7);
           transform: scale(0.7);
   top: 20%;
   -webkit-filter: saturate(0);
@@ -294,9 +296,7 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transition: -webkit-transform 500ms;
-  transition: -webkit-transform 500ms;
-  transition: transform 500ms;
-  transition: transform 500ms, -webkit-transform 500ms;
+          transition: transform 500ms;
   will-change: transform;
 }
 .livingroom {
@@ -350,7 +350,7 @@ table {
   background-position: center;
   position: fixed;
   -webkit-transition: all 2s;
-  transition: all 2s;
+          transition: all 2s;
   pointer-events: none;
   width: 100%;
   height: 100%;
@@ -367,7 +367,7 @@ table {
 #livingroom-compass-bg {
   position: absolute;
   background-image: url("../img/livingroom/compass-bg.jpg");
-  background-size: contain;
+  background-size: 100% 100%;
   z-index: 6;
   -webkit-animation: hue 4s infinite linear;
           animation: hue 4s infinite linear;
@@ -386,7 +386,7 @@ table {
   margin-top: 0px;
   margin-left: 0px;
   -webkit-transition: all 2s;
-  transition: all 2s;
+          transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
   will-change: transform;
@@ -417,9 +417,110 @@ table {
           animation: coach-shiny 1s steps(4, end) infinite;
   will-change: background-position;
 }
+.levelup-coach {
+  position: absolute;
+  top: 25%;
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  background-image: url("../img/levelup/levelup-coach.svg");
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 600% 100%;
+  -webkit-animation: levelup-coach 1s steps(6, end) infinite;
+          animation: levelup-coach 1s steps(6, end) infinite;
+  will-change: background-position;
+}
+.levelup-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.levelup-background-1 {
+  background-image: url("../img/levelup/levelup-background1.svg");
+  background-size: 100% 100%;
+}
+.levelup-background-2 {
+  height: 200%;
+  background-image: url("../img/levelup/levelup-background2.svg");
+  background-size: 120% 5%;
+  background-repeat: repeat-y;
+  will-change: transform;
+}
+.levelup-background-3 {
+  background-image: url("../img/levelup/levelup-background3.svg");
+  background-size: 120%;
+  will-change: transform;
+}
+.levelup-background-2-anim {
+  -webkit-animation: levelup-background-2 1s infinite linear;
+          animation: levelup-background-2 1s infinite linear;
+}
+.levelup-background-3-anim {
+  -webkit-animation: levelup-background-3 1s infinite linear;
+          animation: levelup-background-3 1s infinite linear;
+}
 @media screen and (max-width: 600px) {
   html {
     width: 100%;
+  }
+}
+@-webkit-keyframes levelup-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 600%;
+  }
+}
+@keyframes levelup-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 600%;
+  }
+}
+@-webkit-keyframes levelup-background-2 {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@keyframes levelup-background-2 {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@-webkit-keyframes levelup-background-3 {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes levelup-background-3 {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 @-webkit-keyframes coach-shiny {
@@ -664,12 +765,13 @@ table {
   background-position: center;
   background-size: cover;
   -webkit-transition: background-color 2000ms;
-  transition: background-color 2000ms;
+          transition: background-color 2000ms;
   will-change: background-color;
 }
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
+      -ms-transform: rotate(-25deg);
           transform: rotate(-25deg);
   width: 200px;
   height: 57.191px;
@@ -708,7 +810,7 @@ table {
   top: 100%;
   left: 25%;
   -webkit-transition: top 1s;
-  transition: top 1s;
+          transition: top 1s;
   width: 50%;
   height: 20%;
   background-image: url("../img/games/colorsnap/colorsnap-camera.svg");
@@ -841,7 +943,7 @@ table {
   height: 50%;
   background-position: center bottom;
   background-repeat: repeat-x;
-  background-size: 25%;
+  background-size: 25% 35%;
 }
 .map-floor-container {
   height: 50%;
@@ -881,11 +983,13 @@ table {
   background-image: url("../img/map/sky-1.svg");
 }
 .world-1 .map-floor {
-  background: -webkit-linear-gradient(top, #a6cccc 0%, #a19633 100%);
-  background: linear-gradient(to bottom, #a6cccc 0%, #a19633 100%);
+  background: -webkit-linear-gradient(top, #635fff 0%, #ff8a5e 100%);
+  background: linear-gradient(to bottom, #635fff 0%, #ff8a5e 100%);
 }
 .world-1 .map-object {
   background-image: url("../img/map/object-1.svg");
+  -webkit-filter: hue-rotate(30deg);
+          filter: hue-rotate(30deg);
 }
 .world-2 .map-skyline {
   background-image: url("../img/map/sky-2.svg");
@@ -913,8 +1017,10 @@ table {
   width: 100%;
   height: 50%;
   -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: translateX(0%);
+      -ms-transform: translateX(0%);
           transform: translateX(0%);
   will-change: transform;
 }
@@ -924,13 +1030,13 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transform-origin: center bottom;
+      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: scale(0.01);
+      -ms-transform: scale(0.01);
           transform: scale(0.01);
   -webkit-transition: -webkit-transform 300ms linear;
-  transition: -webkit-transform 300ms linear;
-  transition: transform 300ms linear;
-  transition: transform 300ms linear, -webkit-transform 300ms linear;
+          transition: transform 300ms linear;
   will-change: transform;
 }
 .map-flag-container {
@@ -968,23 +1074,8 @@ table {
   bottom: 2%;
   right: 5%;
 }
-#map-menu-bubble {
-  position: absolute;
-  bottom: 18%;
-  right: 5%;
-  width: 90%;
-  height: 80%;
-  background: #fff;
-  box-sizing: border-box;
-  border: 5px solid #00f;
-  color: #00f;
-  border-radius: 15px;
-  box-sizing: border-box;
-  display: none;
-  overflow: hidden;
-}
 li.menu-item {
-  margin-bottom: 1em;
+  margin-bottom: 12px;
 }
 li.menu-item a,
 li.menu-item a:link,
@@ -994,31 +1085,46 @@ li.menu-item a:active {
   text-decoration: underline;
 }
 ul.menu-list {
-  margin-bottom: 1em;
+  margin-bottom: 12px;
 }
 .menu {
   position: absolute;
-  height: 100%;
-  width: 100%;
+  bottom: 18%;
+  right: 5%;
+  width: 90%;
+  height: auto;
+  max-height: 80%;
+  background: #fff;
+  border: 5px solid #00f;
+  color: #00f;
+  border-radius: 15px;
+  display: none;
   padding: 4%;
   overflow-y: scroll;
   box-sizing: border-box;
-  left: 0;
-  top: 0;
+  font-size: 18px;
   -webkit-transition: -webkit-transform 100ms ease-in;
-  transition: -webkit-transform 100ms ease-in;
-  transition: transform 100ms ease-in;
-  transition: transform 100ms ease-in, -webkit-transform 100ms ease-in;
+          transition: transform 100ms ease-in;
+  will-change: transform, display;
 }
 .menu.sub-menu {
   left: 100%;
+  font-size: 14px;
 }
 .menu.show-sub-menu {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  -webkit-transform: translateX(-106%);
+      -ms-transform: translateX(-106%);
+          transform: translateX(-106%);
 }
 .menu a {
   text-decoration: underline;
+}
+.menu h1 {
+  font-size: 18px;
+  margin: 14px 0;
+}
+.menu p {
+  margin-bottom: 12px;
 }
 .credits-logo {
   max-width: 50%;
@@ -1097,6 +1203,7 @@ ul.u-inline-list li {
 }
 .jankenpon-element:active {
   -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
           transform: scale(1.2);
 }
 .jankenpon-scissors {
@@ -1193,11 +1300,14 @@ html {
   font-size: 19px;
   line-height: 1.4em;
 }
-* {
+*,
+html {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 .container {
   margin-top: 20px;
@@ -1341,7 +1451,7 @@ h6 {
   text-align: center;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
+          transition: opacity 0.5s;
   position: absolute;
 }
 #calculator {
@@ -1358,6 +1468,7 @@ h6 {
   border-width: 0 20px 20px 0;
   box-sizing: border-box;
   -webkit-transform: skew(-3deg);
+      -ms-transform: skew(-3deg);
           transform: skew(-3deg);
   box-shadow: #fadcfa 0 0 50px;
 }
@@ -1426,6 +1537,200 @@ h6 {
   }
 }
 
+.medit8-stage {
+  background-color: #000;
+}
+.medit8-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background-image: url("../img/games/medit8/medit8-background.svg");
+  will-change: transform;
+  background-size: 30%;
+  background-position: center;
+  background-repeat: repeat;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+}
+.medit8-clock {
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  -webkit-transform-origin: center;
+      -ms-transform-origin: center;
+          transform-origin: center;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-transform: skew(-10deg);
+      -ms-transform: skew(-10deg);
+          transform: skew(-10deg);
+}
+.medit8-clock-face {
+  background-image: url("../img/games/medit8/medit8-clock.svg");
+  will-change: filter, -webkit-filter;
+}
+.medit8-clock-hands {
+  background-image: url("../img/games/medit8/medit8-clockhands.svg");
+  will-change: transform;
+}
+.medit8-coach-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+.medit8-coach {
+  position: absolute;
+  top: 32%;
+  left: 20%;
+  width: 60%;
+  height: 36%;
+  background-size: 100% 100%;
+  opacity: 0;
+  -webkit-transition: opacity 5s;
+          transition: opacity 5s;
+  will-change: background-image, background-size, opacity;
+}
+.medit8-coach-talk {
+  background-image: url("../img/games/medit8/medit8-coach-talk.svg");
+  background-repeat: repeat-x;
+  background-position: 0%;
+  background-size: 400% 100%;
+  opacity: 1;
+  -webkit-animation: medit8-coach 1s steps(4, end) infinite;
+          animation: medit8-coach 1s steps(4, end) infinite;
+}
+.medit8-coach-1 {
+  background-image: url("../img/games/medit8/medit8-coach-1.svg");
+}
+.medit8-coach-2 {
+  background-image: url("../img/games/medit8/medit8-coach-2.svg");
+}
+.medit8-coach-3 {
+  background-image: url("../img/games/medit8/medit8-coach-3.svg");
+}
+.medit8-background-anim {
+  -webkit-animation: medit8-background 5s infinite linear;
+          animation: medit8-background 5s infinite linear;
+}
+.medit8-coach-container-anim {
+  -webkit-animation: medit8-coach-container 10s infinite ease-in-out;
+          animation: medit8-coach-container 10s infinite ease-in-out;
+}
+@-webkit-keyframes medit8-background {
+  0% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  25% {
+    -webkit-transform: skew(0deg);
+            transform: skew(0deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  75% {
+    -webkit-transform: skew(20deg);
+            transform: skew(20deg);
+  }
+  100% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+}
+@keyframes medit8-background {
+  0% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  25% {
+    -webkit-transform: skew(0deg);
+            transform: skew(0deg);
+  }
+  50% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+  75% {
+    -webkit-transform: skew(20deg);
+            transform: skew(20deg);
+  }
+  100% {
+    -webkit-transform: skew(10deg);
+            transform: skew(10deg);
+  }
+}
+@-webkit-keyframes medit8-coach-container {
+  0% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+  25% {
+    -webkit-transform: translate(25%, 0%);
+            transform: translate(25%, 0%);
+  }
+  50% {
+    -webkit-transform: translate(0%, 10%);
+            transform: translate(0%, 10%);
+  }
+  75% {
+    -webkit-transform: translate(-25%, 0%);
+            transform: translate(-25%, 0%);
+  }
+  100% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+}
+@keyframes medit8-coach-container {
+  0% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+  25% {
+    -webkit-transform: translate(25%, 0%);
+            transform: translate(25%, 0%);
+  }
+  50% {
+    -webkit-transform: translate(0%, 10%);
+            transform: translate(0%, 10%);
+  }
+  75% {
+    -webkit-transform: translate(-25%, 0%);
+            transform: translate(-25%, 0%);
+  }
+  100% {
+    -webkit-transform: translate(0%, -10%);
+            transform: translate(0%, -10%);
+  }
+}
+@-webkit-keyframes medit8-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
+}
+@keyframes medit8-coach {
+  from {
+    background-position: 0%;
+  }
+  to {
+    background-position: 400%;
+  }
+}
+
 .reset-background {
   position: absolute;
   background: #000;
@@ -1437,6 +1742,7 @@ h6 {
   background-repeat: no-repeat;
   background-position: center;
   -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
           transform: rotate(180deg);
   -webkit-filter: hue-rotate(200deg);
           filter: hue-rotate(200deg);
@@ -1569,6 +1875,7 @@ h6 {
   border-radius: 50%;
   box-shadow: 0px 30px 0px 0px #a9a9a9;
   -webkit-transform: translateY(-20px);
+      -ms-transform: translateY(-20px);
           transform: translateY(-20px);
   width: 80%;
   height: 80%;
@@ -1579,6 +1886,7 @@ h6 {
 #tap-button:active {
   box-shadow: 0px 10px 0px 0px #a9a9a9;
   -webkit-transform: translateY(10px);
+      -ms-transform: translateY(10px);
           transform: translateY(10px);
 }
 .tap-background-1-anim {
@@ -1789,14 +2097,16 @@ h6 {
   background-position: center 10%;
   background-repeat: no-repeat;
   -webkit-transform: scale(1, -1);
+      -ms-transform: scale(1, -1);
           transform: scale(1, -1);
   -webkit-transition: background-color 300ms;
-  transition: background-color 300ms;
+          transition: background-color 300ms;
   will-change: background-color, transform;
 }
 .vibey-on .vibey-switch {
   background-color: #78ff57;
   -webkit-transform: scale(-1, 1);
+      -ms-transform: scale(-1, 1);
           transform: scale(-1, 1);
 }
 .vibey-on .vibey-background-img {

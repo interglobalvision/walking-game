@@ -36,7 +36,7 @@ Game = {
     window.localStorage.setItem('distance', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
-    window.localStorage.setItem('rank', _this.setRank());
+    window.localStorage.setItem('rank', _this.newRank());
     _this.setupLoop();
 
     callback();
@@ -158,7 +158,7 @@ Game = {
   },
 
   finishLoop: function() {
-    var _this= this;
+    var _this = this;
     var currentLoops = _this.getLoops();
     var currentWorld = _this.getWorld();
 
@@ -169,16 +169,19 @@ Game = {
     _this.setLoops(currentLoops + 1);
 
     _this.nextWorld();
+    _this.setRank();
 
     console.log('Loops so far', currentLoops);
 
     _this.setupLoop();
+
+    Router.go('/scenes/levelup/');
   },
 
   // WORLD
 
   nextWorld: function() {
-    var _this= this;
+    var _this = this;
     var current = _this.getWorld();
     var next = current + 1;
 
@@ -194,15 +197,20 @@ Game = {
   },
 
   getWorldName: function() {
-    var _this= this;
+    var _this = this;
     var worldNum = _this.getWorld();
 
     return _this.worlds[worldNum];
   },
 
   // RANK
-
   setRank: function() {
+    var _this = this;
+
+    window.localStorage.setItem('rank', _this.newRank());
+  },
+
+  newRank: function() {
     return Utilities.Word.getAdj(true, true) + ' ' + Utilities.Word.getNoun(false, true);
   },
 
@@ -236,9 +244,10 @@ Game = {
 
     if ((currentProgress + 1) === _this.minigames.length) {
       _this.finishLoop();
+    } else {
+      Router.go('/pages/compass/');
     }
 
-    Router.go('/pages/compass/');
   },
 
   // POINTS
