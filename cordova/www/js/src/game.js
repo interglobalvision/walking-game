@@ -33,6 +33,7 @@ Game = {
     window.localStorage.setItem('points', 0);
     window.localStorage.setItem('gems', 0);
     window.localStorage.setItem('progress', 0);
+    window.localStorage.setItem('distance', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
     window.localStorage.setItem('rank', _this.newRank());
@@ -77,6 +78,42 @@ Game = {
     var currentProgress = _this.getProgress();
 
     return currentProgress / this.minigames.length;
+  },
+
+  setDistance: function(newDistance) {
+    var _this = this;
+    var oldDistance = _this.getDistance();
+    var newDistance = parseFloat(newDistance);
+
+    window.localStorage.setItem('distance', oldDistance + newDistance);
+  },
+
+  getDistance: function() {
+    return window.localStorage.getItem('distance') ? window.localStorage.getItem('distance') : 0;
+  },
+
+  getRandomDistance: function() {
+    var _this = this;
+    var totalDistance = _this.getDistance();
+
+    var distances = [
+      [ 0.0046, 'anacondas', ],
+      [ 0.025, 'blue whales', ],
+      [ 0.828, 'Burj Khalifas', ],
+      [ 0.006, 'elephant trunks', ],
+      [ 0.00206, 'Ebenezer Places', ],
+      [ 385000.6, 'Lunar distances', ],
+      [ 40075.0, 'Earth circumferences', ],
+    ];
+
+    var randomDistance = distances[Math.floor(Math.random()*distances.length)];
+    var calcDistance = totalDistance / randomDistance[0];
+
+    if ( calcDistance > 1 ) {
+      calcDistance = calcDistance.toFixed(3);
+    } 
+
+    return calcDistance + ' ' + randomDistance[1];
   },
 
   getLoops: function() {

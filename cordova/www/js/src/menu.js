@@ -3,6 +3,7 @@ Menu = {
   $menu: $('.menu'),
   $menuButton: $('#map-menu-button'),
   $menuPoints: $('#menu-points'),
+  $menuDistance: $('#menu-distance'),
   $menuRank: $('#menu-rank'),
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
@@ -27,6 +28,7 @@ Menu = {
     var _this = this;
 
     _this.$menuPoints.html( Game.getPoints() );
+    _this.$menuDistance.html( Game.getRandomDistance() );
     _this.$menuWorld.html( Game.getWorldName() );
     _this.$menuRank.html( Game.getRank() );
 
