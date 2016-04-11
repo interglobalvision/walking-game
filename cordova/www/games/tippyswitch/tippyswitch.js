@@ -137,6 +137,8 @@ var TippySwitch = {
       percentWin = 0;
     }
 
+    Utilities.Misc.vibrate();
+
     _this.points = percentWin * _this.fullPoints;
 
     Utilities.Dialog.read([
@@ -158,6 +160,8 @@ var TippySwitch = {
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
     window.clearTimeout(_this.timeout);
+
+    Utilities.Misc.vibrate();
 
     Game.gameFail(function() {
 

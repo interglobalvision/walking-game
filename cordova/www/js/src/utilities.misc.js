@@ -18,4 +18,18 @@ Utilities.Misc = {
 
     return array;
   },
+
+  vibrate: function(otherDuration) {
+    var duration = 1000;
+
+    if (otherDuration) {
+      duration = otherDuration;
+    }
+
+    if (navigator.vibrate) {
+      navigator.vibrate(duration);
+    } else {
+      console.log('no vibrate support');
+    }
+  }
 };

@@ -25,10 +25,6 @@ var VibeyStopper = {
   init: function() {
     var _this = this;
 
-    if (!navigator.vibrate) {
-      console.log('no vibration support');
-    }
-
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     Utilities.Dialog.read(_this.introDialog, function() {
@@ -70,9 +66,7 @@ var VibeyStopper = {
     _this.$background.removeClass('vibey-flash');
     _this.$machine.removeClass('vibey-on');
 
-    if (navigator.vibrate) {
-      navigator.vibrate(0);
-    }
+    Utilities.Misc.vibrate(0);
 
     _this.$switch.off();
 
@@ -92,9 +86,7 @@ var VibeyStopper = {
       _this.startTime = Date.now();
       _this.$background.addClass('vibey-flash');
 
-      if (navigator.vibrate) {
-        navigator.vibrate(500);
-      }
+      Utilities.Misc.vibrate(500);
 
       _this.timeout = window.setTimeout(function() {
 
