@@ -1760,8 +1760,16 @@ h6 {
   background-repeat: repeat-x;
   -webkit-animation: reset-coach 1s steps(8, end) infinite;
           animation: reset-coach 1s steps(8, end) infinite;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
   pointer-events: none;
-  will-change: background-position;
+  will-change: background-position, transform;
+}
+.reset-coach-small {
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
 }
 .reset-option {
   position: absolute;

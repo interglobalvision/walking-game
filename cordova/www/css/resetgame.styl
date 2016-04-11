@@ -31,8 +31,12 @@
   background-position: 0%
   background-repeat: repeat-x
   animation: reset-coach 1s steps(8, end) infinite
+  transition: transform 1s
   pointer-events: none
-  will-change: background-position
+  will-change: background-position, transform
+
+.reset-coach-small
+  transform: scale(0.5)
   
 .reset-option
   position: absolute
