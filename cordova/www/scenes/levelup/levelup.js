@@ -7,6 +7,7 @@ var Levelup = {
       "You are now.......",
       Game.getRank() + "!!!!!!!!",
       "How nice.",
+      "You have walked a grand total of " + Game.getRandomDistance() + "!! And you have " + Game.getPoints() + " points!!!",
       "Now let's see how you do walking in the next world: the " + Game.getWorldName() + ".......",
   ],
 
