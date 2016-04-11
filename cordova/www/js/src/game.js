@@ -14,7 +14,7 @@ Game = {
     'Desert',
     'City',
     'Arctic',
-    'Jungle', 
+    'Jungle',
   ],
   gameAttempts: 2,
 
@@ -106,12 +106,12 @@ Game = {
       [ 40075.0, 'Earth circumferences', ],
     ];
 
-    var randomDistance = distances[ Utilities.Number.getRandomInt(0, distances.length) ];
+    var randomDistance = distances[ Utilities.Number.getRandomInt(0, distances.length - 1) ];
     var calcDistance = totalDistance / randomDistance[0];
 
     if ( calcDistance > 1 ) {
       calcDistance = calcDistance.toFixed(3);
-    } 
+    }
 
     return calcDistance + ' ' + randomDistance[1];
   },
