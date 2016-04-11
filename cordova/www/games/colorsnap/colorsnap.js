@@ -56,6 +56,8 @@ var Colorsnap = {
 
     $('#brush').attr('class', 'brush-swipe');
 
+    Utilities.Misc.vibrate();
+
     $('#splat').attr('class', 'show-splat');
 
     Utilities.Dialog.read(_this.showColorDialog, function() {
@@ -158,6 +160,8 @@ var Colorsnap = {
   win: function(points) {
     var _this = this;
 
+    Utilities.Misc.vibrate();
+
     Utilities.Dialog.read(_this.winDialog, function() {
 
       Game.gameComplete(points);
@@ -168,6 +172,8 @@ var Colorsnap = {
 
   fail: function() {
     var _this = this;
+
+    Utilities.Misc.vibrate();
 
     Game.gameFail(function() {
 

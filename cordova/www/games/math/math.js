@@ -94,6 +94,8 @@ var Maths = {
     var _this = this;
     var result;
 
+    Utilities.Misc.vibrate();
+
     try {
       result = eval(_this.input);
     }

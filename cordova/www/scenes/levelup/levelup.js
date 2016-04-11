@@ -23,6 +23,8 @@ var Levelup = {
     $('.levelup-background-2').addClass('levelup-background-2-anim');
     $('.levelup-background-3').addClass('levelup-background-3-anim');
 
+    Utilities.Misc.vibrate();
+
     _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() { //fade from black
 
       _this.partOne(); 
