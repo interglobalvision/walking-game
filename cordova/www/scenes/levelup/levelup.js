@@ -7,13 +7,14 @@ var Levelup = {
       "You are now.......",
       Game.getRank() + "!!!!!!!!",
       "How nice.",
+      "You have walked a grand total of " + Game.getTotalDistanceString() + "!! And you have " + Game.getPoints() + " points!!!",
       "Now let's see how you do walking in the next world: the " + Game.getWorldName() + ".......",
   ],
 
   init: function() {
     var _this = this;
 
-    var filterDeg = Math.random() * (360 - 1) + 1; 
+    var filterDeg = Utilities.Number.getRandomInt(0, 360);
 
     $('.levelup-stage').css({
       '-webkit-filter': 'hue-rotate(' + filterDeg + 'deg)',

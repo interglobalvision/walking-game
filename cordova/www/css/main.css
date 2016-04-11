@@ -240,7 +240,7 @@ table {
 .mirror-border {
   background: #f5f6f6;
   background: -webkit-radial-gradient(center, ellipse cover, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
-  background: -webkit-radial-gradient(center, ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
+  background: -webkit-radial-gradient(center ellipse, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   background: radial-gradient(ellipse at center, #dbdce2 55%, #b8bac6 60%, #dbdce2 65%);
   position: absolute;
   top: 0;
@@ -266,8 +266,7 @@ table {
   overflow: hidden;
   z-index: 700;
   -webkit-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-      transform: scale(-1, 1);
+  transform: scale(-1, 1);
   -webkit-clip-path: ellipse(40% 30% at 50% 50%);
   clip-path: ellipse(40% 30% at 50% 50%);
 }
@@ -285,7 +284,6 @@ table {
   left: -100px;
   margin-left: 0;
   -webkit-transform: scale(0.7);
-      -ms-transform: scale(0.7);
           transform: scale(0.7);
   top: 20%;
   -webkit-filter: saturate(0);
@@ -296,7 +294,9 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transition: -webkit-transform 500ms;
-          transition: transform 500ms;
+  transition: -webkit-transform 500ms;
+  transition: transform 500ms;
+  transition: transform 500ms, -webkit-transform 500ms;
   will-change: transform;
 }
 .livingroom {
@@ -350,7 +350,7 @@ table {
   background-position: center;
   position: fixed;
   -webkit-transition: all 2s;
-          transition: all 2s;
+  transition: all 2s;
   pointer-events: none;
   width: 100%;
   height: 100%;
@@ -386,7 +386,7 @@ table {
   margin-top: 0px;
   margin-left: 0px;
   -webkit-transition: all 2s;
-          transition: all 2s;
+  transition: all 2s;
   -webkit-animation: livingroom-spin-compass 2s infinite linear;
           animation: livingroom-spin-compass 2s infinite linear;
   will-change: transform;
@@ -765,13 +765,12 @@ table {
   background-position: center;
   background-size: cover;
   -webkit-transition: background-color 2000ms;
-          transition: background-color 2000ms;
+  transition: background-color 2000ms;
   will-change: background-color;
 }
 #brush {
   position: absolute;
   -webkit-transform: rotate(-25deg);
-      -ms-transform: rotate(-25deg);
           transform: rotate(-25deg);
   width: 200px;
   height: 57.191px;
@@ -810,7 +809,7 @@ table {
   top: 100%;
   left: 25%;
   -webkit-transition: top 1s;
-          transition: top 1s;
+  transition: top 1s;
   width: 50%;
   height: 20%;
   background-image: url("../img/games/colorsnap/colorsnap-camera.svg");
@@ -1017,10 +1016,8 @@ table {
   width: 100%;
   height: 50%;
   -webkit-transform-origin: center bottom;
-      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: translateX(0%);
-      -ms-transform: translateX(0%);
           transform: translateX(0%);
   will-change: transform;
 }
@@ -1030,13 +1027,13 @@ table {
   width: 100%;
   height: 100%;
   -webkit-transform-origin: center bottom;
-      -ms-transform-origin: center bottom;
           transform-origin: center bottom;
   -webkit-transform: scale(0.01);
-      -ms-transform: scale(0.01);
           transform: scale(0.01);
   -webkit-transition: -webkit-transform 300ms linear;
-          transition: transform 300ms linear;
+  transition: -webkit-transform 300ms linear;
+  transition: transform 300ms linear;
+  transition: transform 300ms linear, -webkit-transform 300ms linear;
   will-change: transform;
 }
 .map-flag-container {
@@ -1104,7 +1101,9 @@ ul.menu-list {
   box-sizing: border-box;
   font-size: 18px;
   -webkit-transition: -webkit-transform 100ms ease-in;
-          transition: transform 100ms ease-in;
+  transition: -webkit-transform 100ms ease-in;
+  transition: transform 100ms ease-in;
+  transition: transform 100ms ease-in, -webkit-transform 100ms ease-in;
   will-change: transform, display;
 }
 .menu.sub-menu {
@@ -1113,7 +1112,6 @@ ul.menu-list {
 }
 .menu.show-sub-menu {
   -webkit-transform: translateX(-106%);
-      -ms-transform: translateX(-106%);
           transform: translateX(-106%);
 }
 .menu a {
@@ -1203,7 +1201,6 @@ ul.u-inline-list li {
 }
 .jankenpon-element:active {
   -webkit-transform: scale(1.2);
-      -ms-transform: scale(1.2);
           transform: scale(1.2);
 }
 .jankenpon-scissors {
@@ -1300,8 +1297,7 @@ html {
   font-size: 19px;
   line-height: 1.4em;
 }
-*,
-html {
+:not(input) {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -1451,7 +1447,7 @@ h6 {
   text-align: center;
   opacity: 0;
   -webkit-transition: opacity 0.5s;
-          transition: opacity 0.5s;
+  transition: opacity 0.5s;
   position: absolute;
 }
 #calculator {
@@ -1468,7 +1464,6 @@ h6 {
   border-width: 0 20px 20px 0;
   box-sizing: border-box;
   -webkit-transform: skew(-3deg);
-      -ms-transform: skew(-3deg);
           transform: skew(-3deg);
   box-shadow: #fadcfa 0 0 50px;
 }
@@ -1563,13 +1558,11 @@ h6 {
   top: -10%;
   left: -10%;
   -webkit-transform-origin: center;
-      -ms-transform-origin: center;
           transform-origin: center;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   -webkit-transform: skew(-10deg);
-      -ms-transform: skew(-10deg);
           transform: skew(-10deg);
 }
 .medit8-clock-face {
@@ -1597,7 +1590,7 @@ h6 {
   background-size: 100% 100%;
   opacity: 0;
   -webkit-transition: opacity 5s;
-          transition: opacity 5s;
+  transition: opacity 5s;
   will-change: background-image, background-size, opacity;
 }
 .medit8-coach-talk {
@@ -1742,7 +1735,6 @@ h6 {
   background-repeat: no-repeat;
   background-position: center;
   -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
           transform: rotate(180deg);
   -webkit-filter: hue-rotate(200deg);
           filter: hue-rotate(200deg);
@@ -1875,7 +1867,6 @@ h6 {
   border-radius: 50%;
   box-shadow: 0px 30px 0px 0px #a9a9a9;
   -webkit-transform: translateY(-20px);
-      -ms-transform: translateY(-20px);
           transform: translateY(-20px);
   width: 80%;
   height: 80%;
@@ -1886,7 +1877,6 @@ h6 {
 #tap-button:active {
   box-shadow: 0px 10px 0px 0px #a9a9a9;
   -webkit-transform: translateY(10px);
-      -ms-transform: translateY(10px);
           transform: translateY(10px);
 }
 .tap-background-1-anim {
@@ -2097,16 +2087,14 @@ h6 {
   background-position: center 10%;
   background-repeat: no-repeat;
   -webkit-transform: scale(1, -1);
-      -ms-transform: scale(1, -1);
           transform: scale(1, -1);
   -webkit-transition: background-color 300ms;
-          transition: background-color 300ms;
+  transition: background-color 300ms;
   will-change: background-color, transform;
 }
 .vibey-on .vibey-switch {
   background-color: #78ff57;
   -webkit-transform: scale(-1, 1);
-      -ms-transform: scale(-1, 1);
           transform: scale(-1, 1);
 }
 .vibey-on .vibey-background-img {
