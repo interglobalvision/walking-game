@@ -267,17 +267,17 @@
   animation: letsgo-background 2s infinite ease-in-out
   will-change: background-color, filter
   
-.coach-shiny
+.letsgo-coach
   position: absolute
   top: 25%
   left: 10% 
   width: 80%
   height: 50%
-  background-image: url('../img/letsgo/coach-shiny.png')
+  background-image: url('../img/letsgo/letsgo-coach.svg')
   background-repeat: repeat-x
   background-position: 0%
-  background-size: 400% 100%
-  animation: coach-shiny 1s steps(4, end) infinite
+  background-size: 800% 100%
+  animation: letsgo-coach 1s steps(8, end) infinite
   will-change: background-position
   
 .levelup-coach
@@ -340,11 +340,11 @@
   to
     transform: rotate(360deg)
 
-@keyframes coach-shiny
+@keyframes letsgo-coach
   from 
     background-position: 0%
   to
-    background-position: 400%
+    background-position: 800%
   
 @keyframes letsgo-background
   0%

@@ -1,7 +1,7 @@
 var Reset = {
   $blackout: $('#blackout'),
-  $yes: $('.reset-yes'),
-  $no: $('.reset-no'),
+  $coach: $('.reset-coach'),
+  $button: $('.reset-option'),
   dialog: [
     'Welcome welcome to RESET GAME...',
     'In RESET GAME there is only ONE GAME.... RESET!!',
@@ -13,29 +13,29 @@ var Reset = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
 
-      _this.partOne();
+      _this.chooseOption();
 
     });
 
   },
 
-  partOne: function() {
+  chooseOption: function() {
     var _this = this;
 
     Utilities.Dialog.read(_this.dialog, function() {
 
-      _this.$yes.on({
+      _this.$coach.addClass('reset-coach-small');
+
+      _this.$button.on({
         'click': function() {
 
-          _this.yesReset();
+          _this.$coach.removeClass('reset-coach-small');
 
-        },
-      });
-
-      _this.$no.on({
-        'click': function() {
-
-          _this.noReset();
+          if ( $(this).hasClass('reset-yes') ) {
+            _this.yesReset();
+          } else {
+            _this.noReset();
+          }
 
         },
       });

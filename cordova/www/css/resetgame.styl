@@ -1,32 +1,42 @@
 .reset-background
   position: absolute
-  background: black 
   width: 100%
   height: 100%
-  background-color: black
-  background-image: url('../img/letsgo/letsgo-background.svg')
-  background-size: 130%
+  background-image: url('../img/games/reset/reset-background.svg')
+  background-size: 100% 100%
   background-repeat: no-repeat
   background-position: center
-  transform: rotate(180deg)
-  filter: hue-rotate(200deg)
-  animation: reset-background 2s infinite ease-in-out
-  will-change: background-color
+  animation: reset-background 2s infinite linear
+  will-change: transform
   
-.coach-reset
+.reset-rain
+  position: absolute
+  width: 100%
+  height: 400%
+  background-image: url('../img/games/reset/reset-rain.svg')
+  background-size: 100% 50%
+  background-repeat: repeat-y
+  background-position: center
+  animation: reset-rain 4s infinite linear
+  will-change: transform
+  
+.reset-coach
   position: absolute
   top: 25%
   left: 10% 
   width: 80%
   height: 50%
-  background-image: url('../img/letsgo/coach-shiny.png')
-  background-size: 400% 100%
+  background-image: url('../img/games/reset/reset-coach.svg')
+  background-size: 800% 100%
   background-position: 0%
   background-repeat: repeat-x
-  animation: coach-reset 1s steps(4, end) infinite
-  filter: hue-rotate(250deg)
+  animation: reset-coach 1s steps(8, end) infinite
+  transition: transform 1s
   pointer-events: none
-  will-change: background-position
+  will-change: background-position, transform
+
+.reset-coach-small
+  transform: scale(0.5)
   
 .reset-option
   position: absolute
@@ -45,16 +55,22 @@
 .reset-no 
   bottom: 10%
   
-@keyframes coach-reset
+@keyframes reset-rain
+  0%
+    transform: translateY(-50%)
+  100%
+    transform: translateY(0%)
+  
+@keyframes reset-coach
   from
     background-position: 0%
   to
-    background-position: 400%
+    background-position: 800%
   
 @keyframes reset-background
   0%
-    background-color: black
+    transform: scale(1)
   50% 
-    background-color: white
+    transform: scale(1.5)
   100%
-    background-color: black
+    transform: scale(1)
