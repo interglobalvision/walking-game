@@ -28,7 +28,7 @@ Menu = {
     var _this = this;
 
     _this.$menuPoints.html( Game.getPoints() );
-    _this.$menuDistance.html( Game.getRandomDistance() );
+    _this.$menuDistance.html( Game.getTotalDistanceString() );
     _this.$menuWorld.html( Game.getWorldName() );
     _this.$menuRank.html( Game.getRank() );
 
