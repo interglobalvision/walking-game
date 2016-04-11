@@ -9,6 +9,8 @@ var Wakeup = {
   init: function() {
     var _this = this;
 
+    Utilities.Misc.vibrate();
+
     _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() {
 
       _this.partOne();

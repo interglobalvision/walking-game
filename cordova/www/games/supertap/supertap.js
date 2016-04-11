@@ -112,6 +112,8 @@ var Supertap = {
 
     _this.$tap.fadeOut();
 
+    Utilities.Misc.vibrate();
+
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
 
@@ -125,6 +127,8 @@ var Supertap = {
 
   fail: function() {
     var _this = this;
+
+    Utilities.Misc.vibrate();
 
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);

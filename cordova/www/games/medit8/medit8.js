@@ -187,9 +187,7 @@ var Medit8 = {
     _this.$coach3.css('opacity', 0);
     _this.$coachTalk.css('opacity', 1);
 
-    if (navigator.vibrate) {
-      navigator.vibrate(1000);
-    }
+    Utilities.Misc.vibrate();
 
     if ( Utilities.Dialog.inProgress ) { 
       Utilities.Dialog.finish();
@@ -212,6 +210,8 @@ var Medit8 = {
     _this.$coach2.css('opacity', 0);
     _this.$coach3.css('opacity', 0);
     _this.$coachTalk.css('opacity', 1);
+
+    Utilities.Misc.vibrate();
 
     if ( Utilities.Dialog.inProgress ) { 
       Utilities.Dialog.finish();

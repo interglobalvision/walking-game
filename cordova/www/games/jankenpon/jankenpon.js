@@ -80,6 +80,8 @@ var Jankenpon = {
     _this.userChoice = userChoice;
     _this.masterChoice = masterChoice;
 
+    Utilities.Misc.vibrate(500);
+
     // Compare with users choice
     if( userChoice === masterChoice ) {
 
