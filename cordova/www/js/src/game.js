@@ -80,21 +80,21 @@ Game = {
     return currentProgress / this.minigames.length;
   },
 
-  setDistance: function(newDistance) {
+  setTotalDistance: function(newDistance) {
     var _this = this;
-    var oldDistance = _this.getDistance();
+    var oldDistance = _this.getTotalDistance();
     var newDistance = parseFloat(newDistance);
 
     window.localStorage.setItem('distance', oldDistance + newDistance);
   },
 
-  getDistance: function() {
+  getTotalDistance: function() {
     return window.localStorage.getItem('distance') ? window.localStorage.getItem('distance') : 0;
   },
 
-  getRandomDistance: function() {
+  getTotalDistanceString: function() {
     var _this = this;
-    var totalDistance = _this.getDistance();
+    var totalDistance = _this.getTotalDistance();
 
     var distances = [
       [ 0.0046, 'anacondas', ],
@@ -106,7 +106,7 @@ Game = {
       [ 40075.0, 'Earth circumferences', ],
     ];
 
-    var randomDistance = distances[Math.floor(Math.random()*distances.length)];
+    var randomDistance = distances[ Utilities.Number.getRandomInt(0, distances.length) ];
     var calcDistance = totalDistance / randomDistance[0];
 
     if ( calcDistance > 1 ) {
