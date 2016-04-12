@@ -77,7 +77,15 @@ var Gethigh = {
 
       _this.initialAltitude = altitude;
 
-      _this.startAltitudeWatch(altitude);
+      if ( altitude > 0 ) {
+
+        _this.startAltitudeWatch(altitude);
+
+      } else {
+
+        WalkingError.unsupported('altitude');
+        
+      }
 
     });
 
