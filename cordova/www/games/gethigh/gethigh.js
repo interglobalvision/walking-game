@@ -15,8 +15,6 @@ var Gethigh = {
   waitTime: 60000,
   $blackout: $('#blackout'),
 
-  $difference: $('#gethigh-difference'),
-
   init: function() {
     var _this = this;
 
@@ -45,6 +43,8 @@ var Gethigh = {
     _this.setInitialAltitude();
 
     _this.timer = setInterval(function() {
+
+      $('#gethigh-timer').html(timeCounter);
 
       if(timeCounter >= _this.waitTime) {
 
@@ -99,8 +99,8 @@ var Gethigh = {
     var _this = this;
     var altitudeDifference = newAltitude - oldAltitude;
 
-    $('#gethigh-new').html( newAltitude );
-    $('#gethigh-old').html( newAltitude );
+    $('#gethigh-new').html( newAltitude ); //dev
+    $('#gethigh-old').html( newAltitude ); //dev
 
     if ( ( newAltitude > oldAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
@@ -112,7 +112,7 @@ var Gethigh = {
 
     } else {
 
-      _this.$difference.html( altitudeDifference );
+      $('#gethigh-difference').html( altitudeDifference ); //dev
 
       console.log( altitudeDifference );
 
