@@ -24,22 +24,15 @@ var Gethigh = {
 
       Utilities.Dialog.read(_this.introDialog, function() {
 
-        _this.startGame();
+        _this.setInitialAltitude();
 
       });
 
     } else {
 
-      console.log('no geolocation, wait.. how u even?..');
+      WalkingError.unsupportedGPS(); // eh? what?
 
     }
-
-  },
-
-  startGame: function() {
-    var _this = this;
-
-    _this.setInitialAltitude();
 
   },
 
@@ -49,17 +42,17 @@ var Gethigh = {
 
     _this.timer = setInterval(function() {
 
-      $('#gethigh-timer').html(timeCounter);
+      $('#gethigh-timer').html(timeCounter); // timer readout
 
-      if(timeCounter >= _this.waitTime) {
+      if(timeCounter >= _this.waitTime) { // if more than max wait time
 
         console.log('time\'s up');
 
-        clearInterval(_this.timer);
+        clearInterval(_this.timer); // stop the timer
 
-        navigator.geolocation.clearWatch(_this.watch);
+        navigator.geolocation.clearWatch(_this.watch); // stop watching position
 
-        _this.fail();
+        _this.fail(); // you lose, loser
 
       }
 
@@ -73,19 +66,17 @@ var Gethigh = {
     var _this = this;
 
     navigator.geolocation.getCurrentPosition( function(geoposition) {
-      var altitude = geoposition.coords.altitude;
+      _this.initialAltitude = geoposition.coords.altitude;
 
-      _this.initialAltitude = altitude;
+      if ( _this.initialAltitude > 0 ) {
 
-      if ( altitude > 0 ) {
-
-        $('#gethigh-initial').html( altitude );
+        $('#gethigh-initial').html( _this.initialAltitude ); // initial altitude readout
 
         _this.startAltitudeWatch();
 
       } else {
 
-        WalkingError.unsupported('altitude');
+        WalkingError.unsupported('altitude'); // nope!
 
       }
 
@@ -96,15 +87,15 @@ var Gethigh = {
   startAltitudeWatch: function(initialAltitude) {
     var _this = this;
 
-    _this.runTimer();
+    _this.runTimer(); // start the clock
 
     _this.watch = navigator.geolocation.watchPosition( function(geoposition) {
 
-      _this.compareAltitude(geoposition.coords.altitude);
+      _this.compareAltitude(geoposition.coords.altitude); //compare it with the inital
 
     }, function(error) {
 
-      alert(error);
+      WalkingError.throw(error, error);
     }, {
 
       enableHighAccuracy: true,
@@ -114,22 +105,24 @@ var Gethigh = {
 
   compareAltitude: function(updatedAltitude) {
     var _this = this;
-    var altitudeDifference = updatedAltitude - _this.initialAltitude;
+    var altitudeDifference = updatedAltitude - _this.initialAltitude; //difference between new and initial altitudes
 
-    $('#gethigh-update').html( updatedAltitude ); //dev
-    $('#gethigh-difference').html( altitudeDifference ); //dev
+    $('#gethigh-update').html( updatedAltitude ); // updated altitude readout
+    $('#gethigh-difference').html( altitudeDifference ); // altitude difference readout
 
-    if ( ( updatedAltitude > _this.initialAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
+    // if new altitutde is more than initial
+    // and the difference is more than distance to climb
+    if ( ( updatedAltitude > _this.initialAltitude ) && ( altitudeDifference >= _this.toClimb ) ) { 
 
-      clearInterval(_this.timer);
+      clearInterval(_this.timer); // stop the timer
 
-      navigator.geolocation.clearWatch(_this.watch);
+      navigator.geolocation.clearWatch(_this.watch); // stop watching position
 
-      _this.win( altitudeDifference );
+      _this.win( altitudeDifference ); // you win difference in points
 
     } else {
 
-      console.log( altitudeDifference );
+      console.log( altitudeDifference ); // why not
 
     }
 
