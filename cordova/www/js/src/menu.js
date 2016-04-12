@@ -7,8 +7,8 @@ Menu = {
   $menuRank: $('#menu-rank'),
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
-  $buttonSub: $('.toggle-sub'),
-  $buttonBack: $('.menu-back'), 
+  $buttonOpenSub: $('.open-sub-menu'),
+  $buttonCloseSub: $('.close-sub-menu'), 
 
   howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
 
@@ -38,21 +38,25 @@ Menu = {
 
     $('.howto-text').prepend( _this.howtoGreeting );
 
+    // Toggle menu
     _this.$menuButton.on('click', function() {
       _this.toggleMenu(); 
     }); 
 
+    // Share
     _this.$buttonShare.on('click', function(event) {
       event.preventDefault();
       Game.shareWithOptions();
     });
 
-    _this.$buttonSub.on('click', function(event) {
+    // Open sub menu
+    _this.$buttonOpenSub.on('click', function(event) {
       event.preventDefault();
       _this.openSubMenu( $(this).attr('data-ref') );
     });
 
-    _this.$buttonBack.on('click', function(event) {
+    // Close sub menu
+    _this.$buttonCloseSub.on('click', function(event) {
       event.preventDefault();
       _this.closeSubMenu();
     });
