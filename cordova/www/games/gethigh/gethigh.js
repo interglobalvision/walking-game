@@ -79,12 +79,14 @@ var Gethigh = {
 
       if ( altitude > 0 ) {
 
+        $('#gethigh-old').html( altitude );
+
         _this.startAltitudeWatch(altitude);
 
       } else {
 
         WalkingError.unsupported('altitude');
-        
+
       }
 
     });
@@ -115,7 +117,6 @@ var Gethigh = {
     var altitudeDifference = newAltitude - oldAltitude;
 
     $('#gethigh-new').html( newAltitude ); //dev
-    $('#gethigh-old').html( newAltitude ); //dev
 
     if ( ( newAltitude > oldAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
