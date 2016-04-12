@@ -38,9 +38,14 @@ var Gethigh = {
 
   startGame: function() {
     var _this = this;
-    var timeCounter = 0;
 
     _this.setInitialAltitude();
+
+  },
+
+  runTimer: function() {
+    var _this = this;
+    var timeCounter = 0;
 
     _this.timer = setInterval(function() {
 
@@ -80,6 +85,8 @@ var Gethigh = {
 
   startAltitudeWatch: function(initialAltitude) {
     var _this = this;
+
+    _this.runTimer();
 
     _this.watch = navigator.geolocation.watchPosition( function(geoposition) {
 
