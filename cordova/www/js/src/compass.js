@@ -362,15 +362,6 @@ Compass = {
     _this.init();
 
   },
-  
-  stop: function() {
-    var _this = this;
-
-    _this.stopGeoWatchers();
-    $(window).unbind('.compassOrientation');
-
-    Game.nextMinigame();
-  },
 
   init: function() {
     var _this = this;

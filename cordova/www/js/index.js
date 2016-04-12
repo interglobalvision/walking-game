@@ -94,7 +94,7 @@ _this.updateOrientation(event.alpha)})},/*
    * Ubind navigator.gelocation and deviceorientation events
    *
    */
-stopGeoWatchers:function(){var _this=this;navigator.geolocation.clearWatch(_this.watchId.position),navigator.compass.clearWatch(_this.watchId.orientation)},stop:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.nextMinigame()},resetDestiny:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.setNewPoints(Utilities.Number.getRandomInt(-100,0)),_this.init()},stop:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.nextMinigame()},init:function(){var _this=this;
+stopGeoWatchers:function(){var _this=this;navigator.geolocation.clearWatch(_this.watchId.position),navigator.compass.clearWatch(_this.watchId.orientation)},stop:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.nextMinigame()},resetDestiny:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.setNewPoints(Utilities.Number.getRandomInt(-100,0)),_this.init()},init:function(){var _this=this;
 // Check for geolocation and orientation availability
 navigator.geolocation&&window.DeviceOrientationEvent?
 // Set initial positions: origin, destiny, position
