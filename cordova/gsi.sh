@@ -35,8 +35,6 @@ $convert -resize 200 -extent 200x320 "./res/screen/android/drawable-port-ldpi.pn
 $convert -resize 480 -extent 480x800 "./res/screen/android/drawable-port-hdpi.png"
 $convert -resize 480 -extent 800x480 "./res/screen/android/drawable-land-hdpi.png"
 
-$convert -resize 768 -extent 768x1280 "./res/screen/wp8/SplashScreenImage.png"
-
 # Icons iOS and Android and WP8
 icons="convert $icon_base -background transparent"
 
