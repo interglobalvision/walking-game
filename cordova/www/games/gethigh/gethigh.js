@@ -117,6 +117,7 @@ var Gethigh = {
     var altitudeDifference = updatedAltitude - _this.initialAltitude;
 
     $('#gethigh-update').html( updatedAltitude ); //dev
+    $('#gethigh-difference').html( altitudeDifference ); //dev
 
     if ( ( updatedAltitude > _this.initialAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
@@ -127,8 +128,6 @@ var Gethigh = {
       _this.win( altitudeDifference );
 
     } else {
-
-      $('#gethigh-difference').html( altitudeDifference ); //dev
 
       console.log( altitudeDifference );
 
