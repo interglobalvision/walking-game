@@ -8,13 +8,13 @@ Menu = {
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
   $buttonOpenSub: $('.open-sub-menu'),
-  $buttonCloseSub: $('.close-sub-menu'), 
+  $buttonCloseSub: $('.close-sub-menu'),
 
   howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
 
   resetDestinyDialog: [
-    'What? You lost? Pshh...', 
-    'Ok, I\'ll set a new walking goal for you, ' + Game.getUsername() + '...', 
+    'What? You lost? Pshh...',
+    'Ok, I\'ll set a new walking goal for you, ' + Game.getUsername() + '...',
     '...and imma take some points off your score!'
   ],
 
@@ -44,8 +44,8 @@ Menu = {
 
     // Toggle menu
     _this.$menuButton.on('click', function() {
-      _this.toggleMenu(); 
-    }); 
+      _this.toggleMenu();
+    });
 
     // Share
     _this.$buttonShare.on('click', function(event) {
@@ -70,7 +70,9 @@ Menu = {
       event.preventDefault();
       _this.toggleMenu();
       Utilities.Dialog.read(_this.resetDestinyDialog, function() {
-        Compass.resetDestiny();
+        Compass.resetDestiny(function() {
+          _this.$menuPoints.html(Game.getPoints());
+        });
       });
     });
 
