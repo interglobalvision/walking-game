@@ -12,7 +12,7 @@ var Gethigh = {
   timer: null,
   toClimb: 5, // Must increase by this altitude
   initialAltitude: 0,
-  waitTime: 60000,
+  waitTime: 60, // 60 seconds
   $blackout: $('#blackout'),
 
   init: function() {
@@ -81,7 +81,7 @@ var Gethigh = {
 
         $('#gethigh-old').html( altitude );
 
-        _this.startAltitudeWatch(altitude);
+        _this.startAltitudeWatch();
 
       } else {
 
@@ -100,7 +100,7 @@ var Gethigh = {
 
     _this.watch = navigator.geolocation.watchPosition( function(geoposition) {
 
-      _this.compareAltitude(initialAltitude, geoposition.coords.altitude);
+      _this.compareAltitude(geoposition.coords.altitude);
 
     }, function(error) {
 
@@ -112,13 +112,13 @@ var Gethigh = {
 
   },
 
-  compareAltitude: function(oldAltitude, newAltitude) {
+  compareAltitude: function(updatedAltitude) {
     var _this = this;
-    var altitudeDifference = newAltitude - oldAltitude;
+    var altitudeDifference = _this.initialAltitude - updatedAltitude;
 
     $('#gethigh-new').html( newAltitude ); //dev
 
-    if ( ( newAltitude > oldAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
+    if ( ( updatedAltitude > _this.initialAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
       clearInterval(_this.timer);
 
