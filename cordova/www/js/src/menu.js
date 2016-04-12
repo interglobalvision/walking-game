@@ -12,6 +12,10 @@ Menu = {
 
   howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
 
+  resetDestinyDialog: ['What? You lost? Pshh...', 'Ok, I\'ll set a new destiny for you', 'Imma take some points off your score'],
+
+  $resetDestiny: $('[data-ref="menu-reset-destiny"]'),
+
   // Dev controls
   $devMenu: $('[data-ref="dev-menu"]'),
   $devEnd: $('[data-ref="dev-end-map"]'),
@@ -51,6 +55,15 @@ Menu = {
     _this.$buttonBack.on('click', function(event) {
       event.preventDefault();
       _this.closeSubMenu();
+    });
+
+    // Reset destiny
+    _this.$resetDestiny.on('click', function(event) {
+      event.preventDefault();
+      _this.toggleMenu();
+      Utilities.Dialog.read(_this.resetDestinyDialog, function() {
+        Compass.resetDestiny();
+      });
     });
 
     // Dev control click events

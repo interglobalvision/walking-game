@@ -351,6 +351,27 @@ Compass = {
     Game.nextMinigame();
   },
 
+  resetDestiny: function() {
+    var _this = this;
+
+    _this.stopGeoWatchers();
+    $(window).unbind('.compassOrientation');
+
+    Game.setNewPoints( Utilities.Number.getRandomInt(-100,0) );
+
+    _this.init();
+
+  },
+  
+  stop: function() {
+    var _this = this;
+
+    _this.stopGeoWatchers();
+    $(window).unbind('.compassOrientation');
+
+    Game.nextMinigame();
+  },
+
   init: function() {
     var _this = this;
 
