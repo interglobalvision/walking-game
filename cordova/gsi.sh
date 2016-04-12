@@ -2,7 +2,7 @@
 # Generate Cordova icon and splash screens
 # Thanks for http://tlvince.com
 
-devices=android,ios,wp8
+devices=android,ios
 eval mkdir -p "./res/{icon,screen}/{$devices}"
 
 # Show the user some progress by outputing all commands being run.
@@ -10,9 +10,9 @@ set -x
 
 splash_base="./gsi-base-splash.png"
 icon_base="./gsi-base-icon.png"
-background="#FFFFFF"
+background="#93278F"
 
-# Splash iOS and Android and WP8
+# Splash iOS and Android
 convert="convert $splash_base -background $background -gravity center"
 
 $convert -resize 320 -extent 320x480 "./res/screen/ios/Default~iphone.png"
@@ -35,7 +35,7 @@ $convert -resize 200 -extent 200x320 "./res/screen/android/drawable-port-ldpi.pn
 $convert -resize 480 -extent 480x800 "./res/screen/android/drawable-port-hdpi.png"
 $convert -resize 480 -extent 800x480 "./res/screen/android/drawable-land-hdpi.png"
 
-# Icons iOS and Android and WP8
+# Icons iOS and Android
 icons="convert $icon_base -background transparent"
 
 $icons -resize 128 "./res/icon/icon.png"
