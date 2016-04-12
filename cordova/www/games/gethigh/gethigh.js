@@ -79,7 +79,7 @@ var Gethigh = {
 
       if ( altitude > 0 ) {
 
-        $('#gethigh-old').html( altitude );
+        $('#gethigh-initial').html( altitude );
 
         _this.startAltitudeWatch();
 
@@ -114,9 +114,9 @@ var Gethigh = {
 
   compareAltitude: function(updatedAltitude) {
     var _this = this;
-    var altitudeDifference = _this.initialAltitude - updatedAltitude;
+    var altitudeDifference = updatedAltitude - _this.initialAltitude;
 
-    $('#gethigh-new').html( newAltitude ); //dev
+    $('#gethigh-update').html( updatedAltitude ); //dev
 
     if ( ( updatedAltitude > _this.initialAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
