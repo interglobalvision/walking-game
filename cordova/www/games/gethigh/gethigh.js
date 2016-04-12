@@ -1,11 +1,6 @@
 var Gethigh = {
   introDialog: [
-    "OK " + Game.getUsername() + ".... it's time for WORLD TRAVELER..!!",
-    "The game where U gotta be as far as the distance between two famous pyramids...",
-    "Templo Mayor and Piramide del Sol...thats like...really far...",
-    "If you are that far away by the next world... You win!",
-    "........now....lets see how far you are......",
-    "......gimme " + Utilities.Word.getAdj(true, false) + " minute!!!...",
+    "OK " + Game.getUsername() + ".... it's time to GET HIGH..!!",
   ],
   winDialog: [
     "Woah, u r so high!",
@@ -15,11 +10,12 @@ var Gethigh = {
   ],
   watch: null,
   timer: null,
-  toClimb: 10, // Must increase by this altitude
+  toClimb: 5, // Must increase by this altitude
   initialAltitude: 0,
   waitTime: 60000,
   $blackout: $('#blackout'),
 
+  $difference: $('#gethigh-difference'),
 
   init: function() {
     var _this = this;
@@ -69,6 +65,7 @@ var Gethigh = {
   },
 
   setInitialAltitude: function() {
+    var _this = this;
 
     navigator.geolocation.getCurrentPosition( function(geoposition) {
       var altitude = geoposition.coords.altitude;
@@ -79,7 +76,7 @@ var Gethigh = {
 
     });
 
-  }
+  },
 
   startAltitudeWatch: function(initialAltitude) {
     var _this = this;
@@ -102,7 +99,10 @@ var Gethigh = {
     var _this = this;
     var altitudeDifference = newAltitude - oldAltitude;
 
-    if ( altitudeDifference >= _this.toClimb ) {
+    $('#gethigh-new').html( newAltitude );
+    $('#gethigh-old').html( newAltitude );
+
+    if ( ( newAltitude > oldAltitude ) && ( altitudeDifference >= _this.toClimb ) ) {
 
       clearInterval(_this.timer);
 
@@ -112,8 +112,10 @@ var Gethigh = {
 
     } else {
 
+      _this.$difference.html( altitudeDifference );
+
       console.log( altitudeDifference );
-      
+
     }
 
   },
