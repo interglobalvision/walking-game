@@ -30,7 +30,7 @@ var Medit8 = {
     "Next time be more patient....",
   ],
 
-  modifiedTime: modifyDifficulty(30),
+  modifiedTime: Game.modifyDifficulty(30),
   waitTime: 60 + modifiedTime, // 1 min + 30 seconds more for each loop
   moves: 0,
   movesMax: 2,

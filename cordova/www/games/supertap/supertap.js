@@ -3,7 +3,7 @@ var Supertap = {
   lastTap: undefined,
   startTime: undefined,
   endTime: undefined,
-  modifiedTime: modifyDifficulty(5000), // add 5 seconds
+  modifiedTime: Game.modifyDifficulty(5000), // add 5 seconds
   gameMiniseconds: 9000 + modifiedTime, // 9 seconds plus
   thresholdMiniseconds: 400,
   timeout: undefined,

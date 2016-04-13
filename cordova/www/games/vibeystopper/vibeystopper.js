@@ -1,8 +1,9 @@
 var VibeyStopper = {
   fullPoints: 4321,
   points: 0,
-  minWait: 1010,
-  maxWait: 8888,
+  modifiedWait: Game.modifyDifficulty(500), // add a second each loop
+  minWait: 1010 + modifiedWait,
+  maxWait: 8888 + modifiedWait,
   winThreshold: 611,
   $blackout: $('#blackout'),
   $switch: $('.vibey-switch'),
