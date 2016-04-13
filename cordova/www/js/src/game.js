@@ -147,9 +147,7 @@ Game = {
 
   modifyDifficulty: function(difficulty) {
     var _this = this;
-
-    var loops = _this.getLoops();
-    var modifier = loops + 1;
+    var modifier = _this.getLoops();
 
     return modifier * difficulty;
   },
