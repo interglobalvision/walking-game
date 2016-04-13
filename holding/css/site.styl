@@ -8,7 +8,7 @@ box-sizing-reset()
 normalize()
 
 // GRID OF 12 90px COLUMNS WITH 16px GUTTER
-$cols = 12
+$cols = 12 
 $col = 90px
 $gutter = 16px
 .container
@@ -85,7 +85,7 @@ p
 
 // LINKS
 
-a,a:active,a:visited
+a,a:active,a:visited 
   color:inherit
   transition:opacity .2s
   &:hover
@@ -97,25 +97,11 @@ a,a:active,a:visited
 html
   background-color: $color-white-soft
   color: $color-black-soft
+  padding: $margin-large
 
 img
   max-width: 100%
   height: auto
-
-
-// MEDIA QUERIES
-
-@media screen and (max-width: ($col * $cols)+($gutter * $cols))
-  html
-    width: 100%
-
-
-@media screen and (max-width: 601px)
-
-   .container
-    width: 96%
-  .col
-    width: 100%
-    float: none
-    margin-left: ($gutter/2)
-    box-sizing: content-box
+  
+.container
+  margin-bottom: $margin-basic
