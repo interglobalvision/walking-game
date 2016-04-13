@@ -2,8 +2,8 @@ Compass={$blackout:$("#blackout"),$radar:$("#radar"),$angle:$("#angle"),$mapStag
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-baseDistance:Game.modifyDifficulty(1e-4),minDistance:baseDistance+.0023,// in radians
-maxDistance:baseDistance+.0026,// in radians
+modifiedDistance:Game.modifyDifficulty(1e-4),minDistance:.0023+modifiedDistance,// in radians
+maxDistance:.0026+modifiedDistance,// in radians
 destinyThresholdRadius:.3,// in Km
 totalDistance:0,/*
    * Return distance between two geographical points in Kilometers
