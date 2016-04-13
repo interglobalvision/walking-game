@@ -7,10 +7,18 @@ Menu = {
   $menuRank: $('#menu-rank'),
   $menuWorld: $('#menu-world'),
   $buttonShare: $('[data-ref="menu-share"]'),
-  $buttonSub: $('.toggle-sub'),
-  $buttonBack: $('.menu-back'), 
+  $buttonOpenSub: $('.open-sub-menu'),
+  $buttonCloseSub: $('.close-sub-menu'),
 
   howtoGreeting: '<p>dear ' + Game.getUsername() + ',</p>',
+
+  resetDestinyDialog: [
+    'What? You lost? Pshh...',
+    'Ok, I\'ll set a new walking goal for you, ' + Game.getUsername() + '...',
+    '...and imma take some points off your score!'
+  ],
+
+  $resetDestiny: $('[data-ref="menu-reset-destiny"]'),
 
   // Dev controls
   $devMenu: $('[data-ref="dev-menu"]'),
@@ -34,23 +42,38 @@ Menu = {
 
     $('.howto-text').prepend( _this.howtoGreeting );
 
+    // Toggle menu
     _this.$menuButton.on('click', function() {
-      _this.toggleMenu(); 
-    }); 
+      _this.toggleMenu();
+    });
 
+    // Share
     _this.$buttonShare.on('click', function(event) {
       event.preventDefault();
       Game.shareWithOptions();
     });
 
-    _this.$buttonSub.on('click', function(event) {
+    // Open sub menu
+    _this.$buttonOpenSub.on('click', function(event) {
       event.preventDefault();
       _this.openSubMenu( $(this).attr('data-ref') );
     });
 
-    _this.$buttonBack.on('click', function(event) {
+    // Close sub menu
+    _this.$buttonCloseSub.on('click', function(event) {
       event.preventDefault();
       _this.closeSubMenu();
+    });
+
+    // Reset destiny
+    _this.$resetDestiny.on('click', function(event) {
+      event.preventDefault();
+      _this.toggleMenu();
+      Utilities.Dialog.read(_this.resetDestinyDialog, function() {
+        Compass.resetDestiny(function() {
+          _this.$menuPoints.html(Game.getPoints());
+        });
+      });
     });
 
     // Dev control click events

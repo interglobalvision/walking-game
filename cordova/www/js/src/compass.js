@@ -14,7 +14,7 @@ Compass = {
     orientation: null,
     position: null,
   },
-  origin: { 
+  origin: {
     lat: null,
     lng: null,
   },
@@ -349,6 +349,22 @@ Compass = {
     $(window).unbind('.compassOrientation');
 
     Game.nextMinigame();
+  },
+
+  resetDestiny: function(callback) {
+    var _this = this;
+
+    _this.stopGeoWatchers();
+    $(window).unbind('.compassOrientation');
+
+    Game.setNewPoints( Utilities.Number.getRandomInt(-100,0) );
+
+    _this.init();
+
+    if (callback) {
+      callback();
+    }
+
   },
 
   init: function() {

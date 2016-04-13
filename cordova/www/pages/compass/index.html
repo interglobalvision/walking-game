@@ -28,86 +28,85 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+      <meta name="format-detection" content="telephone=no">
+      <meta name="msapplication-tap-highlight" content="no">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-        <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
-        <title>WALKING GAME</title>
+      <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
+      <title>WALKING GAME</title>
     </head>
     <body>
 
-        <div class="container">
-          <div id="stage" class="map-stage">
-            <div class="map-sky"></div>
-            <div class="map-clouds map-orientation"></div>
-            <div class="map-skyline map-orientation"></div>
+      <div class="container">
+        <div id="stage" class="map-stage">
+          <div class="map-sky"></div>
+          <div class="map-clouds map-orientation"></div>
+          <div class="map-skyline map-orientation"></div>
 
-            <div id="map-goal-container">
-              <div id="map-goal">
-                <div class="map-flag-container">
-                  <img class="map-flag" src="../../img/map/flag.gif">
-                </div>
+          <div id="map-goal-container">
+            <div id="map-goal">
+              <div class="map-flag-container">
+                <img class="map-flag" src="../../img/map/flag.gif">
               </div>
-            </div>
-
-            <div class="map-floor-container">
-              <div class="map-floor"></div>
-              <div class="map-object map-orientation"></div>
-            </div>
-
-            <img id="compass" src="../../img/compass.png" />
-
-            <div id="map-menu">
-              <a href="#" id="map-menu-button"><img src="../../img/coach-menu.png" class="map-menu-coach"></a>
-              <div id="map-menu-bubble">
-                <div id="menu-main" class="menu">
-                  <ul class="menu-list">
-                    <li class="menu-item">You are <span id="menu-rank"></span></li>
-                    <li class="menu-item">in the <span id="menu-world"></span>,</li>
-                    <li class="menu-item">you've walked <span id="menu-distance"></span>,</li>
-                    <li class="menu-item">and have <span id="menu-points"></span> points.</li>
-                    <li class="menu-item"><a data-ref="menu-share">Share</a></li>
-                  </ul>
-                  <ul class="menu-list">
-                    <li class="menu-item"><a data-ref="menu-howto" class="toggle-sub">How to play?</a></li>
-                    <li class="menu-item"><a data-ref="menu-credits" class="toggle-sub">Credits...</a></li>
-                    <li class="menu-item"><a data-ref="dev-menu">Dev: Menu</a></li>
-                    <li class="menu-item"><a data-ref="dev-end-map">Dev: End Map</a></li>
-                  </ul>
-                </div>
-                <div id="menu-credits" class="menu sub-menu">
-                  <a class="menu-back">Back</a>
-                  <h1>Credits</h1>
-                  <div class="credits-text">
-                    <p>Made in Mexico City by Interglobal Vision</p>
-                    <img src="../../img/globie.png" class="credits-logo">
-                  </div>
-                </div>
-              </div>
-              <div id="menu-howto" class="menu sub-menu">
-                <a class="menu-back">Back</a>
-                <h1>How to play</h1>
-                <div class="howto-text">
-                  <p>so you don't know what you're doing is that it? this is silly. i mean why are you even playing this game at all?.....anyways i gueeeeess i'll explain how this works. *eyeroll* .....</p>
-
-                  <p>so its pretty simple. the game is called "walking game" which means...drumroll... you have to walk to play. your goal here is to be the best walker in the whole world, and youve gotta train to get there. look, now theres a circle with an arrow in it at the bottom-left of your screen there...see that?  thats your compass. so you need to look at that and follow whichever way the arrow points. if you run into an obstacle like a ...tree...or a....building...walk around that, and keep heading toward where the arrow points you. try not to get hit by a car or trespass... because if that happens? its on you pal! anyways...as you walk, a golden flag will appear on screen - thats your  goal. as you continue, you'll see the golden goal flag getting closer. and when you reach that flag? time for a minigame challenge. the minigame challenge wins you points. and what do points win you? respect. not from me of course. but you can share your progress on feisbuuk or twinder or whatever and showoff to your "friend".</p>
-
-                  <p>does that clear things up? if not, you should probably just play another game like... idk... jumpy fish or matchy marbles...whatever</p>
-
-                  <p>-coach</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Common footer -->
-            <div id="blackout"></div>
-            <div class="text-box" id="dialog">
-              <div class="text-box-dialog"></div>
             </div>
           </div>
+
+          <div class="map-floor-container">
+            <div class="map-floor"></div>
+            <div class="map-object map-orientation"></div>
+          </div>
+
+          <img id="compass" src="../../img/compass.png" />
+
+          <div id="map-menu">
+            <a href="#" id="map-menu-button"><img src="../../img/coach-menu.png" class="map-menu-coach"></a>
+            <div id="menu-main" class="menu">
+              <ul class="menu-list">
+                <li class="menu-item">You are <span id="menu-rank"></span></li>
+                <li class="menu-item">in the <span id="menu-world"></span>,</li>
+                <li class="menu-item">you've walked <span id="menu-distance"></span>,</li>
+                <li class="menu-item">and have <span id="menu-points"></span> points.</li>
+                <li class="menu-item"><a data-ref="menu-share">Share</a></li>
+              </ul>
+              <ul class="menu-list">
+                <li class="menu-item"><a data-ref="menu-reset-destiny">i can haz new walking goal??</a></li>
+                <li class="menu-item"><a data-ref="menu-howto" class="open-sub-menu">How to play?</a></li>
+                <li class="menu-item"><a data-ref="menu-credits" class="open-sub-menu">Credits...</a></li>
+                <li class="menu-item"><a data-ref="dev-menu">Dev: Menu</a></li>
+                <li class="menu-item"><a data-ref="dev-end-map">Dev: End Map</a></li>
+              </ul>
+            </div>
+            <div id="menu-credits" class="menu sub-menu">
+              <a class="close-sub-menu">Back</a>
+              <h1>Credits</h1>
+              <div class="credits-text">
+                <p>Made in Mexico City by Interglobal Vision</p>
+                <img src="../../img/globie.png" class="credits-logo">
+              </div>
+            </div>
+            <div id="menu-howto" class="menu sub-menu">
+              <a class="close-sub-menu">Back</a>
+              <h1>How to play</h1>
+              <div class="howto-text">
+                <p>so you don't know what you're doing is that it? this is silly. i mean why are you even playing this game at all?.....anyways i gueeeeess i'll explain how this works. *eyeroll* .....</p>
+
+                <p>so its pretty simple. the game is called "walking game" which means...drumroll... you have to walk to play. your goal here is to be the best walker in the whole world, and youve gotta train to get there. look, now theres a circle with an arrow in it at the bottom-left of your screen there...see that?  thats your compass. so you need to look at that and follow whichever way the arrow points. if you run into an obstacle like a ...tree...or a....building...walk around that, and keep heading toward where the arrow points you. try not to get hit by a car or trespass... because if that happens? its on you pal! anyways...as you walk, a golden flag will appear on screen - thats your  goal. as you continue, you'll see the golden goal flag getting closer. and when you reach that flag? time for a minigame challenge. the minigame challenge wins you points. and what do points win you? respect. not from me of course. but you can share your progress on feisbuuk or twinder or whatever and showoff to your "friend".</p>
+
+                <p>does that clear things up? if not, you should probably just play another game like... idk... jumpy fish or matchy marbles...whatever</p>
+
+                <p>-coach</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Common footer -->
+          <div id="blackout"></div>
+          <div class="text-box" id="dialog">
+            <div class="text-box-dialog"></div>
+          </div>
         </div>
+      </div>
 
         <script type="text/javascript" src="../../cordova.js"></script>
         <script type="text/javascript" src="../../js/lib.js"></script>
