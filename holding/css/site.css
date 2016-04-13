@@ -993,150 +993,7 @@ th {
 }
 .container {
   margin: 0 auto;
-  width: 1272px;
-}
-.row {
-  clear: both;
-}
-.col {
-  float: left;
-  margin-left: 8px;
-  margin-right: 8px;
-  box-sizing: content-box;
-}
-.col-1 {
-  width: 90px;
-}
-.col-2 {
-  width: 196px;
-}
-.col-3 {
-  width: 302px;
-}
-.col-4 {
-  width: 408px;
-}
-.col-5 {
-  width: 514px;
-}
-.col-6 {
-  width: 620px;
-}
-.col-7 {
-  width: 726px;
-}
-.col-8 {
-  width: 832px;
-}
-.col-9 {
-  width: 938px;
-}
-.col-10 {
-  width: 1044px;
-}
-.col-11 {
-  width: 1150px;
-}
-.col-12 {
-  width: 1256px;
-}
-.percent-col {
-  float: left;
-  box-sizing: content-box;
-}
-.s-into-1 {
-  width: 100%;
-}
-.s-into-2 {
-  width: 50%;
-}
-.s-into-3 {
-  width: 33.333333333333336%;
-}
-.s-into-4 {
-  width: 25%;
-}
-.s-into-5 {
-  width: 20%;
-}
-.s-into-6 {
-  width: 16.666666666666668%;
-}
-.s-into-7 {
-  width: 14.285714285714286%;
-}
-.s-into-8 {
-  width: 12.5%;
-}
-.s-into-9 {
-  width: 11.11111111111111%;
-}
-.s-into-10 {
-  width: 10%;
-}
-@media screen and (min-width: 601px) {
-  .m-into-1 {
-    width: 100%;
-  }
-  .m-into-2 {
-    width: 50%;
-  }
-  .m-into-3 {
-    width: 33.333333333333336%;
-  }
-  .m-into-4 {
-    width: 25%;
-  }
-  .m-into-5 {
-    width: 20%;
-  }
-  .m-into-6 {
-    width: 16.666666666666668%;
-  }
-  .m-into-7 {
-    width: 14.285714285714286%;
-  }
-  .m-into-8 {
-    width: 12.5%;
-  }
-  .m-into-9 {
-    width: 11.11111111111111%;
-  }
-  .m-into-10 {
-    width: 10%;
-  }
-}
-@media screen and (min-width: 993px) {
-  .l-into-1 {
-    width: 100%;
-  }
-  .l-into-2 {
-    width: 50%;
-  }
-  .l-into-3 {
-    width: 33.333333333333336%;
-  }
-  .l-into-4 {
-    width: 25%;
-  }
-  .l-into-5 {
-    width: 20%;
-  }
-  .l-into-6 {
-    width: 16.666666666666668%;
-  }
-  .l-into-7 {
-    width: 14.285714285714286%;
-  }
-  .l-into-8 {
-    width: 12.5%;
-  }
-  .l-into-9 {
-    width: 11.11111111111111%;
-  }
-  .l-into-10 {
-    width: 10%;
-  }
+  width: 1200px;
 }
 body {
   font-family: helvetica, arial, sans-serif;
@@ -1147,14 +1004,14 @@ body {
 h1 {
   font-size: 3em;
 }
-h2 {
-  font-size: 2em;
-}
-h3 {
-  font-size: 1.5em;
-}
 p {
-  margin-bottom: 1em;
+  margin-bottom: 16px;
+}
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: 600;
 }
 a,
 a:active,
@@ -1173,6 +1030,8 @@ a:visited:hover {
 html {
   background-color: #fdfdfd;
   color: #0e0e0e;
+}
+body {
   padding: 80px;
 }
 img {
@@ -1181,4 +1040,15 @@ img {
 }
 .container {
   margin-bottom: 32px;
+}
+@media screen and (max-width: 1200px) {
+  body {
+    padding: 16px;
+  }
+  .container {
+    width: 90%;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
 }

@@ -8,45 +8,10 @@ box-sizing-reset()
 normalize()
 
 // GRID OF 12 90px COLUMNS WITH 16px GUTTER
-$cols = 12 
-$col = 90px
 $gutter = 16px
 .container
   margin: 0 auto
-  width: ($col * $cols)+($gutter * $cols)
-.row
-  clear: both
-.col
-  float: left
-  margin-left: ($gutter/2)
-  margin-right: ($gutter/2)
-  box-sizing: content-box
-for col in 1..$cols
-  .col-{col}
-    width: ( col * $col ) + ( ( col - 1 ) * $gutter )
-
-// FLUID COLS
-.percent-col
-  float: left
-  box-sizing: content-box
-$pcols = 10
-for pcol in 1..$pcols
-  .s-into-{pcol}
-    width: ( 100% / pcol )
-
-@media screen and (min-width: 601px)
-
-  for pcol in 1..$pcols
-    .m-into-{pcol}
-      width: ( 100% / pcol )
-
-@media screen and (min-width: 993px)
-
-  for pcol in 1..$pcols
-    .l-into-{pcol}
-      width: ( 100% / pcol )
-
-// VARIABLES
+  width: 1200px
 
 $golden-ratio = 1.61803398875
 
@@ -72,15 +37,15 @@ body
 
 h1
   font-size: 3em
+  
+p 
+  margin-bottom: $margin-small
+  
+em
+  font-style: italic
 
-h2
-  font-size: 2em
-
-h3
-  font-size: 1.5em
-
-p
-  margin-bottom: 1em
+strong
+  font-weight: 600
 
 
 // LINKS
@@ -97,6 +62,8 @@ a,a:active,a:visited
 html
   background-color: $color-white-soft
   color: $color-black-soft
+  
+body
   padding: $margin-large
 
 img
@@ -105,3 +72,11 @@ img
   
 .container
   margin-bottom: $margin-basic
+  
+@media screen and (max-width: 1200px)
+  body
+    padding: $margin-small
+  .container
+    width: 90%
+  h1
+    font-size: 1.5em
