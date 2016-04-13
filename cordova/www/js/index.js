@@ -2,7 +2,7 @@ Compass={$blackout:$("#blackout"),$radar:$("#radar"),$angle:$("#angle"),$mapStag
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-baseDistance:Game.modifyDiffulty(1e-4),minDistance:baseDistance+.0023,// in radians
+baseDistance:Game.modifyDifficulty(1e-4),minDistance:baseDistance+.0023,// in radians
 maxDistance:baseDistance+.0026,// in radians
 destinyThresholdRadius:.3,// in Km
 totalDistance:0,/*

@@ -30,7 +30,7 @@ Compass = {
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-  baseDistance: Game.modifyDiffulty(0.0001),
+  baseDistance: Game.modifyDifficulty(0.0001),
   minDistance: baseDistance + 0.0023, // in radians
   maxDistance: baseDistance + 0.0026, // in radians
   destinyThresholdRadius: 0.300, // in Km
