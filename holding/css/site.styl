@@ -1,0 +1,82 @@
+@import "kouto-swiss"
+
+@import "sanitize"
+@import "helpers"
+
+meyer-reset()
+box-sizing-reset()
+normalize()
+
+// GRID OF 12 90px COLUMNS WITH 16px GUTTER
+$gutter = 16px
+.container
+  margin: 0 auto
+  width: 1200px
+
+$golden-ratio = 1.61803398875
+
+$margin-small = ($gutter)
+$margin-tiny = ($gutter / 2)
+$margin-basic = ($gutter*2)
+$margin-large = ($gutter*5)
+
+$font-size-basic = 15px
+$font-leading-basic = 1.35em
+$font-tracking-basic = 0.001em
+
+$color-black-soft = rgb(14,14,14)
+$color-white-soft = rgb(253,253,253)
+
+// TYPOGRAPHY
+
+body
+  font-family:helvetica,arial,sans-serif
+  font-size: $font-size-basic
+  line-height: $font-leading-basic
+  letter-spacing: $font-tracking-basic
+
+h1
+  font-size: 3em
+  
+p 
+  margin-bottom: $margin-small
+  
+em
+  font-style: italic
+
+strong
+  font-weight: 600
+
+
+// LINKS
+
+a,a:active,a:visited 
+  color:inherit
+  transition:opacity .2s
+  &:hover
+    opacity:.5
+
+
+// BASIC
+
+html
+  background-color: $color-white-soft
+  color: $color-black-soft
+  
+body
+  padding: $margin-large
+
+img
+  max-width: 100%
+  height: auto
+  
+.container
+  margin-bottom: $margin-basic
+  
+@media screen and (max-width: 1200px)
+  body
+    padding: $margin-small
+  .container
+    width: 90%
+  h1
+    font-size: 1.5em
