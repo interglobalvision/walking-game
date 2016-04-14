@@ -9,7 +9,7 @@ Dev = {
     });
 
   },
-}
+};
 
 document.addEventListener('deviceready', function() {
   Dev.init();
