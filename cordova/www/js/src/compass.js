@@ -31,8 +31,8 @@ Compass = {
     maxDistance: 0.006, // in radians
   */
   modifiedDistance: Game.modifyDifficulty(0.0001),
-  minDistance: 0.0023 + modifiedDistance, // in radians
-  maxDistance: 0.0026 + modifiedDistance, // in radians
+  minDistance: 0.0023, // in radians
+  maxDistance: 0.0026, // in radians
   destinyThresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
@@ -370,6 +370,9 @@ Compass = {
 
   init: function() {
     var _this = this;
+
+    _this.minDistance = _this.minDistance + _this.modifiedDistance; // in radians
+    _this.maxDistance = _this.maxDistance + _this.modifiedDistance; // in radians
 
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
