@@ -31,12 +31,14 @@ var Medit8 = {
   ],
 
   modifiedTime: Game.modifyDifficulty(30),
-  waitTime: 60 + modifiedTime, // 1 min + 30 seconds more for each loop
+  waitTime: 60,
   moves: 0,
   movesMax: 2,
 
   init: function() {
     var _this = this;
+
+    _this.waitTime = _this.waitTime + _this.modifiedTime; // 1 min + 30 seconds more for each loop
 
     $('.medit8-coach-container').addClass('medit8-coach-container-anim');
     $('.medit8-background').addClass('medit8-background-anim');
@@ -99,7 +101,7 @@ var Medit8 = {
             _this.fail();
 
           }
-        } 
+        }
 
       });
 
@@ -109,7 +111,7 @@ var Medit8 = {
       //console.log(progress);
 
       // Calc 0-360 deg
-      var degrees = progress * 3.60; 
+      var degrees = progress * 3.60;
 
       //console.log(degrees);
 
@@ -118,7 +120,7 @@ var Medit8 = {
       }
 
       if (progress === 50) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -126,7 +128,7 @@ var Medit8 = {
       }
 
       if (progress === 80) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -175,10 +177,10 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
-    
+
     Utilities.Dialog.read(_this.winDialog, function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
@@ -199,7 +201,7 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
 
