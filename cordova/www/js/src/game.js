@@ -145,6 +145,13 @@ Game = {
     return loopOrder.split(',');
   },
 
+  modifyDifficulty: function(difficulty) {
+    var _this = this;
+    var modifier = _this.getLoops();
+
+    return modifier * difficulty;
+  },
+
   nextMinigame: function() {
     var _this= this;
     var currentProgress = _this.getProgress();

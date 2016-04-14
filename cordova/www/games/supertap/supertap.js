@@ -3,6 +3,7 @@ var Supertap = {
   lastTap: undefined,
   startTime: undefined,
   endTime: undefined,
+  modifiedTime: Game.modifyDifficulty(5000), // add 5 seconds
   gameMiniseconds: 9000,
   thresholdMiniseconds: 400,
   timeout: undefined,
@@ -32,6 +33,8 @@ var Supertap = {
 
   init: function() {
     var _this = this;
+
+    _this.gameMiniseconds = _this.gameMiniseconds + _this.modifiedTime; // 9 seconds plus
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
     $('.tap-background-1').addClass('tap-background-1-anim');
@@ -78,7 +81,7 @@ var Supertap = {
 
   },
 
-  startChecker: function() { 
+  startChecker: function() {
     var _this = this;
 
     _this.checker = window.setInterval(function() {

@@ -30,13 +30,15 @@ var Medit8 = {
     "Next time be more patient....",
   ],
 
-  baseTime: 60, // 1 min
-  levelFactor: 30, // Add this factor of time for each level
+  modifiedTime: Game.modifyDifficulty(30),
+  waitTime: 60,
   moves: 0,
   movesMax: 2,
 
   init: function() {
     var _this = this;
+
+    _this.waitTime = _this.waitTime + _this.modifiedTime; // 1 min + 30 seconds more for each loop
 
     $('.medit8-coach-container').addClass('medit8-coach-container-anim');
     $('.medit8-background').addClass('medit8-background-anim');
@@ -58,7 +60,7 @@ var Medit8 = {
   startGame: function() {
     var _this = this;
 
-    var waitTime = _this.getWaitTime();
+    var waitTime = _this.waitTime;
     var timeCounter = 0;
 
     var newLat;
@@ -99,7 +101,7 @@ var Medit8 = {
             _this.fail();
 
           }
-        } 
+        }
 
       });
 
@@ -109,7 +111,7 @@ var Medit8 = {
       //console.log(progress);
 
       // Calc 0-360 deg
-      var degrees = progress * 3.60; 
+      var degrees = progress * 3.60;
 
       //console.log(degrees);
 
@@ -118,7 +120,7 @@ var Medit8 = {
       }
 
       if (progress === 50) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -126,7 +128,7 @@ var Medit8 = {
       }
 
       if (progress === 80) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -167,20 +169,6 @@ var Medit8 = {
 
   },
 
-  /*
-   * return wait time in seconds
-   */
-  getWaitTime: function() {
-    var _this = this;
-
-    // When loop 0, extra time is 0
-    // loop 1, extra 30
-    // loop 2, extra 60
-    var extraTime = Game.getLoops() * _this.levelFactor;
-
-    return _this.baseTime + extraTime;
-  },
-
   win: function(points) {
     var _this = this;
 
@@ -189,10 +177,10 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
-    
+
     Utilities.Dialog.read(_this.winDialog, function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
@@ -213,7 +201,7 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
 
