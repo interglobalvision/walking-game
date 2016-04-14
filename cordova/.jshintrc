@@ -36,6 +36,11 @@
     "Compass",
     "Game",
     "Utilities",
-    "ColorThief"
+    "ColorThief",
+    "WalkingError",
+    "FastClick",
+    "Menu",
+    "Adjs",
+    "Nouns"
   ]
 }

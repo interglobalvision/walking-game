@@ -61,13 +61,20 @@ gulp.task('javascript-library', function() {
  * @task JavaScript lint.
  *   Runs JSCS and JSHint on server, client, lib, and gulp files.
  */
-gulp.task('lintjs', function () {
+gulp.task('lint-core', function () {
+  return gulp.src([
+    './www/js/src/*.js',
+  ])
+  .pipe(jshint())
+  .pipe(jshint.reporter('default'))
+  .pipe(jscs());
+});
+
+gulp.task('lint', function () {
   return gulp.src([
     './www/games/**/*.js',
     './www/scenes/**/*.js',
-    './www/js/*.js',
-    '!./www/js/lib.js',
-    '!./www/js/index.js',
+    './www/pages/**/*.js',
   ])
   .pipe(jshint())
   .pipe(jshint.reporter('default'))
@@ -103,10 +110,14 @@ gulp.task('build', ['javascript-library', 'javascript', 'style',]);
  */
 gulp.task('watch', function () {
   gulp.watch([
-    './www/js/src/**.js',
+    './www/js/src/*.js',
+  ], ['lint-core',]);
+
+  gulp.watch([
     './www/games/**/*.js',
     './www/scenes/**/*.js',
-  ], ['lintjs',]);
+    './www/pages/**/*.js',
+  ], ['lint',]);
 
   gulp.watch([
     './www/css/**/*.styl',
