@@ -1,6 +1,7 @@
 var VibeyStopper = {
   fullPoints: 4321,
   points: 0,
+  modifiedWait: Game.modifyDifficulty(500),
   minWait: 1010,
   maxWait: 8888,
   winThreshold: 611,
@@ -24,6 +25,9 @@ var VibeyStopper = {
 
   init: function() {
     var _this = this;
+
+    _this.minWait = _this.minWait + _this.modifiedWait;
+    _this.maxWait = _this.maxWait + _this.modifiedWait;
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 

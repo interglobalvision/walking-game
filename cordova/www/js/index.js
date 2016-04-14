@@ -2,8 +2,8 @@ Compass={$blackout:$("#blackout"),$radar:$("#radar"),$angle:$("#angle"),$mapStag
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-minDistance:.0025,// in radians
-maxDistance:.0028,// in radians
+modifiedDistance:Game.modifyDifficulty(1e-4),minDistance:.0023,// in radians
+maxDistance:.0026,// in radians
 destinyThresholdRadius:.3,// in Km
 totalDistance:0,/*
    * Return distance between two geographical points in Kilometers
@@ -94,7 +94,8 @@ _this.updateOrientation(event.alpha)})},/*
    * Ubind navigator.gelocation and deviceorientation events
    *
    */
-stopGeoWatchers:function(){var _this=this;navigator.geolocation.clearWatch(_this.watchId.position),navigator.compass.clearWatch(_this.watchId.orientation)},stop:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.nextMinigame()},resetDestiny:function(callback){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.setNewPoints(Utilities.Number.getRandomInt(-100,0)),_this.init(),callback&&callback()},init:function(){var _this=this;
+stopGeoWatchers:function(){var _this=this;navigator.geolocation.clearWatch(_this.watchId.position),navigator.compass.clearWatch(_this.watchId.orientation)},stop:function(){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.nextMinigame()},resetDestiny:function(callback){var _this=this;_this.stopGeoWatchers(),$(window).unbind(".compassOrientation"),Game.setNewPoints(Utilities.Number.getRandomInt(-100,0)),_this.init(),callback&&callback()},init:function(){var _this=this;_this.minDistance=_this.minDistance+_this.modifiedDistance,// in radians
+_this.maxDistance=_this.maxDistance+_this.modifiedDistance,// in radians
 // Check for geolocation and orientation availability
 navigator.geolocation&&window.DeviceOrientationEvent?
 // Set initial positions: origin, destiny, position
