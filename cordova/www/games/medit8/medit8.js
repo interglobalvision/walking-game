@@ -30,13 +30,16 @@ var Medit8 = {
     "Next time be more patient....",
   ],
 
-  baseTime: 60, // 1 min
-  levelFactor: 30, // Add this factor of time for each level
+  modifiedTime: Game.modifyDifficulty(30),
+  baseTime: 60,
+  waitTime: 0,
   moves: 0,
   movesMax: 2,
 
   init: function() {
     var _this = this;
+
+    _this.waitTime = _this.modifiedTime + _this.baseTime;
 
     $('.medit8-coach-container').addClass('medit8-coach-container-anim');
     $('.medit8-background').addClass('medit8-background-anim');
@@ -58,7 +61,7 @@ var Medit8 = {
   startGame: function() {
     var _this = this;
 
-    var waitTime = _this.getWaitTime();
+    var waitTime = _this.waitTime;
     var timeCounter = 0;
 
     var newLat;
@@ -165,20 +168,6 @@ var Medit8 = {
 
     }, 1000); // Run every second
 
-  },
-
-  /*
-   * return wait time in seconds
-   */
-  getWaitTime: function() {
-    var _this = this;
-
-    // When loop 0, extra time is 0
-    // loop 1, extra 30
-    // loop 2, extra 60
-    var extraTime = Game.getLoops() * _this.levelFactor;
-
-    return _this.baseTime + extraTime;
   },
 
   win: function(points) {
