@@ -126,7 +126,6 @@ Compass = {
       lng: position.lng,
     };
 
-
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
 
@@ -269,7 +268,7 @@ Compass = {
 
         skyColor = 'rgb(145, 205, 242)'; // Day 10 - 16
 
-      } else if (hour > 16 &&  hour < 22) {
+      } else if (hour > 16 && hour < 22) {
 
         skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
 
@@ -389,7 +388,7 @@ Compass = {
         // Set total distance
         _this.totalDistance = _this.getDistanceInKm({
           lat: pos.latitude,
-          lng: pos.longitude
+          lng: pos.longitude,
         }, _this.destiny) - _this.destinyThresholdRadius;
 
         // Set current position

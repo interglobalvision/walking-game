@@ -21,6 +21,7 @@ var app = {
   initialize: function() {
     this.bindEvents(); 
   },
+  
   // Bind Event Listeners
   //
   // Bind any events that are required on startup. Common events are:
@@ -30,6 +31,7 @@ var app = {
     document.addEventListener('DOMContentLoaded', this.onContentLoaded, false);
     document.addEventListener('backbutton', this.onBackKeyDown, false);
   },
+
   // deviceready Event Handler
   //
   // The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -37,12 +39,15 @@ var app = {
   onDeviceReady: function() {
     app.receivedEvent('deviceready');
   },
+
   onContentLoaded: function() {
     FastClick.attach(document.body);
   },
+
   onBackKeyDown: function() {
     return true;
   },
+
   // Update DOM on a Received Event
   receivedEvent: function(id) {
     console.log('Received Event: ' + id);
@@ -51,7 +56,7 @@ var app = {
     $('#game-points').html(Game.getPoints());
     $('#game-gems').html(Game.getGems());
     $('#game-progress').html(Game.getProgressPercent());
-  }
+  },
 };
 
 app.initialize();

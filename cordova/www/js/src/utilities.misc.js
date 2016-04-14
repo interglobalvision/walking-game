@@ -31,5 +31,5 @@ Utilities.Misc = {
     } else {
       console.log('no vibrate support');
     }
-  }
+  },
 };

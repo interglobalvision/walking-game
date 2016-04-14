@@ -29,4 +29,4 @@ WalkingError = {
     alert('Sorry ' + Game.getUsername() + ', but your device does not support GPS or you have denied the app access to your location. You can\'t go walking if I don\'t know where you are. Open the Walking Game settings on your device and allow location access!!');
 
   },
-}
+};
