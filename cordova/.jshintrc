@@ -37,6 +37,10 @@
     "Game",
     "Utilities",
     "ColorThief",
-    "WalkingError"
+    "WalkingError",
+    "FastClick",
+    "Menu",
+    "Adjs",
+    "Nouns"
   ]
 }
