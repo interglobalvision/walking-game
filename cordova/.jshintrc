@@ -36,6 +36,7 @@
     "Compass",
     "Game",
     "Utilities",
-    "ColorThief"
+    "ColorThief",
+    "WalkingError"
   ]
 }
