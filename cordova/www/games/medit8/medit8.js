@@ -31,15 +31,14 @@ var Medit8 = {
   ],
 
   modifiedTime: Game.modifyDifficulty(30),
-  baseTime: 60,
-  waitTime: 0,
+  waitTime: 60,
   moves: 0,
   movesMax: 2,
 
   init: function() {
     var _this = this;
 
-    _this.waitTime = _this.modifiedTime + _this.baseTime;
+    _this.waitTime = _this.waitTime + _this.baseTime;
 
     $('.medit8-coach-container').addClass('medit8-coach-container-anim');
     $('.medit8-background').addClass('medit8-background-anim');
