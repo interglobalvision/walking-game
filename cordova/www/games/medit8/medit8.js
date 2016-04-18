@@ -38,7 +38,7 @@ var Medit8 = {
   init: function() {
     var _this = this;
 
-    _this.waitTime = _this.waitTime + _this.baseTime;
+    _this.waitTime = _this.waitTime + _this.modifiedTime;
 
     $('.medit8-coach-container').addClass('medit8-coach-container-anim');
     $('.medit8-background').addClass('medit8-background-anim');
