@@ -7,6 +7,9 @@ var Bedside = {
       "And I say........",
       "It's time to go!! Now what was your name again?",
   ],
+  isAndroid: function() {
+    return navigator.userAgent.match(/Android/i) == "Android" ? true : false;
+  },
 
   init: function() {
     var _this = this;
@@ -68,6 +71,18 @@ var Bedside = {
 
       },
     });
+
+    if( _this.isAndroid() ) {
+      // Bind for keyboard showin
+      window.addEventListener('native.keyboardshow', function(event) {
+        $('#user-setup').css('bottom', (event.keyboardHeight + 15) + 'px');
+      });
+
+      window.addEventListener('native.keyboardhide', function(event) {
+        $('#user-setup').css('bottom', '2%');
+      });
+    }
+
 
   },
 };
