@@ -10,7 +10,7 @@ Home = {
     Menu.init();
 
   },
-}
+};
 
 document.addEventListener('deviceready', function() {
   Home.init(); 

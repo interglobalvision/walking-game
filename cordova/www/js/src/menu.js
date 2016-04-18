@@ -15,7 +15,7 @@ Menu = {
   resetDestinyDialog: [
     'What? You lost? Pshh...',
     'Ok, I\'ll set a new walking goal for you, ' + Game.getUsername() + '...',
-    '...and imma take some points off your score!'
+    '...and imma take some points off your score!',
   ],
 
   $resetDestiny: $('[data-ref="menu-reset-destiny"]'),

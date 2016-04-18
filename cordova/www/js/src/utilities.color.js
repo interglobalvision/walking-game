@@ -4,9 +4,7 @@ Utilities.Color = {
       tolerance = 32;
     }
 
-    return Math.abs(color1[0] - color2[0]) <= tolerance
-    && Math.abs(color1[1] - color2[1]) <= tolerance
-    && Math.abs(color1[2] - color2[2]) <= tolerance;
+    return Math.abs(color1[0] - color2[0]) <= tolerance && Math.abs(color1[1] - color2[1]) <= tolerance && Math.abs(color1[2] - color2[2]) <= tolerance;
   },
 
   hslToRgb: function(h, s, l){
@@ -48,5 +46,5 @@ Utilities.Color = {
     }
 
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255),];
-  }
+  },
 };

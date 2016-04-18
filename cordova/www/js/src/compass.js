@@ -30,8 +30,9 @@ Compass = {
     minDistance: 0.0025, // in radians
     maxDistance: 0.006, // in radians
   */
-  minDistance: 0.0025, // in radians
-  maxDistance: 0.0028, // in radians
+  modifiedDistance: Game.modifyDifficulty(0.0001),
+  minDistance: 0.0023, // in radians
+  maxDistance: 0.0026, // in radians
   destinyThresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
@@ -125,7 +126,6 @@ Compass = {
       lat: position.lat + _this.minDistance,
       lng: position.lng,
     };
-
 
     // Check distance in Km between position and destiny
     var distanceToDestiny = _this.getDistanceInKm(_this.position, _this.destiny);
@@ -269,7 +269,7 @@ Compass = {
 
         skyColor = 'rgb(145, 205, 242)'; // Day 10 - 16
 
-      } else if (hour > 16 &&  hour < 22) {
+      } else if (hour > 16 && hour < 22) {
 
         skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
 
@@ -370,6 +370,9 @@ Compass = {
   init: function() {
     var _this = this;
 
+    _this.minDistance = _this.minDistance + _this.modifiedDistance; // in radians
+    _this.maxDistance = _this.maxDistance + _this.modifiedDistance; // in radians
+
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
 
@@ -389,7 +392,7 @@ Compass = {
         // Set total distance
         _this.totalDistance = _this.getDistanceInKm({
           lat: pos.latitude,
-          lng: pos.longitude
+          lng: pos.longitude,
         }, _this.destiny) - _this.destinyThresholdRadius;
 
         // Set current position

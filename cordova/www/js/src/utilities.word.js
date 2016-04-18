@@ -18,7 +18,7 @@ Utilities.Word = {
   getWord: function(kind, indefinite, capitalize) {
     var _this = this;
 
-    var list = kind ==  'adj' ? _this.adjs : _this.nouns;
+    var list = kind == 'adj' ? _this.adjs : _this.nouns;
     var word = list[Math.floor(Math.random() * list.length)];
 
     if (capitalize) {
@@ -50,7 +50,7 @@ Utilities.Word = {
 
   isVowel: function(character) {
     return /[aeiouAEIOU]/.test(character);
-  }
-}
+  },
+};
 
 Utilities.Word.init(Adjs, Nouns);

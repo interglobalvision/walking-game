@@ -21,6 +21,7 @@ Game = {
   shareTitle: function(score) {
     return 'WOOAAAAHH! U HAVE AN AWESOME SCORe 0F ' + score + ' POIIINTSSS BRAAAHHH';
   },
+  
   shareSubject: 'Subject: I did this on Walking Game. The most tiring phone game ever made',
   shareUrl: 'http://interglobal.vision/',
 
@@ -135,18 +136,24 @@ Game = {
   },
 
   getLoopOrder: function() {
-    var _this = this;
-
     var loopOrder = window.localStorage.getItem('loopOrder');
 
     if(!loopOrder) {
       return [];
     }
+
     return loopOrder.split(',');
   },
 
+  modifyDifficulty: function(difficulty) {
+    var _this = this;
+    var modifier = _this.getLoops();
+
+    return modifier * difficulty;
+  },
+
   nextMinigame: function() {
-    var _this= this;
+    var _this = this;
     var currentProgress = _this.getProgress();
     var gameOrder = _this.getLoopOrder();
 
@@ -160,7 +167,6 @@ Game = {
   finishLoop: function() {
     var _this = this;
     var currentLoops = _this.getLoops();
-    var currentWorld = _this.getWorld();
 
     console.log('Finished loop');
 
@@ -221,7 +227,7 @@ Game = {
   // MINI GAME
 
   gameFail: function(tryAgainCallback, failCallback) {
-    var _this= this;
+    var _this = this;
 
     if (_this.gameAttempts > 1) {
       _this.gameAttempts--;
@@ -233,7 +239,7 @@ Game = {
   },
 
   gameComplete: function(points) {
-    var _this= this;
+    var _this = this;
     var currentProgress = _this.getProgress();
 
     _this.setProgress(currentProgress + 1);
@@ -274,7 +280,7 @@ Game = {
     var currentGems = _this.getGems();
 
     if (points > 0) {
-      var modifier = (Math.log(currentGems+ 1) + 1);
+      var modifier = (Math.log(currentGems + 1) + 1);
       var modifiedPoints = Math.round((points * modifier));
 
       _this.setPoints( currentPoints + modifiedPoints );
@@ -327,11 +333,13 @@ Game = {
       function() {
         console.log('share ok');
       },
+
       function(errorMessage) {
         console.log('share failed');
         console.log(errorMessage);
         alert('something went wrong');
       }
+
     );
 
   },
