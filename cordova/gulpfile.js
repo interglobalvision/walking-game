@@ -32,9 +32,14 @@ function errorNotify(error){
 gulp.task('javascript', function() {
   console.log('js');
   gulp.src(['./www/js/src/**.js'])
-  .pipe(sourcemaps.init())
   .pipe(concat('index.js'))
-  .pipe(uglify({mangle: false, preserveComments: 'all'}))
+  .on('error', errorNotify)
+  .pipe(gulp.dest('./www/js/'))
+  .on('error', errorNotify)
+  .pipe(rename({suffix: '.min'}))
+  .pipe(sourcemaps.init())
+  .on('error', errorNotify)
+  .pipe(uglify())
   .on('error', errorNotify)
   .pipe(sourcemaps.write('/'))
   .on('error', errorNotify)
