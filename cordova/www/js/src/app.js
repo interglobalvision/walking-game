@@ -19,9 +19,9 @@
 var app = {
   // Application Constructor
   initialize: function() {
-    this.bindEvents(); 
+    this.bindEvents();
   },
-  
+
   // Bind Event Listeners
   //
   // Bind any events that are required on startup. Common events are:
@@ -60,7 +60,3 @@ var app = {
 };
 
 app.initialize();
-
-Utilities = {
-
-};
