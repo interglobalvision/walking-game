@@ -21,7 +21,7 @@ Game = {
   shareTitle: function(score) {
     return 'WOOAAAAHH! U HAVE AN AWESOME SCORe 0F ' + score + ' POIIINTSSS BRAAAHHH';
   },
-  
+
   shareSubject: 'Subject: I did this on Walking Game. The most tiring phone game ever made',
   shareUrl: 'http://interglobal.vision/',
 
