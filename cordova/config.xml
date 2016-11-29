@@ -71,7 +71,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <engine name="browser" spec="~4.0.0" />
     <engine name="ios" spec="^4.1.1" />
-    <engine name="android" spec="^4.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="~3.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
     <preference name="xwalkVersion" value="15+" />
@@ -86,4 +85,5 @@
     <plugin name="cordova-plugin-vibration" spec="~2.1.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="~5.0.11" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.1" />
+    <engine name="android" spec="~5.2.2" />
 </widget>
