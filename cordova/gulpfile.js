@@ -96,7 +96,7 @@ gulp.task('style', function() {
   .pipe(plumber())
   .pipe(stylus())
   .on('error', errorNotify)
-  .pipe(autoprefixer())
+  .pipe(autoprefixer({browsers: ['last 6 ChromeAndroid versions', 'iOS >= 7.1']}))
   .on('error', errorNotify)
   .pipe(concat('main.css'))
   .pipe(gulp.dest('./www/css'))
