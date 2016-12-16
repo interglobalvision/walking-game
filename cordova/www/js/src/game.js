@@ -89,6 +89,12 @@ Game = {
     window.localStorage.setItem('distance', oldDistance + newDistance);
   },
 
+  setStepsPot: function(pot) {
+    var _this = this;
+
+    window.localStorage.setItem('stepsPot', pot);
+  },
+
   getTotalDistance: function() {
     return window.localStorage.getItem('distance') ? parseFloat( window.localStorage.getItem('distance') ) : 0;
   },

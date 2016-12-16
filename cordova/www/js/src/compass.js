@@ -1,4 +1,5 @@
 Compass = {
+  stepSize: 0.0008, // kilometers
   $blackout: $('#blackout'),
   $radar: $('#radar'),
   $angle: $('#angle'),
@@ -175,11 +176,18 @@ Compass = {
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
 
-      Game.setTotalDistance(distanceToDestiny); //add distance to total
+      //Game.setTotalDistance(distanceToDestiny); //add distance to total
+      Game.setStepsPot(_this.distanceToSteps(_this.totalDistance));
 
       _this.stop();
 
     }
+  },
+
+  distanceToSteps: function(distance) {
+    var _this = this;
+
+    return Math.floor(distance/_this.stepSize);
   },
 
   updateOrientation: function(orientation) {
