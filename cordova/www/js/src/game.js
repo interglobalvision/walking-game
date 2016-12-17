@@ -95,6 +95,10 @@ Game = {
     window.localStorage.setItem('stepsPot', pot);
   },
 
+  getStepsPot: function() {
+    return window.localStorage.getItem('stepsPot') ? parseFloat( window.localStorage.getItem('stepsPot') ) : 0;
+  },
+
   getTotalDistance: function() {
     return window.localStorage.getItem('distance') ? parseFloat( window.localStorage.getItem('distance') ) : 0;
   },
