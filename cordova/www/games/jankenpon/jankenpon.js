@@ -35,7 +35,6 @@ var Jankenpon = {
   wins: 0,
   losses: 0,
   minWins: 3,
-  pointsBase: 321,
   userFeelTimeout: undefined,
   color: {
     tie: 'rgb(177, 225, 255)',
@@ -171,7 +170,8 @@ var Jankenpon = {
       Utilities.Dialog.read(_this.finalWinDialog, function() {
 
         _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-          Game.gameComplete((_this.wins - _this.losses) * _this.pointsBase);
+          var score = _this.wins + Game.getStepsPot() - _this.losses;
+          Game.gameComplete(score);
         });
 
       });
