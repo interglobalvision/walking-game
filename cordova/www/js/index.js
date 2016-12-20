@@ -61,6 +61,7 @@ var app = {
 
 app.initialize();
 Compass = {
+  stepSize: 0.0008, // kilometers
   $blackout: $('#blackout'),
   $radar: $('#radar'),
   $angle: $('#angle'),
@@ -237,11 +238,18 @@ Compass = {
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
 
-      Game.setTotalDistance(distanceToDestiny); //add distance to total
+      //Game.setTotalDistance(distanceToDestiny); //add distance to total
+      Game.setStepsPot(_this.distanceToSteps(_this.totalDistance));
 
       _this.stop();
 
     }
+  },
+
+  distanceToSteps: function(distance) {
+    var _this = this;
+
+    return Math.floor(distance/_this.stepSize);
   },
 
   updateOrientation: function(orientation) {
@@ -608,6 +616,16 @@ Game = {
     var newDistance = parseFloat(newDistance);
 
     window.localStorage.setItem('distance', oldDistance + newDistance);
+  },
+
+  setStepsPot: function(pot) {
+    var _this = this;
+
+    window.localStorage.setItem('stepsPot', pot);
+  },
+
+  getStepsPot: function() {
+    return window.localStorage.getItem('stepsPot') ? parseFloat( window.localStorage.getItem('stepsPot') ) : 0;
   },
 
   getTotalDistance: function() {
