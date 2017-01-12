@@ -141,9 +141,9 @@ var Colorsnap = {
           targetColor[2] - paletteArray[arrayMatch][2],
         ];
 
-        var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
+        //var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
 
-        _this.win(points);
+        _this.win();
 
       } else {
 
@@ -157,14 +157,15 @@ var Colorsnap = {
 
   },
 
-  win: function(points) {
+  win: function() {
     var _this = this;
 
     Utilities.Misc.vibrate();
 
     Utilities.Dialog.read(_this.winDialog, function() {
 
-      Game.gameComplete(points);
+      var score = Game.getStepsPot();
+      Game.gameComplete(score);
 
     });
 
