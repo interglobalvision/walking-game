@@ -1,6 +1,4 @@
 var TippySwitch = {
-  fullPoints: 987,
-  points: 0,
   maxMilliseconds: 12345,
   $blackout: $('#blackout'),
   $gameBox: $('#tippy-box'),
@@ -139,14 +137,14 @@ var TippySwitch = {
 
     Utilities.Misc.vibrate();
 
-    _this.points = percentWin * _this.fullPoints;
+    var score = percentWin * Game.getStepsPot();
 
     Utilities.Dialog.read([
         "Yes yes YESSSS!",
-        "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
+        "You won " + Utilities.Number.roundFloat(score) + " points!!!",
       ], function() {
 
-      Game.gameComplete(_this.points);
+      Game.gameComplete(score);
 
     });
 

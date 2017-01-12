@@ -81,7 +81,7 @@ var Supertap = {
 
   },
 
-  startChecker: function() { 
+  startChecker: function() {
     var _this = this;
 
     _this.checker = window.setInterval(function() {
@@ -121,8 +121,9 @@ var Supertap = {
     window.clearInterval(_this.countdown);
 
     Utilities.Dialog.read(_this.winDialog, function() {
+      var score = Game.getStepsPot() + _this.tapCount;
 
-      Game.gameComplete(_this.tapCount);
+      Game.gameComplete(score);
 
     });
 

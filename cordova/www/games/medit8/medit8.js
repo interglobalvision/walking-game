@@ -101,7 +101,7 @@ var Medit8 = {
             _this.fail();
 
           }
-        } 
+        }
 
       });
 
@@ -111,7 +111,7 @@ var Medit8 = {
       //console.log(progress);
 
       // Calc 0-360 deg
-      var degrees = progress * 3.60; 
+      var degrees = progress * 3.60;
 
       //console.log(degrees);
 
@@ -120,7 +120,7 @@ var Medit8 = {
       }
 
       if (progress === 50) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -128,7 +128,7 @@ var Medit8 = {
       }
 
       if (progress === 80) {
-        if ( Utilities.Dialog.inProgress ) { 
+        if ( Utilities.Dialog.inProgress ) {
           Utilities.Dialog.finish();
         }
 
@@ -159,7 +159,7 @@ var Medit8 = {
         clearInterval(timer);
 
         // Win
-        _this.win(timeCounter * 0.19839); // Just because
+        _this.win(); // Just because
 
       }
 
@@ -169,7 +169,7 @@ var Medit8 = {
 
   },
 
-  win: function(points) {
+  win: function() {
     var _this = this;
 
     _this.$coach3.css('opacity', 0);
@@ -177,14 +177,16 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
-    
+
     Utilities.Dialog.read(_this.winDialog, function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        Game.gameComplete(points);
+        var score = Game.getStepsPot();
+
+        Game.gameComplete(score);
       });
 
     });
@@ -201,7 +203,7 @@ var Medit8 = {
 
     Utilities.Misc.vibrate();
 
-    if ( Utilities.Dialog.inProgress ) { 
+    if ( Utilities.Dialog.inProgress ) {
       Utilities.Dialog.finish();
     }
 
