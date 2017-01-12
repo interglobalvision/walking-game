@@ -1,6 +1,4 @@
 var VibeyStopper = {
-  fullPoints: 4321,
-  points: 0,
   modifiedWait: Game.modifyDifficulty(500),
   minWait: 1010,
   maxWait: 8888,
@@ -119,14 +117,14 @@ var VibeyStopper = {
       percentWin = 0;
     }
 
-    _this.points = percentWin * _this.fullPoints;
+    var score = percentWin * Game.getStepsPot();
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
-      "You won " + Utilities.Number.roundFloat(_this.points) + " points!!!",
+      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
     ], function() {
 
-      Game.gameComplete(_this.points);
+      Game.gameComplete(score);
 
     });
 
