@@ -1,20 +1,3 @@
-Home = {
-  init: function() {
-    var _this = this;
-
-    $('#menu-share').click(function() {
-      Game.shareWithOptions();
-    });
-
-    Running.init();
-
-  },
-};
-
-document.addEventListener('deviceready', function() {
-  Home.init();
-}, false);
-
 Running = {
   stepSize: 0.0008, // kilometers
   $blackout: $('#blackout'),
@@ -484,3 +467,8 @@ Running = {
     }
   },
 };
+
+document.addEventListener('deviceready', function() {
+  Running.init();
+}, false);
+
