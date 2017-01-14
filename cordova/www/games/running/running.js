@@ -184,10 +184,7 @@ Running = {
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
 
-      //Game.setTotalDistance(distanceToDestiny); //add distance to total
-      Game.setStepsPot(_this.distanceToSteps(_this.totalDistance));
-
-      _this.stop();
+      _this.win();
 
     }
   },
@@ -382,19 +379,38 @@ Running = {
 
   },
 
+  win: function() {
+    var _this = this;
+
+    _this.stop();
+
+    var score = Game.getStepsPot();
+
+    Utilities.Dialog.read([
+      "Yes yes YESSSS!",
+      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
+    ], function() {
+
+      Game.gameComplete(score);
+
+    });
+
+
+  },
+
   stop: function() {
     var _this = this;
 
     _this.stopGeoWatchers();
     $(window).unbind('.compassOrientation');
 
-    Game.nextMinigame();
   },
 
   resetDestiny: function(callback) {
     var _this = this;
 
     _this.stopGeoWatchers();
+
     $(window).unbind('.compassOrientation');
 
     Game.setNewPoints( Utilities.Number.getRandomInt(-100,0) );
