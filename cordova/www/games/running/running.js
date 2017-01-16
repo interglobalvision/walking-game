@@ -1,6 +1,9 @@
 Running = {
   stepSize: 0.0008, // kilometers
+  runningSpeed: 2, // Km/h
+  timeout: null,
   $blackout: $('#blackout'),
+  $timer: $('#timer'),
   $radar: $('#radar'),
   $angle: $('#angle'),
   $mapStage: $('.map-stage'),
@@ -11,6 +14,7 @@ Running = {
   $mapSky: $('.map-sky'),
   $mapGoalContainer: $('#map-goal-container'),
   $mapOrientation: $('.map-orientation'),
+  animationFrame: null,
   watchId: {
     orientation: null,
     position: null,
@@ -38,6 +42,25 @@ Running = {
   destinyThresholdRadius: 0.300, // in Km
 
   totalDistance: 0,
+
+  introDialog: [
+    "Alright " + Utilities.Word.getNoun() + ", get your paws warmed up...it's time to RUN!",
+    "Find your destination A S A P" + Game.getUsername() + "! RUN as fast as you can!",
+  ],
+  winDialog: [
+    "OK GREAT! NOW STOP!",
+    "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
+  ],
+  tryAgainDialog: [
+    "STOP STOP STOP!!",
+    "They say that time flies but you keep breaking it's wings",
+    "Try again eh, " + Utilities.Word.getNoun() + "!",
+  ],
+  loseDialog: [
+    "OK NOW STOP!",
+    "OMG! You haven't got any muscle from all this walking," + Game.getUsername() + "...well guess WHAT?",
+    "NOW WE GOTTA WALK AGAIN!!",
+  ],
 
   /*
    * Return distance between two geographical points in Kilometers
@@ -326,7 +349,7 @@ Running = {
   startAnimation: function() {
     var _this = this;
 
-    window.requestAnimationFrame(_this.animate.bind(_this));
+    _this.animationFrame = window.requestAnimationFrame(_this.animate.bind(_this));
   },
 
   animate: function() {
@@ -357,9 +380,34 @@ Running = {
       'transform': 'rotate(' + _this.angle + 'deg)',
     });
 
+    var currentTime = + new Date();
 
-    window.requestAnimationFrame(_this.animate.bind(_this));
+    _this.$timer.text(_this.stopTime - currentTime);
 
+    _this.animationFrame = window.requestAnimationFrame(_this.animate.bind(_this));
+
+  },
+
+  startTimer: function() {
+    var _this = this;
+
+
+    var time = _this.totalDistance / _this.runningSpeed;
+
+    // Convert time into ms
+    time = time * 60 * 60 * 1000;
+
+    time = Math.round(time);
+
+    // Maybe use this to make it harder?
+    //Game.modifydifficulty(0.0001);
+
+    _this.stopTime = time + new Date().valueOf();
+
+    _this.timeout = setTimeout(function(){
+      _this.fail();
+      _this.$timer.text('0');
+    }, time);
   },
 
   win: function() {
@@ -369,10 +417,7 @@ Running = {
 
     var score = Game.getStepsPot();
 
-    Utilities.Dialog.read([
-      "Yes yes YESSSS!",
-      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
-    ], function() {
+    Utilities.Dialog.read(_this.winDialog, function() {
 
       Game.gameComplete(score);
 
@@ -381,8 +426,44 @@ Running = {
 
   },
 
+  fail: function() {
+    var _this = this;
+
+    Utilities.Misc.vibrate();
+
+    _this.stop();
+
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.resetDestiny();
+        _this.init();
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.loseDialog, function() {
+
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
+
+      });
+
+    });
+
+  },
+
   stop: function() {
     var _this = this;
+
+    window.clearTimeout(_this.timeout);
+
+    window.cancelAnimationFrame(_this.animationFrame);
+    _this.animationFrame = null;
+
 
     _this.stopGeoWatchers();
     $(window).unbind('.compassOrientation');
@@ -454,7 +535,7 @@ Running = {
         // Start animation
         _this.startAnimation();
 
-
+        _this.startTimer();
         // Fade in map
         _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
