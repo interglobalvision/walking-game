@@ -73,8 +73,6 @@ var ShakyVibrate = {
   shaking: function() {
     var _this = this;
 
-    _this.isShaking = true;
-
     _this.resetTimeout();
     _this.clearInterval();
   },
@@ -84,7 +82,6 @@ var ShakyVibrate = {
 
     _this.clearTimeout();
     _this.setTimeout();
-
   },
 
   setTimeout: function() {
