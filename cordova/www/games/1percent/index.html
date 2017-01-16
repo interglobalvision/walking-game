@@ -34,42 +34,24 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
         <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
-        <title>WALKING GAME</title>
+
+        <title>1Percent</title>
     </head>
     <body>
-        <div class="container dev-container">
-          <div>
-            <button id="play-next">PLAY PLZ!</button>
-          </div>
+        <div id="stage">
+          charge ur phone by a full 1% before the timer runs out!
+          <h1 id="countdown"></h1>
+        </div>
 
-          <hr/>
-
-          <ul>
-            <li>DEVLAND</li>
-            <li><a href="../../pages/compass/index.html">Compass</a></li>
-            <li><a href="../../games/1percent/index.html">1Percent</a></li>
-            <li><a href="../../games/tippyswitch/index.html">TippySwitch</a></li>
-            <li><a href="../../games/supertap/index.html">Supertap</a></li>
-            <li><a href="../../games/colorsnap/index.html">Colorsnap</a></li>
-            <li><a href="../../games/reset/index.html">Reset</a></li>
-            <li><a href="../../games/math/index.html">Math</a></li>
-            <li><a href="../../games/vibeystopper/index.html">VibeyStopper</a></li>
-            <li><a href="../../games/jankenpon/index.html">Jankenpon</a></li>
-            <li><a href="../../games/worldtraveler/index.html">Worldtraveler</a></li>
-            <li><a href="../../games/medit8/index.html">Medit8</a></li>
-            <li>-</li>
-            <li><a href="../../scenes/wakeup/index.html">Wakeup</a></li>
-            <li><a href="../../scenes/bedside/index.html">Bedside</a></li>
-            <li><a href="../../scenes/farewell/index.html">Farewell</a></li>
-            <li><a href="../../scenes/letsgo/index.html">Lets Go</a></li>
-            <li><a href="../../scenes/levelup/index.html">Level Up</a></li>
-          </ul>
-
+        <!-- Common footer -->
+        <div id="blackout"></div>
+        <div class="text-box" id="dialog">
+          <div class="text-box-dialog"></div>
         </div>
 
         <script type="text/javascript" src="../../cordova.js"></script>
         <script type="text/javascript" src="../../js/lib.js"></script>
         <script type="text/javascript" src="../../js/index.js"></script>
-        <script type="text/javascript" src="dev.js"></script>
+        <script type="text/javascript" src="../../games/1percent/1percent.js"></script>
     </body>
 </html>
