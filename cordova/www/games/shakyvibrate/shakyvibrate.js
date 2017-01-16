@@ -66,11 +66,59 @@ var ShakyVibrate = {
        return;
     }
 
-    // Clear not shaking timeout
-    window.clearTimeout(_this.shakeTimeout);
+    _this.shaking();
 
-    // Reset not shaking timeout
-    _this.setNotShakingTimeout();
+  },
+
+  shaking: function() {
+    var _this = this;
+
+    _this.isShaking = true;
+
+    _this.resetTimeout();
+    _this.clearInterval();
+  },
+
+  resetTimeout: function() {
+    var _this = this;
+
+    _this.clearTimeout();
+    _this.setTimeout();
+
+  },
+
+  setTimeout: function() {
+    var _this = this;
+
+    _this.timeout = window.setTimeout(function() {
+      _this.onStoppedShaking();
+      _this.setInterval();
+    }, 1200);
+  },
+
+  clearTimeout: function() {
+    var _this = this;
+
+    if (_this.timeout) {
+      window.clearTimeout(_this.timeout);
+    }
+  },
+
+  setInterval: function() {
+    var _this = this;
+
+    _this.interval = setInterval( function() {
+      _this.onStoppedShaking();
+    }, 1200);
+
+  },
+
+  clearInterval: function() {
+    var _this = this;
+
+    if (_this.interval) {
+      window.clearInterval(_this.interval);
+    }
   },
 
   updateDisplay: function() {
@@ -96,15 +144,6 @@ var ShakyVibrate = {
 
   },
 
-  setNotShakingTimeout: function() {
-    var _this = this;
-
-    _this.shakeTimeout = window.setTimeout(function() {
-      _this.onStoppedShaking();
-      _this.setNotShakingTimeout();
-    }, 1200);
-  },
-
   startGame: function() {
     var _this = this;
 
@@ -119,8 +158,9 @@ var ShakyVibrate = {
   win: function() {
     var _this = this;
 
-    // Clear not shaking timeout
-    window.clearTimeout(_this.shakeTimeout);
+    // Clear not shaking timeout and interval
+    _this.clearTimeout();
+    _this.clearInterval();
 
     _this.unbind();
 
@@ -142,8 +182,9 @@ var ShakyVibrate = {
   fail: function() {
     var _this = this;
 
-    // Clear not shaking timeout
-    window.clearTimeout(_this.shakeTimeout);
+    // Clear not shaking timeout and interval
+    _this.clearTimeout();
+    _this.clearInterval();
 
     _this.unbind();
 
