@@ -352,6 +352,7 @@ Running = {
     _this.animationFrame = window.requestAnimationFrame(_this.animate.bind(_this));
   },
 
+  // This function runs on every animation frame
   animate: function() {
     var _this = this;
 
@@ -379,6 +380,8 @@ Running = {
       '-webkit-transform': 'rotate(' + _this.angle + 'deg)',
       'transform': 'rotate(' + _this.angle + 'deg)',
     });
+
+    // TODO ANIMATE SHIT FOR RUNNING GAME
 
     var currentTime = + new Date();
 
