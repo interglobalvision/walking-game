@@ -58,7 +58,7 @@ Running = {
   ],
   loseDialog: [
     "OK NOW STOP!",
-    "OMG! You haven't got any muscle from all this walking," + Game.getUsername() + "...well guess WHAT?",
+    "OMG! You haven't got any muscle from all this walking, " + Game.getUsername() + "...well guess WHAT?",
     "NOW WE GOTTA WALK AGAIN!!",
   ],
 
