@@ -45,7 +45,7 @@ Running = {
 
   introDialog: [
     "Alright " + Utilities.Word.getNoun() + ", get your paws warmed up...it's time to RUN!",
-    "Find your destination A S A P" + Game.getUsername() + "! RUN as fast as you can!",
+    "Find your destination ASAP " + Game.getUsername() + "! RUN as fast as you can!",
   ],
   winDialog: [
     "OK GREAT! NOW STOP!",
@@ -256,7 +256,7 @@ Running = {
 
   },
 
-  skyColor: function() {
+  setSkyColor: function() {
     var _this = this;
 
     var now = new Date();
@@ -441,7 +441,7 @@ Running = {
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
 
         _this.resetDestiny();
-        _this.init();
+        _this.start();
 
       });
 
@@ -482,12 +482,50 @@ Running = {
 
     Game.setNewPoints( Utilities.Number.getRandomInt(-100,0) );
 
-    _this.init();
-
     if (callback) {
       callback();
     }
 
+  },
+
+  start: function() {
+    var _this = this;
+
+    // Set initial positions: origin, destiny, position
+    navigator.geolocation.getCurrentPosition( function(position) {
+
+      var pos = position.coords;
+
+      // Set Origin location
+      _this.origin.lat = pos.latitude,
+        _this.origin.lng = pos.longitude,
+
+        // Generate random destiny
+        _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+      _this.destiny.lng = pos.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+
+      // Set total distance
+      _this.totalDistance = _this.getDistanceInKm({
+        lat: pos.latitude,
+        lng: pos.longitude,
+      }, _this.destiny) - _this.destinyThresholdRadius;
+
+      // Set current position
+      _this.updatePosition({
+        lat: pos.latitude,
+        lng: pos.longitude,
+      });
+
+      // Start orientation and position watchers
+      _this.startGeoWatchers();
+
+      // Start animation
+      _this.startAnimation();
+
+      // Start timer
+      _this.startTimer();
+
+    });
   },
 
   init: function() {
@@ -498,50 +536,20 @@ Running = {
     _this.minDistance = _this.minDistance + _this.modifiedDistance; // in radians
     _this.maxDistance = _this.maxDistance + _this.modifiedDistance; // in radians
 
+    // Set sky color
+    _this.setSkyColor();
+
+    // Set map theme graphics
+    _this.mapTheme();
+
+    // Fade in map
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+
     // Check for geolocation and orientation availability
     if (navigator.geolocation && window.DeviceOrientationEvent) {
 
-      // Set initial positions: origin, destiny, position
-      navigator.geolocation.getCurrentPosition( function(position) {
-
-        var pos = position.coords;
-
-        // Set Origin location
-        _this.origin.lat = pos.latitude,
-        _this.origin.lng = pos.longitude,
-
-        // Generate random destiny
-        _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
-        _this.destiny.lng = pos.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
-
-        // Set total distance
-        _this.totalDistance = _this.getDistanceInKm({
-          lat: pos.latitude,
-          lng: pos.longitude,
-        }, _this.destiny) - _this.destinyThresholdRadius;
-
-        // Set current position
-        _this.updatePosition({
-          lat: pos.latitude,
-          lng: pos.longitude,
-        });
-
-        // Set sky color
-        _this.skyColor();
-
-        // Set map theme graphics
-        _this.mapTheme();
-
-        // Start orientation and position watchers
-        _this.startGeoWatchers();
-
-        // Start animation
-        _this.startAnimation();
-
-        _this.startTimer();
-        // Fade in map
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
-
+      Utilities.Dialog.read(_this.introDialog, function() {
+        _this.start();
       });
 
     } else {
