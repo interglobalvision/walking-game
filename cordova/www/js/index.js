@@ -535,6 +535,7 @@ Game = {
     'supertap',
     'reset',
     'colorsnap',
+    '1percent',
     'vibeystopper',
     'jankenpon',
     'worldtraveler',
