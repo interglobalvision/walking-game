@@ -344,10 +344,29 @@ Running = {
 
     var currentTime = + new Date();
 
-    _this.$timer.text(_this.stopTime - currentTime);
+    _this.$timer.text(_this.formatTimerStr(_this.stopTime - currentTime));
 
     _this.animationFrame = window.requestAnimationFrame(_this.animate.bind(_this));
 
+  },
+
+  formatTimerStr: function(ms) {
+    mils=Math.floor(ms%1000)
+    secs=Math.floor((ms/1000)%60)
+    mins=Math.floor((ms/(1000*60))%60)
+
+    if (mils < 10) {
+      milsStr = '00' + mils;
+    } else if (mils < 100) {
+      milsStr = '0' + mils;
+    } else {
+      milsStr = mils;
+    }
+
+    secsStr = secs < 10 ? '0' + secs : secs;
+    minsStr = mins < 10 ? '0' + mins : mins;
+
+    return minsStr + ":" + secsStr + ":" + milsStr;
   },
 
   startTimer: function() {
@@ -368,7 +387,7 @@ Running = {
 
     _this.timeout = setTimeout(function(){
       _this.fail();
-      _this.$timer.text('0');
+      _this.$timer.text('00:00:000');
     }, time);
   },
 
