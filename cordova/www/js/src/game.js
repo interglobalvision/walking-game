@@ -1,6 +1,7 @@
 Game = {
   minigames: [
     'tippyswitch',
+    'shakyvibrate',
     'math',
     'supertap',
     'reset',
