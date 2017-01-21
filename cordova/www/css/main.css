@@ -1845,6 +1845,21 @@ h6 {
   }
 }
 
+#shaky-progress-holder {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  background-color: #008000;
+}
+#shaky-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 50vh;
+  background-color: #f00;
+  transition: width 0.2s;
+}
+
 .tap-background {
   position: absolute;
   width: 200%;
