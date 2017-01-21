@@ -961,6 +961,11 @@ table {
   background-repeat: repeat-x;
   background-size: 25% 100%;
 }
+#timer {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 .world-0 .map-skyline {
   background-image: url("../img/map/sky-0.svg");
 }
