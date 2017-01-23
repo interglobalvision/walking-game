@@ -47,6 +47,12 @@ var OnePercent = {
 
     console.log(status);
 
+    if (status.isPlugged == true) {
+      $('.battery-status').addClass('battery-charge').removeClass('battery-red');
+    } else {
+      $('.phone-battery').addClass('battery-red').removeClass('battery-charge');
+    }
+
     if (!_this.batteryLevel) {
       _this.batteryLevel = status.level;
     } else if (status.level > _this.batteryLevel) {
@@ -79,6 +85,8 @@ var OnePercent = {
     _this.bind();
     _this.setCountdown();
 
+    $('#chargephone-coach').attr('class', 'zoom-phone');
+
   },
 
   endGame: function() {
@@ -92,6 +100,8 @@ var OnePercent = {
     var score = Game.getStepsPot() + 1;
 
     _this.endGame();
+
+    $('.phone-battery').addClass('battery-green').removeClass('battery-red, battery-charge');
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
