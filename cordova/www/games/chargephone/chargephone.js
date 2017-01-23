@@ -48,9 +48,9 @@ var OnePercent = {
     console.log(status);
 
     if (status.isPlugged == true) {
-      $('#battery-status').attr('class', 'battery-charge');
+      $('#battery-status').attr('class', 'cls-16 charge');
     } else {
-      $('#battery-status').attr('class', 'battery-red');
+      $('#battery-status').attr('class', 'cls-16 red');
     }
 
     if (!_this.batteryLevel) {
@@ -101,7 +101,7 @@ var OnePercent = {
 
     _this.endGame();
 
-    $('#battery-status').attr('class', 'battery-green');
+    $('#battery-status').attr('class', 'cls-16 green');
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
