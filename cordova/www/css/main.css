@@ -784,6 +784,7 @@ table {
 }
 #battery-status #battery-charge {
   display: none;
+  will-change: opacity;
 }
 #battery-status.green #battery-green {
   display: initial;
@@ -811,6 +812,8 @@ table {
 }
 #battery-status.charge #battery-charge {
   display: initial;
+  -webkit-animation: chargephone-blink 1s infinite steps(1);
+          animation: chargephone-blink 1s infinite steps(1);
 }
 @-webkit-keyframes chargephone-background {
   from {
@@ -830,6 +833,28 @@ table {
   to {
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
+  }
+}
+@-webkit-keyframes chargephone-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes chargephone-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

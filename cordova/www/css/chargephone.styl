@@ -33,6 +33,7 @@
     display: none
   #battery-charge
     display: none
+    will-change: opacity
   &.green
     #battery-green
       display: initial
@@ -54,3 +55,12 @@
       display: none
     #battery-charge
       display: initial
+      animation: chargephone-blink 1s infinite steps(1)
+
+@keyframes chargephone-blink
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0
