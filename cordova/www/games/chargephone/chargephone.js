@@ -48,9 +48,9 @@ var OnePercent = {
     console.log(status);
 
     if (status.isPlugged == true) {
-      $('.battery-status').addClass('battery-charge').removeClass('battery-red');
+      $('#battery-status').addClass('battery-charge').removeClass('battery-red');
     } else {
-      $('.phone-battery').addClass('battery-red').removeClass('battery-charge');
+      $('#battery-status').addClass('battery-red').removeClass('battery-charge');
     }
 
     if (!_this.batteryLevel) {
@@ -101,7 +101,7 @@ var OnePercent = {
 
     _this.endGame();
 
-    $('.phone-battery').addClass('battery-green').removeClass('battery-red, battery-charge');
+    $('#battery-status').addClass('battery-green').removeClass('battery-red, battery-charge');
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
