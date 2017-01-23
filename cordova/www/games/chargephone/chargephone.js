@@ -51,11 +51,11 @@ var OnePercent = {
 
       battery.onchargingchange = function() {
         _this.chargingChange(this.charging);
-      });
+      };
 
       battery.onlevelchange = function() {
         _this.levelChange(this.level);
-      });
+      };
     });
   },
 
@@ -64,7 +64,7 @@ var OnePercent = {
 
     _this.batteryCharging = charging;
 
-    console.log(charging);
+    console.log('charging: ' + charging);
 
     if (_this.batteryCharging == true) {
       $('#battery-status').attr('class', 'cls-16 charge');
@@ -76,7 +76,7 @@ var OnePercent = {
   levelChange: function(level) {
     var _this = this;
 
-    console.log(level);
+    console.log('level: ' + level);
 
     if (!_this.batteryLevel) {
       _this.batteryLevel = level;
