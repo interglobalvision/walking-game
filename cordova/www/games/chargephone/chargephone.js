@@ -4,6 +4,7 @@ var OnePercent = {
   timeToFail: 500000,
   modifiedFail: Game.modifyDifficulty(500),
   batteryLevel: false,
+  batteryCharging: false,
   timeLeft: null,
   introDialog: [
     "Join the 1%...",
@@ -42,10 +43,51 @@ var OnePercent = {
   bind: function() {
     var _this = this;
 
-    window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
+    //window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
 
+    navigator.getBattery().then(function(battery) {
+      _this.chargingChange(battery.charging);
+      _this.levelChange(battery.level);
+
+      battery.onchargingchange = function() {
+        _this.chargingChange(this.charging);
+      });
+
+      battery.onlevelchange = function() {
+        _this.levelChange(this.level);
+      });
+    });
   },
 
+  chargingChange: function(charging) {
+    var _this = this;
+
+    _this.batteryCharging = charging;
+
+    console.log(charging);
+
+    if (_this.batteryCharging == true) {
+      $('#battery-status').attr('class', 'cls-16 charge');
+    } else {
+      $('#battery-status').attr('class', 'cls-16 red');
+    }
+  },
+
+  levelChange: function(level) {
+    var _this = this;
+
+    console.log(level);
+
+    if (!_this.batteryLevel) {
+      _this.batteryLevel = level;
+    } else if (level < _this.batteryLevel && _this.batteryCharging == true) {
+      _this.batteryLevel = level;
+      Utilities.Dialog.read(_this.batteryDownDialog);
+    } else if (level > _this.batteryLevel) {
+      _this.win();
+    }
+  },
+/*
   onBatteryStatus: function(status) {
     var _this = this;
 
@@ -67,7 +109,7 @@ var OnePercent = {
     }
 
   },
-
+*/
   setCountdown: function() {
     var _this = this;
 
