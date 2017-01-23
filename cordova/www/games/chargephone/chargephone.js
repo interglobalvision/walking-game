@@ -9,6 +9,10 @@ var OnePercent = {
     "Join the 1%...",
     "...more mobile phone battery club",
   ],
+  batteryDownDialog: [
+    "Your battery level is going down!",
+    "Use a better charger, " + Game.getUsername(),
+  ],
   winDialog: [
     "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
   ],
@@ -55,6 +59,9 @@ var OnePercent = {
 
     if (!_this.batteryLevel) {
       _this.batteryLevel = status.level;
+    } else if (status.level < _this.batteryLevel && status.isPlugged == true) {
+      _this.batteryLevel = status.level;
+      Utilities.Dialog.read(_this.batteryDownDialog);
     } else if (status.level > _this.batteryLevel) {
       _this.win();
     }
