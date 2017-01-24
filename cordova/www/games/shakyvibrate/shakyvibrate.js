@@ -7,13 +7,14 @@ var ShakyVibrate = {
   $alarm: $('#shaky-alarm'),
   $coach: $('#shaky-coach'),
   introDialog: [
-    "OK I'm feeling sleepy. I think I'm gonna doze off",
-    "When I'm rested up give me a shake and I'll snap back to life and we can be off again Walking Forever",
+    "OK I'm feeling sleepy. I think I'm gonna doze off...",
+    "Shake me until my alarm clock fills up. That's what will wake me!",
   ],
   tryAgainDialog: [
     "ZZZZZZZZZZZZZ tryryrzzz agaiiiinnzzzz",
   ],
   loseDialog: [
+    "ZZZZZZZZZZZZZ",
     "ZZZZZZZZZZZZZ",
   ],
 
@@ -146,7 +147,7 @@ var ShakyVibrate = {
     _this.pointsForGoal = 0;
 
     $('#head').attr('transform', '');
-    $('#shaky-coach').attr('class', '');
+    $('.shaky-stage').removeClass('awake');
 
     _this.myShakeEvent.start();
 
@@ -164,14 +165,14 @@ var ShakyVibrate = {
     _this.unbind();
 
     $('#head').attr('transform', 'rotate(-50 550 550)');
-    $('#shaky-coach').attr('class', 'awake');
+    $('.shaky-stage').addClass('awake');
 
     _this.myShakeEvent.stop();
 
     var score = Game.getStepsPot();
 
     Utilities.Dialog.read([
-      "Yes yes YESSSS!",
+      "..huh? ..what? OK OK! I'm awake!",
       "You won " + Utilities.Number.roundFloat(score) + " points!!!",
     ], function() {
 

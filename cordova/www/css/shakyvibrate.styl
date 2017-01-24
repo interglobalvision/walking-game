@@ -1,5 +1,15 @@
 .shaky-stage
   background-color: #4D4D4D
+  transition: background-color 2s
+  &.awake
+    background-color: #62d3de
+    #shaky-coach
+      #shaky-sleep-bubble
+        opacity: 0
+      .eyes
+        animation: shaky-eyes .1s infinite steps(2)
+    #shaky-alarm
+      transform: translateY(100%)
 
 .shaky-background
   position: absolute
@@ -25,11 +35,6 @@
   height: 50%
   #shaky-sleep-bubble
     opacity: .5
-  &.awake
-    #shaky-sleep-bubble
-      opacity: 0
-    .eyes
-      animation: shaky-eyes .1s infinite steps(2)
 
 @keyframes shaky-eyes
   0%
@@ -56,7 +61,9 @@
   position: absolute
   bottom: 0
   width: 100%
-  height: 50%
+  height: 80%
+  transition: transform 1s
+  transform: translateY(0%)
 
 for progress in 1..10
   #shaky-alarm.progress-{progress}
