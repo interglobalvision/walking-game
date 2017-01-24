@@ -41,13 +41,31 @@ var ChargePhone = {
 
     window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
 
-    $('#chargephone-phone').on('mousedown', function() {
+    $('#chargephone-phone').on('touchstart', function() {
       $('.chargephone-stage').addClass('charging');
+      _this.setVibrateInterval();
     });
 
-    $('#chargephone-phone').on('mouseup', function() {
+    $('#chargephone-phone').on('touchend', function() {
       $('.chargephone-stage').removeClass('charging');
+      _this.clearVibrateInterval();
     });
+  },
+
+  setVibrateInterval: function() {
+    var _this = this;
+
+    _this.interval = setInterval( function() {
+      Utilities.Misc.vibrate();
+    }, 1000);
+  },
+
+  clearVibrateInterval: function() {
+    var _this = this;
+
+    if (_this.interval) {
+      window.clearInterval(_this.interval);
+    }
   },
 
   onBatteryStatus: function(status) {
