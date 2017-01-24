@@ -3,6 +3,7 @@ var ShakyVibrate = {
   modifier: Game.modifyDifficulty(200),
   pointsForGoal: 0,
   shakeTimeout: null,
+  won: false,
   $blackout: $('#blackout'),
   $alarm: $('#shaky-alarm'),
   introDialog: [
@@ -61,9 +62,11 @@ var ShakyVibrate = {
     _this.updateDisplay();
 
     // Check win
-    if (_this.pointsForGoal > _this.goal) {
-       _this.win();
-       return;
+    if (_this.pointsForGoal > _this.goal && _this.won === false) {
+      _this.won = true;
+
+      _this.win();
+      return;
     }
 
     _this.shaking();
@@ -152,6 +155,8 @@ var ShakyVibrate = {
 
   win: function() {
     var _this = this;
+
+    console.log('win');
 
     // Clear not shaking timeout and interval
     _this.clearTimeout();
