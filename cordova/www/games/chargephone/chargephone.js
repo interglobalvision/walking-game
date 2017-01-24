@@ -39,13 +39,7 @@ var ChargePhone = {
   bind: function() {
     var _this = this;
 
-    navigator.getBattery().then(function(battery) {
-      _this.levelChange(battery.level);
-
-      battery.onlevelchange = function() {
-        _this.levelChange(this.level);
-      };
-    });
+    window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
 
     $('#chargephone-phone').on('mousedown', function() {
       $('.chargephone-stage').addClass('charging');
@@ -56,14 +50,17 @@ var ChargePhone = {
     });
   },
 
-  levelChange: function(level) {
+  onBatteryStatus: function(status) {
     var _this = this;
 
+    console.log(status);
+
     if (!_this.batteryLevel) {
-      _this.batteryLevel = level;
+    _this.batteryLevel = level;
     }  else if (level < _this.batteryLevel) {
-      _this.win();
+    _this.win();
     }
+
   },
 
   setCountdown: function() {
