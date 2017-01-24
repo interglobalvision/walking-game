@@ -1,12 +1,23 @@
 .chargephone-stage
   background-color: #F7931E
+  &.show-phone
+    #chargephone-phone
+      opacity: .9
+      pointer-events: auto
+  &.charging
+    filter: invert(1)
+    animation: chargephone-blink .05s infinite linear
+    .chargephone-background
+      background-image: url(../img/games/chargephone/chargephone-background2.svg)
+    #battery-level
+      animation: chargephone-battery 1s infinite linear
 
 .chargephone-background
   position: absolute
   width: 100%
   height: 200%
   background-image: url(../img/games/chargephone/chargephone-background.svg)
-  background-size: contain
+  background-size: 30%
   background-position: center
   background-repeat: repeat
   will-change: transform
@@ -20,42 +31,47 @@
 
 #chargephone-coach
   position: absolute
-  width: 100%
-  height: 50%
-  top: 25%
-  transform-origin: left
-  transition: transform 4s
-  &.zoom-phone
-    transform: scale(4)
+  width: 400vw
+  height: 100%
+  background-image: url(../img/games/chargephone/chargephone-coach.svg)
+  background-repeat: no-repeat
+  background-position: center
+  will-change: transform
+  animation: chargephone-coach 1s infinite steps(1)
 
-#battery-status
-  #battery-green
-    display: none
-  #battery-charge
-    display: none
-    will-change: opacity
-  &.green
-    #battery-green
-      display: initial
-    #battery-red
-      display: none
-    #battery-charge
-      display: none
-  &.red
-    #battery-green
-      display: none
-    #battery-red
-      display: initial
-    #battery-charge
-      display: none
-  &.charge
-    #battery-green
-      display: none
-    #battery-red
-      display: none
-    #battery-charge
-      display: initial
-      animation: chargephone-blink 1s infinite steps(1)
+
+@keyframes chargephone-coach
+  0%
+    transform: translateX(0%) translateY(-1%)
+  25%
+    transform: translateX(-25%) translateY(1%)
+  50%
+    transform: translateX(-50%) translateY(-1%)
+  75%
+    transform: translateX(-75%) translateY(1%)
+
+#chargephone-phone
+  position: absolute
+  opacity: 0
+  height: 100%
+  width: 70%
+  left: 15%
+  transition: opacity 2s ease-in-out
+  pointer-events: none
+
+#battery-level
+  y: 873px
+
+@keyframes chargephone-battery
+  0%
+    y: 873px
+    fill: green
+  50%
+    y: 473px
+    fill: red
+  100%
+    y: 873px
+    fill: green
 
 @keyframes chargephone-blink
   0%
