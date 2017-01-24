@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+  <head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="../../css/main.min.css">
+
+    <title>TAKE A SELFIE</title>
+  </head>
+  <body>
+    <div id="stage">
+      <div class="colorsnap-background"></div>
+
+      <svg id="brush" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="662.091px" height="189.133px" viewBox="0 0 662.091 189.133" enable-background="new 0 0 662.091 189.133" xml:space="preserve">
+        <g>
+          <path fill="#9E9E9E" stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M351.828,149.451l278.289-30.833
+    c0,0,25.547-2.167,26.929-25.615c1.381-23.447-29.49-25.725-29.49-25.725L365.588,36.242c0,0-20.898-0.049-26.617,19.168
+    c-5.718,19.218-13.736,52.84-11.585,73.45C329.536,149.473,351.828,149.451,351.828,149.451z"/>
+          <path stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M340.34,50.306c0,0-49.623-78.879-149.577-28.478
+    C90.809,72.23,57.759,91.24,11.533,77.858c-46.224-13.383,162.782,198.606,313.612,57.471L340.34,50.306z"/>
+          <path id="brush-color" stroke="#000000" stroke-width="10" stroke-miterlimit="10" d="M171.863,67.019
+    c-2.972-8.476,69.336-51.452,66.945-58.151c-0.937-2.621-20.24-3.856-50.122,11.212C88.732,70.481,57.759,91.24,11.533,77.858
+    c-39.242-11.362,112.699,142.154,244.099,98.41c46.236-15.393-116.884-13.132-76.073-38.512
+    c40.81-25.381,91.264-18.678,90.928-48.773C270.149,58.888,181.5,94.505,171.863,67.019z"/>
+        </g>
+      </svg>
+
+      <svg id="splat" xmlns="http://www.w3.org/2000/svg" width="710" height="709.999" viewBox="0 0 710 709.999">
+        <path id="target-color" fill="#fff" stroke="#000" stroke-width="10" stroke-miterlimit="10" d="M212.91 109.12s-6.226 86.76-62.26 111.27c-56.035 24.508-255.27-92.4-65.375 108.665 189.897 201.065-149.425 154.088 23.68 204.42 63.612 18.496 79.052 275.156 82.164 124.157 3.112-151 79.382-124.156 147.09-120.8 67.71 3.355 214.69 178.64 166.163 15.938-48.525-162.702-57.225-286.835 71.588-282.254s210.51-173.694 0-94.624S489.55-42.924 374.58 79.175C259.606 201.275 253.38-164.233 212.91 109.12z"/>
+      </svg>
+
+      <img id="output-img" />
+
+      <div id="take-photo"></div>
+
+    </div>
+
+    <!-- Common footer -->
+    <div id="blackout"></div>
+    <div class="text-box" id="dialog">
+      <div class="text-box-dialog"></div>
+    </div>
+
+    <script type="text/javascript" src="../../cordova.js"></script>
+    <script type="text/javascript" src="../../js/lib.js"></script>
+    <script type="text/javascript" src="../../js/index.js"></script>
+    <script type="text/javascript" src="../../games/takeaselfie/takeaselfie.js"></script>
+  </body>
+</html>
