@@ -1,18 +1,14 @@
-var OnePercent = {
+var ChargePhone = {
   $blackout: $('#blackout'),
   $countdown: $('#countdown'),
   timeToFail: 500000,
   modifiedFail: Game.modifyDifficulty(500),
   batteryLevel: false,
-  batteryCharging: false,
   timeLeft: null,
   introDialog: [
-    "Join the 1%...",
-    "...more mobile phone battery club",
-  ],
-  batteryDownDialog: [
-    "Your battery level is going down!",
-    "Use a better charger, " + Game.getUsername(),
+    "My phone is about to die, " + Game.getUsername() + "!!",
+    "I need you to transfer some of your phone charge to my phone!",
+    "Quick! Before it dies: hold down on my phone battery to transfer your charge!",
   ],
   winDialog: [
     "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
@@ -43,73 +39,33 @@ var OnePercent = {
   bind: function() {
     var _this = this;
 
-    //window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
-
     navigator.getBattery().then(function(battery) {
-      _this.chargingChange(battery.charging);
       _this.levelChange(battery.level);
-
-      battery.onchargingchange = function() {
-        _this.chargingChange(this.charging);
-      };
 
       battery.onlevelchange = function() {
         _this.levelChange(this.level);
       };
     });
-  },
 
-  chargingChange: function(charging) {
-    var _this = this;
+    $('#chargephone-phone').on('mousedown', function() {
+      $('.chargephone-stage').addClass('charging');
+    });
 
-    _this.batteryCharging = charging;
-
-    console.log('charging: ' + charging);
-
-    if (_this.batteryCharging == true) {
-      $('#battery-status').attr('class', 'cls-16 charge');
-    } else {
-      $('#battery-status').attr('class', 'cls-16 red');
-    }
+    $('#chargephone-phone').on('mouseup', function() {
+      $('.chargephone-stage').removeClass('charging');
+    });
   },
 
   levelChange: function(level) {
     var _this = this;
 
-    console.log('level: ' + level);
-
     if (!_this.batteryLevel) {
       _this.batteryLevel = level;
-    } else if (level < _this.batteryLevel && _this.batteryCharging == true) {
-      _this.batteryLevel = level;
-      Utilities.Dialog.read(_this.batteryDownDialog);
-    } else if (level > _this.batteryLevel) {
+    }  else if (level < _this.batteryLevel) {
       _this.win();
     }
   },
-/*
-  onBatteryStatus: function(status) {
-    var _this = this;
 
-    console.log(status);
-
-    if (status.isPlugged == true) {
-      $('#battery-status').attr('class', 'cls-16 charge');
-    } else {
-      $('#battery-status').attr('class', 'cls-16 red');
-    }
-
-    if (!_this.batteryLevel) {
-      _this.batteryLevel = status.level;
-    } else if (status.level < _this.batteryLevel && status.isPlugged == true) {
-      _this.batteryLevel = status.level;
-      Utilities.Dialog.read(_this.batteryDownDialog);
-    } else if (status.level > _this.batteryLevel) {
-      _this.win();
-    }
-
-  },
-*/
   setCountdown: function() {
     var _this = this;
 
@@ -134,7 +90,7 @@ var OnePercent = {
     _this.bind();
     _this.setCountdown();
 
-    $('#chargephone-coach').attr('class', 'zoom-phone');
+    $('.chargephone-stage').addClass('show-phone');
 
   },
 
@@ -142,6 +98,8 @@ var OnePercent = {
     var _this = this;
 
     window.clearInterval(_this.countdown);
+    $('.chargephone-stage').removeClass('show-phone charging');
+    $('#chargephone-phone').off('mousedown');
   },
 
   win: function() {
@@ -149,8 +107,6 @@ var OnePercent = {
     var score = Game.getStepsPot() + 1;
 
     _this.endGame();
-
-    $('#battery-status').attr('class', 'cls-16 green');
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
@@ -192,5 +148,5 @@ var OnePercent = {
 };
 
 document.addEventListener('deviceready', function() {
-  OnePercent.init();
+  ChargePhone.init();
 }, false);
