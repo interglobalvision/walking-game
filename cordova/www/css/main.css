@@ -1866,6 +1866,16 @@ h6 {
   width: 100%;
   height: 50%;
 }
+#shaky-coach #shaky-sleep-bubble {
+  opacity: 0.5;
+}
+#shaky-coach.awake #shaky-sleep-bubble {
+  opacity: 0;
+}
+#shaky-coach.awake .eyes {
+  -webkit-animation: shaky-eyes 0.1s infinite steps(2);
+          animation: shaky-eyes 0.1s infinite steps(2);
+}
 #shaky-sleep-bubble {
   will-change: transform;
   -webkit-transform-origin: bottom;
@@ -1930,6 +1940,28 @@ h6 {
   to {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
+  }
+}
+@-webkit-keyframes shaky-eyes {
+  0% {
+    fill: #fff;
+  }
+  50% {
+    fill: #000;
+  }
+  100% {
+    fill: #fff;
+  }
+}
+@keyframes shaky-eyes {
+  0% {
+    fill: #fff;
+  }
+  50% {
+    fill: #000;
+  }
+  100% {
+    fill: #fff;
   }
 }
 @-webkit-keyframes shaky-sleep-bubble {

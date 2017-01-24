@@ -5,6 +5,7 @@ var ShakyVibrate = {
   shakeTimeout: null,
   $blackout: $('#blackout'),
   $alarm: $('#shaky-alarm'),
+  $coach: $('#shaky-coach'),
   introDialog: [
     "OK I'm feeling sleepy. I think I'm gonna doze off",
     "When I'm rested up give me a shake and I'll snap back to life and we can be off again Walking Forever",
@@ -144,6 +145,9 @@ var ShakyVibrate = {
 
     _this.pointsForGoal = 0;
 
+    $('#head').attr('transform', '');
+    $('#shaky-coach').attr('class', '');
+
     _this.myShakeEvent.start();
 
     _this.bind();
@@ -158,6 +162,9 @@ var ShakyVibrate = {
     _this.clearInterval();
 
     _this.unbind();
+
+    $('#head').attr('transform', 'rotate(-50 550 550)');
+    $('#shaky-coach').attr('class', 'awake');
 
     _this.myShakeEvent.stop();
 
