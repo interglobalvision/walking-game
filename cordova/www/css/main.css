@@ -1845,24 +1845,21 @@ h6 {
   }
 }
 
-#shaky-progress-holder {
-  position: relative;
-  width: 100%;
-  height: 50vh;
-  background-color: #008000;
-}
-#shaky-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 50vh;
-  background-color: #f00;
-  transition: width 0.2s;
-}
 .shaky-stage {
   background-color: #4d4d4d;
 }
-#shaky-background,
+.shaky-background {
+  position: absolute;
+  height: 100%;
+  width: 200%;
+  background-image: url("../img/games/shakyvibrate/shakyvibrate-background.svg");
+  background-size: 25%;
+  background-position: center;
+  background-repeat: repeat;
+  will-change: transform;
+  -webkit-animation: shaky-background 3s infinite linear;
+          animation: shaky-background 3s infinite linear;
+}
 #shaky-coach {
   position: absolute;
   top: 0;
@@ -1875,6 +1872,65 @@ h6 {
           transform-origin: bottom;
   -webkit-animation: shaky-sleep-bubble 3s infinite ease-in-out;
           animation: shaky-sleep-bubble 3s infinite ease-in-out;
+}
+#shaky-alarm {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+}
+#shaky-alarm.progress-1 .shaky-meter:nth-child(-n+4) {
+  display: block;
+}
+#shaky-alarm.progress-2 .shaky-meter:nth-child(-n+5) {
+  display: block;
+}
+#shaky-alarm.progress-3 .shaky-meter:nth-child(-n+6) {
+  display: block;
+}
+#shaky-alarm.progress-4 .shaky-meter:nth-child(-n+7) {
+  display: block;
+}
+#shaky-alarm.progress-5 .shaky-meter:nth-child(-n+8) {
+  display: block;
+}
+#shaky-alarm.progress-6 .shaky-meter:nth-child(-n+9) {
+  display: block;
+}
+#shaky-alarm.progress-7 .shaky-meter:nth-child(-n+10) {
+  display: block;
+}
+#shaky-alarm.progress-8 .shaky-meter:nth-child(-n+11) {
+  display: block;
+}
+#shaky-alarm.progress-9 .shaky-meter:nth-child(-n+12) {
+  display: block;
+}
+#shaky-alarm.progress-10 .shaky-meter:nth-child(-n+13) {
+  display: block;
+}
+.shaky-meter {
+  display: none;
+}
+@-webkit-keyframes shaky-background {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@keyframes shaky-background {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
 }
 @-webkit-keyframes shaky-sleep-bubble {
   0% {
