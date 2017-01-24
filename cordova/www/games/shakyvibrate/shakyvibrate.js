@@ -4,7 +4,7 @@ var ShakyVibrate = {
   pointsForGoal: 0,
   shakeTimeout: null,
   $blackout: $('#blackout'),
-  $progress: $('#shaky-progress'),
+  $alarm: $('#shaky-alarm'),
   introDialog: [
     "OK I'm feeling sleepy. I think I'm gonna doze off",
     "When I'm rested up give me a shake and I'll snap back to life and we can be off again Walking Forever",
@@ -122,9 +122,7 @@ var ShakyVibrate = {
     var _this = this;
     var percent = (_this.pointsForGoal / _this.goal) * 100;
 
-    _this.$progress.css({
-      'width': percent + '%',
-    });
+    _this.$alarm.attr('class', 'progress-' + Math.floor(percent / 10));
   },
 
   onStoppedShaking: function() {
