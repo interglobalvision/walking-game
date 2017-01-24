@@ -20,7 +20,7 @@ var OnePercent = {
   tryAgainDialog: [
     "What a shame " + Game.getUsername() + "...try again eh!?!",
   ],
-  looseDialog: [
+  loseDialog: [
     "Wow " + Game.getUsername() + "!! Terrible!",
     "Time for a walk...",
   ],
@@ -178,7 +178,7 @@ var OnePercent = {
 
     }, function() {
 
-      Utilities.Dialog.read(_this.looseDialog, function() {
+      Utilities.Dialog.read(_this.loseDialog, function() {
 
         _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
           Router.go('/pages/compass/');
