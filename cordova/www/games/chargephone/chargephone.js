@@ -64,7 +64,7 @@ var ChargePhone = {
     var _this = this;
 
     if (_this.interval) {
-      window.clearInterval(_this.interval);
+      clearInterval(_this.interval);
     }
   },
 
