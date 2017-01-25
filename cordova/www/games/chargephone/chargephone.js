@@ -114,7 +114,7 @@ var ChargePhone = {
 
     window.clearInterval(_this.countdown);
     $('.chargephone-stage').removeClass('show-phone charging');
-    $('#chargephone-phone').off('mousedown');
+    $('#chargephone-phone').off('touchstart');
   },
 
   win: function() {
