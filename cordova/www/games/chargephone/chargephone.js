@@ -113,6 +113,7 @@ var ChargePhone = {
     var _this = this;
 
     window.clearInterval(_this.countdown);
+    _this.clearVibrateInterval();
     $('.chargephone-stage').removeClass('show-phone charging');
     $('#chargephone-phone').off('touchstart');
   },
