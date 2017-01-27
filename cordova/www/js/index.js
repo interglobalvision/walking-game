@@ -482,8 +482,18 @@ Compass = {
         // Start orientation and position watchers
         _this.startGeoWatchers();
 
-        // Fade in map
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+        if (Game.getProgress() === 0) {
+          // Fade in map with dialog
+          _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+            Utilities.Dialog.read(Home.dialog, function() {
+              $('#coach-container').animate({'opacity': 0,}, 1000, 'linear');
+            });
+          });
+        } else {
+          $('#coach-container').css('opacity',0);
+          // Fade in map
+          _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+        }
 
       });
 
@@ -1214,7 +1224,7 @@ Utilities.Number = {
   getRandomInt: function(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   },
-  
+
   roundFloat: function(number) {
     // this is how to round to 3 decimal places in js lmao
     number = (number + 0.00001) * 1000;

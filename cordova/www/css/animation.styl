@@ -164,7 +164,7 @@
   top: 20%
   -webkit-filter: saturate(0)
   filter: saturate(0)
-  
+
 #livingroom-container
   position: fixed
   width: 100%
@@ -173,15 +173,15 @@
   will-change: transform
 
 .livingroom
-  width: 200% 
+  width: 200%
   left: -100%
-  
+
 #livingroom-wall
   z-index: 1
   filter: hue-rotate(10deg)
   background-image: url("../img/bedroom/wallpaper.gif")
   background-size: 15%
-  
+
 #livingroom-room
   background-image: url('../img/livingroom/room.svg')
   z-index: 2
@@ -206,7 +206,13 @@
   background-position: 20% 80%
   background-repeat: no-repeat
   will-change: transform
-  
+
+@keyframes livingroom-cat
+  from
+    transform: translateX(100%)
+  to
+    transform: translateX(-100%)
+
 #livingroom-sofa
   background-image: url('../img/livingroom/sofa.svg')
   z-index: 5
@@ -230,7 +236,7 @@
     width: 200px
     height: 200px
     margin-left: -100px
-    margin-top: -100px 
+    margin-top: -100px
 
 #livingroom-compass-bg
   position: absolute
@@ -240,7 +246,7 @@
   animation: hue 4s infinite linear
   width: 100%
   height: 100%
-  
+
 #livingroom-compass-obj
   position: absolute
   background-image: url('../img/compass.png')
@@ -251,11 +257,11 @@
   top: 50%
   left: 50%
   margin-top: 0px
-  margin-left: 0px 
+  margin-left: 0px
   transition: all 2s
   animation: livingroom-spin-compass 2s infinite linear
   will-change: transform
-  
+
 .letsgo-background
   position: absolute
   width: 100%
@@ -266,11 +272,11 @@
   background-position: center
   animation: letsgo-background 2s infinite ease-in-out
   will-change: background-color, filter
-  
+
 .letsgo-coach
   position: absolute
   top: 25%
-  left: 10% 
+  left: 10%
   width: 80%
   height: 50%
   background-image: url('../img/letsgo/letsgo-coach.svg')
@@ -279,11 +285,11 @@
   background-size: 800% 100%
   animation: letsgo-coach 1s steps(8, end) infinite
   will-change: background-position
-  
+
 .levelup-coach
   position: absolute
   top: 25%
-  left: 10% 
+  left: 10%
   width: 80%
   height: 50%
   background-image: url('../img/levelup/levelup-coach.svg')
@@ -292,66 +298,66 @@
   background-size: 600% 100%
   animation: levelup-coach 1s steps(6, end) infinite
   will-change: background-position
-  
+
 .levelup-background
   position: absolute
   width: 100%
   height: 100%
   background-position: center
   background-repeat: no-repeat
-  
+
 .levelup-background-1
   background-image: url('../img/levelup/levelup-background1.svg')
   background-size: 100% 100%
-  
+
 .levelup-background-2
   height: 200%
   background-image: url('../img/levelup/levelup-background2.svg')
   background-size: 120% 5%
   background-repeat: repeat-y
   will-change: transform
-  
+
 .levelup-background-3
   background-image: url('../img/levelup/levelup-background3.svg')
   background-size: 120%
   will-change: transform
-  
+
 .levelup-background-2-anim
   animation: levelup-background-2 1s infinite linear
-  
+
 .levelup-background-3-anim
   animation: levelup-background-3 1s infinite linear
 
 @keyframes levelup-coach
-  from 
+  from
     background-position: 0%
   to
     background-position: 600%
-    
+
 @keyframes levelup-background-2
-  from 
+  from
     transform: translateY(0%)
   to
     transform: translateY(-50%)
-    
+
 @keyframes levelup-background-3
-  from 
+  from
     transform: rotate(0deg)
   to
     transform: rotate(360deg)
 
 @keyframes letsgo-coach
-  from 
+  from
     background-position: 0%
   to
     background-position: 800%
-  
+
 @keyframes letsgo-background
   0%
     background-color: black
     -webkit-filter: hue-rotate(100deg)
     filter: hue-rotate(100deg)
-  50% 
+  50%
     background-color: white
     -webkit-filter: hue-rotate(150deg)
     filter: hue-rotate(150deg)
@@ -363,7 +369,7 @@
 @keyframes bear-clock
   from
     background-position: 0%
-  to 
+  to
     background-position: 600%
 
 @keyframes coach-fly
@@ -410,12 +416,6 @@
     background-position: 0%
   to
     background-position: 200%
-
-@keyframes livingroom-cat
-  from
-    transform: translateX(100%)
-  to
-    transform: translateX(-100%)
 
 @keyframes livingroom-spin-compass
   from
