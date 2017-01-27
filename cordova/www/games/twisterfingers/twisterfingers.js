@@ -176,8 +176,8 @@ var TwisterFingers = {
     _this.unbind();
 
     $('.twister-target').css({
-      'background-color': 'none',
-      'border': 'none'
+      'background-color': '',
+      'border': ''
     });
   },
 
@@ -210,7 +210,7 @@ var TwisterFingers = {
     Game.gameFail(function() {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
-
+        _this.startGame();
       });
 
     }, function() {
