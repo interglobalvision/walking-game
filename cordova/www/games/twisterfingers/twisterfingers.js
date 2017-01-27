@@ -10,8 +10,6 @@ if user ends the hold the game fails, if user cancels a hold the game fails, if 
 var TwisterFingers = {
   $blackout: $('#blackout'),
 
-  targetOrder: [1, 2, 3, 4],
-
   introDialog: [
     "Okely " + Utilities.Word.getNoun() + ", lets twist",
     "Press and hold with a finger for each target as they light up. Don't let go!",
@@ -32,6 +30,23 @@ var TwisterFingers = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
+    _this.targets = [];
+
+    for (var i = 0; i < 4; i++) {
+      var id = '#twister-target-' + (i + 1);
+      var coordinates = _this.getTargetCenter($(id));
+
+      _this.targets[i] = {
+        index: i,
+        id: id,
+        $element: $(id),
+        x: coordinates.x,
+        y: coordinates.y,
+      };
+    };
+
+    _this.targetRadius = (_this.targets[0].$element.innerWidth() / 2);
+
     Utilities.Dialog.read(_this.introDialog, function() {
       _this.startGame();
     });
@@ -41,72 +56,116 @@ var TwisterFingers = {
   startGame: function() {
     var _this = this;
 
-    _this.targetOrder = Utilities.Misc.shuffleArray(_this.targetOrder);
+    _this.targets = Utilities.Misc.shuffleArray(_this.targets);
 
-    _this.setTarget(_this.targetOrder[0]);
+    _this.progress = 0;
+
+    _this.touches = [];
+
+    _this.newTarget();
 
     _this.bind();
 
   },
 
-  setTarget: function(target) {
+  newTarget: function() {
     var _this = this;
 
-    _this.target = target;
-    _this.$target = $('#twister-target-' + (target + 1));
-
-    _this.$target.css('background-color', 'teal');
+    _this.target = _this.targets[_this.progress];
+    _this.target.$element.css('background-color', 'pink');
   },
 
-  log: function(data) {
-    console.log(data)
+  getTargetCenter: function($target) {
+    var _this = this;
+    var data = {};
+    var offset = $target.offset();
+    var size = $target.innerWidth();
+
+    data.x = offset.left + (size / 2);
+    data.y = offset.top + (size / 2);
+
+    return data;
   },
 
   bind: function() {
     var _this = this;
 
-    document.body.addEventListener('touchstart', _this.onTouchStart.bind(event), false);
-    document.body.addEventListener('touchmove', _this.log.bind(event), false);
-    document.body.addEventListener('touchend', _this.onTouchEnd.bind(event), false);
-    document.body.addEventListener('touchcancel', _this.onTouchEnd.bind(event), false);
+    $(document).on('touchstart.touchstart', _this.onTouchStart.bind(_this));
+    $(document).on('touchmove.touchmove', _this.onTouchMove.bind(_this));
+    $(document).on('touchend.touchend', _this.onTouchEnd.bind(_this));
+    $(document).on('touchcancel.touchcancel', _this.onTouchEnd.bind(_this));
 
   },
 
   unbind: function() {
     var _this = this;
 
-    document.body.removeEventListener('touchstart', _this.onTouchStart.bind(_this), false);
-    document.body.removeEventListener('touchmove', _this.log.bind(_this), false);
-    document.body.removeEventListener('touchend', _this.onTouchEnd.bind(_this), false);
-    document.body.removeEventListener('touchcancel', _this.onTouchEnd.bind(_this), false);
+    $(document).off('touchstart.touchstart');
+    $(document).off('touchmove.touchmove');
+    $(document).off('touchend.touchend');
+    $(document).off('touchcancel.touchcancel');
+
+  },
+
+  isInsideRadius: function(x1, y1, x2, y2) {
+    var _this = this;
+
+    var distance = Math.sqrt( (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) );
+
+    if (distance <= _this.targetRadius) {
+      return true;
+    } else {
+      return false;
+    }
 
   },
 
   onTouchStart: function(event) {
     var _this = this;
+    var touch = event.originalEvent.touches[event.originalEvent.touches.length - 1];
 
-    console.log(event);
-
-    // check if touch location is inside target.
-    // if not fail
+    if (_this.isInsideRadius(_this.target.x, _this.target.y, touch.pageX, touch.pageY)) {
     // if yes save touch id to target then generate new target
+      _this.progress++;
+
+      _this.touches[touch.identifier] = _this.target;
+
+      _this.target.$element.css({
+        'background-color': 'green',
+        'border': '1px solid pink'
+      });
+
+      if (_this.progress === 4) {
+        _this.win();
+      } else {
+        _this.newTarget();
+      }
+
+    } else {
+      _this.fail();
+    }
 
   },
 
   onTouchMove: function(event) {
     var _this = this;
 
-    console.log(event);
-
     // check for touch id in array of saved touches. then check that new position is not outside target associated with that id if it is then fail game
     // (possibly add a warning state for near edge of target?)
+
+    $(event.originalEvent.changedTouches).each(function(index, item) {
+      var touchTarget = _this.touches[item.identifier];
+
+      if (!_this.isInsideRadius(touchTarget.x, touchTarget.y, item.pageX, item.pageY)) {
+        _this.fail();
+      }
+
+    });
 
   },
 
   onTouchEnd: function(event) {
     var _this = this;
-
-    console.log(event);
 
     _this.fail();
   },
@@ -115,12 +174,19 @@ var TwisterFingers = {
     var _this = this;
 
     _this.unbind();
+
+    $('.twister-target').css({
+      'background-color': 'none',
+      'border': 'none'
+    });
   },
 
   win: function() {
     var _this = this;
 
     _this.stopGame();
+
+    Utilities.Misc.vibrate();
 
     var score = Game.getStepsPot();
 

@@ -2101,6 +2101,7 @@ h6 {
   margin: 5vw;
   background-color: #000;
   float: left;
+  box-sizing: border-box;
 }
 
 .vibey-background {
