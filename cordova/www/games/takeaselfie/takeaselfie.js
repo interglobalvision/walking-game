@@ -2,11 +2,10 @@ var Colorsnap = {
   goldenRatio: 0.618033988749895,
   targetColor: undefined,
   $blackout: $('#blackout'),
-  $takePhoto: $('#take-photo'),
-  $photoHolder: $('#output-img'),
+  $takeSelfie: $('#take-selfie'),
+  $photoHolder: $('#output-selfie'),
   introDialog: [
-    "It's time to play COLORSNAP!",
-    "Allow me to paint your target color...",
+    "It's time to play TAKE A SELFIE!",
   ],
   showColorDialog: [
     "That's your target color!",
@@ -33,35 +32,7 @@ var Colorsnap = {
     }
 
     Utilities.Dialog.read(_this.introDialog, function() {
-      _this.setTargetColor();
-    });
-
-    _this.bindEvents();
-  },
-
-  setTargetColor: function() {
-    var _this = this;
-    var rand = Math.random();
-
-    rand += _this.goldenRatio;
-    rand %= 1;
-
-    var randomHslColor = [rand, 0.7, 0.5,];
-
-    _this.targetColor = Utilities.Color.hslToRgb(randomHslColor[0], randomHslColor[1], randomHslColor[2]);
-
-    $('#brush-color, #target-color').css('fill', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
-
-    $('.colorsnap-background').css('background-color', 'rgb(' + _this.targetColor[0] + ', ' + _this.targetColor[1] + ', ' + _this.targetColor[2] + ')');
-
-    $('#brush').attr('class', 'brush-swipe');
-
-    Utilities.Misc.vibrate();
-
-    $('#splat').attr('class', 'show-splat');
-
-    Utilities.Dialog.read(_this.showColorDialog, function() {
-      _this.$takePhoto.addClass('show-camera');
+      _this.bindEvents();
     });
 
   },
@@ -69,14 +40,13 @@ var Colorsnap = {
   bindEvents: function() {
     var _this = this;
 
-    _this.$takePhoto.on({
+    _this.$takeSelfie.on({
       'click': function() {
 
-        _this.$takePhoto.removeClass('show-camera');
+        _this.$takeSelfie.removeClass('show-camera');
 
         navigator.camera.getPicture(function(data) {
           _this.previewPhoto(data);
-          _this.analyzeResult(data);
         },
 
         function(error) {
@@ -85,14 +55,39 @@ var Colorsnap = {
         },
 
         {
-          targetWidth: 480,
-          targetHeight: 640,
-          quality: 80,
+          targetWidth: 1932,
+          targetHeight: 2576,
+          quality: 100,
+          destinationType: Camera.DestinationType.FILE_URI
         });
 
       },
     });
 
+    // detect if tracker fails to find a face
+    document.addEventListener("clmtrackrNotFound", function(event) {
+      _this.ctracker.stop();
+      _this.fail();
+      alert("The tracking had problems with finding a face in this image. Try selecting the face in the image manually.")
+    }, false);
+
+    // detect if tracker loses tracking of face
+    document.addEventListener("clmtrackrLost", function(event) {
+      _this.ctracker.stop();
+      alert("The tracking had problems converging on a face in this image. Try selecting the face in the image manually.")
+    }, false);
+
+    // detect if tracker has converged
+    document.addEventListener("clmtrackrConverged", function(event) {
+      _this.ctracker.stop();
+      _this.win();
+      /*
+      document.getElementById('convergence').innerHTML = "CONVERGED";
+      document.getElementById('convergence').style.backgroundColor = "#00FF00";
+      // stop drawloop
+      cancelRequestAnimFrame(drawRequest);
+      */
+    }, false);
   },
 
   resetPhoto: function() {
@@ -108,52 +103,22 @@ var Colorsnap = {
   previewPhoto: function(data) {
     var _this = this;
 
-    _this.$photoHolder.attr('src', data).animate({'opacity': 1,}, 500, 'linear');
+    _this.$photoHolder.on('load', function(e) {
+      _this.analyzeResult();
+    }).attr('src', data).animate({'opacity': 1,}, 500, 'linear');
   },
 
-  analyzeResult: function(data) {
+  analyzeResult: function() {
     var _this = this;
 
-    var photo = new Image();
-
-    photo.src = data;
-
-    // is this async? this needs to block no?
-    photo.onload = function() {
-      var targetColor = _this.targetColor;
-      var arrayMatch;
-      var colorThief = new ColorThief();
-      var paletteArray = colorThief.getPalette(photo, 2);
-
-      for (var i = 0; i < paletteArray.length; i++) {
-        if (Utilities.Color.isNeighborColor(targetColor, paletteArray[i], 88) ) {
-          result = true;
-          arrayMatch = i;
-          break;
-        }
-      }
-
-      if (result) {
-
-        var psuedoCloseness = [
-          targetColor[0] - paletteArray[arrayMatch][0],
-          targetColor[1] - paletteArray[arrayMatch][1],
-          targetColor[2] - paletteArray[arrayMatch][2],
-        ];
-
-        //var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
-
-        _this.win();
-
-      } else {
-
-        _this.fail();
-
-      }
-
-    };
-
-    var result = false;
+    _this.$photoHolder.faceDetection({
+      complete: function (faces) {
+        console.log(faces);
+      },
+      error: function(code, message) {
+        console.log(code, message);
+      },
+    });
 
   },
 
