@@ -5,7 +5,7 @@ var Loud = {
 
     _this.$loudBar = $('#loud-bar');
 
-    var src = "myrecording.mp3";
+    var src = 'myrecording.wav';
     _this.mediaRec = new Media(src,
       // success callback
       function() {
