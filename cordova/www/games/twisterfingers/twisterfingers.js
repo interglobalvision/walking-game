@@ -169,9 +169,10 @@ var TwisterFingers = {
   onTouchEnd: function(event) {
     var _this = this;
 
-    console.log('touchend event', event);
+    if (event.target.classList[0] === 'twister-target') {
+      _this.fail();
+    }
 
-    _this.fail();
   },
 
   onTouchCancel: function(event) {
