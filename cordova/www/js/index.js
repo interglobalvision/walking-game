@@ -482,11 +482,12 @@ Compass = {
         // Start orientation and position watchers
         _this.startGeoWatchers();
 
-        if (Game.getProgress() === 0) {
+        if (window.localStorage.getItem('firstwalk'); === 1) {
           // Fade in map with dialog
           _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
             Utilities.Dialog.read(Home.dialog, function() {
               $('#coach-container').animate({'opacity': 0,}, 1000, 'linear');
+              window.localStorage.setItem('firstwalk', 0);
             });
           });
         } else {
@@ -578,6 +579,7 @@ Game = {
     window.localStorage.setItem('distance', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
+    window.localStorage.setItem('firstwalk', 1);
     window.localStorage.setItem('rank', _this.newRank());
     _this.setupLoop();
 
