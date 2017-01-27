@@ -10,6 +10,8 @@ if user ends the hold the game fails, if user cancels a hold the game fails, if 
 var TwisterFingers = {
   $blackout: $('#blackout'),
 
+  touchesToWin: 4,
+
   introDialog: [
     "Okely " + Utilities.Word.getNoun() + ", lets twist",
     "Press and hold with a finger for each target as they light up. Don't let go!",
@@ -32,7 +34,7 @@ var TwisterFingers = {
 
     _this.targets = [];
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < 6; i++) {
       var id = '#twister-target-' + (i + 1);
       var coordinates = _this.getTargetCenter($(id));
 
@@ -93,7 +95,7 @@ var TwisterFingers = {
     $(document).on('touchstart.touchstart', _this.onTouchStart.bind(_this));
     $(document).on('touchmove.touchmove', _this.onTouchMove.bind(_this));
     $(document).on('touchend.touchend', _this.onTouchEnd.bind(_this));
-    $(document).on('touchcancel.touchcancel', _this.onTouchEnd.bind(_this));
+    $(document).on('touchcancel.touchcancel', _this.onTouchCancel.bind(_this));
 
   },
 
@@ -135,7 +137,7 @@ var TwisterFingers = {
         'border': '1px solid pink'
       });
 
-      if (_this.progress === 4) {
+      if (_this.progress === _this.touchesToWin) {
         _this.win();
       } else {
         _this.newTarget();
@@ -165,6 +167,14 @@ var TwisterFingers = {
   },
 
   onTouchEnd: function(event) {
+    var _this = this;
+
+    console.log('touchend event', event);
+
+    _this.fail();
+  },
+
+  onTouchCancel: function(event) {
     var _this = this;
 
     _this.fail();
