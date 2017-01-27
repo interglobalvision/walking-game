@@ -37,7 +37,7 @@ var Loud = {
     if (_this.mediaRec) {
       _this.mediaRec.getCurrentAmplitude(function(value) {
         console.log(value);
-        _this.$loudBar.width(value * 100 + '%');
+        _this.$loudBar.height(value * 100 + '%');
       }, function(err) {
         console.log(err);
       });
