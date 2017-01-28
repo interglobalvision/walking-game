@@ -8,7 +8,10 @@ var FavFood = {
   winDialog: [
     "I'm glad friends we are. And friends together we walk walk walk...",
   ],
-  failDialog: [
+  tryAgainDialog: [
+    "I can give you another go, but this is not right",
+  ],
+  loseDialog: [
     "Hmmmm I'm quite upset " + Game.getUsername(),
   ],
 
@@ -26,11 +29,43 @@ var FavFood = {
   bind: function() {
     var _this = this;
 
+    $('.option').on('click.options', function() {
+      console.log(this);
+
+      var answer = $(this).data('number');
+
+      if (answer === _this.answer) {
+        _this.win();
+      } else {
+        _this.fail();
+      }
+    });
+
+  },
+
+  unbind: function() {
+    var _this = this;
+
+    $('.option').on('click.options');
+  },
+
+  generateAnswers: function() {
+    var _this = this;
+
+    for (var i = 0; i < 3; i++) {
+      var option = '<h2 class="option" data-number="' + i + '">' + Utilities.Word.getNoun(false, true) + '</h2>';
+
+      $('#stage').append(option);
+    }
+
+    _this.answer = Utilities.Number.getRandomInt(0, 2);
+
   },
 
   startGame: function() {
     var _this = this;
 
+    _this.generateAnswers();
     _this.bind();
   },
 
@@ -49,10 +84,24 @@ var FavFood = {
   fail: function() {
     var _this = this;
 
-    Utilities.Dialog.read(_this.failDialog, function() {
+    $('.option').remove();
 
-      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        Router.go('/pages/compass/');
+    Game.gameFail(function() {
+
+      Utilities.Dialog.read(_this.tryAgainDialog, function() {
+
+        _this.startGame();
+
+      });
+
+    }, function() {
+
+      Utilities.Dialog.read(_this.loseDialog, function() {
+
+        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+          Router.go('/pages/compass/');
+        });
+
       });
 
     });

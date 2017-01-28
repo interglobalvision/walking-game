@@ -529,6 +529,7 @@ WalkingError = {
 };
 Game = {
   minigames: [
+    'favfood',
     'tippyswitch',
     'shakyvibrate',
     'math',
