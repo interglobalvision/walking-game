@@ -60,22 +60,21 @@ window.requestAnimationFrame = (function(){
 var requestAnimationFrame = window.requestAnimationFrame;
 
 document.addEventListener('deviceready', function() {
-  cordova.plugins.diagnostic.getMicrophoneAuthorizationStatus(function(status){
-    if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
-      console.log("Microphone use is authorized");
+  cordova.plugins.diagnostic.getMicrophoneAuthorizationStatus(function(status) {
+    if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED) {
       Loud.init();
     } else {
-      cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status){
-        if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED){
-          console.log("Microphone use is authorized");
+      cordova.plugins.diagnostic.requestMicrophoneAuthorization(function(status) {
+        if(status === cordova.plugins.diagnostic.permissionStatus.GRANTED) {
           Loud.init();
         }
-      }, function(error){
+      }, function(error) {
         console.error(error);
+        WalkingError.unsupported('microphone access');
       });
     }
-  }, function(error){
-    console.error("The following error occurred: "+error);
+  }, function(error) {
+    console.error("The following error occurred: " + error);
+    WalkingError.unsupported('microphone access');
   });
 }, false);
-
