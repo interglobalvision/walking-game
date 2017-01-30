@@ -462,6 +462,26 @@ table {
     width: 100%;
   }
 }
+@-webkit-keyframes livingroom-cat {
+  from {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+@keyframes livingroom-cat {
+  from {
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
 @-webkit-keyframes levelup-coach {
   from {
     background-position: 0%;
@@ -706,26 +726,6 @@ table {
   }
   to {
     background-position: 200%;
-  }
-}
-@-webkit-keyframes livingroom-cat {
-  from {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-  }
-  to {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-  }
-}
-@keyframes livingroom-cat {
-  from {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-  }
-  to {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
   }
 }
 @-webkit-keyframes livingroom-spin-compass {
