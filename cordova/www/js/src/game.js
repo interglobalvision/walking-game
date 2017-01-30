@@ -1,5 +1,6 @@
 Game = {
   minigames: [
+    'twisterfingers',
     'tippyswitch',
     'shakyvibrate',
     'math',
