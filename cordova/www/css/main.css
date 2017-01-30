@@ -2240,6 +2240,16 @@ h6 {
   }
 }
 
+.twister-target {
+  width: 40vw;
+  height: 40vw;
+  border-radius: 20vw;
+  margin: 5vw;
+  background-color: #000;
+  float: left;
+  box-sizing: border-box;
+}
+
 .vibey-background {
   position: absolute;
   top: 0;

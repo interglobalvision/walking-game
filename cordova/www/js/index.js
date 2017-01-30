@@ -530,6 +530,7 @@ WalkingError = {
 Game = {
   minigames: [
     'favfood',
+    'twisterfingers',
     'tippyswitch',
     'shakyvibrate',
     'math',
