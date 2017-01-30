@@ -39,6 +39,7 @@ Game = {
     window.localStorage.setItem('distance', 0);
     window.localStorage.setItem('loops', 0);
     window.localStorage.setItem('world', 0);
+    window.localStorage.setItem('firstwalk', 1);
     window.localStorage.setItem('rank', _this.newRank());
     _this.setupLoop();
 
