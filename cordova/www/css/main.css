@@ -1277,6 +1277,7 @@ ul.u-inline-list li {
   position: fixed;
   bottom: 0;
   background: #f00;
+  transition: all 300ms linear;
 }
 
 html {
