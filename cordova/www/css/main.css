@@ -1272,6 +1272,14 @@ ul.u-inline-list li {
   }
 }
 
+#loud-bar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: #f00;
+  transition: all 300ms linear;
+}
+
 html {
   background-color: #fff;
   color: #000;

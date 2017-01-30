@@ -1,5 +1,6 @@
 Game = {
   minigames: [
+    'hardcoreloud',
     'favfood',
     'twisterfingers',
     'tippyswitch',
