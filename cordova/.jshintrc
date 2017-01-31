@@ -41,6 +41,8 @@
     "FastClick",
     "Menu",
     "Adjs",
-    "Nouns"
+    "Nouns",
+    "cordova",
+    "Media"
   ]
 }
