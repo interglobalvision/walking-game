@@ -30,7 +30,21 @@ var TwisterFingers = {
   init: function() {
     var _this = this;
 
-    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+      var time = 0;
+
+      $('.twister-target').each(function() {
+        var $target = $(this);
+
+        setTimeout( function(){
+          $target.animate({'border-width': '5vw'}, 100, function() {
+            $target.animate({'border-width': '3vw'}, 50);
+          });
+        }, time);
+
+        time += 150;
+      });
+    });
 
     _this.targets = [];
 
