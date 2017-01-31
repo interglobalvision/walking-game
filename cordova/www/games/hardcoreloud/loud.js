@@ -1,17 +1,16 @@
 var Loud = {
   $blackout: $('#blackout'),
-  $loudBar: $('#loud-bar'),
+  $loudBar: $('#loud-color-container'),
+  $wordContainer: $('#loud-word'),
 
   failTime: 5000,
   winTime: 200,
   winTheshold: .85,
 
-  introDialog: [
-    "This one is a lung tester. I need you to scream. Really loudly!",
-    "Get ready and throw that shout",
-  ],
+  word: Utilities.Word.getNoun(),
+
   tryAgainDialog: [
-    "...too quiet...I can't hear you...",
+    "...too slow...too quiet...I can't hear you...",
   ],
   loseDialog: [
     "no more than a whimper",
@@ -25,7 +24,11 @@ var Loud = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
-    Utilities.Dialog.read(_this.introDialog, function() {
+    Utilities.Dialog.read([
+      "Oh " + Game.getUsername() + ", suddenly I'm very old... Help me be young again!",
+      "You must shout the magic word LOUD and FAST!",
+      "The magic word is......." + _this.word + "!! Now lets hear you shout it!",
+    ], function() {
       _this.startGame();
     });
 
@@ -56,6 +59,9 @@ var Loud = {
       }
     );
 
+    // Show word
+    _this.$wordContainer.html(_this.word).css('opacity',1);
+
     // Record audio
     _this.mediaRec.startRecord();
 
@@ -75,7 +81,7 @@ var Loud = {
 
     if (_this.mediaRec) {
       _this.mediaRec.getCurrentAmplitude(function(value) {
-        _this.$loudBar.height(value * 100 + '%');
+        _this.$loudBar.css('opacity', value);
 
         if (value >= _this.winTheshold) {
           if (!_this.winTimeout) {
