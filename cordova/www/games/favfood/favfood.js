@@ -6,13 +6,14 @@ var FavFood = {
     "Now me you will tell, my prefered food is which?!?!",
   ],
   winDialog: [
-    "I'm glad friends we are. And friends together we walk walk walk...",
+    "You guessed my favorite, " + Utilities.Word.getNoun() + "! I'm glad " + Utilities.Word.getAdj(false, false) + " friends we are. And friends together we walk walk walk...",
   ],
   tryAgainDialog: [
-    "I can give you another go, but this is not right",
+    "Ooo I'm getting hungry... but this is not my favorite! Try again...",
   ],
   loseDialog: [
-    "Hmmmm I'm quite upset " + Game.getUsername(),
+    "Humph! I guess I'll go without eating then, " + Game.getUsername(),
+    "We'll just walk instead...!",
   ],
 
   init: function() {
@@ -29,8 +30,14 @@ var FavFood = {
   bind: function() {
     var _this = this;
 
+    $('#favfood-coach').toggleClass('coach-move');
+
     $('.option').on('click.options', function() {
       console.log(this);
+
+      $('#favfood-options').toggleClass('show-options');
+
+      $('#favfood-coach').toggleClass('coach-move');
 
       var answer = $(this).data('number');
 
@@ -52,11 +59,15 @@ var FavFood = {
   generateAnswers: function() {
     var _this = this;
 
+    $('.option').remove();
+
     for (var i = 0; i < 3; i++) {
       var option = '<h2 class="option" data-number="' + i + '">' + Utilities.Word.getNoun(false, true) + '</h2>';
 
-      $('#stage').append(option);
+      $('#favfood-options').append(option);
     }
+
+    $('#favfood-options').toggleClass('show-options');
 
     _this.answer = Utilities.Number.getRandomInt(0, 2);
 
@@ -84,8 +95,6 @@ var FavFood = {
   fail: function() {
     var _this = this;
 
-    $('.option').remove();
-
     Game.gameFail(function() {
 
       Utilities.Dialog.read(_this.tryAgainDialog, function() {
@@ -98,7 +107,7 @@ var FavFood = {
 
       Utilities.Dialog.read(_this.loseDialog, function() {
 
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+        _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
           Router.go('/pages/compass/');
         });
 
