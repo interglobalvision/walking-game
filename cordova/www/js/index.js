@@ -482,7 +482,7 @@ Compass = {
         // Start orientation and position watchers
         _this.startGeoWatchers();
 
-        if (window.localStorage.getItem('firstwalk') === 1) {
+        if (parseInt(window.localStorage.getItem('firstwalk')) === 1) {
           // Fade in map with dialog
           _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
             Utilities.Dialog.read(Home.dialog, function() {
