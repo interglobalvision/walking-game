@@ -64,17 +64,18 @@ var TwisterFingers = {
 
     _this.touches = [];
 
+    $('.twister-target').removeClass('show');
+
     _this.newTarget();
 
     _this.bind();
-
   },
 
   newTarget: function() {
     var _this = this;
 
     _this.target = _this.targets[_this.progress];
-    _this.target.$element.css('background-color', 'pink');
+    _this.target.$element.addClass('touchme show');
   },
 
   getTargetCenter: function($target) {
@@ -132,10 +133,7 @@ var TwisterFingers = {
 
       _this.touches[touch.identifier] = _this.target;
 
-      _this.target.$element.css({
-        'background-color': 'green',
-        'border': '1px solid pink'
-      });
+      _this.target.$element.removeClass('touchme').addClass('touched');;
 
       if (_this.progress === _this.touchesToWin) {
         _this.win();
@@ -186,10 +184,7 @@ var TwisterFingers = {
 
     _this.unbind();
 
-    $('.twister-target').css({
-      'background-color': '',
-      'border': ''
-    });
+    $('.twister-target').removeClass('touchme touched').addClass('show');
   },
 
   win: function() {
