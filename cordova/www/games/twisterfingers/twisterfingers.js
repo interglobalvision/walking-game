@@ -20,7 +20,7 @@ var TwisterFingers = {
     "Big winner " + Utilities.Word.getNoun() + ". Big winner",
   ],
   tryAgainDialog: [
-    "What a shambles you are " + Utilities.Word.getNoun() + "! Give it another shot.",
+    "What a-shambles you are, " + Utilities.Word.getNoun() + "! Give it another shot.",
   ],
   loseDialog: [
     "..." + Game.getUsername() + "...well guess WHAT?",
