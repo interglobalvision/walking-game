@@ -13,11 +13,11 @@ var TwisterFingers = {
   touchesToWin: 4,
 
   introDialog: [
-    "Okely " + Utilities.Word.getNoun() + ", lets twist",
+    "Okely " + Game.getUsername() + ", lets twist",
     "Press and hold with a finger for each target as they light up. Don't let go!",
   ],
   winDialog: [
-    "Big winner " + Utilities.Word.getNoun() + ". Big winner",
+    "Big winner, " + Utilities.Word.getNoun() + ". Big winner...",
   ],
   tryAgainDialog: [
     "What a-shambles you are, " + Utilities.Word.getNoun() + "! Give it another shot.",
