@@ -13,14 +13,14 @@ var TwisterFingers = {
   touchesToWin: 4,
 
   introDialog: [
-    "Okely " + Utilities.Word.getNoun() + ", lets twist",
+    "Okely " + Game.getUsername() + ", lets twist",
     "Press and hold with a finger for each target as they light up. Don't let go!",
   ],
   winDialog: [
-    "Big winner " + Utilities.Word.getNoun() + ". Big winner",
+    "Big winner, " + Utilities.Word.getNoun() + ". Big winner...",
   ],
   tryAgainDialog: [
-    "What a shambles you are " + Utilities.Word.getNoun() + "! Give it another shot.",
+    "What a-shambles you are, " + Utilities.Word.getNoun() + "! Give it another shot.",
   ],
   loseDialog: [
     "..." + Game.getUsername() + "...well guess WHAT?",
@@ -29,8 +29,6 @@ var TwisterFingers = {
 
   init: function() {
     var _this = this;
-
-    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
     _this.targets = [];
 
@@ -49,8 +47,26 @@ var TwisterFingers = {
 
     _this.targetRadius = (_this.targets[0].$element.innerWidth() / 2);
 
-    Utilities.Dialog.read(_this.introDialog, function() {
-      _this.startGame();
+    _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+      var time = 0;
+
+      $('.twister-target').each(function() {
+        var $target = $(this);
+
+        setTimeout( function(){
+          $target.animate({'border-width': '5vw'}, 100, function() {
+            $target.animate({'border-width': '3vw'}, 50);
+          });
+        }, time);
+
+        time += 150;
+
+      });
+
+      Utilities.Dialog.read(_this.introDialog, function() {
+        _this.startGame();
+      });
+
     });
 
   },
@@ -64,17 +80,18 @@ var TwisterFingers = {
 
     _this.touches = [];
 
+    $('.twister-target').removeClass('show');
+
     _this.newTarget();
 
     _this.bind();
-
   },
 
   newTarget: function() {
     var _this = this;
 
     _this.target = _this.targets[_this.progress];
-    _this.target.$element.css('background-color', 'pink');
+    _this.target.$element.addClass('touchme show');
   },
 
   getTargetCenter: function($target) {
@@ -132,10 +149,7 @@ var TwisterFingers = {
 
       _this.touches[touch.identifier] = _this.target;
 
-      _this.target.$element.css({
-        'background-color': 'green',
-        'border': '1px solid pink'
-      });
+      _this.target.$element.removeClass('touchme').addClass('touched');;
 
       if (_this.progress === _this.touchesToWin) {
         _this.win();
@@ -186,10 +200,7 @@ var TwisterFingers = {
 
     _this.unbind();
 
-    $('.twister-target').css({
-      'background-color': '',
-      'border': ''
-    });
+    $('.twister-target').removeClass('touchme touched').addClass('show');
   },
 
   win: function() {
