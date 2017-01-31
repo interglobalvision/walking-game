@@ -5,7 +5,7 @@ var Loud = {
 
   failTime: 5000,
   winTime: 200,
-  winTheshold: .85,
+  winTheshold: 0.85,
 
   word: Utilities.Word.getNoun(),
 
@@ -43,7 +43,7 @@ var Loud = {
       // success callback
       function(event) {
 
-        console.log(event);
+      //  console.log(event);
 
       },
       // error callback
@@ -54,7 +54,7 @@ var Loud = {
     },
       function(event) {
 
-        console.log(event);
+      //  console.log(event);
 
       }
     );
@@ -79,29 +79,30 @@ var Loud = {
   draw: function() {
     var _this = this;
 
-    if (_this.mediaRec) {
-      _this.mediaRec.getCurrentAmplitude(function(value) {
-        _this.$loudBar.css('opacity', value);
-
-        if (value >= _this.winTheshold) {
-          if (!_this.winTimeout) {
-            _this.winTimeout = window.setTimeout(function() {
-              _this.win();
-            }, _this.winTime);
-          }
-        } else {
-          window.clearTimeout(_this.winTimeout);
-          _this.winTimeout = false;
-        }
-
-      }, function(err) {
-        console.log("recordAudio():Audio Error: "+ err.code);
-        console.log(err);
-        WalkingError.unsupported('microphone access');
-      });
-    }
-
     if (!_this.paused) {
+
+      if (_this.mediaRec) {
+        _this.mediaRec.getCurrentAmplitude(function(value) {
+          _this.$loudBar.css('opacity', value);
+
+          if (value >= _this.winTheshold) {
+            if (!_this.winTimeout) {
+              _this.winTimeout = window.setTimeout(function() {
+                _this.win();
+              }, _this.winTime);
+            }
+          } else {
+            window.clearTimeout(_this.winTimeout);
+            _this.winTimeout = false;
+          }
+
+        }, function(err) {
+          console.log("recordAudio():Audio Error: "+ err.code);
+          console.log(err);
+          WalkingError.unsupported('microphone access');
+        });
+      }
+
       requestAnimationFrame(_this.draw.bind(_this));
     }
   },
@@ -114,6 +115,8 @@ var Loud = {
 
     _this.paused = true;
     _this.mediaRec.stopRecord();
+
+    _this.$loudBar.css('opacity', 1);
 
     var score = Game.getStepsPot();
 
