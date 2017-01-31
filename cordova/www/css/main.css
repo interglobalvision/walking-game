@@ -2262,7 +2262,7 @@ h6 {
   background-color: #fff;
   float: left;
   box-sizing: border-box;
-  border: 10px solid #000;
+  border: 3vw solid #000;
   background-image: url("../img/games/twisterfingers/twister-coach.svg");
   background-size: 80%;
   background-position: center;
@@ -2275,9 +2275,10 @@ h6 {
 }
 .twister-target.touchme {
   background-color: #ff931e;
+  box-shadow: 0px 0px 10vw #e4ff00;
 }
 .twister-target.touched {
-  border-width: 7px;
+  border-width: 5vw;
   background-color: #d9e021;
 }
 
