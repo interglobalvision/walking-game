@@ -849,20 +849,52 @@ Game = {
     window.plugins.socialsharing.share(
       _this.shareTitle(score),
       _this.shareSubject,
-      'http://puu.sh/mTFtM/242a0fa967.png',
+      _this.generateShareImage(score),
       _this.shareUrl,
       function() {
         console.log('share ok');
       },
-
       function(errorMessage) {
         console.log('share failed');
         console.log(errorMessage);
-        alert('something went wrong');
+        alert('Something went wrong. Maybe you got no friends?');
       }
 
     );
 
+  },
+
+  generateShareImage: function(points) {
+    $('body').append('<canvas id="canvas" width="1000" height="1000" style="display: none"></canvas>');
+
+    var canvas = document.getElementById('canvas');
+    var stage = new createjs.Stage('canvas');
+    var shape = new createjs.Shape();
+
+    shape.graphics.beginFill('red').drawRect(50, 50, 650, 650);
+    stage.addChild(shape);
+
+    var textIntro = new createjs.Text('playing Walking Game and I got some points', '50px Arial', '#fff');
+    textIntro.x = 100;
+    textIntro.y= 40;
+
+    stage.addChild(textIntro);
+
+    var textPoints = new createjs.Text(points, '100px Arial', '#ff7700');
+    textPoints.x = 450;
+    textPoints.y= 450;
+
+    stage.addChild(textPoints);
+
+    stage.update();
+
+    var returnImage = stage.toDataURL();
+
+    console.log(returnImage);
+
+    $('#canvas').remove();
+
+    return returnImage;
   },
 
 };
