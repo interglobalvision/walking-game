@@ -16,7 +16,7 @@
   height: 200%;
   top: -50%;
   left: -50%;
-  
+
 .medit8-clock
   position: absolute
   width: 120%
@@ -32,11 +32,11 @@
 .medit8-clock-face
   background-image: url('../img/games/medit8/medit8-clock.svg')
   will-change: filter, -webkit-filter
-  
+
 .medit8-clock-hands
   background-image: url('../img/games/medit8/medit8-clockhands.svg')
   will-change: transform
-  
+
 .medit8-coach-container
   position: absolute
   height: 100%
@@ -44,7 +44,7 @@
   top: 0
   left: 0
   will-change: transform
-  
+
 .medit8-coach
   position: absolute
   top: 32%
@@ -53,9 +53,55 @@
   height: 36%
   background-size: 100% 100%
   opacity: 0
-  transition: opacity 5s
+  transition: opacity 2s
   will-change: background-image, background-size, opacity
-  
+
+.medit8-egg
+  position: absolute
+  top: -10%
+  left: -10%
+  width: 100%
+  height: 30%
+  background-size: contain
+  background-image: url("../img/games/medit8/medit8-egg.svg");
+  background-repeat: no-repeat
+  background-position: center
+  transform-origin: bottom
+  will-change: transform, opacity
+  &.egg-shake
+    animation: medit8-egg-shake 1s infinite linear
+  &.medit8-egg-fail
+    opacity: 0
+    transform-origin: center
+    &.egg-fall
+      opacity: 1
+      animation: medit8-egg-fall 4s 1 ease-in
+      animation-fill-mode: forwards
+
+@keyframes medit8-egg-shake
+  0%
+    transform: rotate(0deg)
+  5%
+    transform: rotate(5deg)
+  10%
+    transform: rotate(-5deg)
+  15%
+    transform: rotate(5deg)
+  20%
+    transform: rotate(-5deg)
+  25%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(0deg)
+
+@keyframes medit8-egg-fall
+  0%
+    transform: rotate(0deg) translateY(0) translateX(0)
+    opacity: 1
+  100%
+    transform: rotate(360deg) translateY(100%) translateX(100%)
+    opacity: 0
+
 .medit8-coach-talk
   background-image: url("../img/games/medit8/medit8-coach-talk.svg");
   background-repeat: repeat-x
@@ -63,7 +109,7 @@
   background-size: 400% 100%
   opacity: 1
   animation: medit8-coach 1s steps(4, end) infinite
-  
+
 .medit8-coach-1
   background-image: url("../img/games/medit8/medit8-coach-1.svg");
 
@@ -72,13 +118,13 @@
 
 .medit8-coach-3
   background-image: url("../img/games/medit8/medit8-coach-3.svg");
-  
+
 .medit8-background-anim
   animation: medit8-background 5s infinite linear
-  
+
 .medit8-coach-container-anim
-  animation: medit8-coach-container 10s infinite ease-in-out 
-  
+  animation: medit8-coach-container 10s infinite ease-in-out
+
 @keyframes medit8-background
   0%
     transform: skew(10deg)
@@ -90,7 +136,7 @@
     transform: skew(20deg)
   100%
     transform: skew(10deg)
-    
+
 @keyframes medit8-coach-container
   0%
     transform: translate(0%, -10%)
@@ -102,7 +148,7 @@
     transform: translate(-25%, 0%)
   100%
     transform: translate(0%, -10%)
-  
+
 @keyframes medit8-coach
   from
     background-position: 0%
