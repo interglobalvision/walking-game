@@ -420,8 +420,19 @@ Compass = {
         // Start orientation and position watchers
         _this.startGeoWatchers();
 
-        // Fade in map
-        _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+        if (parseInt(window.localStorage.getItem('firstwalk')) === 1) {
+          // Fade in map with dialog
+          _this.$blackout.animate({'opacity': 0,}, 1000, 'linear', function() {
+            Utilities.Dialog.read(Home.dialog, function() {
+              $('#coach-container').animate({'opacity': 0,}, 1000, 'linear');
+              window.localStorage.setItem('firstwalk', 0);
+            });
+          });
+        } else {
+          $('#coach-container').css('opacity',0);
+          // Fade in map
+          _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
+        }
 
       });
 
