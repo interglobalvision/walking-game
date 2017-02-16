@@ -41,6 +41,7 @@
     "FastClick",
     "Menu",
     "Adjs",
-    "Nouns"
+    "Nouns",
+    "createjs"
   ]
 }
