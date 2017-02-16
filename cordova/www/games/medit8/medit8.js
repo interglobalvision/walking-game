@@ -10,7 +10,7 @@ var Medit8 = {
     "learn to be patient, " + Game.getUsername() + "... years can pass like seconds",
     "don't wish your " + Utilities.Word.getAdj(false, false) + " day away...its time to play...",
     "MEDIT8...8.....8.......",
-    "Just relax and don't move around too much....",
+    "Just relax and don't move around too much...or the egg will fall off my head!",
   ],
   medDialog1: [
     "just be " + Utilities.Word.getAdj(false, false) + ", " + Game.getUsername() + "...",
@@ -200,6 +200,7 @@ var Medit8 = {
     _this.$coach2.css('opacity', 0);
     _this.$coach3.css('opacity', 0);
     _this.$coachTalk.css('opacity', 1);
+    $('.medit8-egg-fail').addClass('egg-fall');
 
     Utilities.Misc.vibrate();
 
