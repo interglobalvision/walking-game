@@ -884,7 +884,7 @@ Game = {
 
       stage.addChild(baseImageBitmap);
 
-      var text = new createjs.Text('I am ' + _this.getRank() + ' , I\'m playing Walking Game and I got some ' + points +' points', 'bold 130px Arial', '#fff');
+      var text = new createjs.Text('I am ' + _this.getRank() + ' , I\'m playing Walking Game and I got some ' + points +' points', 'bold 140px sans-serif', '#fff');
       text.x = 100;
       text.y= 100;
       text.lineWidth = 1000;
