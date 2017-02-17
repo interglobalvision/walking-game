@@ -325,6 +325,8 @@ Game = {
     var _this = this;
     var score = _this.getPoints();
 
+    $('#map-menu').addClass('loading');
+
     _this.generateShareImage(score, function(image) {
 
       window.plugins.socialsharing.share(
@@ -333,10 +335,10 @@ Game = {
         image,
         _this.shareUrl,
         function() {
-          console.log('share ok');
+          $('#map-menu').removeClass('loading');
         },
         function(errorMessage) {
-          console.log('share failed');
+          $('#map-menu').removeClass('loading');
           console.log(errorMessage);
           alert('Something went wrong. Maybe you got no friends?');
         }

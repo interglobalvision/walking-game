@@ -1053,6 +1053,15 @@ table {
   left: 0;
   position: absolute;
 }
+#map-menu.loading .menu-list {
+  display: none;
+}
+#map-menu.loading #menu-main-loading {
+  display: block;
+}
+#menu-main-loading {
+  display: none;
+}
 .map-menu-coach {
   position: absolute;
   height: 12%;
