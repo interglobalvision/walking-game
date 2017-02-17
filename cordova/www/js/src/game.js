@@ -1,18 +1,18 @@
 Game = {
   minigames: [
-    'hardcoreloud',
-    'favfood',
-    'twisterfingers',
-    'tippyswitch',
-    'shakyvibrate',
-    'math',
     'supertap',
+    'hardcoreloud',
+    'twisterfingers',
+    'favfood',
+    'math',
+    'tippyswitch',
     'reset',
+    'shakyvibrate',
+    'worldtraveler',
     'colorsnap',
     '1percent',
     'vibeystopper',
     'jankenpon',
-    'worldtraveler',
     'medit8',
   ],
   worlds: [
@@ -57,12 +57,13 @@ Game = {
 
   setupLoop: function() {
     var _this = this;
-
-    console.log('Setting up loop');
+    var currentLoops = _this.getLoops();
 
     _this.setProgress(0);
 
-    _this.setLoopOrder( Utilities.Misc.shuffleArray(_this.minigames) );
+    if (currentLoops !== 0) {
+      _this.setLoopOrder( Utilities.Misc.shuffleArray(_this.minigames) );
+    }
 
   },
 
