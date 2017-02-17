@@ -1083,9 +1083,6 @@ ul.menu-list {
   }
 }
 
-#blackout {
-  display: none;
-}
 .loud-background {
   position: absolute;
   width: 100%;
@@ -1430,7 +1427,6 @@ html {
 }
 .text-box-dialog {
   display: inline;
-  margin-right: 1em;
 }
 .text-box-next {
   font-weight: bold;
