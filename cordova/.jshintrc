@@ -42,11 +42,8 @@
     "Menu",
     "Adjs",
     "Nouns",
-<<<<<<< HEAD
     "cordova",
-    "Media"
-=======
+    "Media",
     "createjs"
->>>>>>> feature-social-share-image
   ]
 }
