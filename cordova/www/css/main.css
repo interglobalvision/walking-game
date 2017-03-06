@@ -842,11 +842,6 @@ table {
   background-repeat: repeat-x;
   background-size: 25% 100%;
 }
-#timer {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 .world-0 .map-skyline {
   background-image: url("../img/map/sky-0.svg");
 }
@@ -2019,6 +2014,67 @@ h6 {
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+
+.running-world .map-sky {
+  background-color: #000;
+  -webkit-animation: lightning 10s infinite linear;
+          animation: lightning 10s infinite linear;
+}
+.running-world .map-skyline {
+  background-image: url("../img/games/running/sky.svg");
+}
+.running-world .map-floor {
+  background: linear-gradient(to bottom, #f00 0%, #fff 100%);
+}
+.running-world .map-object {
+  background-image: url("../img/games/running/object.svg");
+}
+#timer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f00;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.3em;
+  font-family: monospace;
+  border: 3px solid #fff;
+  text-shadow: 1px 1px 5px #fff;
+}
+@-webkit-keyframes lightning {
+  0% {
+    background-color: #fff;
+  }
+  1% {
+    background-color: #000;
+  }
+  2% {
+    background-color: #fff;
+  }
+  8% {
+    background-color: #000;
+  }
+  100% {
+    background-color: #000;
+  }
+}
+@keyframes lightning {
+  0% {
+    background-color: #fff;
+  }
+  1% {
+    background-color: #000;
+  }
+  2% {
+    background-color: #fff;
+  }
+  8% {
+    background-color: #000;
+  }
+  100% {
+    background-color: #000;
   }
 }
 

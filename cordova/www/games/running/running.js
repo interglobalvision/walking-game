@@ -256,47 +256,6 @@ Running = {
 
   },
 
-  setSkyColor: function() {
-    var _this = this;
-
-    var now = new Date();
-
-    if (now) {
-      var hour = now.getHours(),
-        skyColor;
-
-      if (hour > 4 && hour < 10) {
-
-        skyColor = 'rgb(100, 160, 255)'; // Morning 5 - 9
-
-      } else if (hour > 9 && hour < 17) {
-
-        skyColor = 'rgb(145, 205, 242)'; // Day 10 - 16
-
-      } else if (hour > 16 && hour < 22) {
-
-        skyColor = 'rgb(10, 40, 95)'; // Evening 17 - 21
-
-      } else {
-
-        skyColor = 'rgb(0, 20, 60)'; // Night 22 - 4
-
-      }
-
-      _this.$mapSky.css('background-color', skyColor); // set sky color
-    }
-  },
-
-  /*
-   * Sets map theme graphics
-   *
-   */
-  mapTheme: function() {
-    var _this = this;
-
-    _this.$mapStage.addClass('world-' + Game.getWorld());
-  },
-
   /*
    * Bind navigator.gelocation and deviceorientation events
    *
@@ -385,10 +344,29 @@ Running = {
 
     var currentTime = + new Date();
 
-    _this.$timer.text(_this.stopTime - currentTime);
+    _this.$timer.text(_this.formatTimerStr(_this.stopTime - currentTime));
 
     _this.animationFrame = window.requestAnimationFrame(_this.animate.bind(_this));
 
+  },
+
+  formatTimerStr: function(ms) {
+    mils=Math.floor(ms%1000)
+    secs=Math.floor((ms/1000)%60)
+    mins=Math.floor((ms/(1000*60))%60)
+
+    if (mils < 10) {
+      milsStr = '00' + mils;
+    } else if (mils < 100) {
+      milsStr = '0' + mils;
+    } else {
+      milsStr = mils;
+    }
+
+    secsStr = secs < 10 ? '0' + secs : secs;
+    minsStr = mins < 10 ? '0' + mins : mins;
+
+    return minsStr + ":" + secsStr + ":" + milsStr;
   },
 
   startTimer: function() {
@@ -409,7 +387,7 @@ Running = {
 
     _this.timeout = setTimeout(function(){
       _this.fail();
-      _this.$timer.text('0');
+      _this.$timer.text('00:00:000');
     }, time);
   },
 
@@ -536,12 +514,6 @@ Running = {
     _this.minDistance = _this.minDistance + _this.modifiedDistance; // in radians
     _this.maxDistance = _this.maxDistance + _this.modifiedDistance; // in radians
 
-    // Set sky color
-    _this.setSkyColor();
-
-    // Set map theme graphics
-    _this.mapTheme();
-
     // Fade in map
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
@@ -563,4 +535,3 @@ Running = {
 document.addEventListener('deviceready', function() {
   Running.init();
 }, false);
-
