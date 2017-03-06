@@ -17,7 +17,7 @@ var Bedside = {
     _this.$blackout.animate({'opacity': 0,}, 2000, 'linear', function() { //fade from black
 
       _this.partOne();
-      
+
     });
 
   },
@@ -39,8 +39,7 @@ var Bedside = {
 
     _this.$blackout.animate({'opacity': 1,}, 2000, 'linear', function() { //fade to black
 
-      Router.go('/scenes/farewell/'); //go to farewell scene 
-
+      Router.go('/pages/compass/'); //go to map
     });
   },
 

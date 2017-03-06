@@ -1,0 +1,29 @@
+.twister-stage
+  background-image: url('../img/games/twisterfingers/twister-background.svg')
+  background-size: 42%
+  background-position: center
+
+.twister-target
+  opacity: 0
+  width: 40vw
+  height: 40vw
+  border-radius: 20vw
+  margin: 5vw
+  background-color: white
+  float: left
+  box-sizing: border-box
+  border: 3vw solid black
+  background-image: url('../img/games/twisterfingers/twister-coach.svg')
+  background-size: 80%
+  background-position: center
+  background-repeat: no-repeat
+  background-position: 30% center
+  transition: opacity .5s
+  &.show
+    opacity: 1
+  &.touchme
+    background-color: #FF931E
+    box-shadow: 0px 0px 10vw #e4ff00
+  &.touched
+    border-width: 5vw
+    background-color: #D9E021

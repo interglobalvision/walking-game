@@ -1,0 +1,45 @@
+.favfood-stage
+  background-color: #B2C0FF
+
+#favfood-background
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  background-image: url('../img/games/favfood/favfood-background.svg')
+
+#favfood-coach
+  position: fixed
+  bottom: 0
+  left: 0
+  height: 60%
+  width: 200%
+  background-image: url('../img/games/favfood/favfood-coach.svg')
+  animation: favfood-coach .5s steps(1) infinite
+  &.coach-move
+    animation-duration: .2s
+
+@keyframes favfood-coach
+  0%
+    transform: translateX(0%)
+  50%
+    transform: translateX(-50%)
+
+#favfood-options
+  position: fixed
+  top: 5%
+  left: 5%
+  width: 90%
+  opacity: 0
+  transition: opacity .5s
+  &.show-options
+    opacity: 1
+  .option
+    background-color: #EAFF6F
+    box-sizing: border-box
+    padding: 5%
+    margin-bottom: 5%
+    border: 5px dashed #ffc0cb
+    border-radius: 20px
+    box-shadow: 0px 5px 0px #ffc0cb
