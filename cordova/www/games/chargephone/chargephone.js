@@ -74,8 +74,8 @@ var ChargePhone = {
     console.log(status);
 
     if (!_this.batteryLevel) {
-    _this.batteryLevel = level;
-    }  else if (level < _this.batteryLevel) {
+    _this.batteryLevel = status.level;
+    }  else if (status.level < _this.batteryLevel) {
     _this.win();
     }
 

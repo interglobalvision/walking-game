@@ -1,0 +1,62 @@
+.loud-background
+  position: absolute
+  width: 100%
+  height: 100%
+  background-size: contain
+  background-image: url(../img/games/hardcoreloud/loud-background-white.svg)
+
+.loud-coach
+  position: absolute
+  width: 200%
+  height: 50%
+  top: 25%
+  background-image: url(../img/games/hardcoreloud/loud-coach-white.svg)
+  background-size: contain
+  will-change: transform
+  animation: loud-coach-white .2s steps(1) infinite
+
+@keyframes loud-coach-white
+  0%
+    transform: translateX(0%)
+  50%
+    transform: translateX(-50%)
+
+#loud-color-container
+  opacity: 0
+  position: absolute
+  width: 100%
+  height: 100%
+  will-change: opacity
+  .loud-background
+    background-image: url(../img/games/hardcoreloud/loud-background-color.svg)
+  .loud-coach
+    width: 400%
+    background-image: url(../img/games/hardcoreloud/loud-coach-color.svg)
+    animation: loud-coach-color .5s steps(1) infinite
+
+@keyframes loud-coach-color
+  0%
+    transform: translateX(0%)
+  25%
+    transform: translateX(-25%)
+  50%
+    transform: translateX(-50%)
+  75%
+    transform: translateX(-75%)
+
+#loud-word
+  opacity: 1
+  top: 5%
+  width: 90%
+  left: 5%
+  border: 5px solid #000
+  position: absolute
+  background: white
+  padding: 20px
+  box-sizing: border-box
+  text-align: center
+  font-size: 2em
+  line-height: 1
+  border-radius: 20px
+  transition: opacity 5s
+  will-change: opacity

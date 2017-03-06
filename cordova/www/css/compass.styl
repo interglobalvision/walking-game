@@ -147,6 +147,14 @@ $map-transition = 300ms linear
   top: 0
   left: 0
   position: absolute
+  &.loading
+    .menu-list
+      display: none
+    #menu-main-loading
+      display: block
+
+#menu-main-loading
+  display: none
 
 .map-menu-coach
   position: absolute

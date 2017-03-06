@@ -287,105 +287,6 @@ table {
   -webkit-filter: saturate(0);
   filter: saturate(0);
 }
-#livingroom-container {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  transition: -webkit-transform 500ms;
-  transition: transform 500ms;
-  transition: transform 500ms, -webkit-transform 500ms;
-  will-change: transform;
-}
-.livingroom {
-  width: 200%;
-  left: -100%;
-}
-#livingroom-wall {
-  z-index: 1;
-  -webkit-filter: hue-rotate(10deg);
-          filter: hue-rotate(10deg);
-  background-image: url("../img/bedroom/wallpaper.gif");
-  background-size: 15%;
-}
-#livingroom-room {
-  background-image: url("../img/livingroom/room.svg");
-  z-index: 2;
-  backround-size: 100% 100%;
-}
-#livingroom-aunt {
-  z-index: 3;
-  width: 100%;
-  background-image: url("../img/livingroom/aunt3.png");
-  background-repeat: no-repeat;
-  background-position: 0%;
-  background-size: 200% 100%;
-  -webkit-animation: livingroom-aunt 0.5s steps(2, end) infinite;
-          animation: livingroom-aunt 0.5s steps(2, end) infinite;
-  will-change: background-position;
-}
-#livingroom-cat {
-  background-image: url("../img/livingroom/cat.svg");
-  top: -5%;
-  z-index: 4;
-  -webkit-animation: livingroom-cat 3s infinite linear;
-          animation: livingroom-cat 3s infinite linear;
-  background-size: 15% 15%;
-  background-position: 20% 80%;
-  background-repeat: no-repeat;
-  will-change: transform;
-}
-#livingroom-sofa {
-  background-image: url("../img/livingroom/sofa.svg");
-  z-index: 5;
-  background-size: 50% 45%;
-  background-repeat: no-repeat;
-  background-position: bottom center;
-}
-.livingroom-compass {
-  opacity: 0;
-  background-size: cover;
-  background-position: center;
-  position: fixed;
-  transition: all 2s;
-  pointer-events: none;
-  width: 100%;
-  height: 100%;
-}
-.show-compass {
-  opacity: 1;
-}
-.show-compass #livingroom-compass-obj {
-  width: 200px;
-  height: 200px;
-  margin-left: -100px;
-  margin-top: -100px;
-}
-#livingroom-compass-bg {
-  position: absolute;
-  background-image: url("../img/livingroom/compass-bg.jpg");
-  background-size: 100% 100%;
-  z-index: 6;
-  -webkit-animation: hue 4s infinite linear;
-          animation: hue 4s infinite linear;
-  width: 100%;
-  height: 100%;
-}
-#livingroom-compass-obj {
-  position: absolute;
-  background-image: url("../img/compass.png");
-  background-size: contain;
-  z-index: 7;
-  width: 0px;
-  height: 0px;
-  top: 50%;
-  left: 50%;
-  margin-top: 0px;
-  margin-left: 0px;
-  transition: all 2s;
-  -webkit-animation: livingroom-spin-compass 2s infinite linear;
-          animation: livingroom-spin-compass 2s infinite linear;
-  will-change: transform;
-}
 .letsgo-background {
   position: absolute;
   width: 100%;
@@ -706,26 +607,6 @@ table {
   }
   to {
     background-position: 200%;
-  }
-}
-@-webkit-keyframes livingroom-cat {
-  from {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-  }
-  to {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-  }
-}
-@keyframes livingroom-cat {
-  from {
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-  }
-  to {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
   }
 }
 @-webkit-keyframes livingroom-spin-compass {
@@ -1220,6 +1101,15 @@ table {
   left: 0;
   position: absolute;
 }
+#map-menu.loading .menu-list {
+  display: none;
+}
+#map-menu.loading #menu-main-loading {
+  display: block;
+}
+#menu-main-loading {
+  display: none;
+}
 .map-menu-coach {
   position: absolute;
   height: 12%;
@@ -1295,6 +1185,180 @@ ul.menu-list {
   }
   100% {
     background-position-x: 400%;
+  }
+}
+
+.favfood-stage {
+  background-color: #b2c0ff;
+}
+#favfood-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/games/favfood/favfood-background.svg");
+}
+#favfood-coach {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 60%;
+  width: 200%;
+  background-image: url("../img/games/favfood/favfood-coach.svg");
+  -webkit-animation: favfood-coach 0.5s steps(1) infinite;
+          animation: favfood-coach 0.5s steps(1) infinite;
+}
+#favfood-coach.coach-move {
+  -webkit-animation-duration: 0.2s;
+          animation-duration: 0.2s;
+}
+#favfood-options {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+#favfood-options.show-options {
+  opacity: 1;
+}
+#favfood-options .option {
+  background-color: #eaff6f;
+  box-sizing: border-box;
+  padding: 5%;
+  margin-bottom: 5%;
+  border: 5px dashed #ffc0cb;
+  border-radius: 20px;
+  box-shadow: 0px 5px 0px #ffc0cb;
+}
+@-webkit-keyframes favfood-coach {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@keyframes favfood-coach {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+
+.loud-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-image: url("../img/games/hardcoreloud/loud-background-white.svg");
+}
+.loud-coach {
+  position: absolute;
+  width: 200%;
+  height: 50%;
+  top: 25%;
+  background-image: url("../img/games/hardcoreloud/loud-coach-white.svg");
+  background-size: contain;
+  will-change: transform;
+  -webkit-animation: loud-coach-white 0.2s steps(1) infinite;
+          animation: loud-coach-white 0.2s steps(1) infinite;
+}
+#loud-color-container {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: opacity;
+}
+#loud-color-container .loud-background {
+  background-image: url("../img/games/hardcoreloud/loud-background-color.svg");
+}
+#loud-color-container .loud-coach {
+  width: 400%;
+  background-image: url("../img/games/hardcoreloud/loud-coach-color.svg");
+  -webkit-animation: loud-coach-color 0.5s steps(1) infinite;
+          animation: loud-coach-color 0.5s steps(1) infinite;
+}
+#loud-word {
+  opacity: 1;
+  top: 5%;
+  width: 90%;
+  left: 5%;
+  border: 5px solid #000;
+  position: absolute;
+  background: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 2em;
+  line-height: 1;
+  border-radius: 20px;
+  transition: opacity 5s;
+  will-change: opacity;
+}
+@-webkit-keyframes loud-coach-white {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@keyframes loud-coach-white {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@-webkit-keyframes loud-coach-color {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  25% {
+    -webkit-transform: translateX(-25%);
+            transform: translateX(-25%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  75% {
+    -webkit-transform: translateX(-75%);
+            transform: translateX(-75%);
+  }
+}
+@keyframes loud-coach-color {
+  0% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  25% {
+    -webkit-transform: translateX(-25%);
+            transform: translateX(-25%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  75% {
+    -webkit-transform: translateX(-75%);
+            transform: translateX(-75%);
   }
 }
 
@@ -1534,7 +1598,6 @@ html {
 }
 .text-box-dialog {
   display: inline;
-  margin-right: 1em;
 }
 .text-box-next {
   font-weight: bold;
@@ -1745,8 +1808,38 @@ h6 {
   height: 36%;
   background-size: 100% 100%;
   opacity: 0;
-  transition: opacity 5s;
+  transition: opacity 2s;
   will-change: background-image, background-size, opacity;
+}
+.medit8-egg {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 100%;
+  height: 30%;
+  background-size: contain;
+  background-image: url("../img/games/medit8/medit8-egg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  will-change: transform, opacity;
+}
+.medit8-egg.egg-shake {
+  -webkit-animation: medit8-egg-shake 1s infinite linear;
+          animation: medit8-egg-shake 1s infinite linear;
+}
+.medit8-egg.medit8-egg-fail {
+  opacity: 0;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+.medit8-egg.medit8-egg-fail.egg-fall {
+  opacity: 1;
+  -webkit-animation: medit8-egg-fall 4s 1 ease-in;
+          animation: medit8-egg-fall 4s 1 ease-in;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 .medit8-coach-talk {
   background-image: url("../img/games/medit8/medit8-coach-talk.svg");
@@ -1773,6 +1866,90 @@ h6 {
 .medit8-coach-container-anim {
   -webkit-animation: medit8-coach-container 10s infinite ease-in-out;
           animation: medit8-coach-container 10s infinite ease-in-out;
+}
+@-webkit-keyframes medit8-egg-shake {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  5% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  10% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  15% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  20% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  25% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes medit8-egg-shake {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  5% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  10% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  15% {
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  20% {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  25% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes medit8-egg-fall {
+  0% {
+    -webkit-transform: rotate(0deg) translateY(0) translateX(0);
+            transform: rotate(0deg) translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg) translateY(100%) translateX(100%);
+            transform: rotate(360deg) translateY(100%) translateX(100%);
+    opacity: 0;
+  }
+}
+@keyframes medit8-egg-fall {
+  0% {
+    -webkit-transform: rotate(0deg) translateY(0) translateX(0);
+            transform: rotate(0deg) translateY(0) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(360deg) translateY(100%) translateX(100%);
+            transform: rotate(360deg) translateY(100%) translateX(100%);
+    opacity: 0;
+  }
 }
 @-webkit-keyframes medit8-background {
   0% {
@@ -2007,19 +2184,165 @@ h6 {
   }
 }
 
-#shaky-progress-holder {
-  position: relative;
-  width: 100%;
-  height: 50vh;
-  background-color: #008000;
+.shaky-stage {
+  background-color: #4d4d4d;
+  transition: background-color 2s;
 }
-#shaky-progress {
+.shaky-stage.awake {
+  background-color: #62d3de;
+}
+.shaky-stage.awake #shaky-coach #shaky-sleep-bubble {
+  opacity: 0;
+}
+.shaky-stage.awake #shaky-coach .eyes {
+  -webkit-animation: shaky-eyes 0.1s infinite steps(2);
+          animation: shaky-eyes 0.1s infinite steps(2);
+}
+.shaky-stage.awake #shaky-alarm {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+.shaky-background {
+  position: absolute;
+  height: 100%;
+  width: 200%;
+  background-image: url("../img/games/shakyvibrate/shakyvibrate-background.svg");
+  background-size: 25%;
+  background-position: center;
+  background-repeat: repeat;
+  will-change: transform;
+  -webkit-animation: shaky-background 3s infinite linear;
+          animation: shaky-background 3s infinite linear;
+}
+#shaky-coach {
   position: absolute;
   top: 0;
-  left: 0;
-  height: 50vh;
-  background-color: #f00;
-  transition: width 0.2s;
+  width: 100%;
+  height: 50%;
+}
+#shaky-coach #shaky-sleep-bubble {
+  opacity: 0.5;
+}
+#shaky-sleep-bubble {
+  will-change: transform;
+  -webkit-transform-origin: bottom;
+          transform-origin: bottom;
+  -webkit-animation: shaky-sleep-bubble 3s infinite ease-in-out;
+          animation: shaky-sleep-bubble 3s infinite ease-in-out;
+}
+#shaky-alarm {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 80%;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+#shaky-alarm.progress-1 .shaky-meter:nth-child(-n+4) {
+  display: block;
+}
+#shaky-alarm.progress-2 .shaky-meter:nth-child(-n+5) {
+  display: block;
+}
+#shaky-alarm.progress-3 .shaky-meter:nth-child(-n+6) {
+  display: block;
+}
+#shaky-alarm.progress-4 .shaky-meter:nth-child(-n+7) {
+  display: block;
+}
+#shaky-alarm.progress-5 .shaky-meter:nth-child(-n+8) {
+  display: block;
+}
+#shaky-alarm.progress-6 .shaky-meter:nth-child(-n+9) {
+  display: block;
+}
+#shaky-alarm.progress-7 .shaky-meter:nth-child(-n+10) {
+  display: block;
+}
+#shaky-alarm.progress-8 .shaky-meter:nth-child(-n+11) {
+  display: block;
+}
+#shaky-alarm.progress-9 .shaky-meter:nth-child(-n+12) {
+  display: block;
+}
+#shaky-alarm.progress-10 .shaky-meter:nth-child(-n+13) {
+  display: block;
+}
+.shaky-meter {
+  display: none;
+}
+@-webkit-keyframes shaky-background {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@keyframes shaky-background {
+  from {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+}
+@-webkit-keyframes shaky-eyes {
+  0% {
+    fill: #fff;
+  }
+  50% {
+    fill: #000;
+  }
+  100% {
+    fill: #fff;
+  }
+}
+@keyframes shaky-eyes {
+  0% {
+    fill: #fff;
+  }
+  50% {
+    fill: #000;
+  }
+  100% {
+    fill: #fff;
+  }
+}
+@-webkit-keyframes shaky-sleep-bubble {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+}
+@keyframes shaky-sleep-bubble {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1);
+  }
 }
 
 .tap-background {
@@ -2254,6 +2577,40 @@ h6 {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
   }
+}
+
+.twister-stage {
+  background-image: url("../img/games/twisterfingers/twister-background.svg");
+  background-size: 42%;
+  background-position: center;
+}
+.twister-target {
+  opacity: 0;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 20vw;
+  margin: 5vw;
+  background-color: #fff;
+  float: left;
+  box-sizing: border-box;
+  border: 3vw solid #000;
+  background-image: url("../img/games/twisterfingers/twister-coach.svg");
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: 30% center;
+  transition: opacity 0.5s;
+}
+.twister-target.show {
+  opacity: 1;
+}
+.twister-target.touchme {
+  background-color: #ff931e;
+  box-shadow: 0px 0px 10vw #e4ff00;
+}
+.twister-target.touched {
+  border-width: 5vw;
+  background-color: #d9e021;
 }
 
 .vibey-background {
