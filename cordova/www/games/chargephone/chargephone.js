@@ -1,6 +1,6 @@
 var ChargePhone = {
   $blackout: $('#blackout'),
-  $countdown: $('#countdown'),
+  $countdown: $('#chargephone-countdown'),
   timeToFail: 500000,
   modifiedFail: Game.modifyDifficulty(500),
   batteryLevel: false,

@@ -1,8 +1,10 @@
 .chargephone-stage
   background-color: #F7931E
   &.show-phone
+    #chargephone-coach
+      opacity: 0
     #chargephone-phone
-      opacity: .9
+      opacity: 1
       pointer-events: auto
   &.charging
     filter: invert(1)
@@ -36,9 +38,9 @@
   background-image: url(../img/games/chargephone/chargephone-coach.svg)
   background-repeat: no-repeat
   background-position: center
-  will-change: transform
+  will-change: all
+  transition: opacity 2s ease-in-out
   animation: chargephone-coach 1s infinite steps(1)
-
 
 @keyframes chargephone-coach
   0%

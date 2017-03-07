@@ -633,8 +633,11 @@ table {
 .chargephone-stage {
   background-color: #f7931e;
 }
+.chargephone-stage.show-phone #chargephone-coach {
+  opacity: 0;
+}
 .chargephone-stage.show-phone #chargephone-phone {
-  opacity: 0.9;
+  opacity: 1;
   pointer-events: auto;
 }
 .chargephone-stage.charging {
@@ -669,7 +672,8 @@ table {
   background-image: url("../img/games/chargephone/chargephone-coach.svg");
   background-repeat: no-repeat;
   background-position: center;
-  will-change: transform;
+  will-change: all;
+  transition: opacity 2s ease-in-out;
   -webkit-animation: chargephone-coach 1s infinite steps(1);
           animation: chargephone-coach 1s infinite steps(1);
 }
