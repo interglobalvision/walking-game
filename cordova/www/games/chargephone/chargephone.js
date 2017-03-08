@@ -86,8 +86,9 @@ var ChargePhone = {
 
     _this.countdown = window.setInterval(function() {
 
-      _this.timeLeft = _this.timeLeft - 1000;
-      _this.$countdown.html(_this.timeLeft / 1000);
+      var currentTime = + new Date();
+
+      _this.$countdown.html(_this.formatTimerStr(_this.timeLeft - currentTime));
 
       if (_this.timeLeft < 0) {
         _this.fail();
@@ -96,11 +97,21 @@ var ChargePhone = {
     }, 1000);
   },
 
+  formatTimerStr: function(ms) {
+    secs=Math.floor((ms/1000)%60)
+    mins=Math.floor((ms/(1000*60))%60)
+
+    secsStr = secs < 10 ? '0' + secs : secs;
+    minsStr = mins < 10 ? '0' + mins : mins;
+
+    return minsStr + ":" + secsStr;
+  },
+
   startGame: function() {
     var _this = this;
 
-    _this.timeLeft = _this.timeToFail;
-    _this.$countdown.html(_this.timeLeft / 1000);
+    _this.timeLeft = formatTimerStr(_this.timeToFail);
+    _this.$countdown.html(_this.timeLeft);
 
     _this.bind();
     _this.setCountdown();
