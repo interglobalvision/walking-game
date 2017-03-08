@@ -84,9 +84,15 @@ var ChargePhone = {
   setCountdown: function() {
     var _this = this;
 
+    _this.timeLeft = _this.timeToFail + new Date().valueOf()
+
+    var currentTime = new Date();
+
+    _this.$countdown.html(_this.formatTimerStr(_this.timeLeft - currentTime));
+
     _this.countdown = window.setInterval(function() {
 
-      var currentTime = + new Date();
+      currentTime = + new Date();
 
       _this.$countdown.html(_this.formatTimerStr(_this.timeLeft - currentTime));
 
@@ -109,9 +115,6 @@ var ChargePhone = {
 
   startGame: function() {
     var _this = this;
-
-    _this.timeLeft = formatTimerStr(_this.timeToFail);
-    _this.$countdown.html(_this.timeLeft);
 
     _this.bind();
     _this.setCountdown();
