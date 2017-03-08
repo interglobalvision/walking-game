@@ -680,13 +680,12 @@ table {
 #chargephone-countdown {
   display: inline-block;
   font-size: 80px;
-  border: 20px solid #9e9e9e;
-  background: #6cb779;
+  border: 5px solid #bea;
+  border-radius: 20px;
+  background: rgba(255,111,237,0.45);
   color: #ffe41f;
   padding: 30px;
   font-weight: 800;
-  -webkit-transform: skewX(10deg);
-          transform: skewX(10deg);
   text-shadow: 0 0 25px #8a2be2;
 }
 #chargephone-coach {
