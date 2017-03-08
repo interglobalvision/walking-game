@@ -640,6 +640,9 @@ table {
   opacity: 1;
   pointer-events: auto;
 }
+.chargephone-stage.show-phone #chargephone-countdown-holder {
+  opacity: 1;
+}
 .chargephone-stage.charging {
   -webkit-filter: invert(1);
           filter: invert(1);
@@ -665,6 +668,27 @@ table {
   -webkit-animation: chargephone-background 3s infinite linear;
           animation: chargephone-background 3s infinite linear;
 }
+#chargephone-countdown-holder {
+  pointer-events: none;
+  position: fixed;
+  top: 3%;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+#chargephone-countdown {
+  display: inline-block;
+  font-size: 80px;
+  border: 20px solid #9e9e9e;
+  background: #6cb779;
+  color: #ffe41f;
+  padding: 30px;
+  font-weight: 800;
+  -webkit-transform: skewX(10deg);
+          transform: skewX(10deg);
+  text-shadow: 0 0 25px #8a2be2;
+}
 #chargephone-coach {
   position: absolute;
   width: 400vw;
@@ -680,10 +704,11 @@ table {
 #chargephone-phone {
   position: absolute;
   opacity: 0;
-  height: 100%;
+  height: 80%;
   width: 70%;
+  top: 20%;
   left: 15%;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 1s ease-in-out;
   pointer-events: none;
 }
 #battery-level {
