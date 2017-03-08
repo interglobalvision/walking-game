@@ -81,7 +81,7 @@ var Worldtraveler = {
 
         _this.setInitialPos(position);
         _this.tie();
-        
+
       }
 
     });
@@ -104,7 +104,7 @@ var Worldtraveler = {
       lng: savedPos[1],
     };
 
-    return initialPos; 
+    return initialPos;
   },
 
   setInitialPos: function(position) {
@@ -123,11 +123,28 @@ var Worldtraveler = {
     return window.localStorage.removeItem(_this.prefix + 'intialPos');
   },
 
+  getDistanceInKm: function(pointA, pointB) {
+    var _this = this;
+
+    var R = 6371; // Radius of the earth in km
+    var dLat = _this.deg2rad(pointB.lat - pointA.lat);
+    var dLon = _this.deg2rad(pointB.lng - pointA.lng);
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(_this.deg2rad(pointA.lat)) * Math.cos(_this.deg2rad(pointB.lat)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+
+    return d;
+  },
+
   compareDistance: function(initialPos, finalPos) {
     var _this = this;
 
     // Compare distances
-    var distance = Compass.getDistanceInKm(initialPos,finalPos);
+    var distance = _this.getDistanceInKm(initialPos,finalPos);
 
     // if dsitance traveled is grater than the threshold
     if ( distance >= _this.distanceThreshold ) {
@@ -157,7 +174,7 @@ var Worldtraveler = {
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
         Game.gameComplete(0);
       });
-      
+
     });
 
   },
