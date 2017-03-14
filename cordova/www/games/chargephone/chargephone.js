@@ -1,7 +1,7 @@
 var ChargePhone = {
   $blackout: $('#blackout'),
   $countdown: $('#chargephone-countdown'),
-  timeToFail: 500000,
+  timeToFail: 180000,
   modifiedFail: Game.modifyDifficulty(500),
   batteryLevel: false,
   timeLeft: null,
@@ -83,24 +83,23 @@ var ChargePhone = {
 
   setCountdown: function() {
     var _this = this;
+    var currentTime = new Date().valueOf();
 
-    _this.timeLeft = _this.timeToFail + new Date().valueOf()
-
-    var currentTime = new Date();
-
-    _this.$countdown.html(_this.formatTimerStr(_this.timeLeft - currentTime));
-
-    _this.countdown = window.setInterval(function() {
-
-      currentTime = + new Date();
-
+    var updateCountdown = function() {
       _this.$countdown.html(_this.formatTimerStr(_this.timeLeft - currentTime));
 
-      if (_this.timeLeft < 0) {
+      currentTime = + new Date().valueOf();
+
+      if (_this.timeLeft - currentTime <= 0) {
         _this.fail();
       }
+    }
 
+    _this.countdown = window.setInterval(function() {
+      updateCountdown();
     }, 1000);
+
+    updateCountdown();
   },
 
   formatTimerStr: function(ms) {
@@ -117,6 +116,8 @@ var ChargePhone = {
     var _this = this;
 
     _this.bind();
+
+    _this.timeLeft = new Date().valueOf() + _this.timeToFail;
     _this.setCountdown();
 
     $('.chargephone-stage').addClass('show-phone');
