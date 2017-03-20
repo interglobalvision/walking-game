@@ -28,6 +28,10 @@ var ChargePhone = {
 
     _this.$blackout.animate({'opacity': 0,}, 1000, 'linear');
 
+
+    // Bind event handler functions
+    _this.onBatteryStatus = _this.onBatteryStatus.bind(_this);
+
     Utilities.Dialog.read(_this.introDialog, function() {
 
       _this.startGame();
@@ -39,7 +43,7 @@ var ChargePhone = {
   bind: function() {
     var _this = this;
 
-    window.addEventListener('batterystatus', _this.onBatteryStatus.bind(_this), false);
+    window.addEventListener('batterystatus', _this.onBatteryStatus, false);
 
     $('#chargephone-phone').on('touchstart', function() {
       $('.chargephone-stage').addClass('charging');
@@ -50,6 +54,12 @@ var ChargePhone = {
       $('.chargephone-stage').removeClass('charging');
       _this.clearVibrateInterval();
     });
+  },
+
+  unbind: function() {
+    var _this = this;
+
+    window.removeEventListener('batterystatus', _this.onBatteryStatus, false);
   },
 
   setVibrateInterval: function() {
@@ -127,6 +137,7 @@ var ChargePhone = {
   endGame: function() {
     var _this = this;
 
+    _this.unbind();
     window.clearInterval(_this.countdown);
     _this.clearVibrateInterval();
     $('.chargephone-stage').removeClass('show-phone charging');
