@@ -1,0 +1,34 @@
+.running-world
+  .map-sky
+    background-color: rgb(0,0,0)
+    animation: lightning 10s infinite linear
+  .map-skyline
+    background-image: url('../img/games/running/sky.svg');
+  .map-floor
+    background: linear-gradient(to bottom, #FF0000 0%,#FFFFFF 100%);
+  .map-object
+    background-image: url('../img/games/running/object.svg')
+
+@keyframes lightning
+  0%
+    background-color: rgb(255,255,255)
+  1%
+    background-color: rgb(0,0,0)
+  2%
+    background-color: rgb(255,255,255)
+  8%
+    background-color: rgb(0,0,0)
+  100%
+    background-color: rgb(0,0,0)
+
+#timer
+  position: absolute
+  top: 20px
+  right: 20px
+  background: red
+  border-radius: 10px
+  padding: 10px
+  font-size: 1.3em
+  font-family: monospace
+  border: 3px solid white
+  text-shadow: 1px 1px 5px white
