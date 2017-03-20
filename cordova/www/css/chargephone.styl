@@ -1,0 +1,109 @@
+$transition-duration = 1s
+
+.chargephone-stage
+  background-color: #F7931E
+  &.show-phone
+    #chargephone-coach
+      opacity: 0
+    #chargephone-phone
+      opacity: 1
+      pointer-events: auto
+    #chargephone-countdown-holder
+      opacity: 1
+  &.charging
+    filter: invert(1)
+    animation: chargephone-blink .05s infinite linear
+    .chargephone-background
+      background-image: url(../img/games/chargephone/chargephone-background2.svg)
+    #battery-level
+      animation: chargephone-battery 1s infinite linear
+
+.chargephone-background
+  position: absolute
+  width: 100%
+  height: 200%
+  background-image: url(../img/games/chargephone/chargephone-background.svg)
+  background-size: 30%
+  background-position: center
+  background-repeat: repeat
+  will-change: transform
+  animation: chargephone-background 3s infinite linear
+
+@keyframes chargephone-background
+  from
+    transform: translateY(0%)
+  to
+    transform: translateY(-50%)
+
+#chargephone-countdown-holder
+  pointer-events: none
+  position: fixed
+  top: 3%
+  width: 100%
+  text-align: center
+  opacity: 0
+  transition: opacity $transition-duration ease-in-out
+
+#chargephone-countdown
+  display: inline-block
+  font-size: 80px
+  border: 5px solid #bea
+  border-radius: 20px
+  background: rgba(255, 111, 237, 0.45)
+  color: #FFE41F
+  padding: 30px
+  font-weight: 800
+  text-shadow: 0 0 25px #8a2be2
+
+#chargephone-coach
+  position: absolute
+  width: 400vw
+  height: 100%
+  background-image: url(../img/games/chargephone/chargephone-coach.svg)
+  background-repeat: no-repeat
+  background-position: center
+  will-change: all
+  transition: opacity 2s ease-in-out
+  animation: chargephone-coach $transition-duration infinite steps(1)
+
+@keyframes chargephone-coach
+  0%
+    transform: translateX(0%) translateY(-1%)
+  25%
+    transform: translateX(-25%) translateY(1%)
+  50%
+    transform: translateX(-50%) translateY(-1%)
+  75%
+    transform: translateX(-75%) translateY(1%)
+
+#chargephone-phone
+  position: absolute
+  opacity: 0
+  height: 80%
+  width: 70%
+  top: 20%
+  left: 15%
+  transition: opacity $transition-duration ease-in-out
+  pointer-events: none
+
+#battery-level
+  y: 873px
+
+@keyframes chargephone-battery
+  0%
+    y: 873px
+    fill: green
+  50%
+    y: 473px
+    fill: red
+  100%
+    y: 873px
+    fill: green
+
+@keyframes chargephone-blink
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0

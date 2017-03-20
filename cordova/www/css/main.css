@@ -630,6 +630,196 @@ table {
   }
 }
 
+.chargephone-stage {
+  background-color: #f7931e;
+}
+.chargephone-stage.show-phone #chargephone-coach {
+  opacity: 0;
+}
+.chargephone-stage.show-phone #chargephone-phone {
+  opacity: 1;
+  pointer-events: auto;
+}
+.chargephone-stage.show-phone #chargephone-countdown-holder {
+  opacity: 1;
+}
+.chargephone-stage.charging {
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  -webkit-animation: chargephone-blink 0.05s infinite linear;
+          animation: chargephone-blink 0.05s infinite linear;
+}
+.chargephone-stage.charging .chargephone-background {
+  background-image: url("../img/games/chargephone/chargephone-background2.svg");
+}
+.chargephone-stage.charging #battery-level {
+  -webkit-animation: chargephone-battery 1s infinite linear;
+          animation: chargephone-battery 1s infinite linear;
+}
+.chargephone-background {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  background-image: url("../img/games/chargephone/chargephone-background.svg");
+  background-size: 30%;
+  background-position: center;
+  background-repeat: repeat;
+  will-change: transform;
+  -webkit-animation: chargephone-background 3s infinite linear;
+          animation: chargephone-background 3s infinite linear;
+}
+#chargephone-countdown-holder {
+  pointer-events: none;
+  position: fixed;
+  top: 3%;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+#chargephone-countdown {
+  display: inline-block;
+  font-size: 80px;
+  border: 5px solid #bea;
+  border-radius: 20px;
+  background: rgba(255,111,237,0.45);
+  color: #ffe41f;
+  padding: 30px;
+  font-weight: 800;
+  text-shadow: 0 0 25px #8a2be2;
+}
+#chargephone-coach {
+  position: absolute;
+  width: 400vw;
+  height: 100%;
+  background-image: url("../img/games/chargephone/chargephone-coach.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  will-change: all;
+  transition: opacity 2s ease-in-out;
+  -webkit-animation: chargephone-coach 1s infinite steps(1);
+          animation: chargephone-coach 1s infinite steps(1);
+}
+#chargephone-phone {
+  position: absolute;
+  opacity: 0;
+  height: 80%;
+  width: 70%;
+  top: 20%;
+  left: 15%;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+#battery-level {
+  y: 873px;
+}
+@-webkit-keyframes chargephone-background {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@keyframes chargephone-background {
+  from {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  to {
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+}
+@-webkit-keyframes chargephone-coach {
+  0% {
+    -webkit-transform: translateX(0%) translateY(-1%);
+            transform: translateX(0%) translateY(-1%);
+  }
+  25% {
+    -webkit-transform: translateX(-25%) translateY(1%);
+            transform: translateX(-25%) translateY(1%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%) translateY(-1%);
+            transform: translateX(-50%) translateY(-1%);
+  }
+  75% {
+    -webkit-transform: translateX(-75%) translateY(1%);
+            transform: translateX(-75%) translateY(1%);
+  }
+}
+@keyframes chargephone-coach {
+  0% {
+    -webkit-transform: translateX(0%) translateY(-1%);
+            transform: translateX(0%) translateY(-1%);
+  }
+  25% {
+    -webkit-transform: translateX(-25%) translateY(1%);
+            transform: translateX(-25%) translateY(1%);
+  }
+  50% {
+    -webkit-transform: translateX(-50%) translateY(-1%);
+            transform: translateX(-50%) translateY(-1%);
+  }
+  75% {
+    -webkit-transform: translateX(-75%) translateY(1%);
+            transform: translateX(-75%) translateY(1%);
+  }
+}
+@-webkit-keyframes chargephone-battery {
+  0% {
+    y: 873px;
+    fill: #008000;
+  }
+  50% {
+    y: 473px;
+    fill: #f00;
+  }
+  100% {
+    y: 873px;
+    fill: #008000;
+  }
+}
+@keyframes chargephone-battery {
+  0% {
+    y: 873px;
+    fill: #008000;
+  }
+  50% {
+    y: 473px;
+    fill: #f00;
+  }
+  100% {
+    y: 873px;
+    fill: #008000;
+  }
+}
+@-webkit-keyframes chargephone-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes chargephone-blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .colorsnap-background {
   position: absolute;
   top: 0;
