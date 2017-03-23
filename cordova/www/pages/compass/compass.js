@@ -23,6 +23,8 @@ Home = {
 };
 
 Compass = {
+  debugMode: true,
+
   stepSize: 0.0008, // kilometers
   $blackout: $('#blackout'),
   $radar: $('#radar'),
@@ -188,6 +190,16 @@ Compass = {
     // goal object from disappearing entirely or going negative scale
     if (_this.mapGoalScale < 0.01) {
       _this.mapGoalScale = 0.01;
+    }
+
+    if (_this.debugMode) {
+      $('#debug-lat').html('lat:' + _this.position.lat);
+      $('#debug-long').html('long:' + _this.position.lng);
+      $('#debug-destiny-lat').html('destiny-lat:' + _this.destiny.lat);
+      $('#debug-destiny-long').html('destiny-long:' + _this.destiny.lng);
+      $('#debug-distanceToDestiny').html('distanceToDestiny:' + Math.floor(distanceToDestiny * 1000) + 'm');
+      $('#debug-distanceFromGoal').html('distanceFromGoal:' + Math.floor(distanceFromGoal) + '%');
+      $('#debug-progressToGoal').html('progressToGoal:' + Math.floor(progressToGoal) + '%');
     }
 
     if (distanceToDestiny < _this.destinyThresholdRadius) {
@@ -419,6 +431,20 @@ Compass = {
 
   init: function() {
     var _this = this;
+
+    if (_this.debugMode) {
+
+      $('#debug').css({
+        'display': 'block',
+        'position': 'fixed',
+        'top': 0,
+        'left': 0,
+        'padding': '5px',
+        'background-color': 'rgba(100,100,100,0.4)',
+        'z-index': 1111
+      });
+
+    }
 
     _this.modifiedDistance = Game.modifyDifficulty(0.0001);
 
