@@ -158,6 +158,8 @@ Game = {
 
     if (currentLoops !== 0) {
       _this.setLoopOrder( Utilities.Misc.shuffleArray(_this.minigames) );
+    } else {
+      _this.setLoopOrder( _this.minigames );
     }
 
   },
