@@ -186,10 +186,22 @@ Compass = {
       _this.mapFloorPos = 0;
     }
 
+    // if mapFloorPos is grater than 100, we set it to 100
+    // this keeps the floor from sliding off screen
+    if (_this.mapFloorPos >= 100) {
+      _this.mapFloorPos = 100;
+    }
+
     // if mapGoalScale is less than 0.01, we set it to 0.01
     // goal object from disappearing entirely or going negative scale
     if (_this.mapGoalScale < 0.01) {
       _this.mapGoalScale = 0.01;
+    }
+
+    // if mapGoalScale is grater than 1, we set it to 1
+    // goal object from disappearing entirely or going negative scale
+    if (_this.mapGoalScale > 1) {
+      _this.mapGoalScale = 1;
     }
 
     if (_this.debugMode) {
