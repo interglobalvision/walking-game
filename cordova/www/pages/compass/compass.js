@@ -188,7 +188,7 @@ Compass = {
 
     // if mapFloorPos is grater than 100, we set it to 100
     // this keeps the floor from sliding off screen
-    if (_this.mapFloorPos >= 100) {
+    if (_this.mapFloorPos > 100) {
       _this.mapFloorPos = 100;
     }
 
