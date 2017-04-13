@@ -53,6 +53,76 @@ Game = {
     return window.localStorage.getItem('username');
   },
 
+  checkIntegrity: function() {
+
+    // check strings
+
+    var username = window.localStorage.getItem('username');
+
+    if (username === null) {
+      window.localStorage.setItem('username', 'Noname');
+    }
+
+    var rank = window.localStorage.getItem('rank');
+
+    if (rank === null) {
+      window.localStorage.setItem('rank', 'a Rankless Fool');
+    }
+
+    // check 0+ numbers
+
+    var points = window.localStorage.getItem('points');
+
+    if (points === null) {
+      window.localStorage.setItem('points', 0);
+    }
+
+    var gems = window.localStorage.getItem('gems');
+
+    if (gems === null) {
+      window.localStorage.setItem('gems', 0);
+    }
+
+    var distance = window.localStorage.getItem('distance');
+
+    if (distance === null) {
+      window.localStorage.setItem('distance', 0);
+    }
+
+    var loops = window.localStorage.getItem('loops');
+
+    if (loops === null) {
+      window.localStorage.setItem('loops', 0);
+    }
+
+    // check limited numbers
+
+    var progress = window.localStorage.getItem('progress');
+
+    if (progress === null) {
+      window.localStorage.setItem('progress', 0);
+    } else if (progress > this.minigames.length - 1) {
+      window.localStorage.setItem('progress', 0);
+    }
+
+    var world = window.localStorage.getItem('world');
+
+    if (world === null) {
+      window.localStorage.setItem('world', 0);
+    } else if (world > this.worlds.length - 1) {
+      window.localStorage.setItem('world', 0);
+    }
+
+    // check psuedo-booleans
+
+    var firstwalk = window.localStorage.getItem('firstwalk');
+
+    if (firstwalk === null) {
+      window.localStorage.setItem('firstwalk', 0);
+    }
+
+  },
+
   // GAME STATE
 
   setupLoop: function() {
