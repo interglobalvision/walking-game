@@ -12,11 +12,6 @@ var Maths = {
       "I'm going to show you a number and you have to write the most complicated equation you can to equal that number",
       "For example if I tell you 5 you can write 1+1+1+(2*1)",
   ],
-  winDialog: [
-      "Nice 1 you know how to do maths",
-      "Maybe you think you are pretty hot with your complicated math skills, " + Game.getUsername() + "...",
-      "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
-  ],
   tryAgainDialog: [
     "What a shame " + Game.getUsername() + "...try again eh!?!",
   ],
@@ -113,19 +108,20 @@ var Maths = {
 
   },
 
-  generatePoints: function() {
-    var _this = this;
-
-    return 0 - _this.input.length;
-  },
-
   win: function() {
     var _this = this;
-    var points = _this.generatePoints();
+    var score = Game.getStepsPot() - _this.input.length;
 
-    Utilities.Dialog.read(_this.winDialog, function() {
+    Utilities.Dialog.read([
+      "Nice 1 you know how to do maths",
+      "Maybe you think you are pretty hot with your complicated math skills, " + Game.getUsername() + "...",
+      "This should knock you down a peg or 2. I'm going to take away 1 point for every smartass character in your maths! HAHAHAHAHA......",
+      "That's " + Utilities.Number.roundFloat(score) + " steps!!!",
+    ], function() {
 
-      Game.gameComplete(points);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

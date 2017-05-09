@@ -5,9 +5,6 @@ var FavFood = {
     "How well do you really know your coach " + Game.getUsername() + "?",
     "Now me you will tell, my prefered food is which?!?!",
   ],
-  winDialog: [
-    "You guessed my favorite, " + Utilities.Word.getNoun() + "! I'm glad " + Utilities.Word.getAdj(false, false) + " friends we are. And friends together we walk walk walk...",
-  ],
   tryAgainDialog: [
     "Ooo I'm getting hungry... but this is not my favorite! Try again...",
   ],
@@ -84,9 +81,14 @@ var FavFood = {
     var _this = this;
     var score = Game.getStepsPot();
 
-    Utilities.Dialog.read(_this.winDialog, function() {
+    Utilities.Dialog.read([
+      "You guessed my favorite, " + Utilities.Word.getNoun() + "!",
+      "You keep your " + Utilities.Number.roundFloat(score) + " steps!!!",
+    ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

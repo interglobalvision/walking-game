@@ -17,10 +17,6 @@ var Supertap = {
     "Alright " + Utilities.Word.getNoun() + ", get your finger warmed up...it's time to play SUPERTAP!",
     "Tap that button with MY FACE on it to start the countdown, " + Game.getUsername() + "! And keep tapping FAST FAST until the countdown ends!",
   ],
-  winDialog: [
-    "OK GREAT! NOW STOP!",
-    "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
-  ],
   tryAgainDialog: [
     "STOP STOP STOP!!",
     "UFFFF what a shame. Try again eh, " + Utilities.Word.getNoun() + "!",
@@ -120,10 +116,16 @@ var Supertap = {
     window.clearInterval(_this.checker);
     window.clearInterval(_this.countdown);
 
-    Utilities.Dialog.read(_this.winDialog, function() {
-      var score = Game.getStepsPot() + _this.tapCount;
+    var score = Game.getStepsPot() + _this.tapCount;
 
-      Game.gameComplete(score);
+    Utilities.Dialog.read([
+      "OK GREAT! NOW STOP!... That was a lot of tapping " + Game.getUsername() + "...",
+      "You can keep your steps PLUS your taps!!!" + Utilities.Number.roundFloat(score) + " total steps!!!",
+    ], function() {
+
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

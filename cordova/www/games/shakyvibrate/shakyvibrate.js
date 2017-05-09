@@ -173,10 +173,12 @@ var ShakyVibrate = {
 
     Utilities.Dialog.read([
       "..huh? ..what? OK OK! I'm awake!",
-      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
+      "You can keep your " + Utilities.Number.roundFloat(score) + " steps...",
     ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

@@ -16,9 +16,6 @@ var TwisterFingers = {
     "Okely " + Game.getUsername() + ", lets twist",
     "Press and hold with a finger for each target as they light up. Don't let go!",
   ],
-  winDialog: [
-    "Big winner, " + Utilities.Word.getNoun() + ". Big winner...",
-  ],
   tryAgainDialog: [
     "What a-shambles you are, " + Utilities.Word.getNoun() + "! Give it another shot.",
   ],
@@ -214,10 +211,12 @@ var TwisterFingers = {
 
     Utilities.Dialog.read([
       "Muy dexterous eh!",
-      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
+      "You keep your " + Utilities.Number.roundFloat(score) + " steps!!!",
     ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
   },
