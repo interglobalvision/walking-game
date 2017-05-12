@@ -49,7 +49,7 @@ var Reset = {
     var date = new Date();
     var hours = date.getHours();
 
-    Utilities.Dialog.read(["Congratulations! You just got " + hours + " gems!!! And lost all your points. Ok back to walking now...",], function() {
+    Utilities.Dialog.read(["Congratulations! You just got " + hours + " gems!!! And lost all your steps. Ok back to walking now...",], function() {
 
       Game.setNewGems(parseInt(hours));
       Game.resetPoints();

@@ -121,10 +121,13 @@ var VibeyStopper = {
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
-      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
+      "I'll give you your steps...PLUS a little extra for winning!!",
+      "You get " + Utilities.Number.roundFloat(score) + " steps!!!",
     ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

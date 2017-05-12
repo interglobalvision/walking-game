@@ -47,10 +47,6 @@ Running = {
     "Alright " + Utilities.Word.getNoun() + ", get your paws warmed up...it's time to RUN!",
     "Find your destination ASAP " + Game.getUsername() + "! RUN as fast as you can!",
   ],
-  winDialog: [
-    "OK GREAT! NOW STOP!",
-    "Noice 1 " + Utilities.Word.getNoun() + "! Now let's GO for a WALK!!!!",
-  ],
   tryAgainDialog: [
     "STOP STOP STOP!!",
     "They say that time flies but you keep breaking it's wings",
@@ -351,9 +347,9 @@ Running = {
   },
 
   formatTimerStr: function(ms) {
-    mils=Math.floor(ms%1000)
-    secs=Math.floor((ms/1000)%60)
-    mins=Math.floor((ms/(1000*60))%60)
+    mils=Math.floor(ms%1000);
+    secs=Math.floor((ms/1000)%60);
+    mins=Math.floor((ms/(1000*60))%60);
 
     if (mils < 10) {
       milsStr = '00' + mils;
@@ -398,12 +394,17 @@ Running = {
 
     var score = Game.getStepsPot();
 
-    Utilities.Dialog.read(_this.winDialog, function() {
+    Utilities.Dialog.read([
+      "OK GREAT! NOW STOP! You ran your " + Utilities.Word.getNoun() + "off...",
+      "I'll let you keep " + Utilities.Number.roundFloat(score) + " steps!!!",
+      "Now let's GO for a WALK, " + Game.getUsername() + "!!",
+    ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
-
 
   },
 
@@ -475,11 +476,11 @@ Running = {
       var pos = position.coords;
 
       // Set Origin location
-      _this.origin.lat = pos.latitude,
-        _this.origin.lng = pos.longitude,
+      _this.origin.lat = pos.latitude;
+      _this.origin.lng = pos.longitude;
 
-        // Generate random destiny
-        _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+      // Generate random destiny
+      _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
       _this.destiny.lng = pos.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
 
       // Set total distance

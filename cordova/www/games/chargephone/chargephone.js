@@ -103,7 +103,7 @@ var ChargePhone = {
       if (_this.timeLeft - currentTime <= 0) {
         _this.fail();
       }
-    }
+    };
 
     _this.countdown = window.setInterval(function() {
       updateCountdown();
@@ -113,8 +113,8 @@ var ChargePhone = {
   },
 
   formatTimerStr: function(ms) {
-    secs=Math.floor((ms/1000)%60)
-    mins=Math.floor((ms/(1000*60))%60)
+    secs=Math.floor((ms/1000)%60);
+    mins=Math.floor((ms/(1000*60))%60);
 
     secsStr = secs < 10 ? '0' + secs : secs;
     minsStr = mins < 10 ? '0' + mins : mins;
@@ -152,10 +152,12 @@ var ChargePhone = {
 
     Utilities.Dialog.read([
       "Yes yes YESSSS!",
-      "You won " + Utilities.Number.roundFloat(score) + " points!!!",
+      "I'll let you keep your " + Utilities.Number.roundFloat(score) + " steps!!!",
     ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

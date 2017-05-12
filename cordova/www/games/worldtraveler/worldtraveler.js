@@ -15,11 +15,6 @@ var Worldtraveler = {
     "........",
     "OK! See ya next time...",
   ],
-  finalWinDialog: [
-    "Woah, u r such a good traveler!",
-    "You are at least as far the distance between the pyramids!!",
-    "Since u love going far, " + Game.getUsername() + "... let's go for a walk...!!!",
-  ],
   finalFailDialog: [
     "Nah, u arent far enough, " + Game.getUsername() + "...",
     "I'll set ur new position as the starting point for the next time...",
@@ -144,13 +139,15 @@ var Worldtraveler = {
     var _this = this;
 
     // Compare distances
+    var stepSize = 0.0008;
     var distance = _this.getDistanceInKm(initialPos,finalPos);
+    var steps = Math.floor(distance/stepSize);
 
-    // if dsitance traveled is grater than the threshold
+    // if distance traveled is grater than the threshold
     if ( distance >= _this.distanceThreshold ) {
 
       // Win
-      _this.win(distance);
+      _this.win(steps);
 
       // Reset inital position
       _this.resetInitialPos();
@@ -179,13 +176,19 @@ var Worldtraveler = {
 
   },
 
-  win: function(distance) {
+  win: function(steps) {
     var _this = this;
 
-    Utilities.Dialog.read(_this.finalWinDialog, function() {
+    Utilities.Dialog.read([
+      "Woah, u r such a good traveler!",
+      "You are at least as far the distance between the pyramids!! That's just amazing!",
+      "I'll let you keep your total steps since the last time you played this minigame...",
+      "You keep " + Utilities.Number.roundFloat(steps) + " steps!!!",
+      "Since u love going far, " + Game.getUsername() + "... let's go for a walk...!!!",
+    ], function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        Game.gameComplete(distance);
+        Game.gameComplete(steps);
       });
 
     });

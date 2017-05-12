@@ -21,10 +21,6 @@ var Medit8 = {
   medDialog3: [
     "don't be too " + Utilities.Word.getAdj(false, false) + ".....",
   ],
-  winDialog: [
-    Utilities.Word.getNoun(false, true) + " is bitter, but " + Utilities.Word.getNoun(false, false) + " is sweet",
-    "let's go for a walk, " + Game.getUsername() + "!!",
-  ],
   failDialog: [
     "You moved! " + Utilities.Word.getAdj(false, true) + " bummer....",
     "Next time be more patient....",
@@ -181,11 +177,15 @@ var Medit8 = {
       Utilities.Dialog.finish();
     }
 
-    Utilities.Dialog.read(_this.winDialog, function() {
+    var score = Game.getStepsPot();
+
+    Utilities.Dialog.read([
+      Utilities.Word.getNoun(false, true) + " is bitter, but " + Utilities.Word.getNoun(false, false) + " is sweet...",
+      Utilities.Number.roundFloat(score) + " steps you can keep!!!",
+      "Let's go for a walk, " + Game.getUsername() + "!!",
+    ], function() {
 
       _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-        var score = Game.getStepsPot();
-
         Game.gameComplete(score);
       });
 

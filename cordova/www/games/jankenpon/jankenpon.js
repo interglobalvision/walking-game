@@ -14,10 +14,6 @@ var Jankenpon = {
   oneFailDialog: [
     "Pshh my win suckaAaaa",
   ],
-  finalWinDialog: [
-    "NO NO NOooooo " + Game.getUsername() + "!! You win it all!",
-    "Let's go for a walk",
-  ],
   finalFailDialog: [
     "I win!! HAHAHAAHAHA.... Now time for walking practice " + Game.getUsername() + "!!!",
   ],
@@ -167,14 +163,21 @@ var Jankenpon = {
     _this.showResult(_this.color.win);
 
     if ( _this.wins === _this.minWins ) {
-      Utilities.Dialog.read(_this.finalWinDialog, function() {
+
+      var score = _this.wins + Game.getStepsPot() - _this.losses;
+
+      Utilities.Dialog.read([
+        "NO NO NOooooo " + Game.getUsername() + "!! You win it all!",
+        "I'll let you keep your steps PLUS your wins MINUS your losses...",
+        "That's " + Utilities.Number.roundFloat(score) + " steps!!!",
+      ], function() {
 
         _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
-          var score = _this.wins + Game.getStepsPot() - _this.losses;
           Game.gameComplete(score);
         });
 
       });
+
     } else {
       Utilities.Dialog.read(_this.oneWinDialog, function() {
         _this.hideResult();

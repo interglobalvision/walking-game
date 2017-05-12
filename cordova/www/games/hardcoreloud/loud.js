@@ -15,9 +15,6 @@ var Loud = {
   loseDialog: [
     "no more than a whimper",
   ],
-  winDialog: [
-    "PUM! BOOM! BANG! Nice one",
-  ],
 
   init:  function() {
     var _this = this;
@@ -120,9 +117,14 @@ var Loud = {
 
     var score = Game.getStepsPot();
 
-    Utilities.Dialog.read(_this.winDialog, function() {
+    Utilities.Dialog.read([
+      "PUM! BOOM! BANG! Nice one",
+      "You keep your " + Utilities.Number.roundFloat(score) + " steps!!!",
+    ], function() {
 
-      Game.gameComplete(score);
+      _this.$blackout.animate({'opacity': 1,}, 1000, 'linear', function() {
+        Game.gameComplete(score);
+      });
 
     });
 

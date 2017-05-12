@@ -8,7 +8,7 @@ var Bedside = {
       "It's time to go!! Now what was your name again?",
   ],
   isAndroid: function() {
-    return navigator.userAgent.match(/Android/i) == "Android" ? true : false;
+    return navigator.userAgent.match(/Android/i) === 'Android' ? true : false;
   },
 
   init: function() {
