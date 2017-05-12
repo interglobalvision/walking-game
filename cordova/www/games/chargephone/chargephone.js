@@ -103,7 +103,7 @@ var ChargePhone = {
       if (_this.timeLeft - currentTime <= 0) {
         _this.fail();
       }
-    }
+    };
 
     _this.countdown = window.setInterval(function() {
       updateCountdown();
@@ -113,8 +113,8 @@ var ChargePhone = {
   },
 
   formatTimerStr: function(ms) {
-    secs=Math.floor((ms/1000)%60)
-    mins=Math.floor((ms/(1000*60))%60)
+    secs=Math.floor((ms/1000)%60);
+    mins=Math.floor((ms/(1000*60))%60);
 
     secsStr = secs < 10 ? '0' + secs : secs;
     minsStr = mins < 10 ? '0' + mins : mins;

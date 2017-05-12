@@ -40,7 +40,7 @@ var TwisterFingers = {
         x: coordinates.x,
         y: coordinates.y,
       };
-    };
+    }
 
     _this.targetRadius = (_this.targets[0].$element.innerWidth() / 2);
 
@@ -146,7 +146,7 @@ var TwisterFingers = {
 
       _this.touches[touch.identifier] = _this.target;
 
-      _this.target.$element.removeClass('touchme').addClass('touched');;
+      _this.target.$element.removeClass('touchme').addClass('touched');
 
       if (_this.progress === _this.touchesToWin) {
         _this.win();

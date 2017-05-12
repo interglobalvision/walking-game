@@ -473,8 +473,8 @@ Compass = {
         var pos = position.coords;
 
         // Set Origin location
-        _this.origin.lat = pos.latitude,
-        _this.origin.lng = pos.longitude,
+        _this.origin.lat = pos.latitude;
+        _this.origin.lng = pos.longitude;
 
         // Generate random destiny
         _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);

@@ -139,7 +139,7 @@ var Worldtraveler = {
     var _this = this;
 
     // Compare distances
-    var stepSize = 0.0008,
+    var stepSize = 0.0008;
     var distance = _this.getDistanceInKm(initialPos,finalPos);
     var steps = Math.floor(distance/stepSize);
 

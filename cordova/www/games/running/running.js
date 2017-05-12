@@ -347,9 +347,9 @@ Running = {
   },
 
   formatTimerStr: function(ms) {
-    mils=Math.floor(ms%1000)
-    secs=Math.floor((ms/1000)%60)
-    mins=Math.floor((ms/(1000*60))%60)
+    mils=Math.floor(ms%1000);
+    secs=Math.floor((ms/1000)%60);
+    mins=Math.floor((ms/(1000*60))%60);
 
     if (mils < 10) {
       milsStr = '00' + mils;
@@ -476,11 +476,11 @@ Running = {
       var pos = position.coords;
 
       // Set Origin location
-      _this.origin.lat = pos.latitude,
-        _this.origin.lng = pos.longitude,
+      _this.origin.lat = pos.latitude;
+      _this.origin.lng = pos.longitude;
 
-        // Generate random destiny
-        _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
+      // Generate random destiny
+      _this.destiny.lat = pos.latitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
       _this.destiny.lng = pos.longitude + _this.getRandomDistance(_this.minDistance,_this.maxDistance);
 
       // Set total distance

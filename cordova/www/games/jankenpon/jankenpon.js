@@ -168,7 +168,7 @@ var Jankenpon = {
 
       Utilities.Dialog.read([
         "NO NO NOooooo " + Game.getUsername() + "!! You win it all!",
-        "I'll let you keep your steps PLUS your wins MINUS your losses..."
+        "I'll let you keep your steps PLUS your wins MINUS your losses...",
         "That's " + Utilities.Number.roundFloat(score) + " steps!!!",
       ], function() {
 
