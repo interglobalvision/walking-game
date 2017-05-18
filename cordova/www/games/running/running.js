@@ -1,4 +1,4 @@
-Running = {
+var Running = {
   stepSize: 0.0008, // kilometers
   runningSpeed: 2, // Km/h
   timeout: null,
@@ -347,9 +347,11 @@ Running = {
   },
 
   formatTimerStr: function(ms) {
-    mils=Math.floor(ms%1000);
-    secs=Math.floor((ms/1000)%60);
-    mins=Math.floor((ms/(1000*60))%60);
+    var mils = Math.floor(ms % 1000);
+    var secs = Math.floor((ms / 1000) % 60);
+    var mins = Math.floor((ms / (1000 * 60)) % 60);
+
+    var milsStr;
 
     if (mils < 10) {
       milsStr = '00' + mils;
@@ -359,8 +361,8 @@ Running = {
       milsStr = mils;
     }
 
-    secsStr = secs < 10 ? '0' + secs : secs;
-    minsStr = mins < 10 ? '0' + mins : mins;
+    var secsStr = secs < 10 ? '0' + secs : secs;
+    var minsStr = mins < 10 ? '0' + mins : mins;
 
     return minsStr + ":" + secsStr + ":" + milsStr;
   },

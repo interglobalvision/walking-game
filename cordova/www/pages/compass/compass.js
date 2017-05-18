@@ -1,4 +1,4 @@
-Home = {
+var Home = {
   dialog: [
       "Great, " + Game.getUsername() + "!! We're on our way...",
       "And it's time to go on our first walk...",

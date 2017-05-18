@@ -1,3 +1,5 @@
+/* globals Shake */
+
 var ShakyVibrate = {
   goal: 1000,
   modifier: Game.modifyDifficulty(200),

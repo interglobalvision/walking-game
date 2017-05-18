@@ -1,4 +1,4 @@
-Dev = {
+var Dev = {
   init: function() {
     var _this = this;
 
