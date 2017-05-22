@@ -113,11 +113,11 @@ var ChargePhone = {
   },
 
   formatTimerStr: function(ms) {
-    secs=Math.floor((ms/1000)%60);
-    mins=Math.floor((ms/(1000*60))%60);
+    var secs = Math.floor((ms / 1000) % 60);
+    var mins = Math.floor((ms / (1000 * 60)) % 60);
 
-    secsStr = secs < 10 ? '0' + secs : secs;
-    minsStr = mins < 10 ? '0' + mins : mins;
+    var secsStr = secs < 10 ? '0' + secs : secs;
+    var minsStr = mins < 10 ? '0' + mins : mins;
 
     return minsStr + ":" + secsStr;
   },

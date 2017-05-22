@@ -113,8 +113,8 @@ var Colorsnap = {
 
   analyzeResult: function(data) {
     var _this = this;
-
     var photo = new Image();
+    var result = false;
 
     photo.src = data;
 
@@ -135,14 +135,6 @@ var Colorsnap = {
 
       if (result) {
 
-        var psuedoCloseness = [
-          targetColor[0] - paletteArray[arrayMatch][0],
-          targetColor[1] - paletteArray[arrayMatch][1],
-          targetColor[2] - paletteArray[arrayMatch][2],
-        ];
-
-        //var points = parseInt(psuedoCloseness[0] + psuedoCloseness[1] + psuedoCloseness[2]);
-
         _this.win();
 
       } else {
@@ -152,8 +144,6 @@ var Colorsnap = {
       }
 
     };
-
-    var result = false;
 
   },
 
